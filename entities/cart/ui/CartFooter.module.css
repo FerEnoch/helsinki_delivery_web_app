@@ -1,0 +1,10 @@
+.footer_container {
+  margin-block-start: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 108%;
+  height: 3.5rem;
+  z-index: 20;
+}

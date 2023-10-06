@@ -1,0 +1,22 @@
+.product_list_container {
+  background-color: var(--app-backgound-gray);
+  height: 15rem;
+  overflow-y: scroll;
+  margin-inline: auto;
+  margin-block: .5rem;
+  padding: 0.5rem;
+  scrollbar-width: none;
+  width: 90%;
+  z-index: 6;
+}
+
+.product_list_container::-webkit-scrollbar {
+  display: none;
+}
+
+.product_list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-inline: auto;
+}

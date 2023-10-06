@@ -1,0 +1,22 @@
+.total_amount_button {
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 12px;
+  padding-inline: .5rem;
+  padding-block: 0.8rem;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  line-height: 1rem;
+}
+
+.text {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.mount {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-block: .4rem;
+}

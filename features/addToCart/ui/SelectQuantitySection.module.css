@@ -1,0 +1,35 @@
+.select_quantity_wrapper {
+  align-items: baseline;
+  display: flex;
+  background-color: rgb(129, 122, 122);
+  border-radius: 12px;
+}
+
+.operation_button {
+  border-radius: 12px;
+  border: transparent;
+  font-weight: 900;
+  font-size: 1.2rem;
+  padding-block: 3px;
+  padding-inline: 0.3rem;
+  width: 85%;
+  background-color: rgb(129, 122, 122);
+}
+
+.operation_button:hover {
+  cursor: pointer;
+}
+
+.count {
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+
+.select_quantity:disabled {
+  background-color: #ddd;
+}
+
+.select_quantity:disabled:hover {
+  cursor: not-allowed;
+}

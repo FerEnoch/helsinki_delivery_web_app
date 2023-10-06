@@ -1,0 +1,28 @@
+.search_container {
+  bottom: 35px;
+  display: flex;
+  justify-content: space-between;
+  margin-block-start: 5px;
+  position: relative;
+  width: 100%;
+  right: -2px;
+}
+
+.input_search {
+  border-radius: 14px;
+  border: transparent;
+  flex-basis: 30rem;
+  font-size: 1.3rem;
+  height: 2.8rem;
+  padding-inline-start: 1rem;
+}
+
+.search_lupe:hover {
+  cursor: pointer;
+}
+
+.icon_lupe {
+  margin-block-start: 4px;
+  margin-left: 10px;
+  transform: rotate(90deg) scale(1.2);
+}

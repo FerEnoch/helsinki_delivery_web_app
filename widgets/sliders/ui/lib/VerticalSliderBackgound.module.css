@@ -1,0 +1,12 @@
+.product_list_client_container {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  overflow-x: visible;
+  position: relative;
+  z-index: 20;
+}
+
+.product_list_client_container svg {
+  z-index: 100;
+}

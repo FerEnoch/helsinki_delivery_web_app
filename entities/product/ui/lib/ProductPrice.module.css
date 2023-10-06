@@ -1,0 +1,6 @@
+.product_price {
+  font-size: 1.6rem;
+  font-weight: 900;
+  flex: 1 0 12%;
+  transform: scaleX(1.1);
+}

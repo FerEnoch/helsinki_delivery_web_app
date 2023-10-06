@@ -1,0 +1,45 @@
+.cart_quantity_wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-inline: 0.5rem;
+}
+
+.units_measure {
+  font-weight: 600;
+}
+
+.number_buttons_wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.product_quantity {
+  align-items: center;
+  display: grid;
+  flex: 1 0 2rem;
+  font-size: 3rem;
+  font-weight: 500;
+  transform: scale(1.2, 1.1);
+}
+
+.operation_buttons {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-block: 8px;
+}
+
+.operation_button {
+  background-color: rgb(129, 122, 122);
+  border-radius: 12px;
+  border: transparent;
+  font-size: .8rem;
+  font-weight: 900;
+  padding-inline: 0.6rem;
+  line-height: 1rem;
+}
+
+.operation_button:hover {
+  cursor: pointer
+}

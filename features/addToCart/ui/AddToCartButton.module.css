@@ -1,0 +1,21 @@
+.add_to_cart_button {
+  border: transparent;
+  background: transparent;
+}
+
+.add_to_cart_button:active>svg {
+  fill: var(--app-payments-green)
+}
+
+.add_to_cart_button:hover {
+  cursor: pointer
+}
+
+.add_to_cart_button:disabled {
+  background-color: #ddd;
+  border-radius: 50%;
+}
+
+.add_to_cart_button:disabled:hover {
+  cursor: not-allowed;
+}

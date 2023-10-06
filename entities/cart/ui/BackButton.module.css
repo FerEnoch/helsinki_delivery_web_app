@@ -1,0 +1,29 @@
+.back_button {
+  border-radius: 12px;
+  border: 1px solid white;
+  color: white;
+  display: grid;
+  place-content: center;
+  height: 100%;
+  width: 4.6rem;
+  background: transparent;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.triangle_button {
+  margin-inline-end: .1rem;
+}
+
+.triangle_button svg {
+  transform: rotate(-90deg)
+}
+
+.text {
+  font-size: 1rem;
+  margin-inline-start: 0.1rem;
+  padding-block-end: 0.2rem
+}

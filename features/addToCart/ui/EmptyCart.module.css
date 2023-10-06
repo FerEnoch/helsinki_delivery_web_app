@@ -1,0 +1,14 @@
+.empty_cart_background {
+  background-color: var(--app-backgound-gray);
+  display: grid;
+  height: 11rem;
+  margin-block: 0.5rem;
+  padding: 0.5rem;
+  place-content: center;
+  width: 22rem;
+  z-index: 6;
+}
+
+.empty_cart_message {
+  font-size: 1.5rem;
+}

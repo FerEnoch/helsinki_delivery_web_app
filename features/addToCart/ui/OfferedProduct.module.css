@@ -1,0 +1,39 @@
+.prod_wrapper {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: transparent;
+  border: none;
+  margin-inline: 0.5rem;
+}
+
+.product_icon:hover,
+.action_icon:hover {
+  cursor: pointer
+}
+
+.action_icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (width >=400px) {
+  .action_icon {
+    justify-self: self-start;
+    padding-inline: 0.5rem;
+  }
+}
+
+
+@media (width >=500px) {
+
+  .product_icon {
+    padding-inline-start: 1rem;
+  }
+
+  .action_icon {
+    padding-inline-end: 1rem;
+  }
+}

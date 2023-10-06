@@ -1,0 +1,6 @@
+export const MEM_CACHE = {
+  FIREBASE_DATABASE: 'FIREBASE_DATABASE',
+  DRIVE_DATABASE: 'DRIVE_DATABASE'
+}
+
+export const genericCacheTTLInMin = 60 * 24

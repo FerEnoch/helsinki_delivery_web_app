@@ -1,0 +1,17 @@
+.app_main {
+  /* don't do -> align-items: center; */
+  background-color: var(--app-red-background);
+  border-radius: 20px;
+  color: var(--app-black-text);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-block-start: 4rem;
+  position: relative;
+  text-align: center;
+  width: 95%;
+  z-index: 1;
+}

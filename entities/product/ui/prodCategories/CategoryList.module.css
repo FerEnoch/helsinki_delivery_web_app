@@ -1,0 +1,21 @@
+.link_list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  z-index: 10;
+}
+
+
+.link {
+  font-size: 2rem;
+  margin: 5px;
+  border-radius: 10px;
+  background-color: var(--app-type-background);
+  text-align: center;
+  padding-block: 2px;
+  padding-inline: .5rem;
+  z-index: 10;
+}
+
+.link:hover {
+  cursor: pointer;
+}

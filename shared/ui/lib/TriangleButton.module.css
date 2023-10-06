@@ -1,0 +1,20 @@
+.triangle_button_x {
+  background: transparent;
+  border: transparent;
+  display: inline;
+  transform: scaleY(2);
+  z-index: 40;
+}
+
+.triangle_button_y {
+  background: transparent;
+  border: transparent;
+  display: inline;
+  transform: scaleX(2);
+  z-index: 40;
+}
+
+.triangle_button_x:hover,
+.triangle_button_y:hover {
+  cursor: pointer;
+}

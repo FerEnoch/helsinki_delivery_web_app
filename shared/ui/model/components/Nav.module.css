@@ -1,0 +1,21 @@
+.nav_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  width: 90%;
+  margin-inline: auto;
+}
+
+.back_link {
+  position: absolute;
+  background-color: transparent;
+  border: transparent;
+  z-index: 50;
+}
+
+@media (width <=360px) {
+  .back_link {
+    transform: scale(.8)
+  }
+}

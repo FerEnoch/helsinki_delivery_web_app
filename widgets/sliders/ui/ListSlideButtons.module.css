@@ -1,0 +1,38 @@
+.button_list_up {
+  position: relative;
+  margin-inline-end: 2.3rem;
+  width: fit-content;
+  top: 3px;
+}
+
+.button_list_down {
+  position: relative;
+  margin-inline-end: 2.3rem;
+  width: fit-content;
+}
+
+.button_list_right {
+  margin-block-start: -25%;
+}
+
+.button_list_left {
+  margin-block-start: -25%;
+}
+
+@media (width <=360px) {
+
+  .button_list_right,
+  .button_list_left {
+    transform: scale(.8, 1.1)
+  }
+}
+
+@media (width >=500px) {
+  .button_list_up {
+    margin-inline-end: 2.5rem;
+  }
+
+  .button_list_down {
+    margin-inline-end: 2.5rem;
+  }
+}

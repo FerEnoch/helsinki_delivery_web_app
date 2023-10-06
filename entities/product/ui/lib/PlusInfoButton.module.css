@@ -1,0 +1,12 @@
+.plusInfoButton {
+  background-color: var(--app-black-text);
+  color: var(--app-white-text);
+  border: transparent;
+  border-radius: 50%;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.plusInfoButton:hover {
+  cursor: pointer;
+}
