@@ -3,42 +3,35 @@ import classes from './IceOrCigarSlider.module.css'
 import Link from 'next/link'
 import CartUnitsSection from './CartUnitsSection'
 import TriangleButton from '@/shared/ui/lib/TriangleButton'
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { scrollToNextProduct } from '../lib/scrollToNextProduct'
+import { useCurrentVisibleProduct } from '../lib/useCurrentVisibleProduct'
 
 export default function IceOrCigarSlider ({ products, label, categoryOffering }) {
   const listRef = useRef(null)
-  const [currentProduct, setCurrentProduct] = useState({})
-  const [currentVisibleProdIndex, setCurrentVisibleProdIndex] = useState(0)
+  const [currentVisibleProduct, currentVisibleProdIndex] = useCurrentVisibleProduct(products, listRef)
 
   const handleScroll = (direction) => () => {
     let nextCardIndex
     if (direction === 'left') {
-      nextCardIndex = currentVisibleProdIndex - 1
+      nextCardIndex = Number(currentVisibleProdIndex) - 1
       if (nextCardIndex < 0) {
         nextCardIndex = products.length - 1
       }
     }
     if (direction === 'right') {
-      nextCardIndex = currentVisibleProdIndex + 1
+      nextCardIndex = Number(currentVisibleProdIndex) + 1
       if (nextCardIndex >= products.length) {
         nextCardIndex = 0
       }
     }
 
-    const currentIndex = scrollToNextProduct({
+    scrollToNextProduct({
       containerRef: listRef,
       direction: 'x',
       index: nextCardIndex ?? 0
     })
-
-    setCurrentVisibleProdIndex(currentIndex)
   }
-
-  useEffect(() => {
-    const visibleProd = products[currentVisibleProdIndex]
-    if (visibleProd) setCurrentProduct({ ...visibleProd })
-  }, [currentVisibleProdIndex, products])
 
   return (
     <article
@@ -70,9 +63,9 @@ export default function IceOrCigarSlider ({ products, label, categoryOffering })
           >
             {
         products.length > 0 &&
-        products.map(({ id, category, name }) => {
+        products.map(({ id, category, name }, index) => {
           return (
-            <li key={id} className={classes.product_item}>
+            <li key={id} id={index} className={classes.product_item}>
               <p>
                 <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`}>
                   {name}
@@ -95,7 +88,7 @@ export default function IceOrCigarSlider ({ products, label, categoryOffering })
         <div className={classes.units_measure}>
           <CartUnitsSection
             color='white'
-            currentProduct={{ ...currentProduct }}
+            currentProduct={{ ...currentVisibleProduct }}
             displayQuantity={false}
           />
         </div>

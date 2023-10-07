@@ -14,7 +14,7 @@ export default forwardRef(function ProductList ({
   handleArrowsVisibility
 }, ref) {
   const listRef = useRef(null)
-  const [currentVisibleProds, setCurrentVisibleProds] = useState(0)
+  const [currentProdsViewIndex, setCurrentProdsViewIndex] = useState(0)
   const { data: { sortedProducts: categoryProductList }, isLoading } = useProducts(
     { criteria: 'category', value: category },
     { whereField: 'type', isEqual: type || '*' })
@@ -26,13 +26,13 @@ export default forwardRef(function ProductList ({
       handleScroll (scrollDirection) {
         let nextCardIndex
         if (scrollDirection === 'up') {
-          nextCardIndex = currentVisibleProds - 1
+          nextCardIndex = currentProdsViewIndex - 1
           if (nextCardIndex < 0) {
             nextCardIndex = ((categoryProductList.length / 4)) - 1
           }
         }
         if (scrollDirection === 'down') {
-          nextCardIndex = currentVisibleProds + 1
+          nextCardIndex = currentProdsViewIndex + 1
           if (nextCardIndex >= (categoryProductList.length / 4)) {
             nextCardIndex = 0
           }
@@ -45,10 +45,10 @@ export default forwardRef(function ProductList ({
           correctionPixels: 4
         })
 
-        setCurrentVisibleProds(currentIndex)
+        setCurrentProdsViewIndex(currentIndex)
       }
     }
-  }, [categoryProductList, currentVisibleProds])
+  }, [categoryProductList, currentProdsViewIndex])
 
   useEffect(() => {
     if (categoryProductList) {

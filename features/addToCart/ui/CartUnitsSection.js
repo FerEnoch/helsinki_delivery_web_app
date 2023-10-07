@@ -54,13 +54,13 @@ export default function CartUnitsSection ({ color, currentProduct, displayQuanti
         }
         <div className={classes.operation_buttons} style={{ color }}>
           <button
-            className={classes.operation_button}
+            className={`${classes.operation_button} ${classes.button_plus}`}
             onClick={handleUpdateQuantity(CART_OPERATIONS.INCREMENT)}
           >
             +
           </button>
           <button
-            className={classes.operation_button}
+            className={`${classes.operation_button} ${classes.button_minus}`}
             onClick={handleUpdateQuantity(CART_OPERATIONS.DECREMENT)}
           >
             -

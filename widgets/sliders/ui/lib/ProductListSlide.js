@@ -5,20 +5,20 @@ import { scrollToNextProduct } from '@/features/addToCart/lib/scrollToNextProduc
 
 export default forwardRef(function ProductListSlide ({ products }, ref) {
   const listRef = useRef(null)
-  const [currentVisibleProds, setCurrentVisibleProds] = useState(0)
+  const [currentProdsViewIndex, setCurrentProdsViewIndex] = useState(0)
 
   useImperativeHandle(ref, () => {
     return {
       handleScroll (scrollDirection) {
         let nextCardIndex
         if (scrollDirection === 'left') {
-          nextCardIndex = currentVisibleProds - 1
+          nextCardIndex = currentProdsViewIndex - 1
           if (nextCardIndex < 0) {
             nextCardIndex = ((products.length / 2)) - 1
           }
         }
         if (scrollDirection === 'right') {
-          nextCardIndex = currentVisibleProds + 1
+          nextCardIndex = currentProdsViewIndex + 1
           if (nextCardIndex >= (products.length / 2)) {
             nextCardIndex = 0
           }
@@ -31,10 +31,10 @@ export default forwardRef(function ProductListSlide ({ products }, ref) {
           correctionPixels: 10
         })
 
-        setCurrentVisibleProds(currentIndex)
+        setCurrentProdsViewIndex(currentIndex)
       }
     }
-  }, [products, currentVisibleProds])
+  }, [products, currentProdsViewIndex])
 
   const handleWheelEvent = (e) => {
     const list = listRef.current

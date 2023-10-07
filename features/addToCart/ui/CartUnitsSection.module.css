@@ -43,3 +43,11 @@
 .operation_button:hover {
   cursor: pointer
 }
+
+.button_plus:active {
+  background-color: var(--app-payments-green);
+}
+
+.button_minus:active {
+  background-color: red;
+}
