@@ -1,4 +1,5 @@
 import { OFFERED_PRODUCTS } from './adds_products'
+import { PAYMENT_OPTIONS } from './payment_options'
 
 export const i18n = {
   TRADE_MARK: 'Helsinki Delivery',
@@ -11,16 +12,24 @@ export const i18n = {
         CART: {
           FIRST_STEP_TITLE: '1 - Revisa tu compra',
           FIRST_STEP_ADDS: 'No te olvides de agregar',
+          SECOND_STEP_TITLE: '2 - Elegi tu forma de pago',
           UNIT_MEASURE: 'Unidades',
-          EMPTY_CART_MESSAGE: 'No hay productos por aqui',
+          EMPTY_CART_MESSAGE: 'No hay productos en tu carrito',
           ADDS_LABELS: OFFERED_PRODUCTS,
           CONTINUE_SHOPPING: 'Seguir comprando',
           FOOTER_BUTTONS: {
             BACK: 'Volver',
             CLEAR_CART: 'Vaciar carrito',
             TOTAL_CART_AMOUNT: 'Monto total',
-            NEXT_STEP: 'Ver formas de pago'
-          }
+            NEXT_STEP: 'Ver formas de pago',
+            FORM: {
+              GO_TO_FORM: 'Datos para el envío',
+              NAME: 'Tu nombre',
+              TEL: 'Tu teléfono',
+              DIR: 'Tu dirección'
+            }
+          },
+          PAYMENT_OPTIONS
         },
         MENU: 'Menu',
         PRESENTATION: 'Quienes somos',

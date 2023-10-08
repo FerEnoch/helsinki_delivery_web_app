@@ -8,7 +8,7 @@ export default function TotalCartAmount ({ label }) {
   const totalCartAmount = priceFormater(getCartTotalAmount())
 
   return (
-    <div className={classes.total_amount_button}>
+    <div className={classes.total_amount_wrapper}>
       <p className={classes.text}>{label.toUpperCase()}</p>
       <span className={classes.mount}>
         <p>{totalCartAmount}</p>

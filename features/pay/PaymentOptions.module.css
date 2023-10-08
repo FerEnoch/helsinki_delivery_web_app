@@ -1,0 +1,5 @@
+.payment_options_container {
+  margin-block-start: .5rem;
+  width: 115%;
+  z-index: 20;
+}

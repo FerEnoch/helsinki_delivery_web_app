@@ -1,0 +1,12 @@
+.cart_resume {
+  margin-block: .5rem;
+  max-width: 100%;
+}
+
+.text {
+  color: white;
+  font-size: 1rem;
+  line-height: 1rem;
+  text-align: start;
+  transform: scale(1.1, 1);
+}

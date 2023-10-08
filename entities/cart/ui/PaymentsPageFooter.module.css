@@ -1,0 +1,29 @@
+.footer_container {
+  margin-block-start: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 120%;
+  height: 5rem;
+  z-index: 20;
+}
+
+.footer_container div {
+  width: 48%;
+}
+
+.footer_container div p {
+  font-size: 1.1rem;
+}
+
+.footer_container div span p {
+  font-size: 2.8rem;
+  line-height: 1.6rem;
+}
+
+@media (width <=330px) {
+  .footer_container div span p {
+    font-size: 2.5rem;
+  }
+}

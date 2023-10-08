@@ -1,11 +1,13 @@
-.payment_button {
-  color: white;
+.go_to_form_button {
   background-color: var(--app-payments-green);
+  border-radius: 12px;
   border: 2px solid white;
+  color: white;
   display: grid;
   height: 100%;
   place-content: center;
-  border-radius: 12px;
+  padding-inline: .5rem;
+
   width: 7rem;
 }
 
@@ -13,19 +15,18 @@
   transform: rotate(90deg)
 }
 
-.payment_button>a {
+.go_to_form_button>a {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.text {
-  margin-inline-start: 0.2rem;
-  flex: 1 0 2rem;
+.go_to_form_button .text {
+  font-size: 1.5rem;
+  flex: 1 0 80%;
 }
 
 .triangle_button {
-  margin-inline: 0.2rem;
-  flex: 0 0 1rem;
+  flex: 1 0 25%;
 }

@@ -2,7 +2,7 @@ import classes from './CartFooter.module.css'
 import { i18n } from '@/shared/model/i18n'
 import ClearCart from '@/features/addToCart/ui/ClearCart'
 import TotalCartAmount from './TotalCartAmount'
-import BackButton from './BackButton'
+import BackButton from '@/shared/ui/lib/BackButton'
 import GoToPayment from './GoToPaymentButton'
 
 const { CART: { FOOTER_BUTTONS: cartButtons } } = i18n.LANG.ESP.UI

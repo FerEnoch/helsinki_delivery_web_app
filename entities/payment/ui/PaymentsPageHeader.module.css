@@ -1,0 +1,38 @@
+.header_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  position: relative;
+  margin-inline: auto;
+  margin-block-end: .2rem;
+}
+
+.back_link {
+  position: absolute;
+  background-color: transparent;
+  border: transparent;
+  z-index: 50;
+  top: 10px;
+  left: -22px;
+  transform: scale(.9);
+}
+
+@media (width <=390px) {
+  .back_link {
+    transform: scale(.6);
+    top: 6px;
+  }
+}
+
+.title {
+  color: var(--app-type-background);
+  font-size: 1.5rem;
+  font-weight: 100;
+  margin-block: 1rem;
+  transform: scaleY(1.05) scaleX(.9);
+  z-index: 10;
+  margin-block-end: 0;
+  margin-block-start: .5rem;
+}

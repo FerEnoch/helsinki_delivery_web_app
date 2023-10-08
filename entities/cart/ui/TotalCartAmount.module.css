@@ -1,4 +1,4 @@
-.total_amount_button {
+.total_amount_wrapper {
   background-color: white;
   border: 1px solid white;
   border-radius: 12px;
@@ -13,6 +13,16 @@
 .text {
   font-size: 1rem;
   font-weight: 600;
+}
+
+@media (width <=405px) {
+  .text {
+    font-size: .9rem;
+  }
+
+  .total_amount_wrapper {
+    padding-inline: .35rem;
+  }
 }
 
 .mount {
