@@ -5,11 +5,14 @@ import { getInitialAppProducts } from '@/processes/services/model/server/getInit
 export const dynamic = 'force-dynamic'
 
 export default async function ProductPage ({ params }) {
-  const { id } = params
+  let { id } = params
+  id = decodeURIComponent(id)
+
   const initialProducts = await getInitialAppProducts()
+
   const { sortedProducts: [product] } = extract(
     [...initialProducts],
-    { criteria: 'id', value: decodeURIComponent(id) }
+    { criteria: 'id', value: id }
   )
 
   return <ProductDetailPage product={{ ...product }} />

@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function CategoryPage ({ params }) {
   let { category } = params
-  category = decodeURI(category)
+  category = decodeURIComponent(category)
 
   const initialProducts = await getInitialAppProducts()
 
@@ -14,6 +14,7 @@ export default async function CategoryPage ({ params }) {
     [...initialProducts],
     { criteria: 'category', value: category }
   )
+
   return (
     <CategoryHomePage
       category={category}
