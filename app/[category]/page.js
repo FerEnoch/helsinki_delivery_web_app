@@ -12,7 +12,7 @@ export default async function CategoryPage ({ params }) {
 
   const { sortedProducts: specificProductList } = initialProducts.length > 0 && extract(
     [...initialProducts],
-    { criteria: 'category', value: decodeURI(category) }
+    { criteria: 'category', value: category }
   )
   return (
     <CategoryHomePage
