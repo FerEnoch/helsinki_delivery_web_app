@@ -18,7 +18,7 @@ export default function TypesPage ({ category, subtypes }) {
         <section className={listClasses.list_container}>
           <ul className={linkClasses.link_list}>
             {
-            !!(subtypes.length) && subtypes.map(type => {
+            subtypes?.length > 0 && subtypes.map(type => {
               const formattedType = formatUpperCase(type)
               return (
                 <section

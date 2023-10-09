@@ -10,7 +10,7 @@ export default function CategoryHomePage ({ category, specificProductList }) {
     return (
       <TypesPage
         category={category}
-        subtypes={extractObject ? extractObject.sort2ndCriteria : null}
+        subtypes={extractObject ? [...extractObject.sort2ndCriteria] : null}
       />
     )
   } else {

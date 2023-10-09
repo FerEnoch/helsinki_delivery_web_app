@@ -1,7 +1,9 @@
+'use client'
 import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 import classes from './ProductPrice.module.css'
 
 export default function ProductPrice ({ price, hasStock }) {
+  const formattedPrice = priceFormater(price)
   return (
     <span className={classes.product_price}>
       <p>
@@ -14,7 +16,7 @@ export default function ProductPrice ({ price, hasStock }) {
          placeContent: 'center'
        }}
        >
-         {priceFormater(price)}
+         {formattedPrice}
        </span>
        )
      : (

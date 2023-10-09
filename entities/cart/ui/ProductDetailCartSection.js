@@ -11,6 +11,7 @@ export default function ProductDetailCartSection ({ product }) {
   const [productQuantity, setProductQuantity] = useState(1)
 
   const { price, stock: hasStock } = product
+  const formattedPrice = priceFormater(price)
 
   const handleAddToCart = () => {
     addToCart({ ...product }, productQuantity)
@@ -24,7 +25,7 @@ export default function ProductDetailCartSection ({ product }) {
          hasStock
            ? (
              <span>
-               {priceFormater(price)}
+               {formattedPrice}
              </span>
              )
            : (
