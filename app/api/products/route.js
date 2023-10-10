@@ -13,9 +13,9 @@ export async function GET (request) {
     { status: 400 })
   }
 
-  const reqCategory = decodeURI(searchParams.get('category'))
-  const reqType = decodeURI(searchParams.get('type'))
-  const reqId = decodeURI(searchParams.get('id'))
+  const reqCategory = decodeURIComponent(searchParams.get('category'))
+  const reqType = decodeURIComponent(searchParams.get('type'))
+  const reqId = decodeURIComponent(searchParams.get('id'))
   let data
 
   const initialProducts = await getInitialAppProducts()

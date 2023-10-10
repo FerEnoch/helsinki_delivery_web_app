@@ -11,7 +11,7 @@ export function useProducts (criteria = null, must = null) {
     async function fetchInitialProducts () {
       await getProductList({ category: '*' })
         .then(products => setInitialStockProducts([...products]))
-        .catch(console.log) // esto está mal! cambiarlo !!
+        // .catch(console.log) // esto está mal! cambiarlo !!
     }
 
     fetchInitialProducts()

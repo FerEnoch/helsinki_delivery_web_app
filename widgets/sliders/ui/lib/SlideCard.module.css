@@ -29,7 +29,9 @@
   font-size: 1rem;
 }
 
-/* .product_image {} */
+.product_image {
+  margin-block-end: .5rem;
+}
 
 .product_image>svg {
   padding-inline-end: 10%;

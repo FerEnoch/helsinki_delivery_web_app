@@ -12,7 +12,7 @@ export async function getProductList () {
       throw new Error('Could not get products.. :\\')
     }
   } catch (error) {
-    console.log('RETRYING...  */***')
+    /** retrying.. */
     const response = await fetch(`${baseURL}/products/${query}`, withAuthAPIOptionsObj)
     const { message, data: products } = await response.json()
     if (message === 'Success') {

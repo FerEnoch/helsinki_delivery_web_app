@@ -8,16 +8,16 @@ export default function Breadcrumb ({ category, type = '' }) {
       {
       !type
         ? (
-          <Link href={`/${encodeURIComponent(category)}`}>
+          <Link href={`/${encodeURIComponent(category)}`} prefetch={false}>
             {`${formatUpperCase(category) || category.toUpperCase()}`}
           </Link>
           )
         : (
           <div className={classes.breadcrumb_link}>
-            <Link href={`/${encodeURIComponent(category)}`}>
+            <Link href={`/${encodeURIComponent(category)}`} prefetch={false}>
               {`${formatUpperCase(category) || category.toUpperCase()}`}
             </Link>
-            <Link href={`/${encodeURIComponent(category)}/${encodeURIComponent(type)}`}>
+            <Link href={`/${encodeURIComponent(category)}/${encodeURIComponent(type)}`} prefetch={false}>
               {` / ${formatUpperCase(type) || type.toUpperCase()}`}
             </Link>
           </div>

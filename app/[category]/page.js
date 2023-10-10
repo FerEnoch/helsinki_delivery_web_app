@@ -10,7 +10,7 @@ export default async function CategoryPage ({ params }) {
 
   const initialProducts = await getInitialAppProducts()
 
-  const { sortedProducts: specificProductList } = initialProducts.length > 0 && extract(
+  const { sortedProducts: specificProductList } = initialProducts?.length > 0 && extract(
     [...initialProducts],
     { criteria: 'category', value: category }
   )

@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic'
 export default async function MainPage () {
   const initialProducts = await getInitialAppProducts()
 
-  const { sortPosibilitiesByCriteria: categories } = initialProducts.length > 0 && extract(
+  const { sortPosibilitiesByCriteria: categories } = initialProducts?.length > 0 && extract(
     [...initialProducts],
     { criteria: 'category', value: '*' }
   )

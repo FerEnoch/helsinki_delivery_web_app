@@ -5,13 +5,14 @@ import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 
 export default function TotalCartAmount ({ label }) {
   const { getCartTotalAmount } = useAppStore()
-  const totalCartAmount = priceFormater(getCartTotalAmount())
+  const cartTotalAmount = getCartTotalAmount()
+  const formattedCartTotal = priceFormater(cartTotalAmount)
 
   return (
     <div className={classes.total_amount_wrapper}>
       <p className={classes.text}>{label.toUpperCase()}</p>
       <span className={classes.mount}>
-        <p>{totalCartAmount}</p>
+        <p>{formattedCartTotal}</p>
       </span>
     </div>
   )
