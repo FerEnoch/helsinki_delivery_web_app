@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server'
 
 export const config = {
-  matcher: '/app/api'
+  matcher: '/api/:path*'
 }
 
-export async function middleware (request) {
+export function middleware (request) {
   const isAPIAuth = request.headers.get('x-api-key')
   if (!isAPIAuth || isAPIAuth !== process.env.API_KEY) {
     return NextResponse.json({
