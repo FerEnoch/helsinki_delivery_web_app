@@ -1,13 +1,13 @@
 .total_amount_wrapper {
   background-color: white;
-  border: 1px solid white;
   border-radius: 12px;
-  padding-inline: .5rem;
-  padding-block: 0.8rem;
-  height: 100%;
+  border: 1px solid white;
   display: grid;
-  place-content: center;
+  height: 100%;
   line-height: 1rem;
+  padding-block: 0.8rem;
+  padding-inline: .5rem;
+  place-content: center;
 }
 
 .text {

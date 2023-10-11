@@ -1,0 +1,47 @@
+.form_dialog_container {
+  position: absolute;
+  margin-inline: auto;
+  backdrop-filter: blur(12px) saturate(100%);
+  background-color: rgba(233, 235, 240, 0.50);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.125);
+
+  display: grid;
+  place-content: center;
+
+}
+
+@media (width >=520px) {
+  .form_dialog_container {
+    top: 10rem;
+    width: 30rem;
+    height: 45rem;
+    max-height: 70%;
+  }
+}
+
+@media (width <520px) {
+  .form_dialog_container {
+    top: 5rem;
+    width: 80%;
+    height: clamp(40%, 50rem, 80%);
+  }
+}
+
+.back_button {
+  display: grid;
+  place-content: center;
+
+  border: transparent;
+  background-color: var(--app-type-background);
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.back_button:active {
+  opacity: .7
+}
+
+.back_button:hover {
+  cursor: pointer;
+}

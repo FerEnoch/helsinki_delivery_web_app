@@ -4,9 +4,6 @@ import PaymentOptions from '@/features/pay/PaymentOptions'
 import CartResume from '@/entities/cart/ui/CartResume'
 import PaymentsPageFooter from '@/entities/cart/ui/PaymentsPageFooter'
 
-/**
- * Traer los datos de los medios de pago y CBU del server acá o en page.js
- */
 export default function CartSecondStep () {
   return (
     <main className={classes.cart_container}>

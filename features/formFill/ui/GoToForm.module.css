@@ -15,11 +15,15 @@
   transform: rotate(90deg)
 }
 
-.go_to_form_button>a {
+.go_to_form_action {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.go_to_form_action:hover {
+  cursor: pointer;
 }
 
 .go_to_form_button .text {
