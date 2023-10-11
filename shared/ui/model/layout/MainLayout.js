@@ -1,6 +1,6 @@
 import classes from './MainLayout.module.css'
-import logoClasses from '@/shared/ui/lib/svg/HelsinkiLogo.module.css'
-import HelsinkiLogo from '@/shared/ui/lib/svg/HelsinkiLogo'
+import HelsinkiLogo from '../../lib/svg/HelsinkiLogo'
+import logoClasses from './HelsinkiLogo.module.css'
 
 export default function MainLayout ({ children }) {
   return (
@@ -10,6 +10,7 @@ export default function MainLayout ({ children }) {
         className={logoClasses.helsinki_logo}
         width={350}
         height={350}
+        pathStyle={{ fill: '#480200', fillOpacity: 0.8, strokeWidth: 0.0600473 }}
       />
     </main>
   )

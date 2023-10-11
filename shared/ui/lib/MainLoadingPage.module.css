@@ -1,0 +1,23 @@
+.loading_page_container {
+  height: fit-content;
+  position: relative;
+  top: -6rem;
+  width: 45%;
+  margin-inline: auto;
+  mix-blend-mode: screen;
+}
+
+.SVGLogo {
+  animation: viking-skeleton 600ms ease-out infinite alternate;
+}
+
+
+@keyframes viking-skeleton {
+  0% {
+    opacity: .1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
