@@ -1,15 +1,28 @@
-.form_dialog_container {
-  position: absolute;
-  margin-inline: auto;
-  backdrop-filter: blur(12px) saturate(100%);
-  background-color: rgba(233, 235, 240, 0.50);
+.form_dialog_container:not(open) {
+  animation: dialog-out 350ms ease-in-out;
+  backdrop-filter: blur(8px) saturate(60%);
+  background-color: rgba(233, 235, 240, 0.766);
   border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 0.125);
-
   display: grid;
-  place-content: center;
-
+  margin-inline: auto;
+  overflow: hidden;
+  /* place-content: center; */
+  align-content: stretch;
+  position: absolute;
+  transition: all 250ms linear;
+  visibility: hidden;
 }
+
+.form_dialog_container::backdrop {
+  backdrop-filter: blur(1px) saturate(110%);
+}
+
+.form_dialog_container[open] {
+  visibility: visible;
+  animation: dialog-in 250ms ease-in-out;
+}
+
 
 @media (width >=520px) {
   .form_dialog_container {
@@ -28,20 +41,57 @@
   }
 }
 
-.back_button {
-  display: grid;
-  place-content: center;
+.dialog_main {
+  position: relative;
+  height: 90%;
+  padding-block-start: 2rem;
+}
 
+.button_container {
+  align-items: self-start;
+  background-color: var(--app-type-background);
+  display: grid;
+  height: 15%;
+  margin-block-start: 1rem;
+  width: 100%;
+  border-radius: 12px;
+}
+
+.back_button {
   border: transparent;
   background-color: var(--app-type-background);
   padding: 1rem;
   border-radius: 12px;
+  margin-inline-start: -25%;
+  width: 150%
 }
 
 .back_button:active {
-  opacity: .7
+  opacity: .7;
 }
 
 .back_button:hover {
   cursor: pointer;
+}
+
+@keyframes dialog-in {
+  0% {
+    opacity: 0;
+    transform: translateY(50%) scale(.5, .5)
+  }
+
+  100% {
+    transform: translateY(0) scale(1, 1);
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-out {
+  0% {
+    transform: translateY(5%);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
 }

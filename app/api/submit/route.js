@@ -1,32 +1,30 @@
-// import { writeOrder, uploadFile } from '@/services/googleAPIauth/googleDriveClient'
+import { buildOrderData } from '@/features/formFill/lib/buildOrderData'
+import { uploadFile } from '@/processes/services/config/googleAPIauth/model/uploadFile'
+import { writeOrderInSheets } from '@/processes/services/config/googleAPIauth/model/writeOrder'
+import { NextResponse } from 'next/server'
 
-// export async function POST (request) {
-// const req = await request.formData()
-// // console.log('working!')
-// // console.log('req //----->', req)
-// try {
-//   const responseObject = {}
-//   const orderData = {
-//     timestamp: req.get('timestamp'),
-//     id: req.get('id'),
-//     order: req.get('newOrder'),
-//     payment: req.get('payment')
-//   }
-//   const sendOrder = await writeOrder(orderData)
-//   const receipt = req.get('receipt')
-//   // console.log('receipt >>>>>>>>>>', receipt)
+export async function POST (request) {
+  const incomingOrder = await request.formData()
 
-//   if (receipt) {
-//     responseObject.uploadedFile = uploadFile(receipt)
-//   }
+  try {
+    const [orderDataToSheets, receipt] = buildOrderData(incomingOrder)
 
-//   if (sendOrder.message === 'OK') {
-//     responseObject.sendOrder = 'success!'
-//   }
+    const { message: sheetsResponseMessage } = await writeOrderInSheets(Object.values(orderDataToSheets))
+    const { message: fileUploadResponseMessage } = receipt ? await uploadFile(receipt) : { message: 'No receipt delivered' }
 
-//   return new Response(JSON.stringify(responseObject))
-// } catch (e) {
-//   console.error('error to send order //>>>>>>>>', e)
-//   return new Response(JSON.stringify({ message: 'fail to send order!' }))
-// }
-// }
+    const operationSuccess = receipt
+      ? fileUploadResponseMessage === 'OK' && sheetsResponseMessage === 'OK'
+      : sheetsResponseMessage === 'OK'
+
+    return NextResponse.json(
+      { message: operationSuccess ? 'success' : 'Could not send order!' },
+      { status: operationSuccess ? 200 : 500 }
+    )
+  } catch (e) {
+    console.error('error to send order //>>>>>>>>', e)
+    return NextResponse.json(
+      { message: 'fail to send order!' },
+      { status: 500 }
+    )
+  }
+}

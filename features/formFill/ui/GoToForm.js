@@ -3,17 +3,23 @@ import TriangleButton from '@/shared/ui/lib/TriangleButton'
 import classes from './GoToForm.module.css'
 import { useState } from 'react'
 import FormDialog from './FormDialog'
+import { useAppStore } from '@/entities/lib/store'
 
 export default function GoToForm ({ label }) {
   const [openModalDialog, setOpenModalDialog] = useState(false)
+  const { cart } = useAppStore()
+  const isCartEmpty = cart.length === 0
 
   const closeDialog = () => setOpenModalDialog(false)
 
   return (
     <>
-      <div className={classes.go_to_form_button}>
+      <div
+        disabled={isCartEmpty}
+        className={classes.go_to_form_button}
+      >
         <section
-          onClick={() => setOpenModalDialog(true)}
+          onClick={() => cart.length > 0 && setOpenModalDialog(true)}
           className={classes.go_to_form_action}
         >
 

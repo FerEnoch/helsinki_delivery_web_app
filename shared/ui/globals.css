@@ -1,5 +1,4 @@
 :root {
-  /* font-family: var(--font-unica); */
   font-size: 12px;
   --app-type-background: rgb(255, 208, 120);
   --app-white-text: rgb(255, 244, 241);
@@ -14,7 +13,10 @@
   :root {
     font-size: 14px;
   }
+}
 
+button {
+  font-family: var(--font-unica);
 }
 
 * {

@@ -1,5 +1,8 @@
 import { getBucketImageURL } from '@/processes/services/config/firebase/server/model/getBucketImageURL'
 import { genericCacheTTLInMin } from './config'
+import MemoryUsage from '../lib/MemoryUsage'
+
+MemoryUsage()
 
 export const mainCache = new Map()
 const cacheTTL = 1000 * 60 * genericCacheTTLInMin

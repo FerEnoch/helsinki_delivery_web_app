@@ -2,6 +2,10 @@
   margin-block-end: -0.7rem;
 }
 
+.article_wrapper:first-of-type {
+  width: 102%
+}
+
 .slider_buttons_section {
   align-items: center;
   display: flex;
@@ -25,7 +29,7 @@
   flex: 1;
   height: 1.9rem;
   justify-content: space-between;
-  max-width: 91%;
+  max-width: 90%;
   padding: .2rem;
   scroll-snap-align: center;
 }
@@ -72,4 +76,29 @@
 .units_measure p {
   margin-block-start: .3rem;
   margin-block-end: -5px;
+}
+
+
+@media (width >330px) {
+  .article_wrapper:first-of-type {
+    width: 101%
+  }
+}
+
+@media (width >360px) {
+  .article_wrapper:first-of-type {
+    width: 100%
+  }
+}
+
+@media (width >=390px) {
+  .article_wrapper:first-of-type {
+    width: 101%
+  }
+}
+
+@media (width >=410px) {
+  .article_wrapper:first-of-type {
+    width: 100%
+  }
 }

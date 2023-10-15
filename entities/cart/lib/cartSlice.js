@@ -54,9 +54,5 @@ export const cartSlice = (set, get) => {
     clearCart: () => {
       set({ cart: [] })
     }
-  // showCart: false,
-  // toggleCart: () => {
-    //   set({ showCart: !get().showCart })
-  // }
   }
 }

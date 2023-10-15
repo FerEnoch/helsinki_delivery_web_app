@@ -9,22 +9,22 @@
   z-index: 20;
 }
 
-.footer_container div {
+.footer_container>div {
   width: 48%;
 }
 
-.footer_container div p {
+.footer_container>div>p {
   font-size: 1.1rem;
   margin-block-end: 0.3rem;
 }
 
-.footer_container div span p {
+.footer_container>div span>p {
   font-size: 2.8rem;
   line-height: 1.6rem;
 }
 
 @media (width <=330px) {
-  .footer_container div span p {
+  .footer_container>div span>p {
     font-size: 2.5rem;
   }
 }

@@ -1,11 +1,11 @@
 import { google } from 'googleapis'
-import { GOOGLE_API_SERVICES } from '@/processes/services/googleAPIauth/services'
-import { googleServiceAccountAuth } from '@/processes/services/googleAPIauth/config/service-account-creds'
-import { deleteKeyFromMainCache, getFromMainCache, mainCache } from '@/processes/cache'
+
 import 'server-only'
+import { GOOGLE_API_SERVICES } from './services'
+import { googleServiceAccountAuth } from './service-account-creds'
+import { deleteKeyFromMainCache, getFromMainCache, mainCache } from '@/processes/cache'
 
 export function getAPIAuthClient () {
-  /** DON'T MAKE THIS A PROMISE */
   const auth = new google.auth.GoogleAuth({
     credentials: {
       client_id: googleServiceAccountAuth.client_id,
@@ -27,7 +27,7 @@ export function getAPIAuthClient () {
   }
 }
 
-export function authenticate (service) {
+export function authenticate ({ service, version }) {
   const serviceCache = getFromMainCache(service)
   if (mainCache.get(`STALE_DATA_${service}`)) deleteKeyFromMainCache(service)
 
@@ -37,16 +37,17 @@ export function authenticate (service) {
   }
 
   const {
-    googe_drive: { drive, version: driveVersion },
-    googe_sheets: { sheets, version: sheetsVersion }
+    googe_drive: { service: drive },
+    googe_sheets: { service: sheets }
   } = GOOGLE_API_SERVICES
+  console.log(drive, sheets)
 
   try {
     if (service === drive) {
       console.log('running FIRST TIME Drive client service')
       const drive = google.drive({
         auth: getAPIAuthClient(),
-        version: driveVersion
+        version
       })
       serviceCache.set(service, drive)
       return drive
@@ -55,9 +56,10 @@ export function authenticate (service) {
       console.log('running FIRST TIME Sheets client service')
       const sheets = google.sheets({
         auth: getAPIAuthClient(),
-        version: sheetsVersion
+        version
       })
       serviceCache.set(service, sheets)
+
       return sheets
     }
   } catch (error) {

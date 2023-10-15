@@ -1,5 +1,5 @@
 'use client'
-import DataForm from './DataForm'
+import ClientDataForm from './ClientDataForm'
 import classes from './FormDialog.module.css'
 
 import { useEffect, useRef } from 'react'
@@ -17,20 +17,23 @@ export default function FormDialog ({ openModal, closeDialog }) {
 
   return (
     <dialog
-      style={{ visibility: `${openModal ? 'visible' : 'hidden'}` }}
       className={classes.form_dialog_container}
       ref={offertDialogRef}
       onClose={closeDialog}
     >
-      <DataForm />
-      <button
-        className={classes.back_button}
-        onClick={closeDialog}
-      >
-        <p>
-          VOLVER
-        </p>
-      </button>
+      <main className={classes.dialog_main}>
+        <ClientDataForm />
+        <div className={classes.button_container}>
+          <button
+            className={classes.back_button}
+            onClick={closeDialog}
+          >
+            <p>
+              VOLVER
+            </p>
+          </button>
+        </div>
+      </main>
     </dialog>
   )
 }

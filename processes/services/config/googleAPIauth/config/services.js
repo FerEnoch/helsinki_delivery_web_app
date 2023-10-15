@@ -1,10 +1,10 @@
 export const GOOGLE_API_SERVICES = {
   googe_drive: {
-    drive: 'drive',
+    service: 'drive',
     version: 'v3'
   },
   googe_sheets: {
-    sheets: 'sheets',
+    service: 'sheets',
     version: 'v4'
   }
 }

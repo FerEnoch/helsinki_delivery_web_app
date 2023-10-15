@@ -1,6 +1,7 @@
 .cart_resume {
   margin-block: .5rem;
   max-width: 100%;
+  z-index: 25;
 }
 
 .text {
