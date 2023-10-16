@@ -6,6 +6,7 @@ import { sendOrderData } from '../model/sendOrderData'
 import { useAppStore } from '@/entities/lib/store'
 import { useRouter } from 'next/navigation'
 import Triangle from '@/shared/ui/lib/svg/Triangle'
+import HelsinkiLogo from '@/shared/ui/lib/svg/HelsinkiLogo'
 
 export default function ClientDataForm ({ closeDialog }) {
   const fileRef = useRef()
@@ -23,6 +24,8 @@ export default function ClientDataForm ({ closeDialog }) {
   const [clientComments, setClientComments] = useState('')
   const [openDetails, setOpenDetails] = useState(false)
   const [showMessageRecipeRequired, setShowMessageRecipeRequired] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
   const isRecipeRequired = recipe === 'REQUIRED'
 
   const clearFormData = () => {
@@ -34,6 +37,7 @@ export default function ClientDataForm ({ closeDialog }) {
 
   const submitHandler = async (e) => {
     e.preventDefault()
+    setIsLoading(true)
     const formData = new FormData()
     /**
      * Carefull with the order becouse It's the order they will be displayed in g-sheets
@@ -71,6 +75,7 @@ export default function ClientDataForm ({ closeDialog }) {
         formData.set('paymentReceipt', paymentReceipt)
       } else {
         setShowMessageRecipeRequired(true)
+        return
       }
     }
 
@@ -86,6 +91,7 @@ export default function ClientDataForm ({ closeDialog }) {
       /** retrying.. */
       const { message } = await sendOrderData(formData)
       if (message === 'success') {
+        setIsLoading(false)
         clearFormData()
         clearCart()
         clearPaymentMethod()
@@ -101,7 +107,7 @@ export default function ClientDataForm ({ closeDialog }) {
 
   return (
     <form
-      className={classes.form_container}
+      className={`${classes.form_container} ${isLoading ? classes.form_container_loading : ''}`}
       onSubmit={submitHandler}
     >
       <header className={classes.form_header}>
@@ -133,7 +139,6 @@ export default function ClientDataForm ({ closeDialog }) {
             value={clientAddress}
             onChange={(e) => setClientAddress(e.target.value)}
           />
-          {}
           <details className={classes.detail} onToggle={(e) => setOpenDetails(e.target.open)}>
             <summary>
               <span className={classes.toggle_details_triangle}>
@@ -186,16 +191,19 @@ export default function ClientDataForm ({ closeDialog }) {
              </label>
              <input
                onInvalid={() => setShowMessageRecipeRequired(true)}
+               onChange={() => setShowMessageRecipeRequired(false)}
+               ref={fileRef}
                required
                name='fileInput'
                id='fileInputID'
                type='file'
-               ref={fileRef}
                accept='image/*'
              />
              {
               showMessageRecipeRequired && (
-                <p className={classes.invalid_input_message}>** Por favor adjunta el comprobante de pago</p>
+                <p className={classes.invalid_input_message}>
+                  ** Por favor adjunta el comprobante de pago
+                </p>
               )
              }
            </div>
@@ -203,13 +211,28 @@ export default function ClientDataForm ({ closeDialog }) {
        )
       }
       <footer className={classes.form_footer}>
-        <button
-          disabled={!clientName || !clientAddress || !clientPhone}
-          type='submit'
-          className={classes.submit_button}
-        >
-          <p>Enviar pedido</p>
-        </button>
+        {
+          isLoading
+            ? (
+              <div className={classes.loading_logo_wrapper}>
+                <HelsinkiLogo
+                  className={classes.SVGLogo}
+                  width={100}
+                  height={100}
+                  pathStyle={{ fill: '#eee', fillOpacity: 0.9 }}
+                />
+              </div>
+              )
+            : (
+              <button
+                disabled={!clientName || !clientAddress || !clientPhone}
+                type='submit'
+                className={classes.submit_button}
+              >
+                <p>ENVIAR PEDIDO</p>
+              </button>
+              )
+          }
       </footer>
     </form>
   )

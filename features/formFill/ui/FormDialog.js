@@ -2,7 +2,7 @@
 import ClientDataForm from './ClientDataForm'
 import classes from './FormDialog.module.css'
 
-import { useEffect, useRef } from 'react'
+import { Suspense, useEffect, useRef } from 'react'
 
 export default function FormDialog ({ openModal, closeDialog }) {
   const offertDialogRef = useRef(null)

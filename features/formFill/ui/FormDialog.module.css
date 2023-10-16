@@ -3,7 +3,7 @@
   align-content: stretch;
   animation: dialog-out 350ms ease-in-out;
   backdrop-filter: blur(8px) saturate(60%);
-  background-color: rgba(233, 240, 235, 0.748);
+  background-color: rgba(229, 241, 232, 0.641);
   border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 0.125);
   display: grid;
@@ -16,7 +16,7 @@
 }
 
 .form_dialog_container::backdrop {
-  backdrop-filter: grayscale(10%) blur(1px) saturate(110%) brightness(40%);
+  backdrop-filter: blur(1px) saturate(110%) brightness(60%);
 }
 
 .form_dialog_container[open] {
@@ -61,6 +61,7 @@
 
 .back_button {
   border: transparent;
+  font-size: 1.3rem;
   background-color: var(--app-type-background);
   padding: 1rem;
   border-radius: 12px;
