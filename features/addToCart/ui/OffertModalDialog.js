@@ -19,19 +19,20 @@ export default function OffertModalDialog ({ openModal, closeDialog, children })
     <dialog
       className={classes.offert_dialog_container}
       ref={offertDialogRef}
-      style={{ visibility: `${openModal ? 'visible' : 'hidden'}` }}
       onClose={closeDialog}
     >
-      <div className={classes.article_button_wrapper}>
-        {children}
-        <button
-          className={classes.continue_buying_button}
-          onClick={closeDialog}
-        >
-          <p>
-            {cartTexts.CONTINUE_SHOPPING.toUpperCase()}
-          </p>
-        </button>
+      <div className={classes.dialog_content}>
+        <div className={classes.article_button_wrapper}>
+          {children}
+          <button
+            className={classes.continue_buying_button}
+            onClick={closeDialog}
+          >
+            <p>
+              {cartTexts.CONTINUE_SHOPPING.toUpperCase()}
+            </p>
+          </button>
+        </div>
       </div>
     </dialog>
   )

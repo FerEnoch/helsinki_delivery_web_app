@@ -1,5 +1,5 @@
 const timeFormat = new Intl.DateTimeFormat('es-ES', {
-  weekday: 'long',
+  weekday: 'short',
   year: 'numeric',
   month: 'numeric',
   day: 'numeric',

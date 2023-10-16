@@ -7,12 +7,12 @@ export async function POST (request) {
   const incomingOrder = await request.formData()
 
   try {
-    const [orderDataToSheets, receipt] = buildOrderData(incomingOrder)
+    const [orderDataToSheets, receiptFile] = buildOrderData(incomingOrder)
 
     const { message: sheetsResponseMessage } = await writeOrderInSheets(Object.values(orderDataToSheets))
-    const { message: fileUploadResponseMessage } = receipt ? await uploadFile(receipt) : { message: 'No receipt delivered' }
+    const { message: fileUploadResponseMessage } = receiptFile.receipt ? await uploadFile(receiptFile) : { message: 'No receipt delivered' }
 
-    const operationSuccess = receipt
+    const operationSuccess = receiptFile.receipt
       ? fileUploadResponseMessage === 'OK' && sheetsResponseMessage === 'OK'
       : sheetsResponseMessage === 'OK'
 

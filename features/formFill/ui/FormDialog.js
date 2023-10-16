@@ -22,7 +22,7 @@ export default function FormDialog ({ openModal, closeDialog }) {
       onClose={closeDialog}
     >
       <main className={classes.dialog_main}>
-        <ClientDataForm />
+        <ClientDataForm closeDialog={closeDialog} />
         <div className={classes.button_container}>
           <button
             className={classes.back_button}

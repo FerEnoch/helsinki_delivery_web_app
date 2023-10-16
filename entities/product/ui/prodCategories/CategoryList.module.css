@@ -4,7 +4,6 @@
   z-index: 10;
 }
 
-
 .link {
   font-size: 2rem;
   margin: 5px;
@@ -18,4 +17,12 @@
 
 .link:hover {
   cursor: pointer;
+}
+
+
+@media (width <=330px) {
+
+  .link {
+    font-size: 1.5rem;
+  }
 }

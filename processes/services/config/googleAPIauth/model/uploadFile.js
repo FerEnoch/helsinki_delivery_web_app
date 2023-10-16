@@ -4,9 +4,9 @@ import { authenticate } from '../config/googleDriveClient'
 import { GOOGLE_API_SERVICES } from '../config/services'
 import { InvoicesFolderID } from '../config/spreadsheet'
 
-export async function uploadFile (file) {
+export async function uploadFile ({ receipt: file, receiptName }) {
   const fileMetadata = {
-    name: file.name,
+    name: receiptName,
     parents: [InvoicesFolderID]
   }
   const fileStream = await file.stream()

@@ -4,7 +4,6 @@ import { GOOGLE_API_SERVICES } from '../config/services'
 import { OrdersSpreadSheetID } from '../config/spreadsheet'
 
 export async function writeOrderInSheets (orderData) {
-  console.log(orderData)
   try {
     const sheetsClient = authenticate(GOOGLE_API_SERVICES.googe_sheets)
 

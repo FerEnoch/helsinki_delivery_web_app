@@ -34,9 +34,7 @@ export default function IceOrCigarSlider ({ products, label, categoryOffering })
   }
 
   return (
-    <article
-      className={classes.article_wrapper}
-    >
+    <article className={classes.article_wrapper}>
       <div className={classes.titles_wrapper}>
         <h3 className={classes.slider_title}>
           {label?.toUpperCase()}
@@ -57,24 +55,19 @@ export default function IceOrCigarSlider ({ products, label, categoryOffering })
             width={11}
             height={11}
           />
-          <ul
-            ref={listRef}
-            className={classes.products_list}
-          >
-            {
-        products.length > 0 &&
-        products.map(({ id, category, name }, index) => {
-          return (
-            <li key={id} id={index} className={classes.product_item}>
-              <p>
-                <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`} prefetch={false}>
-                  {name}
-                </Link>
-              </p>
-            </li>
-          )
-        })
-        }
+          <ul ref={listRef} className={classes.products_list}>
+            {products.length > 0 &&
+               products.map(({ id, category, name }, index) => {
+                 return (
+                   <li key={id} id={index} className={classes.product_item}>
+                     <p>
+                       <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`} prefetch={false}>
+                         {name}
+                       </Link>
+                     </p>
+                   </li>
+                 )
+               })}
           </ul>
           <TriangleButton
             slideDirection='x'

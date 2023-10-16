@@ -4,10 +4,18 @@ import classes from './ClientDataForm.module.css'
 import { useRef, useState } from 'react'
 import { sendOrderData } from '../model/sendOrderData'
 import { useAppStore } from '@/entities/lib/store'
+import { useRouter } from 'next/navigation'
 
-export default function ClientDataForm () {
+export default function ClientDataForm ({ closeDialog }) {
   const fileRef = useRef()
-  const { paymentMethod, getCartTotalAmount, cart } = useAppStore()
+  const router = useRouter()
+  const {
+    paymentMethod,
+    getCartTotalAmount,
+    cart,
+    clearCart,
+    clearPaymentMethod
+  } = useAppStore()
   const [clientName, setClientName] = useState('')
   const [clientAddress, setClientAddress] = useState('')
   const [clientPhone, setClientPhone] = useState('')
@@ -32,8 +40,9 @@ export default function ClientDataForm () {
      *  5 - order
      *  6 - total
      *  7 - paymentMethod - paymentState
-     *  8 - orderID
+     *  8 - receipt file name
      *  9 - stockUpdate
+     * 10 - orderID
      */
     const date = new Date()
     formData.set('timestamp', timeFormatter(date))
@@ -46,9 +55,10 @@ export default function ClientDataForm () {
     formData.set('cart', JSON.stringify(cart))
     formData.set('total', getCartTotalAmount())
     formData.set('paymentMethod', paymentMethod.label)
-    formData.set('paymentState', 'pendiente') // siempre pago es pendiente hasta controlar el comprobante
-    formData.set('orderID', crypto.randomUUID().slice(0, 8))
+    formData.set('paymentState', 'pendiente') // siempre el pago es pendiente hasta controlar el comprobante
+    formData.set('receiptName', '')
     formData.set('stockUpdate', '')
+    formData.set('orderID', crypto.randomUUID().slice(0, 8))
 
     const { fileInputID } = e.target
     if (fileInputID.value) {
@@ -58,8 +68,26 @@ export default function ClientDataForm () {
 
     const { message } = await sendOrderData(formData)
     if (message === 'success') {
-      confetti()
       clearFormData()
+      clearCart()
+      clearPaymentMethod()
+      closeDialog()
+      confetti({ particleCount: 80 })
+      router.push('/')
+    } else {
+      /** retrying.. */
+      const { message } = await sendOrderData(formData)
+      if (message === 'success') {
+        clearFormData()
+        clearCart()
+        clearPaymentMethod()
+        closeDialog()
+        confetti({ particleCount: 80 })
+        router.push('/')
+      } else {
+        console.log(message)
+        throw new Error()
+      }
     }
   }
 

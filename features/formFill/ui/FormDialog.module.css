@@ -1,25 +1,27 @@
-.form_dialog_container:not(open) {
+.form_dialog_container {
+  /* place-content: center; */
+  align-content: stretch;
   animation: dialog-out 350ms ease-in-out;
   backdrop-filter: blur(8px) saturate(60%);
-  background-color: rgba(233, 235, 240, 0.766);
+  background-color: rgba(233, 240, 235, 0.748);
   border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 0.125);
   display: grid;
   margin-inline: auto;
   overflow: hidden;
-  /* place-content: center; */
-  align-content: stretch;
   position: absolute;
   transition: all 250ms linear;
   visibility: hidden;
+  display: none;
 }
 
 .form_dialog_container::backdrop {
-  backdrop-filter: blur(1px) saturate(110%);
+  backdrop-filter: grayscale(10%) blur(1px) saturate(110%) brightness(40%);
 }
 
 .form_dialog_container[open] {
   visibility: visible;
+  display: block;
   animation: dialog-in 250ms ease-in-out;
 }
 
@@ -77,21 +79,27 @@
 @keyframes dialog-in {
   0% {
     opacity: 0;
+    display: none;
     transform: translateY(50%) scale(.5, .5)
   }
 
   100% {
     transform: translateY(0) scale(1, 1);
     opacity: 1;
+    display: block;
   }
 }
 
 @keyframes dialog-out {
   0% {
     transform: translateY(5%);
+    display: block;
+
   }
 
   100% {
+    display: none;
+
     transform: translateY(-100%);
   }
 }

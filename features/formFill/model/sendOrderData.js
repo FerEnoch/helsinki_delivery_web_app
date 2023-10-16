@@ -11,8 +11,7 @@ export async function sendOrderData (incomingOrder) {
     })
 
     if (response.status !== 200) {
-      console.error('bad request!')
-      return { message: 'Could NOT send order' }
+      return { message: 'Very sorry.. Could NOT send order' }
     }
 
     return await response.json()
@@ -22,13 +21,11 @@ export async function sendOrderData (incomingOrder) {
       method: 'POST',
       body: incomingOrder,
       headers: {
-        'content-type': 'multipart/form-data',
         'x-api-key': process.env.NEXT_PUBLIC_API_KEY
       }
     })
 
     if (response.status !== 200) {
-      console.error('bad request!')
       return { message: 'Could NOT send order' }
     }
 

@@ -1,13 +1,18 @@
 export function buildOrderData (rawData) {
   const orderDataToSheets = {}
   let receipt
+  let receiptNamePaymentMethod
   let address
-  let payment
+  let orderID
 
   Array.from(rawData.entries()).forEach(([field, value]) => {
     if (field === 'paymentReceipt') {
       receipt = value
       return
+    }
+
+    if (field === 'orderID') {
+      orderID = value
     }
     if (field === 'cart') {
       const cart = JSON.parse(value)
@@ -25,19 +30,24 @@ export function buildOrderData (rawData) {
       return
     }
     if (field === 'clientComments') {
-      orderDataToSheets.clientAddress = `${address} - ${value}`
+      orderDataToSheets.clientAddress = `${address}\n- ${value}`
       return
     }
     if (field === 'paymentMethod') {
-      payment = value
+      orderDataToSheets.payment = value
+      receiptNamePaymentMethod = value
       return
     }
-    if (field === 'paymentState') {
-      orderDataToSheets.payment = `${payment} - ${value}`
-      return
-    }
+    // if (field === 'paymentState') {
+    //   orderDataToSheets.payment = `${payment} - ${value}`
+    //   return
+    // }
     orderDataToSheets[field] = value
   })
 
-  return [orderDataToSheets, receipt]
+  const receiptNameTimestamp = orderDataToSheets.timestamp.slice(orderDataToSheets.timestamp.indexOf(', ') + 2)
+  const receiptName = receipt && `${receiptNameTimestamp}-$${orderDataToSheets.total}-${receiptNamePaymentMethod}-${orderID}`
+  orderDataToSheets.receiptName = receiptName ?? 'NO SE ADJUNTÓ COMPROBANTE'
+
+  return [orderDataToSheets, { receipt, receiptName }]
 }
