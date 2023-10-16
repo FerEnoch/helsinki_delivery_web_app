@@ -5,12 +5,13 @@ import { useRef, useState } from 'react'
 import { sendOrderData } from '../model/sendOrderData'
 import { useAppStore } from '@/entities/lib/store'
 import { useRouter } from 'next/navigation'
+import Triangle from '@/shared/ui/lib/svg/Triangle'
 
 export default function ClientDataForm ({ closeDialog }) {
   const fileRef = useRef()
   const router = useRouter()
   const {
-    paymentMethod,
+    paymentMethod: { label: method, recipe },
     getCartTotalAmount,
     cart,
     clearCart,
@@ -20,6 +21,9 @@ export default function ClientDataForm ({ closeDialog }) {
   const [clientAddress, setClientAddress] = useState('')
   const [clientPhone, setClientPhone] = useState('')
   const [clientComments, setClientComments] = useState('')
+  const [openDetails, setOpenDetails] = useState(false)
+  const [showMessageRecipeRequired, setShowMessageRecipeRequired] = useState(false)
+  const isRecipeRequired = recipe === 'REQUIRED'
 
   const clearFormData = () => {
     setClientName('')
@@ -54,16 +58,20 @@ export default function ClientDataForm ({ closeDialog }) {
 
     formData.set('cart', JSON.stringify(cart))
     formData.set('total', getCartTotalAmount())
-    formData.set('paymentMethod', paymentMethod.label)
+    formData.set('paymentMethod', method)
     formData.set('paymentState', 'pendiente') // siempre el pago es pendiente hasta controlar el comprobante
     formData.set('receiptName', '')
     formData.set('stockUpdate', '')
     formData.set('orderID', crypto.randomUUID().slice(0, 8))
 
-    const { fileInputID } = e.target
-    if (fileInputID.value) {
-      const paymentReceipt = fileRef.current.files[0]
-      formData.set('paymentReceipt', paymentReceipt)
+    if (isRecipeRequired) {
+      const { fileInputID } = e.target
+      if (fileInputID.value) {
+        const paymentReceipt = fileRef.current.files[0]
+        formData.set('paymentReceipt', paymentReceipt)
+      } else {
+        setShowMessageRecipeRequired(true)
+      }
     }
 
     const { message } = await sendOrderData(formData)
@@ -100,7 +108,7 @@ export default function ClientDataForm ({ closeDialog }) {
         <h3>Tus datos para el envío</h3>
       </header>
       <section className={classes.form_main}>
-        <div className={classes.client_input}>
+        <div className={`${classes.client_input} ${classes.name_input}`}>
           <label htmlFor='clientNameID'>
             <p>Tu nombre</p>
           </label>
@@ -113,7 +121,7 @@ export default function ClientDataForm ({ closeDialog }) {
             onChange={(e) => setClientName(e.target.value)}
           />
         </div>
-        <div className={classes.client_input}>
+        <div className={`${classes.client_input} ${classes.address_input}`}>
           <label htmlFor='clientAddressID'>
             <p>Dónde te lo llevamos?</p>
           </label>
@@ -125,14 +133,28 @@ export default function ClientDataForm ({ closeDialog }) {
             value={clientAddress}
             onChange={(e) => setClientAddress(e.target.value)}
           />
-          <details className={classes.detail}>
-            <summary>Información extra</summary>
+          {}
+          <details className={classes.detail} onToggle={(e) => setOpenDetails(e.target.open)}>
+            <summary>
+              <span className={classes.toggle_details_triangle}>
+                <Triangle
+                  width={10}
+                  style={{
+                    marginInlineEnd: '.5rem',
+                    fill: 'white',
+                    transform: `${openDetails ? 'rotate(180deg)' : 'rotate(90deg)'}`,
+                    transition: 'all 150ms ease-in-out'
+                  }}
+                />
+              </span>
+              AÑADIR INFORMACIÓN EXTRA
+            </summary>
             <label htmlFor='textArea'>
               <p>¿Alguna información extra o aclaración que necesitemos saber para el envío?</p>
             </label>
             <textarea
               maxLength={120}
-              placeholder='Ser claro y conciso por favor'
+              placeholder='< 120 caract.'
               className={classes.textarea}
               id='textArea'
               autoFocus
@@ -141,7 +163,7 @@ export default function ClientDataForm ({ closeDialog }) {
             />
           </details>
         </div>
-        <div className={classes.client_input}>
+        <div className={`${classes.client_input} ${openDetails ? classes.phone_input_under : ''}`}>
           <label htmlFor='clientPhone'>
             <p>Dejanos un teléfono</p>
           </label>
@@ -155,23 +177,34 @@ export default function ClientDataForm ({ closeDialog }) {
           />
         </div>
       </section>
-      <section className={classes.form_file_upload}>
-        <div className={classes.client_input}>
-          <label htmlFor='fileInputID'>
-            <p>Adjunta tu recibo de pago</p>
-          </label>
-          <input
-            name='fileInput'
-            id='fileInputID'
-            type='file'
-            ref={fileRef}
-            accept='image/*'
-          />
-        </div>
-      </section>
+      {
+       isRecipeRequired && (
+         <section className={classes.form_file_upload}>
+           <div className={`${classes.client_input} ${classes.receipt_input}`}>
+             <label htmlFor='fileInputID'>
+               <p>Adjunta tu recibo de pago</p>
+             </label>
+             <input
+               onInvalid={() => setShowMessageRecipeRequired(true)}
+               required
+               name='fileInput'
+               id='fileInputID'
+               type='file'
+               ref={fileRef}
+               accept='image/*'
+             />
+             {
+              showMessageRecipeRequired && (
+                <p className={classes.invalid_input_message}>** Por favor adjunta el comprobante de pago</p>
+              )
+             }
+           </div>
+         </section>
+       )
+      }
       <footer className={classes.form_footer}>
         <button
-          disabled={!clientName || !clientAddress}
+          disabled={!clientName || !clientAddress || !clientPhone}
           type='submit'
           className={classes.submit_button}
         >

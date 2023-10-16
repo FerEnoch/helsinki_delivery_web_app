@@ -46,7 +46,7 @@
 .dialog_main {
   position: relative;
   height: 90%;
-  padding-block-start: 2rem;
+  padding-block-start: 1rem;
 }
 
 .button_container {

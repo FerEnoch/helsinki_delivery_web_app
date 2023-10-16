@@ -9,8 +9,8 @@ export const paymentSlice = (set, get) => {
         return
       }
       const [chosenPaymentOption] = PAYMENT_OPTIONS.filter(({ id }) => id === selectedId)
-      const { id, label } = chosenPaymentOption
-      set({ paymentMethod: { id, label } })
+      const { id, label, recipe } = chosenPaymentOption
+      set({ paymentMethod: { id, label, recipe } })
     },
     clearPaymentMethod: () => set({ paymentMethod: {} })
     // paymentState: 'pending',

@@ -7,15 +7,15 @@ import { useAppStore } from '@/entities/lib/store'
 
 export default function GoToForm ({ label }) {
   const [openModalDialog, setOpenModalDialog] = useState(false)
-  const { cart } = useAppStore()
-  const isCartEmpty = cart.length === 0
+  const { cart, paymentMethod } = useAppStore()
+  const cartHasProducts = cart.length > 0
 
   const closeDialog = () => setOpenModalDialog(false)
 
   return (
     <>
       <div
-        disabled={isCartEmpty}
+        disabled={!cartHasProducts || !paymentMethod?.label}
         className={classes.go_to_form_button}
       >
         <section
