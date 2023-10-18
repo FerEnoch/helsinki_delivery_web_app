@@ -20,6 +20,23 @@
   cursor: pointer;
 }
 
+.detail[open] {
+  position: absolute;
+  margin-inline: auto;
+  z-index: 100;
+  backdrop-filter: blur(15px);
+  animation: detail-in 100ms ease-out;
+  transition: all 100ms ease-out;
+}
+
+.textarea {
+  padding: .5rem;
+  width: 90%;
+  right: 0;
+  margin-inline: auto;
+  border-radius: 12px;
+  resize: none;
+}
 
 @keyframes detail-in {
   0% {

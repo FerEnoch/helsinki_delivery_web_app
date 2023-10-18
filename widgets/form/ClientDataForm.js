@@ -5,12 +5,11 @@ import { useCallback, useRef, useState } from 'react'
 import { sendOrderData } from '@/features/formFill/model/sendOrderData'
 import { useAppStore } from '@/entities/lib/store'
 import { useRouter } from 'next/navigation'
-// import Triangle from '@/shared/ui/lib/svg/Triangle'
-import HelsinkiLogo from '@/shared/ui/lib/svg/HelsinkiLogo'
 import { i18n } from '@/shared/model/i18n'
 import NameInput from '@/features/formFill/ui/NameInput'
 import AddressInput from '@/features/formFill/ui/AddressInput'
 import PhoneInput from '@/features/formFill/ui/PhoneInput'
+import SubmitFormButton from '@/features/formFill/ui/SubmitFormButton'
 
 const { CLIENT_FORM } = i18n.LANG.ESP.UI
 
@@ -239,7 +238,11 @@ export default function ClientDataForm ({ closeDialog }) {
          </section>
        )
       }
-      <footer className={classes.form_footer}>
+      <SubmitFormButton
+        isLoading={isLoading}
+        disabled={submitButtonDisabled}
+      />
+      {/* <footer className={classes.form_footer}>
         {
           isLoading
             ? (
@@ -262,7 +265,7 @@ export default function ClientDataForm ({ closeDialog }) {
               </button>
               )
           }
-      </footer>
+      </footer> */}
     </form>
   )
 }

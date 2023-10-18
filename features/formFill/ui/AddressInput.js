@@ -40,7 +40,6 @@ export default function AddressInput ({ detailsOpen }) {
       >
         <summary>
           <span>
-            {/* <span className={classes.toggle_details_triangle}> */}
             <Triangle
               width={10}
               style={{

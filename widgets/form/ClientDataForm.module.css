@@ -67,7 +67,7 @@
 .detail:hover {
   cursor: pointer;
 } */
-
+/* 
 .textarea {
   padding: .5rem;
   width: 90%;
@@ -84,7 +84,7 @@
   backdrop-filter: blur(15px);
   animation: detail-in 100ms ease-out;
   transition: all 100ms ease-out;
-}
+} */
 
 /* 
 .name_input {
@@ -112,20 +112,20 @@
   justify-content: space-between;
 }
 
-.form_footer {
+/* .form_footer {
   width: 100%;
   height: 5rem;
   z-index: 100;
   position: relative;
-}
-
+} */
+/* 
 .loading_logo_wrapper {
   position: absolute;
   left: 33%;
   bottom: 1rem;
-}
+} */
 
-.submit_button {
+/* .submit_button {
   border: 2px solid white;
   font-size: 1.5rem;
   font-weight: 600;
@@ -143,7 +143,7 @@
   background: transparent;
   border: 2px solid #aaa;
   color: #888
-}
+} */
 
 .invalid_input_message {
   color: red;
@@ -175,11 +175,11 @@
   }
 } */
 
-.SVGLogo {
+/* .SVGLogo {
   padding-block-start: 2rem;
   animation: viking-skeleton 600ms ease-out infinite alternate;
-}
-
+} */
+/* 
 @keyframes viking-skeleton {
   0% {
     opacity: .1;
@@ -188,7 +188,7 @@
   100% {
     opacity: 1;
   }
-}
+} */
 
 @keyframes loading-state {
   100% {
