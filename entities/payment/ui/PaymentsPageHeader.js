@@ -8,9 +8,11 @@ const { CART: cartTexts } = i18n.LANG.ESP.UI
 
 export default function PaymentsPageHeader () {
   const router = useRouter()
+  const goBack = () => router.back()
+
   return (
     <header className={classes.header_container}>
-      <button onClick={() => router.back()} className={classes.back_link}>
+      <button onClick={goBack} className={classes.back_link}>
         <Triangle
           style={{ fill: 'black', transform: 'rotate(-90deg) scale(1.8, 1)' }}
           width={20}

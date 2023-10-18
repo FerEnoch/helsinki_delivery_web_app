@@ -47,6 +47,21 @@ export const i18n = {
             action: 'No te olvides del hielo y los cigarrillos',
             OFFERED_PRODUCTS
           }
+        },
+        CLIENT_FORM: {
+          FORM_TITLE: 'Tus datos para el envío',
+          FIELD_NAME: 'Tu nombre',
+          FIELD_ADDRESS: {
+            LABEL: '¿Dónde te lo llevamos?',
+            EXTRA_INFO: 'Añadir información extra',
+            SUMMARY: '¿Alguna información extra o aclaración que necesitemos saber para el envío?'
+          },
+          FIELD_PHONE: 'Tu teléfono',
+          FIELD_RECEIPT: {
+            LABEL: 'Adjunta tu comprobante de pago',
+            ON_INVALID: '** Por favor adjunta el comprobante de pago'
+          },
+          FORM_SUBMIT: 'Enviar pedido'
         }
       }
     }

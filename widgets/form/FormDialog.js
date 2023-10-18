@@ -1,8 +1,11 @@
 'use client'
+import { i18n } from '@/shared/model/i18n'
 import ClientDataForm from './ClientDataForm'
 import classes from './FormDialog.module.css'
 
-import { Suspense, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
+
+const { CART: cartTexts } = i18n.LANG.ESP.UI
 
 export default function FormDialog ({ openModal, closeDialog }) {
   const offertDialogRef = useRef(null)
@@ -29,7 +32,7 @@ export default function FormDialog ({ openModal, closeDialog }) {
             onClick={closeDialog}
           >
             <p>
-              VOLVER
+              {cartTexts.CONTINUE_SHOPPING}
             </p>
           </button>
         </div>

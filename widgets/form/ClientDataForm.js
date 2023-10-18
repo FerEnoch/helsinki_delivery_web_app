@@ -1,12 +1,18 @@
 import confetti from 'canvas-confetti'
 import { timeFormatter } from '@/shared/lib/timeFormat'
 import classes from './ClientDataForm.module.css'
-import { useRef, useState } from 'react'
-import { sendOrderData } from '../model/sendOrderData'
+import { useCallback, useRef, useState } from 'react'
+import { sendOrderData } from '@/features/formFill/model/sendOrderData'
 import { useAppStore } from '@/entities/lib/store'
 import { useRouter } from 'next/navigation'
-import Triangle from '@/shared/ui/lib/svg/Triangle'
+// import Triangle from '@/shared/ui/lib/svg/Triangle'
 import HelsinkiLogo from '@/shared/ui/lib/svg/HelsinkiLogo'
+import { i18n } from '@/shared/model/i18n'
+import NameInput from '@/features/formFill/ui/NameInput'
+import AddressInput from '@/features/formFill/ui/AddressInput'
+import PhoneInput from '@/features/formFill/ui/PhoneInput'
+
+const { CLIENT_FORM } = i18n.LANG.ESP.UI
 
 export default function ClientDataForm ({ closeDialog }) {
   const fileRef = useRef()
@@ -16,24 +22,37 @@ export default function ClientDataForm ({ closeDialog }) {
     getCartTotalAmount,
     cart,
     clearCart,
-    clearPaymentMethod
+    clearPaymentMethod,
+    client,
+    clearClientData
   } = useAppStore()
-  const [clientName, setClientName] = useState('')
-  const [clientAddress, setClientAddress] = useState('')
-  const [clientPhone, setClientPhone] = useState('')
-  const [clientComments, setClientComments] = useState('')
+  // const [clientName, setClientName] = useState('')
+  // const [clientAddress, setClientAddress] = useState('')
+  // const [clientComments, setClientComments] = useState('')
+
+  // const [clientPhone, setClientPhone] = useState('')
   const [openDetails, setOpenDetails] = useState(false)
   const [showMessageRecipeRequired, setShowMessageRecipeRequired] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  const isRecipeRequired = recipe === 'REQUIRED'
+  // const client = getClient()
+  console.log(client)
+  console.log(openDetails)
 
-  const clearFormData = () => {
-    setClientName('')
-    setClientAddress('')
-    setClientPhone('')
-    setClientComments('')
+  const isRecipeRequired = recipe === 'REQUIRED'
+  const isDetailsOpen = useCallback((openState) => setOpenDetails(openState), [])
+  const openDetailsPhoneInputStyle = {
+    transition: `${openDetails ? 'all 250ms ease-in' : ''}`,
+    paddingBlockStart: `${openDetails ? '2rem' : ''}`,
+    zIndex: `${openDetails ? '-1' : ''}`
   }
+  const submitButtonDisabled = !client?.name || !client?.address || !client?.phone
+  // const clearFormData = () => {
+  //   setClientName('')
+  //   setClientAddress('')
+  //   setClientPhone('')
+  //   setClientComments('')
+  // }
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -44,26 +63,28 @@ export default function ClientDataForm ({ closeDialog }) {
      *  1 - timestamp
      *  2 - clientName
      *  3 - clientPhone
-     *  4 - clientAddress - comments
-     *  5 - order
-     *  6 - total
-     *  7 - paymentMethod - paymentState
-     *  8 - receipt file name
-     *  9 - stockUpdate
-     * 10 - orderID
+     *  4 - client WhatsApp
+     *  5 - clientAddress - comments
+     *  6 - order
+     *  7 - total
+     *  8 - paymentMethod - paymentState
+     *  9 - receipt file name
+     * 10 - stockUpdate
+     * 11 - orderID
      */
     const date = new Date()
     formData.set('timestamp', timeFormatter(date))
 
-    formData.set('clientName', clientName)
-    formData.set('clientPhone', clientPhone)
-    formData.set('clientAddress', clientAddress)
-    formData.set('clientComments', clientComments)
+    formData.set('clientName', client?.name)
+    formData.set('clientPhone', client?.phone)
+    formData.set('clientWhatsApp', client?.phone)
+    formData.set('clientAddress', client?.address)
+    formData.set('clientComments', client?.addressComments)
 
     formData.set('cart', JSON.stringify(cart))
     formData.set('total', getCartTotalAmount())
     formData.set('paymentMethod', method)
-    formData.set('paymentState', 'pendiente') // siempre el pago es pendiente hasta controlar el comprobante
+    formData.set('paymentState', 'pendiente') // alwalys pending-state until the receipt is ckecked manually
     formData.set('receiptName', '')
     formData.set('stockUpdate', '')
     formData.set('orderID', crypto.randomUUID().slice(0, 8))
@@ -81,22 +102,22 @@ export default function ClientDataForm ({ closeDialog }) {
 
     const { message } = await sendOrderData(formData)
     if (message === 'success') {
-      clearFormData()
+      clearClientData()
       clearCart()
       clearPaymentMethod()
       closeDialog()
-      confetti({ particleCount: 80 })
+      confetti()
       router.push('/')
     } else {
       /** retrying.. */
       const { message } = await sendOrderData(formData)
       if (message === 'success') {
         setIsLoading(false)
-        clearFormData()
+        clearClientData()
         clearCart()
         clearPaymentMethod()
         closeDialog()
-        confetti({ particleCount: 80 })
+        confetti()
         router.push('/')
       } else {
         console.log(message)
@@ -111,12 +132,20 @@ export default function ClientDataForm ({ closeDialog }) {
       onSubmit={submitHandler}
     >
       <header className={classes.form_header}>
-        <h3>Tus datos para el envío</h3>
+        <h3>{CLIENT_FORM.FORM_TITLE.toUpperCase()}</h3>
       </header>
       <section className={classes.form_main}>
-        <div className={`${classes.client_input} ${classes.name_input}`}>
+        <NameInput />
+        <AddressInput
+          detailsOpen={isDetailsOpen}
+        />
+        <PhoneInput
+          detailsOpen={openDetails}
+          style={openDetailsPhoneInputStyle}
+        />
+        {/* <div className={`${classes.client_input} ${classes.name_input}`}>
           <label htmlFor='clientNameID'>
-            <p>Tu nombre</p>
+            <p>{CLIENT_FORM.FIELD_NAME}</p>
           </label>
           <input
             required
@@ -126,10 +155,10 @@ export default function ClientDataForm ({ closeDialog }) {
             value={clientName}
             onChange={(e) => setClientName(e.target.value)}
           />
-        </div>
-        <div className={`${classes.client_input} ${classes.address_input}`}>
+        </div> */}
+        {/* <div className={`${classes.client_input} ${classes.address_input}`}>
           <label htmlFor='clientAddressID'>
-            <p>Dónde te lo llevamos?</p>
+            <p>{CLIENT_FORM.FIELD_ADDRESS.LABEL}</p>
           </label>
           <input
             required
@@ -152,10 +181,10 @@ export default function ClientDataForm ({ closeDialog }) {
                   }}
                 />
               </span>
-              AÑADIR INFORMACIÓN EXTRA
+              {CLIENT_FORM.FIELD_ADDRESS.EXTRA_INFO}
             </summary>
             <label htmlFor='textArea'>
-              <p>¿Alguna información extra o aclaración que necesitemos saber para el envío?</p>
+              <p>{CLIENT_FORM.FIELD_ADDRESS.SUMMARY}</p>
             </label>
             <textarea
               maxLength={120}
@@ -167,27 +196,27 @@ export default function ClientDataForm ({ closeDialog }) {
               onChange={(e) => setClientComments(e.target.value)}
             />
           </details>
-        </div>
-        <div className={`${classes.client_input} ${openDetails ? classes.phone_input_under : ''}`}>
+        </div> */}
+        {/* <div className={`${classes.client_input} ${openDetails ? classes.phone_input_under : ''}`}>
           <label htmlFor='clientPhone'>
-            <p>Dejanos un teléfono</p>
+            <p>{CLIENT_FORM.FIELD_PHONE}</p>
           </label>
           <input
             required
             name='clientPhone'
             id='clientPhoneID'
-            type='text'
+            type='number'
             value={clientPhone}
             onChange={(e) => setClientPhone(e.target.value)}
           />
-        </div>
+        </div> */}
       </section>
       {
-       isRecipeRequired && (
+       isRecipeRequired && !isLoading && (
          <section className={classes.form_file_upload}>
            <div className={`${classes.client_input} ${classes.receipt_input}`}>
              <label htmlFor='fileInputID'>
-               <p>Adjunta tu recibo de pago</p>
+               <p>{CLIENT_FORM.FIELD_RECEIPT.LABEL}</p>
              </label>
              <input
                onInvalid={() => setShowMessageRecipeRequired(true)}
@@ -202,7 +231,7 @@ export default function ClientDataForm ({ closeDialog }) {
              {
               showMessageRecipeRequired && (
                 <p className={classes.invalid_input_message}>
-                  ** Por favor adjunta el comprobante de pago
+                  {CLIENT_FORM.FIELD_RECEIPT.ON_INVALID}
                 </p>
               )
              }
@@ -225,11 +254,11 @@ export default function ClientDataForm ({ closeDialog }) {
               )
             : (
               <button
-                disabled={!clientName || !clientAddress || !clientPhone}
+                disabled={submitButtonDisabled}
                 type='submit'
                 className={classes.submit_button}
               >
-                <p>ENVIAR PEDIDO</p>
+                <p>{CLIENT_FORM.FORM_SUBMIT}</p>
               </button>
               )
           }

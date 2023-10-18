@@ -1,9 +1,12 @@
+import { WHATSAPP_LINK } from './whatsAppLink'
+
 export function buildOrderData (rawData) {
   const orderDataToSheets = {}
   let receipt
   let receiptNamePaymentMethod
   let address
   let orderID
+  let stockUpdate = ''
 
   Array.from(rawData.entries()).forEach(([field, value]) => {
     if (field === 'paymentReceipt') {
@@ -14,34 +17,44 @@ export function buildOrderData (rawData) {
     if (field === 'orderID') {
       orderID = value
     }
+
     if (field === 'cart') {
       const cart = JSON.parse(value)
       const order = cart
         .flatMap(cartItem => {
-          // orderDataToSheets.stockUpdate = `${cartItem.id} - ${cartItem.quantity}`
+          stockUpdate += `${cartItem.id}-${cartItem.quantity}//`
           return [cartItem.name, cartItem.quantity].join(' - ')
         })
         .join(' //\n ')
       orderDataToSheets.order = order
       return
     }
+
+    if (field === 'clientWhatsApp') {
+      orderDataToSheets[field] = `${WHATSAPP_LINK}${value}`
+      return
+    }
+
     if (field === 'clientAddress') {
       address = value
       return
     }
+
     if (field === 'clientComments') {
       orderDataToSheets.clientAddress = `${address}\n- ${value}`
       return
     }
+
     if (field === 'paymentMethod') {
       orderDataToSheets.payment = value
       receiptNamePaymentMethod = value
       return
     }
-    // if (field === 'paymentState') {
-    //   orderDataToSheets.payment = `${payment} - ${value}`
-    //   return
-    // }
+
+    if (field === 'stockUpdate') {
+      orderDataToSheets.stockUpdate = stockUpdate
+      return
+    }
     orderDataToSheets[field] = value
   })
 

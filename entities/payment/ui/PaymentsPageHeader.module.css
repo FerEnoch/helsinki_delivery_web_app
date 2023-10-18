@@ -19,6 +19,10 @@
   transform: scale(.9);
 }
 
+.back_link:hover {
+  cursor: pointer;
+}
+
 @media (width <=390px) {
   .back_link {
     transform: scale(.6);

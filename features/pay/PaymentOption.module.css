@@ -10,6 +10,10 @@
   overflow: hidden;
 }
 
+.payment_option:hover {
+  cursor: pointer;
+}
+
 .button_wrapper {
   width: 100%;
   display: grid;

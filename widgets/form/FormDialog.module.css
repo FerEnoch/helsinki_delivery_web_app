@@ -1,5 +1,4 @@
 .form_dialog_container {
-  /* place-content: center; */
   align-content: stretch;
   animation: dialog-out 350ms ease-in-out;
   backdrop-filter: blur(8px) saturate(60%);
@@ -80,27 +79,21 @@
 @keyframes dialog-in {
   0% {
     opacity: 0;
-    display: none;
-    transform: translateY(50%) scale(.5, .5)
   }
 
   100% {
-    transform: translateY(0) scale(1, 1);
     opacity: 1;
-    display: block;
   }
 }
 
 @keyframes dialog-out {
   0% {
-    transform: translateY(5%);
     display: block;
 
   }
 
   100% {
     display: none;
-
     transform: translateY(-100%);
   }
 }
