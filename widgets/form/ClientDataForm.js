@@ -35,8 +35,6 @@ export default function ClientDataForm ({ closeDialog }) {
   const [isLoading, setIsLoading] = useState(false)
 
   // const client = getClient()
-  console.log(client)
-  console.log(openDetails)
 
   const isRecipeRequired = recipe === 'REQUIRED'
   const isDetailsOpen = useCallback((openState) => setOpenDetails(openState), [])

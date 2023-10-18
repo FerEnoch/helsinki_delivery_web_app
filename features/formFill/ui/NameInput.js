@@ -21,7 +21,6 @@ export default function NameInput () {
       </label>
       <input
         required
-        name='clientName'
         id='clientNameID'
         type='text'
         value={name}

@@ -28,7 +28,6 @@ export default function AddressInput ({ detailsOpen }) {
       </label>
       <input
         required
-        name='clientAddress'
         id='clientAddressID'
         type='text'
         value={address}
