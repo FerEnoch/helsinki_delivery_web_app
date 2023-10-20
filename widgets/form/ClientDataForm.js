@@ -58,29 +58,28 @@ export default function ClientDataForm ({ closeDialog }) {
     /**
      * Carefull with the order becouse It's the order they will be displayed in g-sheets
      *  1 - timestamp
-     *  2 - clientName
-     *  3 - clientPhone
-     *  4 - client WhatsApp
-     *  5 - clientAddress - comments
-     *  6 - order
+     *  2 - clientAddress - comments
+     *  3 - order
+     *  4 - clientPhone
+     *  5 - clientName
+     *  6 - paymentMethod
      *  7 - total
-     *  8 - paymentMethod - paymentState
-     *  9 - receipt file name
-     * 10 - stockUpdate
-     * 11 - orderID
+     *  8 - client WhatsApp
+     *  9 - paymentState
+     * 10 - receipt file name
+     * 11 - stockUpdate
+     * 12 - orderID
      */
     const date = new Date()
     formData.set('timestamp', timeFormatter(date))
-
-    formData.set('clientName', client?.name)
-    formData.set('clientPhone', client?.phone)
-    formData.set('clientWhatsApp', client?.phone)
-    formData.set('clientAddress', client?.address)
-    formData.set('clientComments', client?.addressComments)
-
+    formData.set('clientAddress', client?.address.trim())
+    formData.set('clientComments', client?.addressComments.trim())
     formData.set('cart', JSON.stringify(cart))
-    formData.set('total', getCartTotalAmount())
+    formData.set('clientPhone', client?.phone.trim())
+    formData.set('clientName', client?.name.trim())
     formData.set('paymentMethod', method)
+    formData.set('total', getCartTotalAmount())
+    formData.set('clientWhatsApp', client?.phone.trim())
     formData.set('paymentState', 'pendiente') // alwalys pending-state until the receipt is ckecked manually
     formData.set('receiptName', '')
     formData.set('stockUpdate', '')

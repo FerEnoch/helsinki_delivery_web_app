@@ -2,7 +2,7 @@ import UncheckedBoxIcon from '@/shared/ui/lib/svg/UncheckedBoxIcon'
 import classes from './PaymentOption.module.css'
 import CheckedBoxIcon from '@/shared/ui/lib/svg/CheckedBoxIcon'
 import { useAppStore } from '@/entities/lib/store'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 
 export default function PaymentOption ({ id, children, label, comment }) {
   const { paymentMethod, pickPaymentOption } = useAppStore()
@@ -17,6 +17,9 @@ export default function PaymentOption ({ id, children, label, comment }) {
     setIsChosen(paymentMethod?.id === id)
   }, [paymentMethod, id])
 
+  const formatLabel = label.toUpperCase()
+  const formatComments = comment.toUpperCase()
+
   return (
     <section
       onClick={handleChoosePaymentMethod(id)}
@@ -27,22 +30,24 @@ export default function PaymentOption ({ id, children, label, comment }) {
         style={{ backgroundColor: `${isChosen ? 'var(--app-payments-green)' : 'var(--app-backgound-gray)'}` }}
       >
         <div className={classes.checkbox}>
-          {
-             isChosen
-               ? (
-                 <span className={classes.checkbox_checked}>
-                   <CheckedBoxIcon />
-                 </span>
-                 )
-               : <UncheckedBoxIcon />
-          }
+          <Suspense>
+            {
+            isChosen
+              ? (
+                <span className={classes.checkbox_checked}>
+                  <CheckedBoxIcon />
+                </span>
+                )
+              : <UncheckedBoxIcon />
+                }
+          </Suspense>
         </div>
       </span>
       <span className={classes.icon_wrapper}>
         {children}
       </span>
-      <h3 className={classes.payment_label}>{label.toUpperCase()}</h3>
-      <p className={classes.payment_comment}>{comment.toUpperCase()}</p>
+      <h3 className={classes.payment_label}>{formatLabel}</h3>
+      <p className={classes.payment_comment}>{formatComments}</p>
     </section>
 
   )

@@ -2,6 +2,22 @@
   margin-block-end: 3rem;
 }
 
+.address_input_invalid input {
+  color: #fff;
+  border: 1px solid red;
+  background-color: rgb(255, 0, 0, .4);
+  transition: all 300ms ease-in;
+}
+
+.invalid_input_message {
+  color: red;
+  position: relative;
+  bottom: 0px;
+  left: 10px;
+  font-weight: 600;
+  z-index: 100;
+}
+
 .detail {
   font-size: 1.1rem;
   position: absolute;

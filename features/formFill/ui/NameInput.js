@@ -1,31 +1,40 @@
 import { i18n } from '@/shared/model/i18n'
 import classes from './NameInput.module.css'
 import inputClasses from '@/widgets/form/ClientDataForm.module.css'
-import { useEffect, useState } from 'react'
-import { useAppStore } from '@/entities/lib/store'
+import { useValidateNameInput } from '../lib/useValidateNameInput'
+import { useState } from 'react'
 
 const { CLIENT_FORM } = i18n.LANG.ESP.UI
 
 export default function NameInput () {
   const [name, setName] = useState('')
-  const { setClientName } = useAppStore()
-
-  useEffect(() => {
-    setClientName(name)
-  }, [name, setClientName])
+  const [sanitizedName, invalidInput] = useValidateNameInput(name)
 
   return (
-    <div className={`${inputClasses.client_input} ${classes.name_input}`}>
+    <div className={`
+    ${inputClasses.client_input} 
+    ${classes.name_input} 
+    ${invalidInput ? classes.name_input_invalid : ''}
+    `}
+    >
       <label htmlFor='clientNameID'>
-        <p>{CLIENT_FORM.FIELD_NAME}</p>
+        <p>{CLIENT_FORM.FIELD_NAME.LABEL}</p>
       </label>
       <input
         required
+        autoFocus
         id='clientNameID'
         type='text'
-        value={name}
+        value={sanitizedName || ''}
         onChange={(e) => setName(e.target.value)}
       />
+      {
+        invalidInput && (
+          <p className={classes.invalid_input_message}>
+            {CLIENT_FORM.FIELD_NAME.ON_INVALID}
+          </p>
+        )
+      }
     </div>
   )
 }

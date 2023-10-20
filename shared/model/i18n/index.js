@@ -50,11 +50,15 @@ export const i18n = {
         },
         CLIENT_FORM: {
           FORM_TITLE: 'Tus datos para el envío',
-          FIELD_NAME: 'Tu nombre',
+          FIELD_NAME: {
+            LABEL: 'Tu nombre',
+            ON_INVALID: '** No se permiten caracteres especiales'
+          },
           FIELD_ADDRESS: {
             LABEL: '¿Dónde te lo llevamos?',
             EXTRA_INFO: 'Añadir información extra',
-            SUMMARY: '¿Alguna información extra o aclaración que necesitemos saber para el envío?'
+            SUMMARY: '¿Alguna información extra o aclaración que necesitemos saber para el envío?',
+            ON_INVALID: '** No se permiten caracteres especiales'
           },
           FIELD_PHONE: 'Tu teléfono',
           FIELD_RECEIPT: {
