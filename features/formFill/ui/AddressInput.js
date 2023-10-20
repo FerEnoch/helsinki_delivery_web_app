@@ -1,6 +1,6 @@
 import classes from './AddressInput.module.css'
 import { i18n } from '@/shared/model/i18n'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Triangle from '@/shared/ui/lib/svg/Triangle'
 // import { useAppStore } from '@/entities/lib/store'
 import inputClasses from '@/widgets/form/ClientDataForm.module.css'
@@ -9,6 +9,7 @@ import { useValidateAddressInput } from '../lib/useValidateAddressInput'
 const { CLIENT_FORM } = i18n.LANG.ESP.UI
 
 export default function AddressInput ({ detailsOpen }) {
+  const detailsRef = useRef(null)
   const [address, setAddress] = useState('')
   const [addressComments, setAddressComments] = useState('')
   const [openDetails, setOpenDetails] = useState(false)
@@ -18,10 +19,16 @@ export default function AddressInput ({ detailsOpen }) {
     detailsOpen(openDetails)
   }, [openDetails, detailsOpen])
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' && detailsRef.current.open) {
+      detailsRef.current.open = false
+      setOpenDetails(false)
+    }
+  }
+
   return (
     <div className={`
     ${inputClasses.client_input} ${classes.address_input}
-    ${invalidInput ? classes.address_input_invalid : ''}
     `}
     >
       <label htmlFor='clientAddressID'>
@@ -33,6 +40,7 @@ export default function AddressInput ({ detailsOpen }) {
         type='text'
         value={sanitizedAddress || ''}
         onChange={(e) => setAddress(e.target.value)}
+        onBlur={(e) => setAddress(e.target.value)}
       />
       {
         invalidInput && (
@@ -46,6 +54,7 @@ export default function AddressInput ({ detailsOpen }) {
             <details
               className={classes.detail}
               onToggle={(e) => setOpenDetails(e.target.open)}
+              ref={detailsRef}
             >
               <summary>
                 <span>
@@ -65,6 +74,7 @@ export default function AddressInput ({ detailsOpen }) {
                 <p>{CLIENT_FORM.FIELD_ADDRESS.SUMMARY}</p>
               </label>
               <textarea
+                onKeyDown={handleKeyPress}
                 maxLength={120}
                 placeholder='< 120 caract.'
                 className={classes.textarea}

@@ -25,31 +25,22 @@ export default function ClientDataForm ({ closeDialog }) {
     client,
     clearClientData
   } = useAppStore()
-  // const [clientName, setClientName] = useState('')
-  // const [clientAddress, setClientAddress] = useState('')
-  // const [clientComments, setClientComments] = useState('')
 
-  // const [clientPhone, setClientPhone] = useState('')
   const [openDetails, setOpenDetails] = useState(false)
   const [showMessageRecipeRequired, setShowMessageRecipeRequired] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  // const client = getClient()
-
   const isRecipeRequired = recipe === 'REQUIRED'
+
   const isDetailsOpen = useCallback((openState) => setOpenDetails(openState), [])
+
   const openDetailsPhoneInputStyle = {
     transition: `${openDetails ? 'all 250ms ease-in' : ''}`,
     paddingBlockStart: `${openDetails ? '2rem' : ''}`,
     zIndex: `${openDetails ? '-1' : ''}`
   }
+
   const submitButtonDisabled = !client?.name || !client?.address || !client?.phone
-  // const clearFormData = () => {
-  //   setClientName('')
-  //   setClientAddress('')
-  //   setClientPhone('')
-  //   setClientComments('')
-  // }
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -139,73 +130,6 @@ export default function ClientDataForm ({ closeDialog }) {
           detailsOpen={openDetails}
           style={openDetailsPhoneInputStyle}
         />
-        {/* <div className={`${classes.client_input} ${classes.name_input}`}>
-          <label htmlFor='clientNameID'>
-            <p>{CLIENT_FORM.FIELD_NAME}</p>
-          </label>
-          <input
-            required
-            name='clientName'
-            id='clientNameID'
-            type='text'
-            value={clientName}
-            onChange={(e) => setClientName(e.target.value)}
-          />
-        </div> */}
-        {/* <div className={`${classes.client_input} ${classes.address_input}`}>
-          <label htmlFor='clientAddressID'>
-            <p>{CLIENT_FORM.FIELD_ADDRESS.LABEL}</p>
-          </label>
-          <input
-            required
-            name='clientAddress'
-            id='clientAddressID'
-            type='text'
-            value={clientAddress}
-            onChange={(e) => setClientAddress(e.target.value)}
-          />
-          <details className={classes.detail} onToggle={(e) => setOpenDetails(e.target.open)}>
-            <summary>
-              <span className={classes.toggle_details_triangle}>
-                <Triangle
-                  width={10}
-                  style={{
-                    marginInlineEnd: '.5rem',
-                    fill: 'white',
-                    transform: `${openDetails ? 'rotate(180deg)' : 'rotate(90deg)'}`,
-                    transition: 'all 150ms ease-in-out'
-                  }}
-                />
-              </span>
-              {CLIENT_FORM.FIELD_ADDRESS.EXTRA_INFO}
-            </summary>
-            <label htmlFor='textArea'>
-              <p>{CLIENT_FORM.FIELD_ADDRESS.SUMMARY}</p>
-            </label>
-            <textarea
-              maxLength={120}
-              placeholder='< 120 caract.'
-              className={classes.textarea}
-              id='textArea'
-              autoFocus
-              value={clientComments}
-              onChange={(e) => setClientComments(e.target.value)}
-            />
-          </details>
-        </div> */}
-        {/* <div className={`${classes.client_input} ${openDetails ? classes.phone_input_under : ''}`}>
-          <label htmlFor='clientPhone'>
-            <p>{CLIENT_FORM.FIELD_PHONE}</p>
-          </label>
-          <input
-            required
-            name='clientPhone'
-            id='clientPhoneID'
-            type='number'
-            value={clientPhone}
-            onChange={(e) => setClientPhone(e.target.value)}
-          />
-        </div> */}
       </section>
       {
        isRecipeRequired && !isLoading && (

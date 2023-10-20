@@ -14,7 +14,6 @@ export default function NameInput () {
     <div className={`
     ${inputClasses.client_input} 
     ${classes.name_input} 
-    ${invalidInput ? classes.name_input_invalid : ''}
     `}
     >
       <label htmlFor='clientNameID'>
@@ -27,6 +26,7 @@ export default function NameInput () {
         type='text'
         value={sanitizedName || ''}
         onChange={(e) => setName(e.target.value)}
+        onBlur={(e) => setName(e.target.value)}
       />
       {
         invalidInput && (

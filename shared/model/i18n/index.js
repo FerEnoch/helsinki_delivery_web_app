@@ -60,7 +60,12 @@ export const i18n = {
             SUMMARY: '¿Alguna información extra o aclaración que necesitemos saber para el envío?',
             ON_INVALID: '** No se permiten caracteres especiales'
           },
-          FIELD_PHONE: 'Tu teléfono',
+          FIELD_PHONE: {
+            LABEL: 'Tu teléfono',
+            ON_INVALID: '** Por favor inserta solo números',
+            INITIAL_CHAR_NUM: '0',
+            INITIAL_PHONE_NUM: '15'
+          },
           FIELD_RECEIPT: {
             LABEL: 'Adjunta tu comprobante de pago',
             ON_INVALID: '** Por favor adjunta el comprobante de pago'

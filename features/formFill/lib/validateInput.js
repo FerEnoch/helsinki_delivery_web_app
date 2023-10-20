@@ -1,19 +1,23 @@
-export function validateInput (processInput) {
-  // let isInvalid
-  // const HTML_REGEXP = /<\/?[a-z][\s\S]*>/ig
-  // isInvalid = HTML_REGEXP.test(processInput)
+import { LETTERS_CHAR, SPECIAL_CHAR } from '../config/validationFormInput'
 
-  // const SCRIPT_REGEXP = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/ig
-  // isInvalid = SCRIPT_REGEXP.test(processInput)
-
-  const SPECIAL_CHAR = /<[^>]+>|[\\|/#!<>/¿?$@%~*()]/g
-  const specialCharInputMatch = processInput?.match(SPECIAL_CHAR) || []
-
+export function validateInput (processInput, flag) {
   let sanitizedInput = processInput
+  let foundInvalidCharacters
+
+  const specialCharInputMatch = processInput?.match(SPECIAL_CHAR) || []
+  foundInvalidCharacters = specialCharInputMatch
 
   specialCharInputMatch?.forEach(specialChar => {
     sanitizedInput = processInput?.replace(specialChar, '')
   })
 
-  return [sanitizedInput, specialCharInputMatch]
+  if (flag === 'NUMBER') {
+    const lettersCharInputMatch = processInput?.match(LETTERS_CHAR) || []
+    foundInvalidCharacters = [...specialCharInputMatch, ...lettersCharInputMatch]
+    lettersCharInputMatch?.forEach(specialChar => {
+      sanitizedInput = processInput?.replace(specialChar, '')
+    })
+  }
+
+  return [sanitizedInput, foundInvalidCharacters]
 }
