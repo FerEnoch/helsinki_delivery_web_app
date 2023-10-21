@@ -3,12 +3,22 @@ import { i18n } from '@/shared/model/i18n'
 import ClientDataForm from './ClientDataForm'
 import classes from './FormDialog.module.css'
 
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 const { CART: cartTexts } = i18n.LANG.ESP.UI
 
 export default function FormDialog ({ openModal, closeDialog }) {
   const offertDialogRef = useRef(null)
+  const [buttonDisabled, setButtonDisabled] = useState(false)
+  const [showButton, setShowButton] = useState(true)
+
+  const disableButton = useCallback((isDisabled) => {
+    setButtonDisabled(isDisabled)
+  }, [])
+
+  const showContinueShoppingButton = useCallback((successState) => {
+    setShowButton(!successState)
+  }, [])
 
   useEffect(() => {
     if (openModal) {
@@ -25,17 +35,26 @@ export default function FormDialog ({ openModal, closeDialog }) {
       onClose={closeDialog}
     >
       <main className={classes.dialog_main}>
-        <ClientDataForm closeDialog={closeDialog} />
-        <div className={classes.button_container}>
-          <button
-            className={classes.back_button}
-            onClick={closeDialog}
-          >
-            <p>
-              {cartTexts.CONTINUE_SHOPPING}
-            </p>
-          </button>
-        </div>
+        <ClientDataForm
+          closeDialog={closeDialog}
+          disableButton={disableButton}
+          showContinueShoppingButton={showContinueShoppingButton}
+        />
+        {
+        showButton && (
+          <div className={classes.button_container}>
+            <button
+              className={classes.back_button}
+              onClick={closeDialog}
+              disabled={buttonDisabled}
+            >
+              <p>
+                {cartTexts.CONTINUE_SHOPPING}
+              </p>
+            </button>
+          </div>
+        )
+        }
       </main>
     </dialog>
   )

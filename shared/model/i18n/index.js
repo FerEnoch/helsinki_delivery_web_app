@@ -71,6 +71,14 @@ export const i18n = {
             ON_INVALID: '** Por favor adjunta el comprobante de pago'
           },
           FORM_SUBMIT: 'Enviar pedido'
+        },
+        ORDER_PROCESSING: {
+          title: 'Estamos procesando tu pedido',
+          message: 'En un intante estará listo...'
+        },
+        ORDER_SUCCESS: {
+          title: 'Muchas gracias por tu compra!',
+          message: 'Te lo enviamos en breve. Cualquier cosa nos comunicaremos con vos por WhatsApp o llamado'
         }
       },
       G_DRIVE_UI: {

@@ -1,7 +1,7 @@
 import confetti from 'canvas-confetti'
 import { timeFormatter } from '@/shared/lib/timeFormat'
 import classes from './ClientDataForm.module.css'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { sendOrderData } from '@/features/formFill/model/sendOrderData'
 import { useAppStore } from '@/entities/lib/store'
 import { useRouter } from 'next/navigation'
@@ -9,12 +9,12 @@ import { i18n } from '@/shared/model/i18n'
 import NameInput from '@/features/formFill/ui/NameInput'
 import AddressInput from '@/features/formFill/ui/AddressInput'
 import PhoneInput from '@/features/formFill/ui/PhoneInput'
-import SubmitFormButton from '@/features/formFill/ui/SubmitFormButton'
+import FormFooter from '@/features/formFill/ui/FormFooter'
 import { FORM_FIELDS } from '@/features/formFill/config/formFieldsOrder'
 
-const { CLIENT_FORM } = i18n.LANG.ESP.UI
+const { CLIENT_FORM, ORDER_PROCESSING, ORDER_SUCCESS } = i18n.LANG.ESP.UI
 
-export default function ClientDataForm ({ closeDialog }) {
+export default function ClientDataForm ({ closeDialog, disableButton, showContinueShoppingButton }) {
   const fileRef = useRef()
   const router = useRouter()
   const {
@@ -30,6 +30,7 @@ export default function ClientDataForm ({ closeDialog }) {
   const [openDetails, setOpenDetails] = useState(false)
   const [showMessageRecipeRequired, setShowMessageRecipeRequired] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [successfullOrderSending, setSuccessfullOrderSending] = useState(false)
 
   const isRecipeRequired = recipe === 'REQUIRED'
 
@@ -42,6 +43,19 @@ export default function ClientDataForm ({ closeDialog }) {
   }
 
   const submitButtonDisabled = !client?.name || !client?.address || !client?.phone
+
+  const successHandler = useCallback(() => {
+    setIsLoading(false)
+    setSuccessfullOrderSending(true)
+    clearClientData()
+    clearCart()
+    clearPaymentMethod()
+    confetti()
+    setTimeout(() => {
+      closeDialog()
+      router.push('/')
+    }, 7000)
+  }, [clearClientData, clearCart, clearPaymentMethod, closeDialog, router])
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -74,51 +88,76 @@ export default function ClientDataForm ({ closeDialog }) {
     }
 
     const { message } = await sendOrderData(formData)
-    if (message === 'success') {
-      clearClientData()
-      clearCart()
-      clearPaymentMethod()
-      closeDialog()
-      confetti()
-      router.push('/')
-    } else {
-      /** retrying.. */
-      const { message } = await sendOrderData(formData)
-      if (message === 'success') {
-        setIsLoading(false)
-        clearClientData()
-        clearCart()
-        clearPaymentMethod()
-        closeDialog()
-        confetti()
-        router.push('/')
-      } else {
-        console.log(message)
-        throw new Error()
-      }
-    }
+    if (message === 'success') return successHandler()
+    console.log(message)
+    throw new Error()
+    /**
+     * handle error!
+     */
   }
+
+  const processingOrderTitle = ORDER_PROCESSING.title.toUpperCase()
+  const processingOrderMessage = ORDER_PROCESSING.message
+
+  useEffect(() => {
+    disableButton(isLoading)
+  }, [isLoading, disableButton])
+
+  useEffect(() => {
+    showContinueShoppingButton(successfullOrderSending)
+  }, [successfullOrderSending, showContinueShoppingButton])
 
   return (
     <form
-      className={`${classes.form_container} ${isLoading ? classes.form_container_loading : ''}`}
       onSubmit={submitHandler}
+      className={`
+          ${classes.form_container}
+          ${isLoading ? classes.form_container_loading : ''}
+          ${successfullOrderSending ? classes.form_container_success : ''}
+        `}
     >
       <header className={classes.form_header}>
-        <h3>{CLIENT_FORM.FORM_TITLE.toUpperCase()}</h3>
+        <h3>
+          {
+        isLoading && !successfullOrderSending
+          ? ''
+          : !successfullOrderSending && CLIENT_FORM.FORM_TITLE.toUpperCase()
+          }
+        </h3>
       </header>
       <section className={classes.form_main}>
-        <NameInput />
-        <AddressInput
-          detailsOpen={isDetailsOpen}
-        />
-        <PhoneInput
-          detailsOpen={openDetails}
-          style={openDetailsPhoneInputStyle}
-        />
+        {
+        isLoading && !successfullOrderSending
+          ? (
+            <div className={classes.processing_texts_wrapper}>
+              <h1>{processingOrderTitle}</h1>
+              <p>{processingOrderMessage}</p>
+            </div>
+            )
+          : (
+              successfullOrderSending && !isLoading
+                ? (
+                  <>
+                    <h1>{ORDER_SUCCESS.title}</h1>
+                    <p>{ORDER_SUCCESS.message}</p>
+                  </>
+                  )
+                : (
+                  <>
+                    <NameInput />
+                    <AddressInput
+                      detailsOpen={isDetailsOpen}
+                    />
+                    <PhoneInput
+                      detailsOpen={openDetails}
+                      style={openDetailsPhoneInputStyle}
+                    />
+                  </>)
+            )
+      }
       </section>
       {
-       isRecipeRequired && !isLoading && (
+       isRecipeRequired && !isLoading && !successfullOrderSending && (
          <section className={classes.form_file_upload}>
            <div className={`${classes.client_input} ${classes.receipt_input}`}>
              <label htmlFor='fileInputID'>
@@ -145,34 +184,11 @@ export default function ClientDataForm ({ closeDialog }) {
          </section>
        )
       }
-      <SubmitFormButton
-        isLoading={isLoading}
-        disabled={submitButtonDisabled}
+      <FormFooter
+        loadingState={isLoading && !successfullOrderSending}
+        successState={successfullOrderSending && !isLoading}
+        buttonDisabled={submitButtonDisabled}
       />
-      {/* <footer className={classes.form_footer}>
-        {
-          isLoading
-            ? (
-              <div className={classes.loading_logo_wrapper}>
-                <HelsinkiLogo
-                  className={classes.SVGLogo}
-                  width={100}
-                  height={100}
-                  pathStyle={{ fill: '#eee', fillOpacity: 0.9 }}
-                />
-              </div>
-              )
-            : (
-              <button
-                disabled={submitButtonDisabled}
-                type='submit'
-                className={classes.submit_button}
-              >
-                <p>{CLIENT_FORM.FORM_SUBMIT}</p>
-              </button>
-              )
-          }
-      </footer> */}
     </form>
   )
 }

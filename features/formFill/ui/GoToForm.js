@@ -1,17 +1,20 @@
 'use client'
 import TriangleButton from '@/shared/ui/lib/TriangleButton'
 import classes from './GoToForm.module.css'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useAppStore } from '@/entities/lib/store'
 import FormDialog from '@/widgets/form/FormDialog'
 
 export default function GoToForm ({ label }) {
   const [openModalDialog, setOpenModalDialog] = useState(false)
   const { cart, paymentMethod } = useAppStore()
-
-  const closeDialog = () => setOpenModalDialog(false)
   const cartHasProducts = cart.length > 0
-  const openDialog = () => cartHasProducts && paymentMethod?.label && setOpenModalDialog(true)
+
+  const closeDialog = useCallback(() => setOpenModalDialog(false), [])
+
+  const openDialog = useCallback(() => {
+    cartHasProducts && paymentMethod?.label && setOpenModalDialog(true)
+  }, [cartHasProducts, paymentMethod])
 
   return (
     <>

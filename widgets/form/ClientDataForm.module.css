@@ -4,11 +4,19 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  transition: all 250ms ease-in;
+  transition: all 350ms ease-in;
 }
 
 .form_container_loading {
+  transition: all 350ms ease-in;
+  opacity: 0;
   animation: loading-state 350ms ease-in forwards;
+}
+
+.form_container_success {
+  transition: all 350ms ease-in;
+  opacity: 0;
+  animation: success-state 1s linear forwards;
 }
 
 .form_header {
@@ -49,58 +57,6 @@
   padding-block-end: .2rem;
 }
 
-/* 
-.detail {
-  font-size: 1.1rem;
-  position: absolute;
-  right: 0;
-  padding: .8rem;
-  background-color: var(--app-type-background);
-  border-radius: 8px;
-  animation: detail-out 100ms ease-out;
-}
-
-.detail>summary {
-  font-weight: 600;
-}
-
-.detail:hover {
-  cursor: pointer;
-} */
-/* 
-.textarea {
-  padding: .5rem;
-  width: 90%;
-  right: 0;
-  margin-inline: auto;
-  border-radius: 12px;
-  resize: none;
-}
-
-.detail[open] {
-  position: absolute;
-  margin-inline: auto;
-  z-index: 100;
-  backdrop-filter: blur(15px);
-  animation: detail-in 100ms ease-out;
-  transition: all 100ms ease-out;
-} */
-
-/* 
-.name_input {
-  margin-block-end: .5rem;
-} */
-
-/* .address_input {
-  margin-block-end: 3rem;
-} */
-
-/* .phone_input_under {
-  transition: all 250ms ease-in;
-  padding-block-start: 2rem;
-  z-index: -1;
-} */
-
 .receipt_input {
   padding-block: 1.2rem;
   margin-block-end: .5rem;
@@ -112,39 +68,6 @@
   justify-content: space-between;
 }
 
-/* .form_footer {
-  width: 100%;
-  height: 5rem;
-  z-index: 100;
-  position: relative;
-} */
-/* 
-.loading_logo_wrapper {
-  position: absolute;
-  left: 33%;
-  bottom: 1rem;
-} */
-
-/* .submit_button {
-  border: 2px solid white;
-  font-size: 1.5rem;
-  font-weight: 600;
-  background-color: var(--app-payments-green);
-  color: white;
-  padding: .6rem;
-  border-radius: 12px;
-}
-
-.submit_button:hover {
-  cursor: pointer;
-}
-
-.submit_button:disabled {
-  background: transparent;
-  border: 2px solid #aaa;
-  color: #888
-} */
-
 .invalid_input_message {
   color: red;
   position: absolute;
@@ -154,45 +77,28 @@
   z-index: 100;
 }
 
-/* 
-@keyframes detail-in {
-  0% {
-    height: 1rem;
-  }
-
-  100% {
-    height: 100%;
-  }
+.processing_texts_wrapper {
+  color: #000;
 }
-
-@keyframes detail-out {
-  0% {
-    height: 100%;
-  }
-
-  100% {
-    height: 3rem;
-  }
-} */
-
-/* .SVGLogo {
-  padding-block-start: 2rem;
-  animation: viking-skeleton 600ms ease-out infinite alternate;
-} */
-/* 
-@keyframes viking-skeleton {
-  0% {
-    opacity: .1;
-  }
-
-  100% {
-    opacity: 1;
-  }
-} */
 
 @keyframes loading-state {
   100% {
+    background-color: var(--app-type-background);
+    opacity: .9;
+    border: 2px solid black;
+    border-radius: 12px;
+    width: 80%;
+    margin-inline: auto;
+  }
+}
+
+@keyframes success-state {
+  100% {
     background-color: var(--app-payments-green);
     opacity: .7;
+    border: 2px solid white;
+    border-radius: 12px;
+    width: 80%;
+    margin-inline: auto;
   }
 }
