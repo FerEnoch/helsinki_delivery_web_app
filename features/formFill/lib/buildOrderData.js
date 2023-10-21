@@ -66,6 +66,7 @@ export function buildOrderData (rawData) {
   const receiptNameTimestamp = orderDataToSheets.timestamp.slice(orderDataToSheets.timestamp.indexOf(', ') + 2)
   const receiptName = receipt && `${receiptNameTimestamp}-$${orderDataToSheets.total}-${receiptNamePaymentMethod}-${orderID}`
   orderDataToSheets.receiptName = receiptName ?? FORM_FIELDS.PAYMENT_RECEIPT.no_receipt_message
+  orderDataToSheets.orderID = orderID
 
   return [orderDataToSheets, { receipt, receiptName }]
 }
