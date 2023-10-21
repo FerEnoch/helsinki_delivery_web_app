@@ -72,6 +72,11 @@ export const i18n = {
           },
           FORM_SUBMIT: 'Enviar pedido'
         }
+      },
+      G_DRIVE_UI: {
+        ORDER: {
+          NO_RECEIPT_MESSAGE: 'No se adjuntó comprobante de pago'
+        }
       }
     }
   }

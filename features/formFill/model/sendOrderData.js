@@ -11,7 +11,7 @@ export async function sendOrderData (incomingOrder) {
     })
 
     if (response.status !== 200) {
-      return { message: 'Very sorry.. Could NOT send order' }
+      return { message: 'Hey developer... very sorry.. Could NOT send order. If there is an error, we are gonna retry inmediately..' }
     }
 
     return await response.json()
@@ -26,7 +26,7 @@ export async function sendOrderData (incomingOrder) {
     })
 
     if (response.status !== 200) {
-      return { message: 'Could NOT send order' }
+      return { message: 'Could NOT send order :(' }
     }
 
     return await response.json()

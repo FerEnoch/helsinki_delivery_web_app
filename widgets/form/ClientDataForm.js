@@ -10,6 +10,7 @@ import NameInput from '@/features/formFill/ui/NameInput'
 import AddressInput from '@/features/formFill/ui/AddressInput'
 import PhoneInput from '@/features/formFill/ui/PhoneInput'
 import SubmitFormButton from '@/features/formFill/ui/SubmitFormButton'
+import { FORM_FIELDS } from '@/features/formFill/config/formFieldsOrder'
 
 const { CLIENT_FORM } = i18n.LANG.ESP.UI
 
@@ -46,41 +47,26 @@ export default function ClientDataForm ({ closeDialog }) {
     e.preventDefault()
     setIsLoading(true)
     const formData = new FormData()
-    /**
-     * Carefull with the order becouse It's the order they will be displayed in g-sheets
-     *  1 - timestamp
-     *  2 - clientAddress - comments
-     *  3 - order
-     *  4 - clientPhone
-     *  5 - clientName
-     *  6 - paymentMethod
-     *  7 - total
-     *  8 - client WhatsApp
-     *  9 - paymentState
-     * 10 - receipt file name
-     * 11 - stockUpdate
-     * 12 - orderID
-     */
     const date = new Date()
-    formData.set('timestamp', timeFormatter(date))
-    formData.set('clientAddress', client?.address.trim())
-    formData.set('clientComments', client?.addressComments.trim())
-    formData.set('cart', JSON.stringify(cart))
-    formData.set('clientPhone', client?.phone.trim())
-    formData.set('clientName', client?.name.trim())
-    formData.set('paymentMethod', method)
-    formData.set('total', getCartTotalAmount())
-    formData.set('clientWhatsApp', client?.phone.trim())
-    formData.set('paymentState', 'pendiente') // alwalys pending-state until the receipt is ckecked manually
-    formData.set('receiptName', '')
-    formData.set('stockUpdate', '')
-    formData.set('orderID', crypto.randomUUID().slice(0, 8))
+    formData.set(FORM_FIELDS.TIMESTAMP, timeFormatter(date))
+    formData.set(FORM_FIELDS.CLIENT_ADDRESS, client?.address.trim())
+    formData.set(FORM_FIELDS.CLIENT_COMMENTS, client?.addressComments.trim())
+    formData.set(FORM_FIELDS.ORDER, JSON.stringify(cart))
+    formData.set(FORM_FIELDS.CLIENT_PHONE, client?.phone.trim())
+    formData.set(FORM_FIELDS.CLIENT_NAME, client?.name.trim())
+    formData.set(FORM_FIELDS.PAYMENT_METHOD, method)
+    formData.set(FORM_FIELDS.TOTAL, getCartTotalAmount())
+    formData.set(FORM_FIELDS.CLIENT_WHATSAPP, client?.phone.trim())
+    formData.set(FORM_FIELDS.PAYMENT_STATE, 'pendiente') // alwalys pending-state until the receipt is ckecked manually
+    formData.set(FORM_FIELDS.RECEIPT_NAME, '')
+    formData.set(FORM_FIELDS.STOCK_UPDATE, '')
+    formData.set(FORM_FIELDS.ORDER_ID, crypto.randomUUID().slice(0, 8))
 
     if (isRecipeRequired) {
       const { fileInputID } = e.target
       if (fileInputID.value) {
         const paymentReceipt = fileRef.current.files[0]
-        formData.set('paymentReceipt', paymentReceipt)
+        formData.set(FORM_FIELDS.PAYMENT_RECEIPT.label, paymentReceipt)
       } else {
         setShowMessageRecipeRequired(true)
         return
