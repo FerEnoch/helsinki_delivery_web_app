@@ -22,10 +22,9 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
   const fileRef = useRef()
   const router = useRouter()
   const [openDetails, setOpenDetails] = useState(false)
-  const { showRecipeRequiredMessage } = useShowReceiptRequiredMessage()
-
   const [isLoading, setIsLoading] = useState(false)
   const [successfullOrderSending, setSuccessfullOrderSending] = useState(false)
+  const { showRecipeRequiredMessage } = useShowReceiptRequiredMessage()
   const {
     paymentMethod: { label: method, recipe },
     getCartTotalAmount,
@@ -111,6 +110,8 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
     showContinueShoppingButton(successfullOrderSending)
   }, [successfullOrderSending, showContinueShoppingButton])
 
+  console.log(fileRef.current)
+
   return (
     <form
       onSubmit={submitHandler}
@@ -159,11 +160,11 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
                   </>
                   )
             )
-      }
+        }
       </section>
       {
-       showRecipeInput && <ReceiptInput />
-      }
+       showRecipeInput && <ReceiptInput ref={fileRef} />
+        }
       <FormFooter
         loadingState={isLoading && !successfullOrderSending}
         successState={successfullOrderSending && !isLoading}

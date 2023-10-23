@@ -2,14 +2,17 @@ import inputClasses from '@/widgets/form/ClientDataForm.module.css'
 import classes from './ReceiptInput.module.css'
 
 import { i18n } from '@/shared/model/i18n'
-import { useRef } from 'react'
+import { forwardRef } from 'react'
 import { useShowReceiptRequiredMessage } from '../lib/useShowReceiptRequiredMessage'
 
 const { CLIENT_FORM } = i18n.LANG.ESP.UI
 
-export default function ReceiptInput () {
-  const fileRef = useRef()
-  const { showRecipeRequiredMessage, hideRecipeRequiredMessage, isRecipeQuiredMessageVissible } = useShowReceiptRequiredMessage()
+export default forwardRef(function ReceiptInput (props, ref) {
+  const {
+    showRecipeRequiredMessage,
+    hideRecipeRequiredMessage,
+    isRecipeQuiredMessageVissible
+  } = useShowReceiptRequiredMessage()
 
   return (
     <section className={classes.form_file_upload}>
@@ -20,7 +23,7 @@ export default function ReceiptInput () {
         <input
           onInvalid={showRecipeRequiredMessage}
           onChange={hideRecipeRequiredMessage}
-          ref={fileRef}
+          ref={ref}
           required
           id='fileInputID'
           type='file'
@@ -37,3 +40,4 @@ export default function ReceiptInput () {
     </section>
   )
 }
+)
