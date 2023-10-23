@@ -10,7 +10,9 @@ import NameInput from '@/features/formFill/ui/NameInput'
 import AddressInput from '@/features/formFill/ui/AddressInput'
 import PhoneInput from '@/features/formFill/ui/PhoneInput'
 import FormFooter from '@/features/formFill/ui/FormFooter'
+import ReceiptInput from '@/features/formFill/ui/ReceiptInput'
 import { FORM_FIELDS } from '@/features/formFill/config/formFieldsOrder'
+import { useShowReceiptRequiredMessage } from '@/features/formFill/lib/useShowReceiptRequiredMessage'
 /**
  * TO DO - handle api error
  */
@@ -20,7 +22,8 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
   const fileRef = useRef()
   const router = useRouter()
   const [openDetails, setOpenDetails] = useState(false)
-  const [showMessageRecipeRequired, setShowMessageRecipeRequired] = useState(false)
+  const { showRecipeRequiredMessage } = useShowReceiptRequiredMessage()
+
   const [isLoading, setIsLoading] = useState(false)
   const [successfullOrderSending, setSuccessfullOrderSending] = useState(false)
   const {
@@ -79,7 +82,7 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
         const paymentReceipt = fileRef.current.files[0]
         formData.set(FORM_FIELDS.PAYMENT_RECEIPT.label, paymentReceipt)
       } else {
-        setShowMessageRecipeRequired(true)
+        showRecipeRequiredMessage()
         return
       }
     }
@@ -93,9 +96,10 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
      */
   }
 
+  const formTitle = CLIENT_FORM.FORM_TITLE.toUpperCase()
   const isRecipeRequired = recipe === 'REQUIRED'
   const submitButtonDisabled = !client?.name || !client?.address || !client?.phone
-
+  const showRecipeInput = isRecipeRequired && !isLoading && !successfullOrderSending
   const processingOrderTitle = ORDER_PROCESSING.title.toUpperCase()
   const processingOrderMessage = ORDER_PROCESSING.message
 
@@ -121,7 +125,7 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
           {
         isLoading && !successfullOrderSending
           ? ''
-          : !successfullOrderSending && CLIENT_FORM.FORM_TITLE.toUpperCase()
+          : !successfullOrderSending && formTitle
           }
         </h3>
       </header>
@@ -152,37 +156,13 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
                       detailsOpen={openDetails}
                       style={openDetailsPhoneInputStyle}
                     />
-                  </>)
+                  </>
+                  )
             )
       }
       </section>
       {
-       isRecipeRequired && !isLoading && !successfullOrderSending && (
-         <section className={classes.form_file_upload}>
-           <div className={`${classes.client_input} ${classes.receipt_input}`}>
-             <label htmlFor='fileInputID'>
-               <p>{CLIENT_FORM.FIELD_RECEIPT.LABEL}</p>
-             </label>
-             <input
-               onInvalid={() => setShowMessageRecipeRequired(true)}
-               onChange={() => setShowMessageRecipeRequired(false)}
-               ref={fileRef}
-               required
-               name='fileInput'
-               id='fileInputID'
-               type='file'
-               accept='image/*'
-             />
-             {
-              showMessageRecipeRequired && (
-                <p className={classes.invalid_input_message}>
-                  {CLIENT_FORM.FIELD_RECEIPT.ON_INVALID}
-                </p>
-              )
-             }
-           </div>
-         </section>
-       )
+       showRecipeInput && <ReceiptInput />
       }
       <FormFooter
         loadingState={isLoading && !successfullOrderSending}

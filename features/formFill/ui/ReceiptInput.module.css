@@ -1,0 +1,19 @@
+.receipt_input {
+  padding-block: 1.2rem;
+  margin-block-end: .5rem;
+}
+
+.form_file_upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.invalid_input_message {
+  color: red;
+  position: absolute;
+  bottom: 6px;
+  left: 10px;
+  font-weight: 600;
+  z-index: 100;
+}

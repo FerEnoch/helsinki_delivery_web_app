@@ -1,5 +1,5 @@
 import { i18n } from '@/shared/model/i18n'
-import classes from './SubmitFormButton.module.css'
+import classes from './FormFooter.module.css'
 import HelsinkiLogo from '@/shared/ui/lib/svg/HelsinkiLogo'
 
 const { CLIENT_FORM } = i18n.LANG.ESP.UI
