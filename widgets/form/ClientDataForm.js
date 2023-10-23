@@ -110,8 +110,6 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
     showContinueShoppingButton(successfullOrderSending)
   }, [successfullOrderSending, showContinueShoppingButton])
 
-  console.log(fileRef.current)
-
   return (
     <form
       onSubmit={submitHandler}
