@@ -19,7 +19,8 @@ export default memo(function AddressInput ({ detailsOpen }) {
   }, [openDetails, detailsOpen])
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter' && detailsRef.current.open) {
+    const closePressedKey = event.key === 'Enter' || event.key === 'Tab'
+    if (closePressedKey && detailsRef.current.open) {
       detailsRef.current.open = false
       setOpenDetails(false)
     }
