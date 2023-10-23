@@ -8,6 +8,7 @@ import FormDialog from '@/widgets/form/FormDialog'
 export default function GoToForm ({ label }) {
   const [openModalDialog, setOpenModalDialog] = useState(false)
   const { cart, paymentMethod } = useAppStore()
+
   const cartHasProducts = cart.length > 0
 
   const closeDialog = useCallback(() => setOpenModalDialog(false), [])
@@ -41,7 +42,7 @@ export default function GoToForm ({ label }) {
         </section>
       </div>
       <FormDialog
-        openModal={openModalDialog}
+        modalOpenState={openModalDialog}
         closeDialog={closeDialog}
       />
     </>

@@ -78,7 +78,7 @@ export const i18n = {
         },
         ORDER_SUCCESS: {
           title: 'Muchas gracias por tu compra!',
-          message: 'Te lo enviamos en breve. Cualquier cosa nos comunicaremos con vos por WhatsApp o llamado'
+          message: 'Te lo enviaremos enseguida.'
         }
       },
       G_DRIVE_UI: {

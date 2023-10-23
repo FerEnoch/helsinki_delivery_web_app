@@ -3,11 +3,11 @@ import { i18n } from '@/shared/model/i18n'
 import ClientDataForm from './ClientDataForm'
 import classes from './FormDialog.module.css'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 
 const { CART: cartTexts } = i18n.LANG.ESP.UI
 
-export default function FormDialog ({ openModal, closeDialog }) {
+export default memo(function FormDialog ({ modalOpenState, closeDialog }) {
   const offertDialogRef = useRef(null)
   const [buttonDisabled, setButtonDisabled] = useState(false)
   const [showButton, setShowButton] = useState(true)
@@ -21,12 +21,12 @@ export default function FormDialog ({ openModal, closeDialog }) {
   }, [])
 
   useEffect(() => {
-    if (openModal) {
+    if (modalOpenState) {
       offertDialogRef.current?.showModal()
     } else {
       offertDialogRef.current?.close()
     }
-  }, [openModal])
+  }, [modalOpenState])
 
   return (
     <dialog
@@ -58,4 +58,4 @@ export default function FormDialog ({ openModal, closeDialog }) {
       </main>
     </dialog>
   )
-}
+})

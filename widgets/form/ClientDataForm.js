@@ -1,7 +1,7 @@
 import confetti from 'canvas-confetti'
 import { timeFormatter } from '@/shared/lib/timeFormat'
 import classes from './ClientDataForm.module.css'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { sendOrderData } from '@/features/formFill/model/sendOrderData'
 import { useAppStore } from '@/entities/lib/store'
 import { useRouter } from 'next/navigation'
@@ -11,12 +11,18 @@ import AddressInput from '@/features/formFill/ui/AddressInput'
 import PhoneInput from '@/features/formFill/ui/PhoneInput'
 import FormFooter from '@/features/formFill/ui/FormFooter'
 import { FORM_FIELDS } from '@/features/formFill/config/formFieldsOrder'
-
+/**
+ * TO DO - handle api error
+ */
 const { CLIENT_FORM, ORDER_PROCESSING, ORDER_SUCCESS } = i18n.LANG.ESP.UI
 
-export default function ClientDataForm ({ closeDialog, disableButton, showContinueShoppingButton }) {
+export default memo(function ClientDataForm ({ closeDialog, disableButton, showContinueShoppingButton }) {
   const fileRef = useRef()
   const router = useRouter()
+  const [openDetails, setOpenDetails] = useState(false)
+  const [showMessageRecipeRequired, setShowMessageRecipeRequired] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [successfullOrderSending, setSuccessfullOrderSending] = useState(false)
   const {
     paymentMethod: { label: method, recipe },
     getCartTotalAmount,
@@ -27,33 +33,24 @@ export default function ClientDataForm ({ closeDialog, disableButton, showContin
     clearClientData
   } = useAppStore()
 
-  const [openDetails, setOpenDetails] = useState(false)
-  const [showMessageRecipeRequired, setShowMessageRecipeRequired] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [successfullOrderSending, setSuccessfullOrderSending] = useState(false)
-
-  const isRecipeRequired = recipe === 'REQUIRED'
-
   const isDetailsOpen = useCallback((openState) => setOpenDetails(openState), [])
 
-  const openDetailsPhoneInputStyle = {
+  const openDetailsPhoneInputStyle = useMemo(() => ({
     transition: `${openDetails ? 'all 250ms ease-in' : ''}`,
     paddingBlockStart: `${openDetails ? '2rem' : ''}`,
     zIndex: `${openDetails ? '-1' : ''}`
-  }
-
-  const submitButtonDisabled = !client?.name || !client?.address || !client?.phone
+  }), [openDetails])
 
   const successHandler = useCallback(() => {
     setIsLoading(false)
     setSuccessfullOrderSending(true)
+    confetti()
     clearClientData()
     clearCart()
     clearPaymentMethod()
-    confetti()
     setTimeout(() => {
-      closeDialog()
       router.push('/')
+      closeDialog()
     }, 7000)
   }, [clearClientData, clearCart, clearPaymentMethod, closeDialog, router])
 
@@ -95,6 +92,9 @@ export default function ClientDataForm ({ closeDialog, disableButton, showContin
      * handle error!
      */
   }
+
+  const isRecipeRequired = recipe === 'REQUIRED'
+  const submitButtonDisabled = !client?.name || !client?.address || !client?.phone
 
   const processingOrderTitle = ORDER_PROCESSING.title.toUpperCase()
   const processingOrderMessage = ORDER_PROCESSING.message
@@ -192,3 +192,4 @@ export default function ClientDataForm ({ closeDialog, disableButton, showContin
     </form>
   )
 }
+)

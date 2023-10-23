@@ -55,7 +55,7 @@ export default function PhoneInput ({ style }) {
             }}
             required
             autoComplete='off'
-            type='tel'
+            type='text'
             inputMode='numeric'
             pattern={() => encodeURIComponent('[0-9]{7, 9}')}
             maxLength={9}

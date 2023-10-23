@@ -1,14 +1,13 @@
 import classes from './AddressInput.module.css'
 import { i18n } from '@/shared/model/i18n'
-import { useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import Triangle from '@/shared/ui/lib/svg/Triangle'
-// import { useAppStore } from '@/entities/lib/store'
 import inputClasses from '@/widgets/form/ClientDataForm.module.css'
 import { useValidateAddressInput } from '../lib/useValidateAddressInput'
 
 const { CLIENT_FORM } = i18n.LANG.ESP.UI
 
-export default function AddressInput ({ detailsOpen }) {
+export default memo(function AddressInput ({ detailsOpen }) {
   const detailsRef = useRef(null)
   const [address, setAddress] = useState('')
   const [addressComments, setAddressComments] = useState('')
@@ -89,3 +88,4 @@ export default function AddressInput ({ detailsOpen }) {
     </div>
   )
 }
+)
