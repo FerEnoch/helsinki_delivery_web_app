@@ -57,9 +57,10 @@
 }
 
 .payment_comment {
-  padding-inline: .2rem;
+  padding-inline: .5rem;
   text-align: start;
   line-height: 1rem;
+  text-wrap: balance;
 }
 
 

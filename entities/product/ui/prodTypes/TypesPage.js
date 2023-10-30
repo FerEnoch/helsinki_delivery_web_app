@@ -7,14 +7,14 @@ import { formatUpperCase } from '@/shared/lib/textFormat/giveFormat'
 import classes from './TypeProd.module.css'
 import Link from 'next/link'
 import ProductListClient from '@/widgets/sliders/ui/ProductListClient'
-import Nav from '@/shared/ui/model/components/Nav'
+import CategoryTitleNav from '@/shared/ui/model/components/CategoryTitleNav'
 import { Suspense } from 'react'
 
 export default function TypesPage ({ category, subtypes }) {
   return (
     <Suspense>
       <div className={classes.type_product_container}>
-        <Nav category={category} />
+        <CategoryTitleNav category={category} />
         <section className={listClasses.list_container}>
           <ul className={linkClasses.link_list}>
             {

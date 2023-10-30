@@ -9,6 +9,7 @@ const { CART: cartTexts } = i18n.LANG.ESP.UI
 export default function PaymentsPageHeader () {
   const router = useRouter()
   const goBack = () => router.back()
+  const pageTitle = cartTexts.SECOND_STEP_TITLE.toUpperCase()
 
   return (
     <header className={classes.header_container}>
@@ -19,7 +20,7 @@ export default function PaymentsPageHeader () {
           height={20}
         />
       </button>
-      <h2 className={classes.title}>{cartTexts.SECOND_STEP_TITLE.toUpperCase()}</h2>
+      <h2 className={classes.title}>{pageTitle}</h2>
     </header>
   )
 }
