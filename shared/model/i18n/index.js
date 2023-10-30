@@ -21,7 +21,8 @@ export const i18n = {
             BACK: 'Volver',
             CLEAR_CART: 'Vaciar carrito',
             TOTAL_CART_AMOUNT: 'Monto total',
-            NEXT_STEP: 'Ver formas de pago',
+            GO_TO_PAYMENTS: 'Ver formas de pago',
+            CONFIRM_ORDER: 'Confirmar solicitud',
             FORM: {
               GO_TO_FORM: 'Datos para el envío',
               NAME: 'Tu nombre',

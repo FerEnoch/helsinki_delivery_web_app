@@ -13,7 +13,7 @@ export default function CartFooter () {
       <BackButton label={cartButtons.BACK} />
       <ClearCart label={cartButtons.CLEAR_CART} />
       <TotalCartAmount label={cartButtons.TOTAL_CART_AMOUNT} />
-      <GoToPayment label={cartButtons.NEXT_STEP} />
+      <GoToPayment label={cartButtons.GO_TO_PAYMENTS} />
     </footer>
   )
 }

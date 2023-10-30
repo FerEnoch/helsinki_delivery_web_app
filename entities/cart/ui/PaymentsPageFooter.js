@@ -10,7 +10,7 @@ export default function PaymentsPageFooter () {
   return (
     <footer className={classes.footer_container}>
       <TotalCartAmount label={cartButtons.TOTAL_CART_AMOUNT} />
-      <GoToForm label={cartButtons.FORM.GO_TO_FORM} />
+      <GoToForm label={cartButtons.CONFIRM_ORDER} />
     </footer>
   )
 }

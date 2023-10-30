@@ -4,7 +4,7 @@ import classes from './GoToPaymentButton.module.css'
 
 export default function GoToPayment ({ label }) {
   return (
-    <div className={classes.payment_button}>
+    <div className={classes.go_to_payment_button}>
       <Link href='/cart/payments'>
         <p className={classes.text}>
           {label.toUpperCase()}
@@ -12,8 +12,8 @@ export default function GoToPayment ({ label }) {
         <span className={classes.triangle_button}>
           <TriangleButton
             slideDirection='x'
-            width={10}
-            height={10}
+            width={15}
+            height={15}
             triangleStyle={{ fill: 'white' }}
           />
         </span>

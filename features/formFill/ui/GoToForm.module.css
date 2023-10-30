@@ -32,10 +32,14 @@
 }
 
 .go_to_form_button .text {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   flex: 1 0 80%;
+  text-align: start;
+  padding-inline-start: 1rem;
+  line-height: 1.7rem;
 }
 
 .triangle_button {
+  padding-block-start: .5rem;
   flex: 1 0 25%;
 }

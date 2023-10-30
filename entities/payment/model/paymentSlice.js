@@ -13,9 +13,5 @@ export const paymentSlice = (set, get) => {
       set({ paymentMethod: { id, label, recipe } })
     },
     clearPaymentMethod: () => set({ paymentMethod: {} })
-    // paymentState: 'pending',
-    // setPaymentState: (state) => {
-    //   set({ paymentState: state })
-    // }
   }
 }

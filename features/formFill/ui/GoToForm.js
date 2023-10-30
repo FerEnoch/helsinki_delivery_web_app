@@ -34,8 +34,8 @@ export default function GoToForm ({ label }) {
           <span className={classes.triangle_button}>
             <TriangleButton
               slideDirection='x'
-              width={12}
-              height={12}
+              width={20}
+              height={20}
               triangleStyle={{ fill: 'white' }}
             />
           </span>
