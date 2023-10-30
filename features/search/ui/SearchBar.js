@@ -1,9 +1,18 @@
+'use client'
 import Lupe from '@/shared/ui/lib/svg/Lupe'
 import classes from './SearchBar.module.css'
+import { usePathname } from 'next/navigation'
 
 export default function SearchBar () {
+  const pathName = usePathname()
+  const showSeachBarStyle = { display: pathName.includes('cart') ? 'none' : 'flex' }
+
   return (
-    <div role='search' className={classes.search_container}>
+    <div
+      role='search'
+      className={classes.search_container}
+      style={showSeachBarStyle}
+    >
       <input
         id='search_input'
         className={classes.input_search}

@@ -1,5 +1,5 @@
 import classes from './MainLayout.module.css'
-import HelsinkiLogo from '../../lib/svg/HelsinkiLogo'
+import HelsinkiLogo from '../../shared/ui/lib/svg/HelsinkiLogo'
 import logoClasses from './HelsinkiLogo.module.css'
 
 export default function MainLayout ({ children }) {

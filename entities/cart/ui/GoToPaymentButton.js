@@ -12,8 +12,8 @@ export default function GoToPayment ({ label }) {
         <span className={classes.triangle_button}>
           <TriangleButton
             slideDirection='x'
-            width={15}
-            height={15}
+            width={14}
+            height={14}
             triangleStyle={{ fill: 'white' }}
           />
         </span>
