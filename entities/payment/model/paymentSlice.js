@@ -9,8 +9,8 @@ export const paymentSlice = (set, get) => {
         return
       }
       const [chosenPaymentOption] = PAYMENT_OPTIONS.filter(({ id }) => id === selectedId)
-      const { id, label, recipe } = chosenPaymentOption
-      set({ paymentMethod: { id, label, recipe } })
+      const { id, label, receipt } = chosenPaymentOption
+      set({ paymentMethod: { id, label, receipt } })
     },
     clearPaymentMethod: () => set({ paymentMethod: {} })
   }

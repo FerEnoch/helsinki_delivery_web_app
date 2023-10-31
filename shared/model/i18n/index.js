@@ -30,7 +30,8 @@ export const i18n = {
               DIR: 'Tu dirección'
             }
           },
-          PAYMENT_OPTIONS
+          PAYMENT_OPTIONS,
+          PAY_METHOD: '3 - Aboná en tu app de pagos preferida'
         },
         MENU: 'Menu',
         PRESENTATION: 'Quienes somos',

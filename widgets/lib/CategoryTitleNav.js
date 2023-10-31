@@ -1,7 +1,7 @@
 'use client'
+import Triangle from '@/shared/ui/lib/svg/Triangle'
 import Breadcrumb from './Breadcrumb'
 import classes from './CategoryTitleNav.module.css'
-import Triangle from '../../lib/svg/Triangle'
 import { useRouter } from 'next/navigation'
 
 export default function CategoryTitleNav ({ category, type = '' }) {

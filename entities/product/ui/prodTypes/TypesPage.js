@@ -7,8 +7,8 @@ import { formatUpperCase } from '@/shared/lib/textFormat/giveFormat'
 import classes from './TypeProd.module.css'
 import Link from 'next/link'
 import ProductListClient from '@/widgets/sliders/ui/ProductListClient'
-import CategoryTitleNav from '@/shared/ui/model/components/CategoryTitleNav'
 import { Suspense } from 'react'
+import CategoryTitleNav from '@/widgets/lib/CategoryTitleNav'
 
 export default function TypesPage ({ category, subtypes }) {
   return (

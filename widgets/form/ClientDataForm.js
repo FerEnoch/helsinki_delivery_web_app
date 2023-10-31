@@ -24,9 +24,9 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
   const [openDetails, setOpenDetails] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [successfullOrderSending, setSuccessfullOrderSending] = useState(false)
-  const { showRecipeRequiredMessage } = useShowReceiptRequiredMessage()
+  const { showReceiptRequiredMessage } = useShowReceiptRequiredMessage()
   const {
-    paymentMethod: { label: method, recipe },
+    paymentMethod: { label: method, receipt },
     getCartTotalAmount,
     cart,
     clearCart,
@@ -75,13 +75,13 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
     formData.set(FORM_FIELDS.STOCK_UPDATE, '')
     formData.set(FORM_FIELDS.ORDER_ID, crypto.randomUUID().slice(0, 8))
 
-    if (isRecipeRequired) {
+    if (isReceiptRequired) {
       const { fileInputID } = e.target
       if (fileInputID.value) {
         const paymentReceipt = fileRef.current.files[0]
         formData.set(FORM_FIELDS.PAYMENT_RECEIPT.label, paymentReceipt)
       } else {
-        showRecipeRequiredMessage()
+        showReceiptRequiredMessage()
         return
       }
     }
@@ -96,9 +96,9 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
   }
 
   const formTitle = CLIENT_FORM.FORM_TITLE.toUpperCase()
-  const isRecipeRequired = recipe === 'REQUIRED'
+  const isReceiptRequired = receipt === 'REQUIRED'
   const submitButtonDisabled = !client?.name || !client?.address || !client?.phone
-  const showRecipeInput = isRecipeRequired && !isLoading && !successfullOrderSending
+  const showReceiptInput = isReceiptRequired && !isLoading && !successfullOrderSending
   const processingOrderTitle = ORDER_PROCESSING.title.toUpperCase()
   const processingOrderMessage = ORDER_PROCESSING.message
 
@@ -161,8 +161,8 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
         }
       </section>
       {
-       showRecipeInput && <ReceiptInput ref={fileRef} />
-        }
+       showReceiptInput && <ReceiptInput ref={fileRef} />
+      }
       <FormFooter
         loadingState={isLoading && !successfullOrderSending}
         successState={successfullOrderSending && !isLoading}

@@ -1,10 +1,10 @@
 'use client'
 import classes from './ProductListSlideClient.module.css'
 import listSlideButtons from './ListSlideButtons.module.css'
-import CategoryTitleNav from '@/shared/ui/model/components/CategoryTitleNav'
 import TriangleButton from '@/shared/ui/lib/TriangleButton'
 import ProductListSlide from './lib/ProductListSlide'
 import { useRef } from 'react'
+import CategoryTitleNav from '@/widgets/lib/CategoryTitleNav'
 
 export default function ProductListSlideClient ({ category, type = '', specificProductList }) {
   const scrollRef = useRef(null)

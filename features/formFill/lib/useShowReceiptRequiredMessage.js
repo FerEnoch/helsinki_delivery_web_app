@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
 export function useShowReceiptRequiredMessage () {
-  const [showMessageRecipeRequired, setShowMessageRecipeRequired] = useState(false)
+  const [showMessageReceiptRequired, setShowMessageReceiptRequired] = useState(false)
 
-  const showRecipeRequiredMessage = () => setShowMessageRecipeRequired(true)
-  const hideRecipeRequiredMessage = () => setShowMessageRecipeRequired(false)
+  const showReceiptRequiredMessage = () => setShowMessageReceiptRequired(true)
+  const hideReceiptRequiredMessage = () => setShowMessageReceiptRequired(false)
 
   return {
-    showRecipeRequiredMessage,
-    hideRecipeRequiredMessage,
-    isRecipeQuiredMessageVissible: showMessageRecipeRequired
+    showReceiptRequiredMessage,
+    hideReceiptRequiredMessage,
+    isReceiptQuiredMessageVissible: showMessageReceiptRequired
   }
 }

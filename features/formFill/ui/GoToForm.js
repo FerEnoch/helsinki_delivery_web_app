@@ -23,11 +23,7 @@ export default function GoToForm ({ label }) {
         disabled={!cartHasProducts || !paymentMethod?.label}
         className={classes.go_to_form_button}
       >
-        <section
-          onClick={openDialog}
-          className={classes.go_to_form_action}
-        >
-
+        <section onClick={openDialog} className={classes.go_to_form_action}>
           <p className={classes.text}>
             {label.toUpperCase()}
           </p>

@@ -11,7 +11,7 @@ export default forwardRef(function ReceiptInput (props, ref) {
   const {
     showRecipeRequiredMessage,
     hideRecipeRequiredMessage,
-    isRecipeQuiredMessageVissible
+    isReceiptQuiredMessageVissible: isRecipeQuiredMessageVissible
   } = useShowReceiptRequiredMessage()
 
   return (

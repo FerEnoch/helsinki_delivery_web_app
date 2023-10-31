@@ -1,15 +1,12 @@
 'use client'
-import { i18n } from '@/shared/model/i18n'
 import Triangle from '@/shared/ui/lib/svg/Triangle'
 import { useRouter } from 'next/navigation'
 import classes from './PaymentsPageHeader.module.css'
 
-const { CART: cartTexts } = i18n.LANG.ESP.UI
-
-export default function PaymentsPageHeader () {
+export default function PaymentsPageHeader ({ label }) {
   const router = useRouter()
   const goBack = () => router.back()
-  const pageTitle = cartTexts.SECOND_STEP_TITLE.toUpperCase()
+  const pageTitle = label.toUpperCase()
 
   return (
     <header className={classes.header_container}>
