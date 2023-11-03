@@ -1,7 +1,7 @@
 'use client'
 import classes from './PaymentsPageFooter.module.css'
 import { i18n } from '@/shared/model/i18n'
-import TotalCartAmount from './TotalCartAmount'
+import TotalCartAmount from '../../cart/ui/TotalCartAmount'
 import GoToPayMethod from '@/features/formFill/ui/GoToPayMethod'
 import GoToForm from '@/features/formFill/ui/GoToForm'
 import { useAppStore } from '@/entities/lib/store'

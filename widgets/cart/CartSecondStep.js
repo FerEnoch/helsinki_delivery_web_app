@@ -2,7 +2,7 @@ import PaymentsPageHeader from '@/entities/payment/ui/PaymentsPageHeader'
 import classes from './CartSecondStep.module.css'
 import PaymentOptions from '@/features/pay/PaymentOptions'
 import CartResume from '@/entities/cart/ui/CartResume'
-import PaymentsPageFooter from '@/entities/cart/ui/PaymentsPageFooter'
+import PaymentsPageFooter from '@/entities/payment/ui/PaymentsPageFooter'
 import { i18n } from '@/shared/model/i18n'
 
 const { CART: cartTexts } = i18n.LANG.ESP.UI

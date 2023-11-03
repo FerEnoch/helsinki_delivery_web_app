@@ -6,7 +6,6 @@ import { useState } from 'react'
 import IceIcon from '@/shared/ui/lib/svg/IceIcon'
 import CigarIcon from '@/shared/ui/lib/svg/CigarIcon'
 
-/** Buscar que sea RSC --> es client para manejar los errores... pero podría no serlo */
 /** disabled --> image-optimization... OK! */
 const { DETAIL_CARD_PRODUCT: { FOOTER: cardFooterTexts } } = i18n.LANG.ESP.UI
 

@@ -3,6 +3,7 @@ import { MEM_CACHE } from '@/processes/cache/config'
 import MemoryUsage from '@/processes/lib/MemoryUsage'
 import { getDatabaseProductsCollection } from '../../config/firebase/server/model/getDatabaseProductsCollection'
 import 'server-only'
+import { getAppInfo } from './getAppInfo'
 
 /**
  * Documents types! :
@@ -22,6 +23,7 @@ import 'server-only'
 MemoryUsage()
 export async function getInitialAppProducts () {
   try {
+    await getAppInfo()
     const activeCache = MEM_CACHE.FIREBASE_DATABASE
     let activeCacheMap = getFromMainCache(activeCache)
 
@@ -57,11 +59,11 @@ export async function getInitialAppProducts () {
   } catch (error) {
     console.error(`
     Application unabled to compile initial data to render...
-    No products were found neither in firebase nor in drive stock sheet
+    No products were found in firebase 
     `)
     throw new Error(
       `FAILED TO GET INITIAL DATA */** ${error.message} `,
-      { cause: `Impossible firebase or drive connection due to => ${error.cause}` }
+      { cause: `Impossible firebase connection due to => ${error.cause}` }
     )
   }
 }

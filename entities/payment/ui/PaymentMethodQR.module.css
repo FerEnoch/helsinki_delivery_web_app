@@ -1,0 +1,12 @@
+.image_container {
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  justify-content: center;
+  margin-block-start: 1vh;
+  width: 110%;
+  z-index: 20;
+}
