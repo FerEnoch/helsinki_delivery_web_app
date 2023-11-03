@@ -1,4 +1,4 @@
-import CategoryTitleNav from '@/shared/ui/model/components/CategoryTitleNav'
+import CategoryTitleNav from '@/widgets/lib/CategoryTitleNav'
 import ProductDetailCard from './ProductDetailCard'
 import classes from './ProductDetailPage.module.css'
 

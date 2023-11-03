@@ -3,7 +3,6 @@ import { MEM_CACHE } from '@/processes/cache/config'
 import MemoryUsage from '@/processes/lib/MemoryUsage'
 import { getDatabaseProductsCollection } from '../../config/firebase/server/model/getDatabaseProductsCollection'
 import 'server-only'
-import { getAppInfo } from './getAppInfo'
 
 /**
  * Documents types! :
@@ -23,7 +22,6 @@ import { getAppInfo } from './getAppInfo'
 MemoryUsage()
 export async function getInitialAppProducts () {
   try {
-    await getAppInfo()
     const activeCache = MEM_CACHE.FIREBASE_DATABASE
     let activeCacheMap = getFromMainCache(activeCache)
 

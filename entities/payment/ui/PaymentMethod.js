@@ -1,17 +1,16 @@
 'use client'
-import classes from './PaymentMethodQR.module.css'
+import classes from './PaymentMethod.module.css'
 
-import { prodGenericImage } from '@/shared/config/prodGenericImage'
 import Image from 'next/image'
 
-export default function PaymentMethodQR ({ altText }) {
+export default function PaymentMethod ({ paymentMethods }) {
   return (
     <main className={classes.image_container}>
       <Image
         width={100}
         height={100}
-        alt={altText}
-        src={prodGenericImage}
+        alt='altText'
+        src='src'
         onError={() => {}}
       />
       <h1>A PAGAR</h1>
