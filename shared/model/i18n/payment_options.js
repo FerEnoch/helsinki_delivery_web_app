@@ -19,7 +19,7 @@ export const PAYMENT_OPTIONS = [
   },
   {
     id: '#pm_03',
-    label: 'Transf. bancaria',
+    label: 'Transferencia',
     comment: 'Obligatorio: enviar comprobante de operación',
     receipt: 'REQUIRED',
     icon: <BankTransferenceIcon />

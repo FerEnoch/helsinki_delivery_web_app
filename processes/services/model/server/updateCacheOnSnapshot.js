@@ -5,11 +5,13 @@ import { getDatabaseProdByProdID } from '../../config/firebase/server/model/getD
 import { revalidatePath } from 'next/cache'
 
 export async function addCacheProduct (productsIDs) {
+  const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
+
   const result = new Set()
   productsIDs.forEach(async productID => {
     const productFromFirestore = await getDatabaseProdByProdID(productID)
     console.log('ADDING PRODUCT to cache --->', productFromFirestore?.id)
-    const operationResult = await setProdInFirebaseCache(productFromFirestore, MEM_CACHE.FIREBASE_DATABASE)
+    const operationResult = await setProdInFirebaseCache(productFromFirestore, PRODUCTS)
     if (!operationResult) {
       result.add('failure')
       console.log(`failed operation __ --_  NOT adding ${productID} product...`)
@@ -19,6 +21,8 @@ export async function addCacheProduct (productsIDs) {
 }
 
 export async function updateCacheProduct (firestoreIDs) {
+  const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
+
   const result = new Set()
   firestoreIDs.forEach(async firestoreID => {
     const updatedFirestoreProduct = await getDatabaseProductByFirestoreID(firestoreID)
@@ -27,7 +31,7 @@ export async function updateCacheProduct (firestoreIDs) {
       return
     }
     console.log('UPDATING PRODUCT from cache --->', updatedFirestoreProduct?.id)
-    const operationResult = await setProdInFirebaseCache(updatedFirestoreProduct, MEM_CACHE.FIREBASE_DATABASE)
+    const operationResult = await setProdInFirebaseCache(updatedFirestoreProduct, PRODUCTS)
     if (!operationResult) {
       result.add('failure')
       console.log(`failed operation __ --_  NOT updating ${firestoreID} product...`)
@@ -37,10 +41,12 @@ export async function updateCacheProduct (firestoreIDs) {
 }
 
 export async function deleteCacheProduct (productIDs) {
+  const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
+
   console.log('DELETING PRODUCTS from cache --->', productIDs)
   const result = new Set()
   productIDs.forEach(productID => {
-    const operationResult = deleteProdInFirebaseCache(productID, MEM_CACHE.FIREBASE_DATABASE)
+    const operationResult = deleteProdInFirebaseCache(productID, PRODUCTS)
     if (!operationResult) {
       result.add('failure')
       console.log(`failed operation __ --_  Please check again if product ${productID} exists en cache memory...`)

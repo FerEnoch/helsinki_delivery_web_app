@@ -1,7 +1,9 @@
+import { FIREBASE_DATABASES } from '../../databases'
 import { firestoreDatabaseAdmin } from '../config'
 
 export async function getDatabaseProdByProdID (productID) {
-  const collectionRef = firestoreDatabaseAdmin.collection('products')
+  const { PRODUCTS } = FIREBASE_DATABASES
+  const collectionRef = firestoreDatabaseAdmin.collection(PRODUCTS)
   const snapshot = await collectionRef.where('id', '==', productID).get()
   /**
    * If there are two products in firestore with the same productID, only

@@ -1,9 +1,8 @@
 import { FIREBASE_DATABASES } from '../../databases'
 import { firestoreDatabaseAdmin } from '../config'
 
-const { PRODUCTS } = FIREBASE_DATABASES
-
 export async function getDatabaseProductsCollection () {
+  const { PRODUCTS } = FIREBASE_DATABASES
   const databaseProdsRef = await firestoreDatabaseAdmin.collection(PRODUCTS).get()
   console.log(`Getting INITIAL STALE ${databaseProdsRef.docs.length} products`)
 

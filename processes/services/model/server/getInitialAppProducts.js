@@ -21,8 +21,8 @@ import 'server-only'
 
 MemoryUsage()
 export async function getInitialAppProducts () {
+  const { FIREBASE_DATABASE: { PRODUCTS: activeCache } } = MEM_CACHE
   try {
-    const activeCache = MEM_CACHE.FIREBASE_DATABASE
     let activeCacheMap = getFromMainCache(activeCache)
 
     const isCacheToClear = mainCache.get(`STALE_DATA_${activeCache}`)
