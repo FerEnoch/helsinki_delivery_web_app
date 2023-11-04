@@ -1,24 +1,16 @@
-import Image from 'next/image'
+import { useAppStore } from '@/entities/lib/store'
+import QRImage from './QRImage'
+import QRServicesTab from '@/features/pay/QRServicesTab'
 
 export default function QRServiceOption ({ services }) {
+  const { paymentService: { service, image } } = useAppStore()
   return (
     <>
-      {
-      services.map(({ service, image }) => {
-        return (
-          <article key={service}>
-            <h1>{service}</h1>
-            <Image
-              width={100}
-              height={100}
-              alt={service}
-              src={image}
-              onError={() => {}}
-            />
-          </article>
-        )
-      })
-      }
+      <QRServicesTab services={services} />
+      <QRImage
+        service={service}
+        image={image}
+      />
     </>
   )
 }

@@ -30,7 +30,7 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
     getCartTotalAmount,
     cart,
     clearCart,
-    clearPaymentMethod,
+    clearPaymentSlice,
     client,
     clearClientData
   } = useAppStore()
@@ -49,12 +49,12 @@ export default memo(function ClientDataForm ({ closeDialog, disableButton, showC
     confetti()
     clearClientData()
     clearCart()
-    clearPaymentMethod()
+    clearPaymentSlice()
     setTimeout(() => {
       router.push('/')
       closeDialog()
     }, 7000)
-  }, [clearClientData, clearCart, clearPaymentMethod, closeDialog, router])
+  }, [clearClientData, clearCart, clearPaymentSlice, closeDialog, router])
 
   const submitHandler = async (e) => {
     e.preventDefault()

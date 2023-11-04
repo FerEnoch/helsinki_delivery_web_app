@@ -1,0 +1,22 @@
+.tab_section {
+  width: 100%;
+}
+
+.tab_list {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.service_item {
+  padding-block: .5rem;
+  opacity: .6;
+}
+
+.service_item:hover {
+  cursor: pointer
+}
+
+.chosen {
+  opacity: 1;
+}
