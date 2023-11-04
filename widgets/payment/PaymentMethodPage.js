@@ -8,6 +8,7 @@ import { FIREBASE_DATABASES } from '@/processes/services/config/firebase/databas
 
 const { CART: cartTexts } = i18n.LANG.ESP.UI
 const { PAYMENT_METHODS } = FIREBASE_DATABASES
+
 export default async function PaymentMethodPage () {
   const paymentMethods = await getCorporativeInfo(PAYMENT_METHODS)
 
