@@ -39,7 +39,6 @@ export const cartSlice = (set, get) => {
     getCartTotalAmount: () => {
       const cart = get().cart
       return cart.reduce((total, product) => {
-        // console.log(total, '+', product.price, '*', product.quantity)
         return total + (Number(product.price) * product.quantity)
       }, 0)
     },

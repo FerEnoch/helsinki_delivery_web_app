@@ -1,0 +1,47 @@
+.pay_method_footer {
+  display: grid;
+  place-content: center;
+  min-height: 2.5rem;
+  flex: 1 1 10%;
+  padding: .5rem;
+  margin-block-end: .5rem;
+}
+
+.share_button_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 2rem;
+
+}
+
+.share_icon {
+  flex: 1 1 10%;
+  margin-inline-end: .5rem;
+}
+
+.share_icon>svg {
+  max-width: 3rem;
+  max-height: 2rem;
+}
+
+.share_button {
+  height: 100%;
+  flex: 1 1 90%;
+  padding-inline: 1rem;
+  padding-block: .3rem;
+  background-color: transparent;
+  border: 1px solid grey;
+  border-radius: 10px;
+  font-size: .9rem;
+  transition: all 250ms ease;
+}
+
+.share_button:hover,
+.share_icon:hover {
+  cursor: pointer
+}
+
+.share_button:active {
+  border: 3px solid var(--app-payments-green);
+}

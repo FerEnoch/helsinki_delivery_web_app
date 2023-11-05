@@ -5,10 +5,11 @@ import { useAppStore } from '@/entities/lib/store'
 import { Suspense, useEffect, useState } from 'react'
 
 export default function PaymentOption ({ id, children, label, comment }) {
-  const { paymentMethod, pickPaymentOption } = useAppStore()
+  const { paymentMethod, pickPaymentOption, setIsQRShareable } = useAppStore()
   const [isChosen, setIsChosen] = useState(undefined)
 
   const handleChoosePaymentMethod = (id) => () => {
+    if (navigator.share().catch(() => {})) setIsQRShareable(true)
     if (id === paymentMethod.id) return pickPaymentOption(undefined)
     pickPaymentOption(id)
   }

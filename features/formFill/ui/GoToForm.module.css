@@ -43,3 +43,9 @@
   padding-block-start: .5rem;
   flex: 1 0 25%;
 }
+
+@media (width <=400px) {
+  .go_to_form_button .text {
+    font-size: 1.6rem;
+  }
+}

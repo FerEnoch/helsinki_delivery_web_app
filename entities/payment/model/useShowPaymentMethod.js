@@ -3,41 +3,42 @@ import { useEffect, useState } from 'react'
 import { SERVICES_KIND } from '../lib/services_kind'
 
 export function useShowPaymentMethod (allMethods) {
-  const { paymentMethod, pickPaymentService } = useAppStore()
-  const [chosenQR, setChosenQR] = useState(null)
+  const { paymentMethod, pickQRService, setChosenTransferData } = useAppStore()
+  const [chosenQRpaymentData, setChosenQRpaymentData] = useState(null)
   const [chosenTransference, setChosenTransference] = useState(null)
   const [servicesQR, setServicesQR] = useState(null)
   const [kindOfService, setKindOfService] = useState(null)
 
   useEffect(() => {
     if (paymentMethod.label.includes('QR')) {
-      const QRsData = allMethods.filter(method => method.payment_method.includes('QR'))
-      setChosenQR(QRsData)
+      const QRsData = allMethods.filter(method => method?.image && method.payment_method.includes('QR'))
+      setChosenQRpaymentData(QRsData)
+      pickQRService(QRsData[0])
     } else {
       const [transferData] = allMethods.filter(method => method.payment_method.includes('Transferencia'))
       setChosenTransference(transferData)
+      setChosenTransferData(transferData)
     }
-  }, [paymentMethod, allMethods])
+  }, [paymentMethod, allMethods, pickQRService, setChosenTransferData])
 
   useEffect(() => {
-    if (!chosenQR) return
-    if (chosenQR.length > 1) {
-      const services = chosenQR.map(qr => ({ service: qr.service, image: qr.image }))
+    if (!chosenQRpaymentData) return
+    if (chosenQRpaymentData.length > 1) {
+      const services = chosenQRpaymentData.map(qr => ({ service: qr.service, image: qr.image }))
       setServicesQR(services)
-      pickPaymentService(services[0])
     } else {
-      const [qr] = chosenQR
+      const [qr] = chosenQRpaymentData
       setServicesQR([{ service: qr.service, image: qr.image }])
     }
-  }, [chosenQR, pickPaymentService])
+  }, [chosenQRpaymentData])
 
   useEffect(() => {
-    if (chosenQR) return setKindOfService(SERVICES_KIND.QR)
+    if (chosenQRpaymentData) return setKindOfService(SERVICES_KIND.QR)
     if (chosenTransference) return setKindOfService(SERVICES_KIND.TRANSFER)
-  }, [chosenQR, chosenTransference])
+  }, [chosenQRpaymentData, chosenTransference])
 
   return {
-    chosenQR,
+    chosenQRpaymentData,
     servicesQR,
     chosenTransference,
     kindOfService

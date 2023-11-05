@@ -3,7 +3,7 @@ import QRImage from './QRImage'
 import QRServicesTab from '@/features/pay/QRServicesTab'
 
 export default function QRServiceOption ({ services }) {
-  const { paymentService: { service, image } } = useAppStore()
+  const { QRService: { service, image } } = useAppStore()
   return (
     <>
       <QRServicesTab services={services} />

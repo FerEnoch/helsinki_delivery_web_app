@@ -1,16 +1,23 @@
 .tab_section {
   width: 100%;
+  flex: 1 1 15%;
+  display: grid;
+  place-content: center;
 }
 
 .tab_list {
+  width: 110%;
+  place-self: center;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .service_item {
-  padding-block: .5rem;
+  padding-block-start: .1rem;
   opacity: .6;
+  font-size: .9rem;
+  border-bottom: 1px dashed rgb(255, 255, 255, 0);
 }
 
 .service_item:hover {
@@ -18,5 +25,8 @@
 }
 
 .chosen {
+  font-size: 1rem;
   opacity: 1;
+  border-bottom: 3px solid var(--app-payments-green);
+  transition: all 200ms ease;
 }
