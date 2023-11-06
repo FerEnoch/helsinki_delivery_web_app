@@ -12,13 +12,13 @@ export async function getInfoFromCacheOrFirestore () {
     if (isCacheToClear) deleteKeyFromMainCache(activeCache)
 
     if (!activeCacheMap || !activeCacheMap.size) {
-      const infoCollectionData = await getInfoCollection()
-      activeCacheMap.set(activeCache, infoCollectionData.info)
+      const [{ info }] = await getInfoCollection()
+      activeCacheMap.set(activeCache, info)
       /* Creating cache loggin */
       console.log(`
       CACHE POPULATED/**** data from **> ${activeCache}
       **>`)
-      return [JSON.parse(infoCollectionData.info)]
+      return [JSON.parse(info)]
     }
 
     activeCacheMap = getFromMainCache(activeCache)

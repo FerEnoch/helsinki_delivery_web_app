@@ -69,9 +69,9 @@ const DATABASE_UPDATE_ACTIONS = {
       const { FIREBASE_DATABASE: { INFO: activeCache } } = MEM_CACHE
       console.log(`UPDATING ${content}`)
       const activeCacheMap = getFromMainCache(activeCache)
-      console.log(activeCacheMap)
-      const infoCollectionData = await getInfoCollection()
-      activeCacheMap.set(activeCache, infoCollectionData.info)
+
+      const [{ info }] = await getInfoCollection()
+      activeCacheMap.set(activeCache, info)
       /* Creating cache loggin */
       console.log(`
       CACHE POPULATED/**** data from **> ${activeCache}
@@ -84,7 +84,7 @@ const DATABASE_UPDATE_ACTIONS = {
       const { FIREBASE_DATABASE: { PAYMENT_METHODS: activeCache } } = MEM_CACHE
       console.log(`UPDATING ${content}`)
       const activeCacheMap = getFromMainCache(activeCache)
-      console.log(activeCacheMap)
+
       const paymentMethodsToCache = await getPaymentMethodsCollection()
       activeCacheMap.set(activeCache, JSON.stringify(paymentMethodsToCache))
       /* Creating cache loggin */

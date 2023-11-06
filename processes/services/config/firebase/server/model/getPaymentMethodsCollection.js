@@ -4,19 +4,12 @@ import { getBucketImageURL } from './getBucketImageURL'
 
 export async function getPaymentMethodsCollection () {
   const { PAYMENT_METHODS } = FIREBASE_DATABASES
-  let paymentMethodsData
-  const databasePaymentMethodsRef = await firestoreDatabaseAdmin.collection(PAYMENT_METHODS).get()
+
   console.log('Getting INITIAL PAYMENT_METHODS')
-  databasePaymentMethodsRef.docs.forEach(doc => {
-    const databasePaymentMethods = doc.data()
-    paymentMethodsData = {
-      ...databasePaymentMethods
-    }
-  })
+  const databasePaymentMethodsRef = await firestoreDatabaseAdmin.collection(PAYMENT_METHODS).get()
+  const [{ paymentMethods }] = databasePaymentMethodsRef.docs.map(doc => doc.data())
 
-  const parsedPaymentMethods = JSON.parse(paymentMethodsData.paymentMethods)
-
-  return Promise.all(parsedPaymentMethods.map(async method => {
+  return Promise.all(JSON.parse(paymentMethods).map(async method => {
     if (!method?.imageID) return method
     const { imageID, cbu_or_link: imageURL } = method
     const image = imageID ? (await getBucketImageURL(imageID) || imageURL) : (imageURL || null)
