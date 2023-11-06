@@ -8,9 +8,9 @@
   height: 100%;
   line-height: .8rem;
   padding-block: .8rem;
-  padding-inline-start: 3%;
+  padding-inline-start: 4%;
   place-content: center;
-  width: 6rem;
+  max-width: 7rem;
 }
 
 .clear_cart_button:hover {

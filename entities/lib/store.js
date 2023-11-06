@@ -19,7 +19,8 @@ export const useAppStore = create(
       storage: createJSONStorage(() => sessionStorage),
       partialize: (state) => ({
         cart: state.cart,
-        paymentMethod: state.paymentMethod
+        paymentMethod: state.paymentMethod,
+        isShareApiCompatible: state.isShareApiCompatible
       })
     }
   )

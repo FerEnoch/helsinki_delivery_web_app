@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache'
 import { getPaymentMethodsCollection } from '../../config/firebase/server/model/getPaymentMethodsCollection'
 import { getInfoCollection } from '../../config/firebase/server/model/getInfoCollection'
 
-export async function addCacheProduct (productsIDs) {
+async function addCacheProduct (productsIDs) {
   const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
 
   const result = new Set()
@@ -22,7 +22,7 @@ export async function addCacheProduct (productsIDs) {
   return !result.has('failure')
 }
 
-export async function updateCacheProduct (firestoreIDs) {
+async function updateCacheProduct (firestoreIDs) {
   const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
 
   const result = new Set()
@@ -42,7 +42,7 @@ export async function updateCacheProduct (firestoreIDs) {
   return !result.has('failure')
 }
 
-export async function deleteCacheProduct (productIDs) {
+async function deleteCacheProduct (productIDs) {
   const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
 
   console.log('DELETING PRODUCTS from cache --->', productIDs)
@@ -57,6 +57,34 @@ export async function deleteCacheProduct (productIDs) {
   return !result.has('failure')
 }
 
+async function undateInfoCache (content) {
+  const { FIREBASE_DATABASE: { INFO: activeCache } } = MEM_CACHE
+  console.log(`UPDATING ${content}`)
+  const activeCacheMap = getFromMainCache(activeCache)
+
+  const [{ info }] = await getInfoCollection()
+  activeCacheMap.set(activeCache, info)
+  /* Creating cache loggin */
+  console.log(`
+  CACHE POPULATED/**** data from **> ${activeCache}
+  **>`)
+  return true
+}
+
+async function updatePaymentMethodsCache (content) {
+  const { FIREBASE_DATABASE: { PAYMENT_METHODS: activeCache } } = MEM_CACHE
+  console.log(`UPDATING ${content}`)
+  const activeCacheMap = getFromMainCache(activeCache)
+
+  const paymentMethodsToCache = await getPaymentMethodsCollection()
+  activeCacheMap.set(activeCache, JSON.stringify(paymentMethodsToCache))
+  /* Creating cache loggin */
+  console.log(`
+  CACHE POPULATED/**** data from **> ${activeCache} 
+  **> ${paymentMethodsToCache.length} payment methods`)
+  return true
+}
+
 const { FIREBASE_DATABASE: { INFO, PAYMENT_METHODS, PRODUCTS } } = MEM_CACHE
 const DATABASE_UPDATE_ACTIONS = {
   [PRODUCTS]: {
@@ -65,34 +93,10 @@ const DATABASE_UPDATE_ACTIONS = {
     DELETE: deleteCacheProduct
   },
   [INFO]: {
-    UPDATE: async (content) => {
-      const { FIREBASE_DATABASE: { INFO: activeCache } } = MEM_CACHE
-      console.log(`UPDATING ${content}`)
-      const activeCacheMap = getFromMainCache(activeCache)
-
-      const [{ info }] = await getInfoCollection()
-      activeCacheMap.set(activeCache, info)
-      /* Creating cache loggin */
-      console.log(`
-      CACHE POPULATED/**** data from **> ${activeCache}
-      **>`)
-      return true
-    }
+    UPDATE: undateInfoCache
   },
   [PAYMENT_METHODS]: {
-    UPDATE: async (content) => {
-      const { FIREBASE_DATABASE: { PAYMENT_METHODS: activeCache } } = MEM_CACHE
-      console.log(`UPDATING ${content}`)
-      const activeCacheMap = getFromMainCache(activeCache)
-
-      const paymentMethodsToCache = await getPaymentMethodsCollection()
-      activeCacheMap.set(activeCache, JSON.stringify(paymentMethodsToCache))
-      /* Creating cache loggin */
-      console.log(`
-      CACHE POPULATED/**** data from **> ${activeCache} 
-      **> ${paymentMethodsToCache.length} payment methods`)
-      return true
-    }
+    UPDATE: updatePaymentMethodsCache
   }
 }
 
@@ -108,6 +112,7 @@ export async function updateCacheOnSnapshot ({ cache, action, content }) {
   }
 
   revalidatePath('/')
+  revalidatePath('/cart/payments/pay-method')
   return {
     message: 'Success',
     code: 200

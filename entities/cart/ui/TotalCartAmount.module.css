@@ -6,7 +6,7 @@
   height: 100%;
   line-height: 1rem;
   padding-block: 0.8rem;
-  padding-inline: .5rem;
+  padding-inline: 1rem;
   place-content: center;
 }
 
@@ -16,7 +16,7 @@
   width: 105%;
 }
 
-@media (width <=405px) {
+@media (width <=425px) {
   .text {
     font-size: .9rem;
   }
