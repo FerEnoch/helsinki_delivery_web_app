@@ -4,8 +4,9 @@ import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 import { useEffect, useState } from 'react'
 
 export function useSharePaymentData (kindOfService) {
-  const { getCartTotalAmount, QRService, isQRShareable, chosenTransferData } = useAppStore()
+  const { getCartTotalAmount, QRService, isShareApiCompatible, chosenTransferData } = useAppStore()
   const [shareUIButtonText, setShareUIButtonText] = useState('')
+  const [copyPasteUIButtonText, setCopyPasteUIButtonText] = useState('')
   const [shareData, setShareData] = useState(null)
 
   const isQRService = kindOfService === SERVICES_KIND.QR
@@ -13,7 +14,8 @@ export function useSharePaymentData (kindOfService) {
   useEffect(() => {
     const cartTotalAmount = getCartTotalAmount()
     const formattedCartTotal = priceFormater(cartTotalAmount)
-    const shareUIText = `${isQRShareable ? 'Compartir' : 'Copiar'} ${isQRService ? 'código QR' : 'datos de transferencia'}`
+    const shareUIText = `Compartir ${isQRService ? 'código QR' : 'datos de transferencia'}`
+    const copyPasteUIText = 'Copiar al portapapeles'
     const titleText = `Helsinki Delivery ${isQRService ? `QR de ${QRService?.service}` : 'datos de transferencia'}`
     const messageText = `Pagá tu compra ${isQRService ? 'con este QR' : 'con estos datos'}. El monto es\n${formattedCartTotal}`
     const url = isQRService ? QRService?.image : null
@@ -27,12 +29,14 @@ export function useSharePaymentData (kindOfService) {
     }
 
     setShareUIButtonText(shareUIText)
+    setCopyPasteUIButtonText(copyPasteUIText)
     setShareData(dataToShare)
-  }, [isQRService, isQRShareable, getCartTotalAmount, QRService, chosenTransferData])
+  }, [isQRService, isShareApiCompatible, getCartTotalAmount, QRService, chosenTransferData])
 
   return {
     shareUIButtonText,
+    copyPasteUIButtonText,
     shareData,
-    isQRShareable
+    isShareApiCompatible
   }
 }

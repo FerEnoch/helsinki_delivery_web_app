@@ -7,33 +7,40 @@
   margin-block-end: .5rem;
 }
 
+.buttons_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-start: .5rem;
+}
+
 .share_button_wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   max-height: 2rem;
-
+  margin-inline: .5rem;
 }
 
 .share_icon {
   flex: 1 1 10%;
-  margin-inline-end: .5rem;
+  margin-inline-end: .1rem;
 }
 
 .share_icon>svg {
-  max-width: 3rem;
-  max-height: 2rem;
+  max-width: 2rem;
+  max-height: 1.8rem;
 }
 
 .share_button {
   height: 100%;
   flex: 1 1 90%;
-  padding-inline: 1rem;
+  padding-inline: .5rem;
   padding-block: .3rem;
   background-color: transparent;
   border: 1px solid grey;
   border-radius: 10px;
-  font-size: .9rem;
+  font-size: .7rem;
   transition: all 250ms ease;
 }
 

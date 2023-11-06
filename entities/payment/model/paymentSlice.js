@@ -4,7 +4,7 @@ export const paymentSlice = (set, get) => {
   return {
     paymentMethod: {},
     QRService: {},
-    isQRShareable: false,
+    isShareApiCompatible: null,
     chosenTransferData: {},
     pickPaymentOption: (selectedId) => {
       if (!selectedId) {
@@ -18,7 +18,7 @@ export const paymentSlice = (set, get) => {
     pickQRService: (service) => {
       set({ QRService: { ...service } })
     },
-    setIsQRShareable: (bool) => set({ isQRShareable: bool }),
+    setIsShareApiCompatible: (bool) => set({ isShareApiCompatible: bool }),
     clearPaymentSlice: () => set({ paymentMethod: {}, QRService: {} }),
     setChosenTransferData: (transferData) => set({ chosenTransferData: { ...transferData } })
   }

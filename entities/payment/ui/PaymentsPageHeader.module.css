@@ -23,13 +23,6 @@
   cursor: pointer;
 }
 
-@media (width <=390px) {
-  .back_link {
-    transform: scale(.6);
-    top: 6px;
-  }
-}
-
 .title {
   color: var(--app-type-background);
   font-size: 1.5rem;
@@ -38,4 +31,22 @@
   transform: scaleY(1.05) scaleX(.9);
   z-index: 20;
   margin-block: .5rem;
+}
+
+@media (width <=445px) {
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .back_link {
+    transform: scale(.6);
+    top: 6px;
+  }
+}
+
+
+@media (width <=415px) {
+  .title {
+    font-size: 1.3rem;
+  }
 }
