@@ -6,19 +6,17 @@ import GoToPayMethod from '@/features/formFill/ui/GoToPayMethod'
 import GoToForm from '@/features/formFill/ui/GoToForm'
 import { useAppStore } from '@/entities/lib/store'
 
-const { CART: { FOOTER_BUTTONS: cartButtons } } = i18n.LANG.ESP.UI
+const { CART: { FOOTER_BUTTONS: { CONFIRM_ORDER, TOTAL_CART_AMOUNT } } } = i18n.LANG.ESP.UI
 
 export default function PaymentsPagFooter ({ label }) {
   const { paymentMethod: { receipt } } = useAppStore()
-
-  const clientNeedToPay = receipt === 'REQUIRED' && label === cartButtons.CONFIRM_ORDER
-  // const renderGoToForm = receipt === 'NOT_REQUIRED' && label === cartButtons.FORM.GO_TO_FORM
+  const hasClientToPayInAdvance = receipt === 'REQUIRED' && label === CONFIRM_ORDER
 
   return (
     <footer className={classes.footer_container}>
-      <TotalCartAmount label={cartButtons.TOTAL_CART_AMOUNT} />
+      <TotalCartAmount label={TOTAL_CART_AMOUNT} />
       {
-        clientNeedToPay
+        hasClientToPayInAdvance
           ? (
             <GoToPayMethod label={label} />
             )

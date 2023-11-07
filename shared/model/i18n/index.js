@@ -23,12 +23,7 @@ export const i18n = {
             TOTAL_CART_AMOUNT: 'Monto total',
             GO_TO_PAYMENTS: 'Ver formas de pago',
             CONFIRM_ORDER: 'Confirmar solicitud',
-            FORM: {
-              GO_TO_FORM: 'Datos para el envío',
-              NAME: 'Tu nombre',
-              TEL: 'Tu teléfono',
-              DIR: 'Tu dirección'
-            }
+            GO_TO_FORM: 'Datos para el envío'
           },
           PAYMENT_OPTIONS,
           PAY_METHOD: '3 - Aboná en tu app de pagos preferida'
@@ -51,19 +46,19 @@ export const i18n = {
           }
         },
         CLIENT_FORM: {
-          FORM_TITLE: 'Tus datos para el envío',
+          FORM_TITLE: 'Completá el formulario con tus datos',
           FIELD_NAME: {
-            LABEL: 'Tu nombre',
+            LABEL: 'Nombre',
             ON_INVALID: '** No se permiten caracteres especiales'
           },
           FIELD_ADDRESS: {
-            LABEL: '¿Dónde te lo llevamos?',
+            LABEL: 'Dirección de entrega',
             EXTRA_INFO: 'Añadir información extra',
-            SUMMARY: '¿Alguna información extra o aclaración que necesitemos saber para el envío?',
+            SUMMARY: 'Información extra o aclaración que necesitemos saber antes el envío',
             ON_INVALID: '** No se permiten caracteres especiales'
           },
           FIELD_PHONE: {
-            LABEL: 'Tu teléfono',
+            LABEL: 'Nº telefónico',
             ON_INVALID: '** Por favor inserta solo números',
             INITIAL_CHAR_NUM: '0',
             INITIAL_PHONE_NUM: '15'
@@ -80,7 +75,7 @@ export const i18n = {
         },
         ORDER_SUCCESS: {
           title: 'Muchas gracias por tu compra!',
-          message: 'Te lo enviaremos enseguida.'
+          message: 'Ya mismo te lo estamos enviando!'
         }
       },
       G_DRIVE_UI: {

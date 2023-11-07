@@ -2,7 +2,7 @@
 import classes from './PaymentMethod.module.css'
 import TransferenceOption from './TransferenceOption'
 import { useShowPaymentMethod } from '../model/useShowPaymentMethod'
-import PaymentsServiceFooter from './PaymentsServiceFooter'
+import PaymentsServiceFooter from '../../../features/sharePaymentData/ui/PaymentsServiceFooter'
 import QRServiceOption from './QRServiceOption'
 
 export default function PaymentMethod ({ allPaymentMethods }) {

@@ -11,8 +11,8 @@ export default function QRImage () {
     <article className={classes.qr_image_container}>
       <Image
         className={classes.qr_image}
-        width={100}
-        height={100}
+        width={200}
+        height={200}
         alt={service}
         src={image}
         onError={handleImageError}

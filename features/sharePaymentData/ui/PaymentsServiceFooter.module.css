@@ -41,7 +41,7 @@
   border: 1px solid grey;
   border-radius: 10px;
   font-size: .7rem;
-  transition: all 250ms ease;
+  transition: all 100ms ease;
 }
 
 .share_button:hover,
@@ -50,5 +50,6 @@
 }
 
 .share_button:active {
+  color: var(--app-payments-green);
   border: 3px solid var(--app-payments-green);
 }

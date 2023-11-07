@@ -2,10 +2,12 @@ import { useEffect, useRef } from 'react'
 import classes from './OffertModalDialog.module.css'
 import { i18n } from '@/shared/model/i18n'
 
-const { CART: cartTexts } = i18n.LANG.ESP.UI
+const { CART: { CONTINUE_SHOPPING } } = i18n.LANG.ESP.UI
 
 export default function OffertModalDialog ({ openModal, closeDialog, children }) {
   const offertDialogRef = useRef(null)
+
+  const backButtonText = CONTINUE_SHOPPING.toUpperCase()
 
   useEffect(() => {
     if (openModal) {
@@ -28,9 +30,7 @@ export default function OffertModalDialog ({ openModal, closeDialog, children })
             className={classes.continue_buying_button}
             onClick={closeDialog}
           >
-            <p>
-              {cartTexts.CONTINUE_SHOPPING.toUpperCase()}
-            </p>
+            <p>{backButtonText}</p>
           </button>
         </div>
       </div>

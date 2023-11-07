@@ -3,7 +3,7 @@ import { ShareIcon } from '@/shared/ui/lib/svg/ShareIcon'
 import { CopyPasteIcon } from '@/shared/ui/lib/svg/CopyPasteIcon'
 import { useSharePaymentData } from '@/features/sharePaymentData/model/useSharePaymentData'
 
-const SHARE_TYPES = {
+const SHARE_BUTTON_TYPES = {
   COPY_PASTE: 'COPY',
   SHARE_API: 'SHARE'
 }
@@ -12,7 +12,7 @@ export default function PaymentsServiceFooter ({ kindOfService }) {
   const { shareUIButtonText, shareData, isShareApiCompatible, copyPasteUIButtonText } = useSharePaymentData(kindOfService)
 
   const handleShare = (type) => async () => {
-    const { SHARE_API } = SHARE_TYPES
+    const { SHARE_API } = SHARE_BUTTON_TYPES
     if (!shareData) return
     if (type === SHARE_API && isShareApiCompatible) {
       return await navigator.share(shareData)
@@ -28,7 +28,7 @@ export default function PaymentsServiceFooter ({ kindOfService }) {
         {
         isShareApiCompatible &&
         (
-          <div className={classes.share_button_wrapper} onClick={handleShare(SHARE_TYPES.SHARE_API)}>
+          <div className={classes.share_button_wrapper} onClick={handleShare(SHARE_BUTTON_TYPES.SHARE_API)}>
             <div className={classes.share_icon}>
               <ShareIcon />
             </div>
@@ -38,7 +38,7 @@ export default function PaymentsServiceFooter ({ kindOfService }) {
           </div>
         )
         }
-        <div className={classes.share_button_wrapper} onClick={handleShare(SHARE_TYPES.COPY_PASTE)}>
+        <div className={classes.share_button_wrapper} onClick={handleShare(SHARE_BUTTON_TYPES.COPY_PASTE)}>
           <div className={classes.share_icon}>
             <CopyPasteIcon />
           </div>

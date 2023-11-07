@@ -5,12 +5,14 @@ import classes from './FormDialog.module.css'
 
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
 
-const { CART: cartTexts } = i18n.LANG.ESP.UI
+const { CART: { FOOTER_BUTTONS: { BACK } } } = i18n.LANG.ESP.UI
 
 export default memo(function FormDialog ({ modalOpenState, closeDialog }) {
   const offertDialogRef = useRef(null)
   const [buttonDisabled, setButtonDisabled] = useState(false)
   const [showButton, setShowButton] = useState(true)
+
+  const backButtonText = BACK.toUpperCase()
 
   const disableButton = useCallback((isDisabled) => {
     setButtonDisabled(isDisabled)
@@ -49,7 +51,7 @@ export default memo(function FormDialog ({ modalOpenState, closeDialog }) {
               disabled={buttonDisabled}
             >
               <p>
-                {cartTexts.CONTINUE_SHOPPING}
+                {backButtonText}
               </p>
             </button>
           </div>
