@@ -8,18 +8,19 @@ export default function GoToPayMethod ({ label }) {
   const router = useRouter()
   const { cart, paymentMethod } = useAppStore()
 
-  const cartHasProducts = cart.length > 0
+  const disableOpenForm = !(cart.length > 0) || !paymentMethod?.label
+  const formatedLebel = label.toUpperCase()
 
   const goToPaymentMethod = () => router.push('/cart/payments/pay-method')
 
   return (
     <div
-      disabled={!cartHasProducts || !paymentMethod?.label}
+      disabled={disableOpenForm}
       className={classes.go_to_payment_method_button}
     >
       <section onClick={goToPaymentMethod} className={classes.go_to_payment_method_action}>
         <p className={classes.action_text}>
-          {label.toUpperCase()}
+          {formatedLebel}
         </p>
         <span className={classes.triangle_button}>
           <TriangleButton

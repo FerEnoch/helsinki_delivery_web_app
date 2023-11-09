@@ -4,7 +4,7 @@ import { memo, useMemo, useState } from 'react'
 import { i18n } from '@/shared/model/i18n'
 import { useValidatePhoneInput } from '../lib/useValidatePhoneInput'
 
-const { CLIENT_FORM } = i18n.LANG.ESP.UI
+const { CLIENT_FORM: { FIELD_PHONE: { INITIAL_CHAR_NUM, INITIAL_PHONE_NUM, LABEL, ON_INVALID } } } = i18n.LANG.ESP.UI
 
 export default memo(function PhoneInput ({ isDetailsOpen }) {
   const [phoneCaracteristic, setPhoneCaracteristic] = useState('')
@@ -28,12 +28,12 @@ export default memo(function PhoneInput ({ isDetailsOpen }) {
       `}
     >
       <label htmlFor='clientPhoneID'>
-        <p>{CLIENT_FORM.FIELD_PHONE.LABEL}</p>
+        <p>{LABEL}</p>
       </label>
       <section className={classes.numbers_section}>
         <div className={classes.phone_input_caract}>
           <span className={classes.number_initial_caract}>
-            {CLIENT_FORM.FIELD_PHONE.INITIAL_CHAR_NUM}
+            {INITIAL_CHAR_NUM}
           </span>
           <input
             style={{
@@ -53,7 +53,7 @@ export default memo(function PhoneInput ({ isDetailsOpen }) {
         </div>
         <div className={classes.phone_input_phone}>
           <span className={classes.number_initial_phone}>
-            {CLIENT_FORM.FIELD_PHONE.INITIAL_PHONE_NUM}
+            {INITIAL_PHONE_NUM}
           </span>
           <input
             style={{
@@ -73,7 +73,7 @@ export default memo(function PhoneInput ({ isDetailsOpen }) {
         {
         invalidInput && (
           <p className={classes.invalid_input_message}>
-            {CLIENT_FORM.FIELD_PHONE.ON_INVALID}
+            {ON_INVALID}
           </p>
         )
       }

@@ -5,7 +5,7 @@ import Triangle from '@/shared/ui/lib/svg/Triangle'
 import inputClasses from '@/widgets/form/ClientDataForm.module.css'
 import { useValidateAddressInput } from '../lib/useValidateAddressInput'
 
-const { CLIENT_FORM } = i18n.LANG.ESP.UI
+const { CLIENT_FORM: { FIELD_ADDRESS: { LABEL, EXTRA_INFO, ON_INVALID, SUMMARY } } } = i18n.LANG.ESP.UI
 
 export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState }) {
   const detailsRef = useRef(null)
@@ -30,7 +30,7 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
     `}
     >
       <label htmlFor='clientAddressID'>
-        <p>{CLIENT_FORM.FIELD_ADDRESS.LABEL}</p>
+        <p>{LABEL}</p>
       </label>
       <input
         required
@@ -43,7 +43,7 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
       {
         invalidInput && (
           <p className={classes.invalid_input_message}>
-            {CLIENT_FORM.FIELD_ADDRESS.ON_INVALID}
+            {ON_INVALID}
           </p>
         )
       }
@@ -66,10 +66,10 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
                     }}
                   />
                 </span>
-                {CLIENT_FORM.FIELD_ADDRESS.EXTRA_INFO}
+                {EXTRA_INFO}
               </summary>
               <label htmlFor='textArea'>
-                <p>{CLIENT_FORM.FIELD_ADDRESS.SUMMARY}</p>
+                <p>{SUMMARY}</p>
               </label>
               <textarea
                 onKeyDown={handleKeyPress}

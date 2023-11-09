@@ -4,7 +4,7 @@ import inputClasses from '@/widgets/form/ClientDataForm.module.css'
 import { useValidateNameInput } from '../lib/useValidateNameInput'
 import { useState } from 'react'
 
-const { CLIENT_FORM } = i18n.LANG.ESP.UI
+const { CLIENT_FORM: { FIELD_NAME: { LABEL, ON_INVALID } } } = i18n.LANG.ESP.UI
 
 export default function NameInput () {
   const [name, setName] = useState('')
@@ -17,11 +17,10 @@ export default function NameInput () {
     `}
     >
       <label htmlFor='clientNameID'>
-        <p>{CLIENT_FORM.FIELD_NAME.LABEL}</p>
+        <p>{LABEL}</p>
       </label>
       <input
         required
-        autoFocus
         id='clientNameID'
         type='text'
         value={sanitizedName || ''}
@@ -31,7 +30,7 @@ export default function NameInput () {
       {
         invalidInput && (
           <p className={classes.invalid_input_message}>
-            {CLIENT_FORM.FIELD_NAME.ON_INVALID}
+            {ON_INVALID}
           </p>
         )
       }
