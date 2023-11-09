@@ -1,20 +1,26 @@
 import classes from './PhoneInput.module.css'
 import inputClasses from '@/widgets/form/ClientDataForm.module.css'
-import { useState } from 'react'
+import { memo, useMemo, useState } from 'react'
 import { i18n } from '@/shared/model/i18n'
 import { useValidatePhoneInput } from '../lib/useValidatePhoneInput'
 
 const { CLIENT_FORM } = i18n.LANG.ESP.UI
 
-export default function PhoneInput ({ style }) {
+export default memo(function PhoneInput ({ isDetailsOpen }) {
   const [phoneCaracteristic, setPhoneCaracteristic] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
 
   const [{ sanitizedPhoneCaracteristic, sanitizedPhoneNumber }, invalidInput] = useValidatePhoneInput({ phoneCaracteristic, phoneNumber })
 
+  const openDetailsPhoneInputStyle = useMemo(() => ({
+    transition: `${isDetailsOpen ? 'all 250ms ease-in' : ''}`,
+    paddingBlockStart: `${isDetailsOpen ? '2rem' : ''}`,
+    zIndex: `${isDetailsOpen ? '-1' : ''}`
+  }), [isDetailsOpen])
+
   return (
     <div
-      style={style}
+      style={openDetailsPhoneInputStyle}
       className={`
         ${inputClasses.client_input} 
         ${classes.phone_input}
@@ -74,4 +80,4 @@ export default function PhoneInput ({ style }) {
       </section>
     </div>
   )
-}
+})

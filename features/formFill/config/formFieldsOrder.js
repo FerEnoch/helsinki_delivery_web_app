@@ -27,7 +27,10 @@ export const FORM_FIELDS = {
   PAYMENT_METHOD: 'paymentMethod', // Pago
   TOTAL: 'total', // Total
   CLIENT_WHATSAPP: 'clientWhatsApp', // WhatsApp
-  PAYMENT_STATE: 'paymentState', // Estado
+  PAYMENT_STATE: {
+    label: 'paymentState', // Estado
+    state: 'pendiente' // Siempre debe ser 'pendiente', ya que se utiliza para el programa de control de stock
+  },
   RECEIPT_NAME: 'receiptName', // Comprobante
   STOCK_UPDATE: 'stockUpdate', // Actualización de stock
   ORDER_ID: 'orderID', // ID

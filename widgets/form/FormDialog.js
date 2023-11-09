@@ -3,59 +3,40 @@ import { i18n } from '@/shared/model/i18n'
 import ClientDataForm from './ClientDataForm'
 import classes from './FormDialog.module.css'
 
-import { memo, useCallback, useEffect, useRef, useState } from 'react'
+import { forwardRef, useCallback, useState } from 'react'
+import { useFormModal } from '@/features/formFill/lib/useFormModal'
 
 const { CART: { FOOTER_BUTTONS: { BACK } } } = i18n.LANG.ESP.UI
+const backButtonText = BACK.toUpperCase()
 
-export default memo(function FormDialog ({ modalOpenState, closeDialog }) {
-  const offertDialogRef = useRef(null)
-  const [buttonDisabled, setButtonDisabled] = useState(false)
-  const [showButton, setShowButton] = useState(true)
-
-  const backButtonText = BACK.toUpperCase()
-
-  const disableButton = useCallback((isDisabled) => {
-    setButtonDisabled(isDisabled)
-  }, [])
+export default forwardRef(function FormDialog (props, ref) {
+  const { closeFormDialog } = useFormModal(ref)
+  const [showFooterButtons, setShowFooterButtons] = useState(true)
 
   const showContinueShoppingButton = useCallback((successState) => {
-    setShowButton(!successState)
+    setShowFooterButtons(!successState)
   }, [])
-
-  useEffect(() => {
-    if (modalOpenState) {
-      offertDialogRef.current?.showModal()
-    } else {
-      offertDialogRef.current?.close()
-    }
-  }, [modalOpenState])
 
   return (
     <dialog
+      ref={ref}
       className={classes.form_dialog_container}
-      ref={offertDialogRef}
-      onClose={closeDialog}
+      onClose={closeFormDialog}
     >
       <main className={classes.dialog_main}>
         <ClientDataForm
-          closeDialog={closeDialog}
-          disableButton={disableButton}
           showContinueShoppingButton={showContinueShoppingButton}
         />
         {
-        showButton && (
+        showFooterButtons && (
           <div className={classes.button_container}>
             <button
               className={classes.back_button}
-              onClick={closeDialog}
-              disabled={buttonDisabled}
+              onClick={closeFormDialog}
             >
-              <p>
-                {backButtonText}
-              </p>
+              <p> {backButtonText} </p>
             </button>
-          </div>
-        )
+          </div>)
         }
       </main>
     </dialog>

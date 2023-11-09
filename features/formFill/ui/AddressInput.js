@@ -1,28 +1,26 @@
 import classes from './AddressInput.module.css'
 import { i18n } from '@/shared/model/i18n'
-import { memo, useEffect, useRef, useState } from 'react'
+import { memo, useRef, useState } from 'react'
 import Triangle from '@/shared/ui/lib/svg/Triangle'
 import inputClasses from '@/widgets/form/ClientDataForm.module.css'
 import { useValidateAddressInput } from '../lib/useValidateAddressInput'
 
 const { CLIENT_FORM } = i18n.LANG.ESP.UI
 
-export default memo(function AddressInput ({ detailsOpen }) {
+export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState }) {
   const detailsRef = useRef(null)
   const [address, setAddress] = useState('')
   const [addressComments, setAddressComments] = useState('')
-  const [openDetails, setOpenDetails] = useState(false)
   const [{ sanitizedAddress, sanitizedComments }, invalidInput] = useValidateAddressInput({ address, addressComments })
 
-  useEffect(() => {
-    detailsOpen(openDetails)
-  }, [openDetails, detailsOpen])
-
-  const handleKeyPress = (event) => {
-    const closePressedKey = event.key === 'Enter' || event.key === 'Tab'
+  const handleDetailsToggle = e => setDetailsOpenState(e.target.open)
+  const handleAddress = e => setAddress(e.target.value)
+  const handleAddressComments = e => setAddressComments(e.target.value)
+  const handleKeyPress = (e) => {
+    const closePressedKey = e.key === 'Enter' || e.key === 'Tab'
     if (closePressedKey && detailsRef.current.open) {
       detailsRef.current.open = false
-      setOpenDetails(false)
+      setDetailsOpenState(false)
     }
   }
 
@@ -39,8 +37,8 @@ export default memo(function AddressInput ({ detailsOpen }) {
         id='clientAddressID'
         type='text'
         value={sanitizedAddress || ''}
-        onChange={(e) => setAddress(e.target.value)}
-        onBlur={(e) => setAddress(e.target.value)}
+        onChange={handleAddress}
+        onBlur={handleAddress}
       />
       {
         invalidInput && (
@@ -53,7 +51,7 @@ export default memo(function AddressInput ({ detailsOpen }) {
           !invalidInput && (
             <details
               className={classes.detail}
-              onToggle={(e) => setOpenDetails(e.target.open)}
+              onToggle={handleDetailsToggle}
               ref={detailsRef}
             >
               <summary>
@@ -63,7 +61,7 @@ export default memo(function AddressInput ({ detailsOpen }) {
                     style={{
                       marginInlineEnd: '.5rem',
                       fill: 'white',
-                      transform: `${openDetails ? 'rotate(180deg)' : 'rotate(90deg)'}`,
+                      transform: `${isDetailsOpen ? 'rotate(180deg)' : 'rotate(90deg)'}`,
                       transition: 'all 150ms ease-in-out'
                     }}
                   />
@@ -81,7 +79,7 @@ export default memo(function AddressInput ({ detailsOpen }) {
                 id='textArea'
                 autoFocus
                 value={sanitizedComments || ''}
-                onChange={(e) => setAddressComments(e.target.value)}
+                onChange={handleAddressComments}
               />
             </details>
           )

@@ -16,6 +16,7 @@ export default function QRImage () {
         alt={service}
         src={image}
         onError={handleImageError}
+        priority
       />
     </article>
   )

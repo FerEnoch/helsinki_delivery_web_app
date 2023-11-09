@@ -16,6 +16,11 @@
   border: 2px solid #aaa;
 }
 
+.triangle_button {
+  padding-block-start: .5rem;
+  flex: 1 0 25%;
+}
+
 .triangle_button svg {
   transform: rotate(90deg)
 }
@@ -31,7 +36,7 @@
   cursor: pointer;
 }
 
-.go_to_form_button .text {
+.action_text {
   font-size: 1.8rem;
   flex: 1 0 80%;
   text-align: start;
@@ -39,13 +44,8 @@
   line-height: 1.7rem;
 }
 
-.triangle_button {
-  padding-block-start: .5rem;
-  flex: 1 0 25%;
-}
-
 @media (width <=400px) {
-  .go_to_form_button .text {
+  .action_text {
     font-size: 1.6rem;
   }
 }

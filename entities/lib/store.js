@@ -5,6 +5,7 @@ import { cartSlice } from '../cart/lib/cartSlice'
 import { paymentSlice } from '../payment/model/paymentSlice'
 import { productsSlice } from '../product/lib/productsSlice'
 import { clientSlice } from '../client/model/clientSlice'
+import { formSlice } from '../client/model/formSlice'
 
 export const useAppStore = create(
   persist(
@@ -12,7 +13,8 @@ export const useAppStore = create(
       ...productsSlice(...args),
       ...cartSlice(...args),
       ...paymentSlice(...args),
-      ...clientSlice(...args)
+      ...clientSlice(...args),
+      ...formSlice(...args)
     }),
     {
       name: 'cart-storage',

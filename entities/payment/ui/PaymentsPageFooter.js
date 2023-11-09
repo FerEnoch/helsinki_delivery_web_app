@@ -8,7 +8,7 @@ import { useAppStore } from '@/entities/lib/store'
 
 const { CART: { FOOTER_BUTTONS: { CONFIRM_ORDER, TOTAL_CART_AMOUNT } } } = i18n.LANG.ESP.UI
 
-export default function PaymentsPagFooter ({ label }) {
+export default function PaymentsPageFooter ({ label }) {
   const { paymentMethod: { receipt } } = useAppStore()
   const hasClientToPayInAdvance = receipt === 'REQUIRED' && label === CONFIRM_ORDER
 

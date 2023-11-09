@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 export function useShowReceiptRequiredMessage () {
   const [showMessageReceiptRequired, setShowMessageReceiptRequired] = useState(false)
 
-  const showReceiptRequiredMessage = () => setShowMessageReceiptRequired(true)
-  const hideReceiptRequiredMessage = () => setShowMessageReceiptRequired(false)
+  const handleInvalidInput = useCallback(() => setShowMessageReceiptRequired(true), [])
+
+  const handleChangeFileInput = useCallback(() => setShowMessageReceiptRequired(false), [])
 
   return {
-    showReceiptRequiredMessage,
-    hideReceiptRequiredMessage,
-    isReceiptQuiredMessageVissible: showMessageReceiptRequired
+    handleInvalidInput,
+    handleChangeFileInput,
+    isReceiptRequiredMessageVisible: showMessageReceiptRequired
   }
 }

@@ -18,7 +18,7 @@ export default function GoToPayMethod ({ label }) {
       className={classes.go_to_payment_method_button}
     >
       <section onClick={goToPaymentMethod} className={classes.go_to_payment_method_action}>
-        <p className={classes.text}>
+        <p className={classes.action_text}>
           {label.toUpperCase()}
         </p>
         <span className={classes.triangle_button}>
