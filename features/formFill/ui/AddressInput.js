@@ -2,10 +2,15 @@ import classes from './AddressInput.module.css'
 import { i18n } from '@/shared/model/i18n'
 import { memo, useRef, useState } from 'react'
 import Triangle from '@/shared/ui/lib/svg/Triangle'
-import inputClasses from '@/widgets/form/ClientDataForm.module.css'
 import { useValidateAddressInput } from '../lib/useValidateAddressInput'
+import UserInput from '../lib/ui/UserInput'
+import Dot from '../lib/ui/Dot'
 
 const { CLIENT_FORM: { FIELD_ADDRESS: { LABEL, EXTRA_INFO, ON_INVALID, SUMMARY } } } = i18n.LANG.ESP.UI
+const labelText = LABEL.toUpperCase()
+const extraInfoText = EXTRA_INFO.toUpperCase()
+const onInvalidText = ON_INVALID.toUpperCase()
+const summaryText = SUMMARY.toUpperCase()
 
 export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState }) {
   const detailsRef = useRef(null)
@@ -25,14 +30,11 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
   }
 
   return (
-    <div className={`
-    ${inputClasses.client_input} ${classes.address_input}
-    `}
-    >
+    <div className={classes.address_input}>
       <label htmlFor='clientAddressID'>
-        <p>{LABEL}</p>
+        <p className={classes.input_label}> <Dot />{labelText}</p>
       </label>
-      <input
+      <UserInput
         required
         id='clientAddressID'
         type='text'
@@ -43,7 +45,7 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
       {
         invalidInput && (
           <p className={classes.invalid_input_message}>
-            {ON_INVALID}
+            {onInvalidText}
           </p>
         )
       }
@@ -60,16 +62,16 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
                     width={10}
                     style={{
                       marginInlineEnd: '.5rem',
-                      fill: 'white',
+                      fill: 'black',
                       transform: `${isDetailsOpen ? 'rotate(180deg)' : 'rotate(90deg)'}`,
-                      transition: 'all 150ms ease-in-out'
+                      transition: 'all 150ms ease-out'
                     }}
                   />
                 </span>
-                {EXTRA_INFO}
+                {extraInfoText}
               </summary>
               <label htmlFor='textArea'>
-                <p>{SUMMARY}</p>
+                <p>{summaryText}</p>
               </label>
               <textarea
                 onKeyDown={handleKeyPress}
@@ -77,7 +79,6 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
                 placeholder='< 120 caract.'
                 className={classes.textarea}
                 id='textArea'
-                autoFocus
                 value={sanitizedComments || ''}
                 onChange={handleAddressComments}
               />

@@ -1,79 +1,81 @@
 import classes from './PhoneInput.module.css'
-import inputClasses from '@/widgets/form/ClientDataForm.module.css'
-import { memo, useMemo, useState } from 'react'
-import { i18n } from '@/shared/model/i18n'
+import { memo } from 'react'
 import { useValidatePhoneInput } from '../lib/useValidatePhoneInput'
-
-const { CLIENT_FORM: { FIELD_PHONE: { INITIAL_CHAR_NUM, INITIAL_PHONE_NUM, LABEL, ON_INVALID } } } = i18n.LANG.ESP.UI
+import UserInput from '../lib/ui/UserInput'
+import Dot from '../lib/ui/Dot'
+import { usePhoneInputTexts } from '../lib/usePhoneInputTexts'
 
 export default memo(function PhoneInput ({ isDetailsOpen }) {
-  const [phoneCaracteristic, setPhoneCaracteristic] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
+  const {
+    sanitizedInput: { sanitizedPhoneCharacteristic, sanitizedPhoneNumber },
+    invalidInput,
+    handlePhoneCharacteristic,
+    handlePhoneNumber,
+    inputStyle,
+    isNumberTooShort
+  } = useValidatePhoneInput(isDetailsOpen)
 
-  const [{ sanitizedPhoneCaracteristic, sanitizedPhoneNumber }, invalidInput] = useValidatePhoneInput({ phoneCaracteristic, phoneNumber })
-
-  const openDetailsPhoneInputStyle = useMemo(() => ({
-    transition: `${isDetailsOpen ? 'all 250ms ease-in' : ''}`,
-    paddingBlockStart: `${isDetailsOpen ? '2rem' : ''}`,
-    zIndex: `${isDetailsOpen ? '-1' : ''}`
-  }), [isDetailsOpen])
+  const {
+    labelText,
+    onInvalidText,
+    onTooShortText,
+    INITIAL_CHAR_NUM,
+    INITIAL_PHONE_NUM
+  } = usePhoneInputTexts()
 
   return (
     <div
-      style={openDetailsPhoneInputStyle}
-      className={`
-        ${inputClasses.client_input} 
-        ${classes.phone_input}
-        ${invalidInput ? classes.invalid_phone_input : ''}
-      `}
+      style={inputStyle}
+      className={classes.phone_input}
     >
       <label htmlFor='clientPhoneID'>
-        <p>{LABEL}</p>
+        <p className={classes.input_label}> <Dot /> {labelText} </p>
       </label>
       <section className={classes.numbers_section}>
-        <div className={classes.phone_input_caract}>
-          <span className={classes.number_initial_caract}>
+        <div className={classes.phone_input_charact}>
+          <span className={classes.number_initial_charact}>
             {INITIAL_CHAR_NUM}
           </span>
-          <input
+          <UserInput
             style={{
-              width: '5rem'
+              width: '6.5rem'
             }}
-            required
             autoComplete='off'
+            type='tel'
             id='clientPhoneID'
-            type='text'
-            inputMode='numeric'
-            pattern={() => encodeURIComponent('[0-9]{3, 5}')}
             maxLength={5}
-            value={sanitizedPhoneCaracteristic}
-            onChange={(e) => setPhoneCaracteristic(e.target.value)}
-            onBlur={(e) => setPhoneCaracteristic(e.target.value)}
+            value={sanitizedPhoneCharacteristic}
+            onChange={handlePhoneCharacteristic}
+            onBlur={handlePhoneCharacteristic}
           />
         </div>
         <div className={classes.phone_input_phone}>
           <span className={classes.number_initial_phone}>
             {INITIAL_PHONE_NUM}
           </span>
-          <input
+          <UserInput
             style={{
-              width: '8rem'
+              width: '100%'
             }}
-            required
             autoComplete='off'
-            type='text'
-            inputMode='numeric'
-            pattern={() => encodeURIComponent('[0-9]{7, 9}')}
+            type='tel'
             maxLength={9}
             value={sanitizedPhoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            onBlur={(e) => setPhoneNumber(e.target.value)}
+            onChange={handlePhoneNumber}
+            onBlur={handlePhoneNumber}
           />
         </div>
         {
         invalidInput && (
           <p className={classes.invalid_input_message}>
-            {ON_INVALID}
+            {onInvalidText}
+          </p>
+        )
+        }
+        {
+        !invalidInput && isNumberTooShort && (
+          <p className={classes.invalid_input_message}>
+            {onTooShortText}
           </p>
         )
       }

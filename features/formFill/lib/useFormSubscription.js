@@ -1,12 +1,11 @@
 import confetti from 'canvas-confetti'
 import { useAppStore } from '@/entities/lib/store'
-import { useFormModal } from './useFormModal'
-import { useShowReceiptRequiredMessage } from './useShowReceiptRequiredMessage'
 import { useRouter } from 'next/navigation'
-import { useCallback, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FORM_FIELDS } from '../config/formFieldsOrder'
 import { timeFormatter } from '@/shared/lib/timeFormat'
 import { sendOrderData } from '../model/sendOrderData'
+import { ORDER_OPERATION_TIME } from '../config/orderOperationTime'
 
 const {
   TIMESTAMP,
@@ -19,12 +18,15 @@ const {
   TOTAL,
   CLIENT_WHATSAPP,
   PAYMENT_STATE,
+  PAYMENT_RECEIPT: { label: receiptLabel },
   RECEIPT_NAME,
   STOCK_UPDATE,
   ORDER_ID
 } = FORM_FIELDS
 
-export function useFormSubscription (fileRef) {
+const { PROCESSING_MIN_TIME_MS, SUCCESS_OPERATION_MAX_TIME_MS } = ORDER_OPERATION_TIME
+
+export function useFormSubscription () {
   const {
     paymentMethod: { label: method, receipt },
     getCartTotalAmount,
@@ -32,36 +34,41 @@ export function useFormSubscription (fileRef) {
     clearCart,
     clearPaymentSlice,
     client,
-    clearClientData
+    clearClientData,
+    receiptFile,
+    deleteReceiptFile,
+    setFormLoadingState,
+    setFormSuccessfullSubmitOperation
   } = useAppStore()
-  const { closeFormDialog } = useFormModal()
   const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
-  const [successfullOperation, setSuccessfullOperation] = useState(false)
-  const [isReceiptRequired, setIsReceiptRequired] = useState(undefined)
+  const [processTimeFinished, setProcessTimeFinished] = useState(null)
 
-  useEffect(() => {
-    setIsReceiptRequired(receipt === 'REQUIRED')
-  }, [receipt])
+  const successHandler = () => {
+    !processTimeFinished && setTimeout(() => {
+      setFormSuccessfullSubmitOperation(true)
+      setProcessTimeFinished(true)
+      setFormLoadingState(false)
+      clearClientData()
+      clearCart()
+      clearPaymentSlice()
+      deleteReceiptFile()
+      confetti()
 
-  const successHandler = useCallback(() => {
-    setIsLoading(false)
-    setSuccessfullOperation(true)
-    confetti()
-    clearClientData()
-    clearCart()
-    clearPaymentSlice()
-    setTimeout(() => {
-      router.push('/')
-      closeFormDialog()
-    }, 7000)
-  }, [clearClientData, clearCart, clearPaymentSlice, closeFormDialog, router])
+      setTimeout(() => {
+        router.push('/')
+        setFormSuccessfullSubmitOperation(false)
+        setProcessTimeFinished(null)
+      }, SUCCESS_OPERATION_MAX_TIME_MS)
+    }, PROCESSING_MIN_TIME_MS)
+  }
 
-  const submitHandler = useCallback(async (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault()
-    setIsLoading(true)
+    setFormLoadingState(true)
+
     const formData = new FormData()
     const date = new Date()
+
     formData.set(TIMESTAMP, timeFormatter(date))
     formData.set(CLIENT_ADDRESS, client?.address.trim())
     formData.set(CLIENT_COMMENTS, client?.addressComments.trim())
@@ -76,13 +83,10 @@ export function useFormSubscription (fileRef) {
     formData.set(STOCK_UPDATE, '')
     formData.set(ORDER_ID, crypto.randomUUID().slice(0, 8))
 
-    if (isReceiptRequired) {
+    if (receipt === 'REQUIRED') {
       const { fileInputID } = e.target
       if (fileInputID.value) {
-        const paymentReceipt = fileRef.current.files[0]
-        formData.set(FORM_FIELDS.PAYMENT_RECEIPT.label, paymentReceipt)
-      } else {
-        return
+        formData.set(receiptLabel, receiptFile)
       }
     }
 
@@ -93,12 +97,9 @@ export function useFormSubscription (fileRef) {
     /**
      * handle error!
      */
-  }, [client, cart, fileRef, getCartTotalAmount, method, isReceiptRequired, successHandler])
+  }
 
   return {
-    isLoading,
-    successfullOperation,
-    isReceiptRequired,
     submitHandler
   }
 }

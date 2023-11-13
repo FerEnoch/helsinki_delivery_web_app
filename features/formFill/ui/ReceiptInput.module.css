@@ -1,19 +1,113 @@
-.receipt_input {
-  padding-block: 1.2rem;
-  margin-block-end: .5rem;
-}
-
-.form_file_upload {
+.file_upload_section {
+  margin-block-end: 1rem;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+.receipt_input_wrapper {
+  padding-block: 1rem;
+}
+
+.title {
+  font-size: 1.4rem;
+  color: var(--app-red-background);
+  text-wrap: balance;
+  font-weight: 600;
+  text-align: center;
+  width: 110%;
+  padding-inline-end: 9%;
+}
+
+@media (width<=465px) {
+  .title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (width<=410px) {
+  .title {
+    font-size: 1.2rem;
+  }
+}
+
+.file_input {
+  margin-block-start: 1rem;
+  max-width: 90%;
+}
+
+.upload_action {
+  border: 2px solid gray;
+  padding: .5rem;
+  margin-block: 1rem;
+  border-radius: 18px;
+  box-shadow: 1px 1px 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: all 500ms ease-in-out;
+}
+
+.input_label:hover,
+.upload_action:hover {
+  cursor: pointer
+}
+
+.upload_action:active {
+  color: var(--app-payments-green);
+  border: 2px solid var(--app-payments-green);
+}
+
+.uploading_start {
+  animation: start-uploading 500ms ease-in-out forwards;
+  transition: all 500ms ease-in-out;
+}
+
+.uploading_end {
+  background-color: var(--app-payments-green);
+}
+
+@keyframes start-uploading {
+  0% {
+    background-color: var(--app-type-background);
+  }
+
+  100% {
+    background-color: var(--app-payments-green);
+    color: var(--app-black-text);
+  }
+}
+
+.check {
+  width: 1rem;
+  height: 1rem;
+  opacity: 0;
+  animation: check-in 500ms ease-in forwards;
+}
+
+@keyframes check-in {
+  100% {
+    opacity: 1;
+    width: 1.3rem;
+    height: 1.5rem;
+    margin-inline-start: 1rem;
+    fill: white;
+  }
+}
+
 .invalid_input_message {
   color: red;
   position: absolute;
-  bottom: 6px;
+  top: 82%;
   left: 10px;
   font-weight: 600;
   z-index: 100;
+}
+
+@media (width<=400px) {
+  .invalid_input_message {
+    font-size: .8rem;
+  }
 }

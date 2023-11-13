@@ -1,12 +1,30 @@
 .name_input {
   margin-block-end: .5rem;
+  width: 100%;
+  position: relative;
+}
+
+.input_label {
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-align: start;
+  padding-inline-start: 1.1rem;
+  margin-block-end: .6rem;
+  letter-spacing: 1.5px;
 }
 
 .invalid_input_message {
   color: red;
-  position: relative;
-  bottom: 0px;
+  position: absolute;
+  font-size: 1rem;
+  top: 115%;
   left: 10px;
   font-weight: 600;
   z-index: 100;
+}
+
+@media (width<=400px) {
+  .invalid_input_message {
+    font-size: .8rem;
+  }
 }

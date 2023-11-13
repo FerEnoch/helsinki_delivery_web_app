@@ -6,14 +6,21 @@ import ProductDetailCartSection from '@/entities/cart/ui/ProductDetailCartSectio
 import DetailCardFooter from './DetailCardFooter'
 
 const { DETAIL_CARD_PRODUCT: { BODY: { generic_description: genericDescription } } } = i18n.LANG.ESP.UI
+const destilleryUIText = 'Destilería: '
+const alcoholUIText = 'Alcohol: '
+const formatAlcohol = (alcohol) => Number(alcohol) * 100
 
 export default function ProductDetailCard ({ product }) {
   const {
     name,
     category,
     image,
-    description
+    description,
+    destillery,
+    alcohol
   } = product
+
+  const formattedAlcohol = formatAlcohol(alcohol)
 
   return (
     <article className={classes.card}>
@@ -35,6 +42,22 @@ export default function ProductDetailCard ({ product }) {
             <p>
               {description || genericDescription}
             </p>
+            {
+               destillery && (
+                 <p className={classes.destillery_text}>
+                   {destilleryUIText}
+                   <span className={classes.destillery_var}>{destillery}</span>
+                 </p>
+               )
+            }
+            {
+               alcohol && (
+                 <p className={classes.alcohol_text}>
+                   {alcoholUIText}
+                   <span className={classes.alcohol_var}>{formattedAlcohol}%</span>
+                 </p>
+               )
+            }
           </div>
           <div className={classes.cart_section}>
             <ProductDetailCartSection product={product} />

@@ -7,12 +7,15 @@ import Link from 'next/link'
 import classes from './ProductListItem.module.css'
 import { useAppStore } from '@/entities/lib/store'
 import { useState } from 'react'
+import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 
 export default function ProductListItem ({ isCigarOrExtra, product }) {
   const { addToCart } = useAppStore()
   const [productQuantity, setProductQuantity] = useState(1)
 
   const { id, category, name, image, price, stock: hasStock } = product
+  const formattedPrice = priceFormater(price)
+  const productName = name.toUpperCase()
 
   const handleAddToCart = () => {
     addToCart({ ...product }, productQuantity)
@@ -30,7 +33,7 @@ export default function ProductListItem ({ isCigarOrExtra, product }) {
               <ProductImage
                 width={!isCigarOrExtra ? 50 : null}
                 height={!isCigarOrExtra ? 75 : null}
-                alt={name}
+                alt={productName}
                 src={image}
                 category={category}
               />
@@ -40,10 +43,10 @@ export default function ProductListItem ({ isCigarOrExtra, product }) {
         <div className={classes.product_background}>
           <span className={classes.product_name}>
             <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`} prefetch={false}>
-              <h2>{name.toUpperCase()}</h2>
+              <h2>{productName}</h2>
             </Link>
           </span>
-          <ProductPrice price={price} hasStock={hasStock} />
+          <ProductPrice price={formattedPrice} hasStock={hasStock} />
           <span className={classes.product_select_quantity}>
             <SelectQuantitySection disabled={!hasStock} setProductQuantity={setProductQuantity} />
           </span>

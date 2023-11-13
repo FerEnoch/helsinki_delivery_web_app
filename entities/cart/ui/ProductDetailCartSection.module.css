@@ -10,14 +10,19 @@
 }
 
 .product_price {
+  display: grid;
+  place-content: center;
   background-color: var(--app-black-text);
   border-radius: 16px;
   color: var(--app-white-text);
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 2.3rem;
   margin-inline: auto;
   width: 95%;
   padding: .5rem;
+}
+
+.product_price>p {
+  padding-block-start: .5rem;
 }
 
 .quantity_cart_section {

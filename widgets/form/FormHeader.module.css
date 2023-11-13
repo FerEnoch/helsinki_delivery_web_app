@@ -1,0 +1,25 @@
+.form_header {
+  width: 110%;
+  height: 3rem;
+  display: grid;
+  place-content: center;
+}
+
+.form_title {
+  margin-block-start: 1rem;
+  font-size: 1.4rem;
+  color: var(--app-red-background);
+  text-wrap: balance;
+}
+
+@media (width<=465px) {
+  .form_title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (width<=405px) {
+  .form_title {
+    font-size: 1.2rem;
+  }
+}

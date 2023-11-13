@@ -2,7 +2,7 @@
 import { useAppStore } from '@/entities/lib/store'
 import classes from './TotalCartAmount.module.css'
 import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
-import { Suspense } from 'react'
+import { codecProBold } from '@/shared/config/fonts'
 
 export default function TotalCartAmount ({ label }) {
   const { getCartTotalAmount } = useAppStore()
@@ -12,11 +12,9 @@ export default function TotalCartAmount ({ label }) {
   return (
     <div className={classes.total_amount_wrapper}>
       <p className={classes.text}>{label.toUpperCase()}</p>
-      <Suspense>
-        <span className={classes.mount}>
-          <p>{formattedCartTotal}</p>
-        </span>
-      </Suspense>
+      <span className={`${classes.amount} ${codecProBold.className}`}>
+        <p>{formattedCartTotal}</p>
+      </span>
     </div>
   )
 }

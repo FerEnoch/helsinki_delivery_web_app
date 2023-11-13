@@ -6,8 +6,8 @@ export const i18n = {
   DEVELOPER: 'Powered by Dynamo',
   LANG: {
     ESP: {
-      APP_TITLE: 'Helsinki Devlivery Web App',
-      APP_DESCRIPTION: 'Hacé tu pedido y mandalo por WhatsApp!',
+      APP_TITLE: 'Helsinki Devlivery App',
+      APP_DESCRIPTION: 'Conocé nuestros productos y hacé tu pedido online. Te enviamos cualquier bebida o accesorio al instante',
       UI: {
         CART: {
           FIRST_STEP_TITLE: '1 - Revisa tu compra',
@@ -23,7 +23,7 @@ export const i18n = {
             TOTAL_CART_AMOUNT: 'Monto total',
             GO_TO_PAYMENTS: 'Ver formas de pago',
             CONFIRM_ORDER: 'Confirmar solicitud',
-            GO_TO_FORM: 'Datos para el envío'
+            GO_TO_FORM: 'Datos de envío'
           },
           PAYMENT_OPTIONS,
           PAY_METHOD: '3 - Aboná en tu app de pagos preferida'
@@ -36,12 +36,12 @@ export const i18n = {
             generic_description: 'Llevamos nuestros productos directo a la puerta de tu casa'
           },
           FOOTER: {
+            action: 'No te olvides del hielo y los cigarrillos',
             generic_action: {
               /** The order of category array (index) is important for images of the DetailProduct component */
               categories: [/extras/i, /tabaquer[ií]a/i],
-              text: 'No te olvides de completar tu carrito y envianos tu pedido por WhatsApp'
+              text: 'No te olvides de completar tu carrito y envianos tu pedido'
             },
-            action: 'No te olvides del hielo y los cigarrillos',
             OFFERED_PRODUCTS
           }
         },
@@ -54,14 +54,15 @@ export const i18n = {
           FIELD_ADDRESS: {
             LABEL: 'Dirección de entrega',
             EXTRA_INFO: 'Añadir información extra',
-            SUMMARY: 'Información extra o aclaración que necesitemos saber antes el envío',
+            SUMMARY: 'Información extra o aclaración que necesitemos saber para el envío',
             ON_INVALID: '** No se permiten caracteres especiales'
           },
           FIELD_PHONE: {
             LABEL: 'Nº telefónico',
             ON_INVALID: '** Por favor inserta solo números',
             INITIAL_CHAR_NUM: '0',
-            INITIAL_PHONE_NUM: '15'
+            INITIAL_PHONE_NUM: '15',
+            ON_TOO_SHORT: '** Por favor escribe el número completo'
           },
           FIELD_RECEIPT: {
             LABEL: 'Adjunta tu comprobante de pago',
@@ -71,11 +72,11 @@ export const i18n = {
         },
         ORDER_PROCESSING: {
           title: 'Estamos procesando tu pedido',
-          message: 'En un intante estará listo...'
+          message: 'Aguarda unos instantes'
         },
         ORDER_SUCCESS: {
-          title: 'Muchas gracias por tu compra!',
-          message: 'Ya mismo te lo estamos enviando!'
+          title: 'Tu pedido está en camino',
+          message: 'Gracias por tu compra'
         }
       },
       G_DRIVE_UI: {

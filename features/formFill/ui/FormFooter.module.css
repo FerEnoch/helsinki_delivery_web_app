@@ -1,48 +1,96 @@
 .form_footer {
+  display: flex;
   width: 100%;
-  height: 5rem;
-  z-index: 100;
-  position: relative;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem
 }
 
-.submit_button {
-  border: 2px solid white;
-  font-size: 1.5rem;
-  font-weight: 600;
-  background-color: var(--app-payments-green);
+.back_button_wrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid #999;
+  border-radius: 14px;
+  background-color: var(--app-red-background);
+  flex: 1 0 50%
+}
+
+.back_button_input {
+  background-color: transparent;
+  border: none;
   color: white;
-  padding: .6rem;
-  border-radius: 12px;
+  font-weight: 100;
+  font-size: 1.7rem;
+  padding-inline-end: 1rem;
+  font-family: var(--font-unica);
 }
 
-.submit_button:hover {
+.back_button_triangle svg {
+  margin-block-start: .25rem;
+  transform: rotate(-90deg);
+}
+
+.back_button_wrapper:active {
+  opacity: .9;
+}
+
+.back_button_input:hover,
+.back_button_wrapper:hover {
   cursor: pointer;
 }
 
-.submit_button:disabled {
-  background: transparent;
-  border: 2px solid #aaa;
-  color: #888
+.submit_button_wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 14px;
+  flex: 1 0 50%;
+  border: 1px solid #999;
+  background-color: var(--app-payments-green);
+
 }
 
-
-.loading_logo_wrapper {
-  position: absolute;
-  left: 33%;
-  bottom: 1rem;
+.submit_button_triangle svg {
+  margin-block-start: .25rem;
+  transform: rotate(90deg);
 }
 
-.SVGLogo {
-  padding-block-start: 2rem;
-  animation: viking-skeleton 600ms ease-out infinite alternate;
+.submit_button_wrapper>p {
+  color: white;
+  font-size: 1.7rem;
+  line-height: 1.3rem;
+  font-weight: 100;
+  max-width: 5ch;
+  padding-inline-start: 1rem;
 }
 
-@keyframes viking-skeleton {
-  0% {
-    opacity: .1;
+.submit_button_wrapper:hover {
+  cursor: pointer;
+}
+
+.submit_button_wrapper:disabled {
+  color: #444;
+  border-color: #666;
+  background-color: gray;
+}
+
+.submit_button_wrapper:disabled:hover {
+  cursor: not-allowed;
+}
+
+@media (width <=400px) {
+
+  .back_button_input {
+    padding-inline-end: .3rem
   }
 
-  100% {
-    opacity: 1;
+  .submit_button_wrapper>p {
+    padding-inline-start: .3rem
   }
+
 }

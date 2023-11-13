@@ -6,6 +6,7 @@ export const paymentSlice = (set, get) => {
     QRService: {},
     isShareApiCompatible: null,
     chosenTransferData: {},
+    receiptFile: null,
     pickPaymentOption: (selectedId) => {
       if (!selectedId) {
         set({ paymentMethod: {} })
@@ -20,6 +21,8 @@ export const paymentSlice = (set, get) => {
     },
     setIsShareApiCompatible: (bool) => set({ isShareApiCompatible: bool }),
     clearPaymentSlice: () => set({ paymentMethod: {}, QRService: {} }),
-    setChosenTransferData: (transferData) => set({ chosenTransferData: { ...transferData } })
+    setChosenTransferData: (transferData) => set({ chosenTransferData: { ...transferData } }),
+    uploadReceiptFile: (file) => set({ receiptFile: file }),
+    deleteReceiptFile: () => set({ receiptFile: null })
   }
 }

@@ -10,7 +10,8 @@ export function useShowPaymentMethod (allMethods) {
   const [kindOfService, setKindOfService] = useState(null)
 
   useEffect(() => {
-    if (paymentMethod.label.includes('QR')) {
+    if (!paymentMethod?.label) return
+    if (paymentMethod?.label.includes('QR')) {
       const QRsData = allMethods.filter(method => method?.image && method.payment_method.includes('QR'))
       setChosenQRpaymentData(QRsData)
       pickQRService(QRsData[0])

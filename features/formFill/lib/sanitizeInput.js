@@ -1,6 +1,13 @@
-import { HTML_REGEXP, LETTERS_CHAR, SCRIPT_REGEXP, SPECIAL_CHAR } from '../config/validationFormInput'
+import { VALIDATION_RULES } from '../config/validationFormInput'
 
-export function validateInput (processInput, flag) {
+const {
+  HTML_REGEXP,
+  LETTERS_CHAR,
+  SCRIPT_REGEXP,
+  SPECIAL_CHAR
+} = VALIDATION_RULES
+
+export function sanitizeInput (processInput, flag) {
   let sanitizedInput = processInput
   let foundInvalidCharacters
 

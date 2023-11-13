@@ -1,21 +1,25 @@
 'use client'
-import { i18n } from '@/shared/model/i18n'
-import ClientDataForm from './ClientDataForm'
 import classes from './FormDialog.module.css'
 
-import { forwardRef, useCallback, useState } from 'react'
+import { forwardRef, useCallback, useMemo } from 'react'
 import { useFormModal } from '@/features/formFill/lib/useFormModal'
-
-const { CART: { FOOTER_BUTTONS: { BACK } } } = i18n.LANG.ESP.UI
-const backButtonText = BACK.toUpperCase()
+import ClientForm from './ClientForm'
+import { useAppStore } from '@/entities/lib/store'
+import FormLoadingState from './FormLoadingState'
+import OrderSent from './OrderSent'
+import ClientDataFields from './ClientDataFields'
+import FormFooter from '@/features/formFill/ui/FormFooter'
+import FormHeader from './FormHeader'
+import DialogContainer from './DialogContainer'
 
 export default forwardRef(function FormDialog (props, ref) {
+  const { formLoadingState, formSuccessfullSubmitOperation } = useAppStore()
   const { closeFormDialog } = useFormModal(ref)
-  const [showFooterButtons, setShowFooterButtons] = useState(true)
 
-  const showContinueShoppingButton = useCallback((successState) => {
-    setShowFooterButtons(!successState)
-  }, [])
+  const closeDialog = useCallback(() => closeFormDialog(), [closeFormDialog])
+
+  const showLoadingState = useMemo(() => formLoadingState && !formSuccessfullSubmitOperation, [formLoadingState, formSuccessfullSubmitOperation])
+  const showSuccessView = useMemo(() => formSuccessfullSubmitOperation && !formLoadingState, [formLoadingState, formSuccessfullSubmitOperation])
 
   return (
     <dialog
@@ -23,22 +27,22 @@ export default forwardRef(function FormDialog (props, ref) {
       className={classes.form_dialog_container}
       onClose={closeFormDialog}
     >
-      <main className={classes.dialog_main}>
-        <ClientDataForm
-          showContinueShoppingButton={showContinueShoppingButton}
-        />
+      <DialogContainer>
         {
-        showFooterButtons && (
-          <div className={classes.button_container}>
-            <button
-              className={classes.back_button}
-              onClick={closeFormDialog}
-            >
-              <p> {backButtonText} </p>
-            </button>
-          </div>)
+      showLoadingState && <FormLoadingState />
         }
-      </main>
+        {!showLoadingState && !showSuccessView && (
+          <ClientForm>
+            <div className={classes.red_line} />
+            <FormHeader />
+            <ClientDataFields />
+            <FormFooter closeFormDialog={closeDialog} />
+          </ClientForm>
+        )}
+        {
+      showSuccessView && <OrderSent />
+        }
+      </DialogContainer>
     </dialog>
   )
 })

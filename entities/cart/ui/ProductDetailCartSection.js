@@ -5,6 +5,7 @@ import classes from './ProductDetailCartSection.module.css'
 import { useAppStore } from '@/entities/lib/store'
 import { useState } from 'react'
 import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
+import { codecProBold } from '@/shared/config/fonts'
 
 export default function ProductDetailCartSection ({ product }) {
   const { addToCart } = useAppStore()
@@ -19,7 +20,7 @@ export default function ProductDetailCartSection ({ product }) {
 
   return (
     <section className={classes.cart_section}>
-      <header className={classes.product_price}>
+      <header className={`${classes.product_price} ${codecProBold.className}`}>
         <p>
           {
          hasStock

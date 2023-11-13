@@ -1,0 +1,30 @@
+.success_view_container {
+  background-color: #ffd077;
+  border-radius: 50px;
+  padding: 3rem;
+  max-width: 90%;
+  margin-inline: auto;
+  display: grid;
+  place-content: center;
+  transition: all 350ms linear forwards;
+}
+
+.success_title {
+  font-size: 2rem;
+  font-weight: 100;
+  width: 20ch;
+  max-width: 90%;
+  text-align: center;
+  margin-inline: auto;
+  margin-block: 0;
+}
+
+.success_image {
+  display: grid;
+  place-content: center;
+  padding-inline-end: 2rem;
+}
+
+.success_message {
+  font-size: 1.5rem;
+}

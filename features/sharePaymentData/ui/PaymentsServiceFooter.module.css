@@ -24,12 +24,13 @@
 
 .share_icon {
   flex: 1 1 10%;
-  margin-inline-end: .1rem;
+  margin-inline-end: .3rem;
 }
 
 .share_icon>svg {
   max-width: 2rem;
   max-height: 1.8rem;
+  margin-inline-end: .3rem;
 }
 
 .share_button {
@@ -52,4 +53,14 @@
 .share_button:active {
   color: var(--app-payments-green);
   border: 3px solid var(--app-payments-green);
+}
+
+@media (width<=417px) {
+  .share_icon>svg {
+    margin-inline-end: .2rem;
+  }
+
+  .share_button {
+    font-size: .6rem;
+  }
 }

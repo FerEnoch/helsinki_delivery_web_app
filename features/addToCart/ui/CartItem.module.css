@@ -25,8 +25,8 @@
 
 .product_image img {
   position: relative;
-  transform: scale(1.7);
-  bottom: 23px;
+  transform: scale(2);
+  bottom: 25px;
   right: 14px;
 }
 
@@ -34,13 +34,13 @@
   position: relative;
   transform: scale(1.5);
   right: 10px;
+  top: 12px;
 }
 
 .image_mask {
   position: relative;
   overflow: hidden;
-  width: 5.2rem;
-  border-radius: 100%;
+  width: 6.5rem;
   margin-inline-end: 0.7rem;
   height: 5rem;
 }

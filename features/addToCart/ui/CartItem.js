@@ -6,13 +6,15 @@ import CartUnitsSection from './CartUnitsSection'
 import { useAppStore } from '@/entities/lib/store'
 import classes from './CartItem.module.css'
 import { useEffect } from 'react'
+import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 
 const { DETAIL_CARD_PRODUCT: { FOOTER: cardFooterTexts } } = i18n.LANG.ESP.UI
 
 export default function CartItem ({ product, showArrows }) {
   const { cart } = useAppStore()
   const { id, category, name, image, price, stock: hasStock } = product
-
+  const productName = name?.toUpperCase()
+  const formattedPrice = priceFormater(price)
   const isCigarOrExtra = cardFooterTexts.generic_action.categories.find(categRegExp => categRegExp.test(category))
 
   useEffect(() => {
@@ -47,11 +49,11 @@ export default function CartItem ({ product, showArrows }) {
             style={{ fontSize: `${name?.length > 20 ? '0.8rem' : '1rem'}` }}
           >
             <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`} prefetch={false}>
-              <h2>{name?.toUpperCase()}</h2>
+              <h2>{productName}</h2>
             </Link>
           </span>
           <span className={classes.product_price}>
-            <ProductPrice price={price} hasStock={hasStock} />
+            <ProductPrice price={formattedPrice} hasStock={hasStock} />
           </span>
         </div>
         <span className={classes.product_select_quantity}>

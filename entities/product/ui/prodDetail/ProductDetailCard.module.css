@@ -59,8 +59,21 @@
 }
 
 .product_description>p {
-  line-height: 1.5;
+  font-size: 1.1rem;
+  line-height: 1.2;
   padding: 1rem;
+}
+
+.destillery_text,
+.alcohol_text {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.destillery_var,
+.alcohol_var {
+  font-weight: normal;
+  margin-inline-start: .2rem;
 }
 
 @media (max-width: 360px) {

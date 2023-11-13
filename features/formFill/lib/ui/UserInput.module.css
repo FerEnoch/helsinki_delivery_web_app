@@ -1,0 +1,14 @@
+.user_input {
+  height: 2.5rem;
+  padding-inline: 1rem;
+  border: 1.5px solid var(--app-red-background);
+  border-radius: 30px;
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+@media (width<=380px) {
+  .user_input {
+    font-size: 1.3rem;
+  }
+}

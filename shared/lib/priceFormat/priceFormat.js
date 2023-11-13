@@ -6,4 +6,4 @@ const options = {
 }
 const intlFormater = new Intl.NumberFormat('es-AR', options)
 
-export const priceFormater = (price) => intlFormater.format(price).replace(/\$\s/, '$')
+export const priceFormater = (price) => intlFormater.format(price).replace(/\$\s/, '$').replace('.', '')

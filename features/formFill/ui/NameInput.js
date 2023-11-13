@@ -1,36 +1,34 @@
-import { i18n } from '@/shared/model/i18n'
 import classes from './NameInput.module.css'
-import inputClasses from '@/widgets/form/ClientDataForm.module.css'
 import { useValidateNameInput } from '../lib/useValidateNameInput'
-import { useState } from 'react'
-
-const { CLIENT_FORM: { FIELD_NAME: { LABEL, ON_INVALID } } } = i18n.LANG.ESP.UI
+import UserInput from '../lib/ui/UserInput'
+import Dot from '../lib/ui/Dot'
 
 export default function NameInput () {
-  const [name, setName] = useState('')
-  const [sanitizedName, invalidInput] = useValidateNameInput(name)
+  const {
+    hangleNameChange,
+    sanitizedClientName,
+    invalidInput,
+    labelText,
+    onInvalidText
+  } = useValidateNameInput()
 
   return (
-    <div className={`
-    ${inputClasses.client_input} 
-    ${classes.name_input} 
-    `}
-    >
+    <div className={classes.name_input}>
       <label htmlFor='clientNameID'>
-        <p>{LABEL}</p>
+        <p className={classes.input_label}> <Dot /> {labelText} </p>
       </label>
-      <input
+      <UserInput
         required
         id='clientNameID'
         type='text'
-        value={sanitizedName || ''}
-        onChange={(e) => setName(e.target.value)}
-        onBlur={(e) => setName(e.target.value)}
+        value={sanitizedClientName || ''}
+        onChange={hangleNameChange}
+        onBlur={hangleNameChange}
       />
       {
         invalidInput && (
           <p className={classes.invalid_input_message}>
-            {ON_INVALID}
+            {onInvalidText}
           </p>
         )
       }

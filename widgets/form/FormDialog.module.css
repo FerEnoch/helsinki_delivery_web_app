@@ -1,27 +1,24 @@
 .form_dialog_container {
-  align-content: stretch;
-  animation: dialog-out 350ms ease-in-out;
-  /* backdrop-filter: blur(8px) saturate(60%); */
+  animation: dialog-out 350ms ease-in forwards;
   background-color: white;
-  border-radius: 12px;
+  border-radius: 22px;
   border: 2px solid rgba(255, 255, 255, 0.125);
-  display: grid;
   margin-inline: auto;
   overflow: hidden;
   position: absolute;
-  transition: all 250ms linear;
+  transition: all 250ms ease-in-out;
   visibility: hidden;
-  display: none;
+  padding: 1rem;
 }
 
+
 .form_dialog_container::backdrop {
-  backdrop-filter: blur(1px) saturate(110%) brightness(45%);
+  backdrop-filter: blur(1px) saturate(120%) brightness(65%);
 }
 
 .form_dialog_container[open] {
   visibility: visible;
-  display: block;
-  animation: dialog-in 250ms ease-in-out;
+  animation: dialog-in 250ms ease-in-out forwards;
 }
 
 
@@ -37,51 +34,19 @@
 @media (width <520px) {
   .form_dialog_container {
     top: 5rem;
-    width: 80%;
+    width: 85%;
     height: clamp(40%, 50rem, 85%);
   }
 }
 
-.dialog_main {
-  position: relative;
-  height: 90%;
-  padding-block-start: 1rem;
-}
-
-.button_container {
-  align-items: self-start;
-  background-color: var(--app-type-background);
-  display: grid;
-  height: 15%;
-  margin-block-start: 1rem;
-  width: 100%;
-  border-radius: 12px;
-}
-
-.back_button {
-  border: transparent;
-  font-size: 1.3rem;
-  background-color: var(--app-type-background);
-  padding: 1rem;
-  border-radius: 12px;
-  margin-inline-start: -25%;
-  width: 150%
-}
-
-.back_button:active {
-  opacity: .7;
-}
-
-.back_button:hover {
-  cursor: pointer;
-}
-
 @keyframes dialog-in {
   0% {
+    display: none;
     opacity: 0;
   }
 
   100% {
+    display: block;
     opacity: 1;
   }
 }
@@ -89,11 +54,17 @@
 @keyframes dialog-out {
   0% {
     display: block;
-
   }
 
   100% {
     display: none;
     transform: translateY(-100%);
   }
+}
+
+.red_line {
+  background-color: var(--app-red-background);
+  border-radius: 10px;
+  width: 95%;
+  height: 5px;
 }
