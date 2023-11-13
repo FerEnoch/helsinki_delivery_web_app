@@ -12,6 +12,7 @@
   padding-inline-start: 1.1rem;
   margin-block-end: .6rem;
   letter-spacing: 1.1px;
+  text-wrap: nowrap;
 }
 
 .invalid_input_message {
@@ -24,7 +25,12 @@
   z-index: 100;
 }
 
-@media (width<=400px) {
+@media (width<=415px) {
+
+  .input_label {
+    font-size: 1.2rem;
+  }
+
   .invalid_input_message {
     font-size: .8rem;
   }

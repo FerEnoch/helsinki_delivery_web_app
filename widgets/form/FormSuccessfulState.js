@@ -1,4 +1,4 @@
-import classes from './OrderSent.module.css'
+import classes from './FormSuccessfulState.module.css'
 import { i18n } from '@/shared/model/i18n'
 import { HelsinkiTruck } from '@/shared/ui/lib/svg/HelsinkiTruck'
 
@@ -6,7 +6,7 @@ const { ORDER_SUCCESS } = i18n.LANG.ESP.UI
 const processingOrderSuccessTitle = ORDER_SUCCESS.title.toUpperCase()
 const processingOrderSuccessMessage = ORDER_SUCCESS.message.toUpperCase()
 
-export default function OrderSent () {
+export default function FormSuccessfulState () {
   return (
     <div className={classes.success_view_container}>
       <h1 className={classes.success_title}>

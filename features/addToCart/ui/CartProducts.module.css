@@ -9,6 +9,12 @@
   z-index: 6;
 }
 
+@media (width<=400px) {
+  .cart_list_container {
+    width: 118%;
+  }
+}
+
 .cart_list_container::-webkit-scrollbar {
   display: none;
 }
@@ -17,7 +23,7 @@
   background-color: var(--app-backgound-gray);
   top: 0;
   right: 0rem;
-  width: 22rem;
+  width: 82%;
   position: absolute;
 }
 

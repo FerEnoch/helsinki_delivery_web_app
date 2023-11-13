@@ -7,7 +7,7 @@
   font-size: 1.5rem;
 }
 
-@media (width<=380px) {
+@media (width<=400px) {
   .user_input {
     font-size: 1.3rem;
   }

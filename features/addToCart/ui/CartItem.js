@@ -5,14 +5,14 @@ import Link from 'next/link'
 import CartUnitsSection from './CartUnitsSection'
 import { useAppStore } from '@/entities/lib/store'
 import classes from './CartItem.module.css'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 
 const { DETAIL_CARD_PRODUCT: { FOOTER: cardFooterTexts } } = i18n.LANG.ESP.UI
 
 export default function CartItem ({ product, showArrows }) {
   const { cart } = useAppStore()
-  const { id, category, name, image, price, stock: hasStock } = product
+  const { id, category, name, image, price, stock: hasStock } = useMemo(() => product, [product])
   const productName = name?.toUpperCase()
   const formattedPrice = priceFormater(price)
   const isCigarOrExtra = cardFooterTexts.generic_action.categories.find(categRegExp => categRegExp.test(category))
@@ -46,7 +46,7 @@ export default function CartItem ({ product, showArrows }) {
         <div className={classes.product_background}>
           <span
             className={classes.product_name}
-            style={{ fontSize: `${name?.length > 20 ? '0.8rem' : '1rem'}` }}
+            style={{ fontSize: `${name?.length > 20 ? '0.6rem' : '.8rem'}` }}
           >
             <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`} prefetch={false}>
               <h2>{productName}</h2>

@@ -1,7 +1,6 @@
 import confetti from 'canvas-confetti'
 import { useAppStore } from '@/entities/lib/store'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
 import { FORM_FIELDS } from '../config/formFieldsOrder'
 import { timeFormatter } from '@/shared/lib/timeFormat'
 import { sendOrderData } from '../model/sendOrderData'
@@ -27,6 +26,7 @@ const {
 const { PROCESSING_MIN_TIME_MS, SUCCESS_OPERATION_MAX_TIME_MS } = ORDER_OPERATION_TIME
 
 export function useFormSubscription () {
+  const router = useRouter()
   const {
     paymentMethod: { label: method, receipt },
     getCartTotalAmount,
@@ -38,15 +38,12 @@ export function useFormSubscription () {
     receiptFile,
     deleteReceiptFile,
     setFormLoadingState,
-    setFormSuccessfullSubmitOperation
+    setFormSuccessfulSubmitOperation
   } = useAppStore()
-  const router = useRouter()
-  const [processTimeFinished, setProcessTimeFinished] = useState(null)
 
   const successHandler = () => {
-    !processTimeFinished && setTimeout(() => {
-      setFormSuccessfullSubmitOperation(true)
-      setProcessTimeFinished(true)
+    setTimeout(() => {
+      setFormSuccessfulSubmitOperation(true)
       setFormLoadingState(false)
       clearClientData()
       clearCart()
@@ -55,9 +52,8 @@ export function useFormSubscription () {
       confetti()
 
       setTimeout(() => {
+        setFormSuccessfulSubmitOperation(false)
         router.push('/')
-        setFormSuccessfullSubmitOperation(false)
-        setProcessTimeFinished(null)
       }, SUCCESS_OPERATION_MAX_TIME_MS)
     }, PROCESSING_MIN_TIME_MS)
   }

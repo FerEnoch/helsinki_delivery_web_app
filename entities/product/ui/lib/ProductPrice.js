@@ -1,9 +1,9 @@
 'use client'
 import classes from './ProductPrice.module.css'
 import { codecProBold } from '@/shared/config/fonts'
-import { Suspense } from 'react'
+import { Suspense, memo } from 'react'
 
-export default function ProductPrice ({ price, hasStock }) {
+export default memo(function ProductPrice ({ price, hasStock }) {
   const isInteger = Number.isInteger(Number(price.replace('$', '')))
 
   return (
@@ -39,4 +39,4 @@ export default function ProductPrice ({ price, hasStock }) {
       </p>
     </span>
   )
-}
+})

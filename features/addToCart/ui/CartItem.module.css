@@ -6,8 +6,8 @@
 }
 
 .product_background {
+  flex: 2 1 90%;
   display: inline-flex;
-  width: 100%;
   padding-inline-start: .8rem;
   background-color: white;
   border-radius: 12px;
@@ -33,8 +33,8 @@
 .product_image svg {
   position: relative;
   transform: scale(1.5);
-  right: 10px;
-  top: 12px;
+  right: 15px;
+  top: 10px;
 }
 
 .image_mask {
@@ -46,6 +46,7 @@
 }
 
 .product_name {
+  text-wrap: balance;
   flex: 2 0 18%;
 }
 
@@ -54,9 +55,33 @@
 }
 
 .product_select_quantity {
-  flex: 1 0 10%;
+  flex: 1 2 10%;
 }
 
-.product_add_to_cart {
-  flex: 1;
+@media (width<=415px) {
+
+  .product_background {
+    width: 105%;
+    padding-inline-start: .9rem;
+    height: 4rem;
+  }
+
+  .product_image img {
+    transform: scale(1.6);
+  }
+
+  .image_mask {
+    width: 5.5rem;
+    height: 4rem;
+  }
+
+  .product_image {
+    left: 1.2rem;
+  }
+
+
+  .product_image svg {
+    right: 15px;
+    top: 0;
+  }
 }

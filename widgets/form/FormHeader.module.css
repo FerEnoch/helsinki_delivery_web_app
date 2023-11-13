@@ -23,3 +23,9 @@
     font-size: 1.2rem;
   }
 }
+
+@media (width<=415px) {
+  .form_title {
+    margin-block-start: .5rem;
+  }
+}

@@ -1,8 +1,8 @@
 export const formSlice = (set, get) => {
   return {
     formLoadingState: false,
-    formSuccessfullSubmitOperation: false,
+    formSuccessfulSubmitOperation: false,
     setFormLoadingState: (bool) => set({ formLoadingState: bool }),
-    setFormSuccessfullSubmitOperation: (bool) => set({ formSuccessfullSubmitOperation: bool })
+    setFormSuccessfulSubmitOperation: (bool) => set({ formSuccessfulSubmitOperation: bool })
   }
 }

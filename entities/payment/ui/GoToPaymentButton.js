@@ -3,11 +3,12 @@ import Link from 'next/link'
 import classes from './GoToPaymentButton.module.css'
 
 export default function GoToPayment ({ label }) {
+  const goToPaymentText = label.toUpperCase()
   return (
     <div className={classes.go_to_payment_button}>
       <Link href='/cart/payments'>
         <p className={classes.text}>
-          {label.toUpperCase()}
+          {goToPaymentText}
         </p>
         <span className={classes.triangle_button}>
           <TriangleButton
