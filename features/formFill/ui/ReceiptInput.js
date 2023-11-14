@@ -20,9 +20,7 @@ export default memo(function ReceiptInput () {
     receiptInputUILabel
   } = useHandleFileInput()
 
-  const handleStartUploading = () => {
-    setUploadingStart(true)
-  }
+  const handleStartUploading = () => setUploadingStart(true)
 
   useEffect(() => {
     if (receiptFile && isInputValid) setUploadingEnd(true)
@@ -36,10 +34,10 @@ export default memo(function ReceiptInput () {
         </h3>
         <label htmlFor='fileInputID' className={classes.input_label}>
           <p className={`
-          ${classes.upload_action}
-          ${uploadingStart && classes.uploading_start}
-          ${uploadingEnd && classes.uploading_end}
-          `}
+              ${classes.upload_action}
+              ${uploadingStart && classes.uploading_start}
+              ${uploadingEnd && classes.uploading_end}
+           `}
           >
             {uploadAction}
             {uploadingEnd && <Check className={classes.check} />}

@@ -2,8 +2,9 @@ import classes from './NameInput.module.css'
 import { useValidateNameInput } from '../lib/useValidateNameInput'
 import UserInput from '../lib/ui/UserInput'
 import Dot from '../lib/ui/Dot'
+import { memo } from 'react'
 
-export default function NameInput () {
+export default memo(function NameInput () {
   const {
     hangleNameChange,
     sanitizedClientName,
@@ -18,6 +19,7 @@ export default function NameInput () {
         <p className={classes.input_label}> <Dot /> {labelText} </p>
       </label>
       <UserInput
+        isInvalid={invalidInput}
         required
         id='clientNameID'
         type='text'
@@ -34,4 +36,4 @@ export default function NameInput () {
       }
     </div>
   )
-}
+})

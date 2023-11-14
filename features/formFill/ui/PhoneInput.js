@@ -1,5 +1,5 @@
 import classes from './PhoneInput.module.css'
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 import { useValidatePhoneInput } from '../lib/useValidatePhoneInput'
 import UserInput from '../lib/ui/UserInput'
 import Dot from '../lib/ui/Dot'
@@ -23,6 +23,23 @@ export default memo(function PhoneInput ({ isDetailsOpen }) {
     INITIAL_PHONE_NUM
   } = usePhoneInputTexts()
 
+  const uiDangerMessage = useMemo(() => {
+    if (invalidInput) {
+      return (
+        <p className={classes.invalid_input_message}>
+          {onInvalidText}
+        </p>
+      )
+    }
+    if (!invalidInput && isNumberTooShort) {
+      return (
+        <p className={classes.invalid_input_message}>
+          {onTooShortText}
+        </p>
+      )
+    }
+  }, [invalidInput, isNumberTooShort, onInvalidText, onTooShortText])
+
   return (
     <div
       style={inputStyle}
@@ -40,6 +57,7 @@ export default memo(function PhoneInput ({ isDetailsOpen }) {
             style={{
               width: '6.5rem'
             }}
+            isInvalid={invalidInput || isNumberTooShort}
             autoComplete='off'
             type='tel'
             id='clientPhoneID'
@@ -57,6 +75,7 @@ export default memo(function PhoneInput ({ isDetailsOpen }) {
             style={{
               width: '100%'
             }}
+            isInvalid={invalidInput || isNumberTooShort}
             autoComplete='off'
             type='tel'
             maxLength={9}
@@ -65,20 +84,7 @@ export default memo(function PhoneInput ({ isDetailsOpen }) {
             onBlur={handlePhoneNumber}
           />
         </div>
-        {
-        invalidInput && (
-          <p className={classes.invalid_input_message}>
-            {onInvalidText}
-          </p>
-        )
-        }
-        {
-        !invalidInput && isNumberTooShort && (
-          <p className={classes.invalid_input_message}>
-            {onTooShortText}
-          </p>
-        )
-      }
+        {uiDangerMessage}
       </section>
     </div>
   )

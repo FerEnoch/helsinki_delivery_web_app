@@ -1,7 +1,7 @@
 'use client'
 import classes from './ProductPrice.module.css'
 import { codecProBold } from '@/shared/config/fonts'
-import { Suspense, memo } from 'react'
+import { memo } from 'react'
 
 export default memo(function ProductPrice ({ price, hasStock }) {
   const isInteger = Number.isInteger(Number(price.replace('$', '')))
@@ -12,26 +12,17 @@ export default memo(function ProductPrice ({ price, hasStock }) {
         {
    hasStock
      ? (
-       <Suspense>
-         <span
-           style={{
-             display: 'grid',
-             fontSize: `${isInteger ? '1.5rem' : '1.4rem'}`,
-             placeContent: 'center'
-           }}
-         >
-           {price}
-         </span>
-       </Suspense>
+       <span
+         className={`
+         ${classes.price_number} 
+         ${isInteger ? classes.is_integer : classes.not_integer}
+         `}
+       >
+         {price}
+       </span>
        )
      : (
-       <span style={{
-         color: '#e85a5a',
-         display: 'grid',
-         fontSize: '.8rem',
-         placeContent: 'center'
-       }}
-       >
+       <span className={classes.no_stock}>
          S/STOCK
        </span>
        )

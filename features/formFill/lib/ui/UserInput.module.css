@@ -5,10 +5,17 @@
   border-radius: 30px;
   width: 100%;
   font-size: 1.5rem;
+  /* letter-spacing: 1px; */
 }
 
-@media (width<=400px) {
+.invalid_user_input {
+  background-color: rgba(255, 0, 0, 0.42);
+}
+
+@media (width<=415px) {
   .user_input {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    padding-inline-start: .8rem;
+    padding-inline-end: .5rem;
   }
 }

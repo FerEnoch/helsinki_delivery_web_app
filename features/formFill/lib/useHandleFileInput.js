@@ -11,7 +11,6 @@ export function useHandleFileInput () {
   const receiptFileRef = useRef(null)
   const { uploadReceiptFile } = useAppStore()
   const [isInputValid, setIsInputValid] = useState(true)
-
   const handleInvalidInput = () => setIsInputValid(true)
 
   const handleChangeFileInput = () => {
@@ -20,6 +19,8 @@ export function useHandleFileInput () {
       const isFileValid = sanitizeFile(file)
       setIsInputValid(isFileValid)
       if (isFileValid) uploadReceiptFile(file)
+    } else {
+      setIsInputValid(false)
     }
   }
 

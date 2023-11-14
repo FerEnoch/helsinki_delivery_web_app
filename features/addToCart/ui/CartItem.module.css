@@ -58,12 +58,21 @@
   flex: 1 2 10%;
 }
 
-@media (width<=415px) {
+@media (width<=400px) {
+  .product_price {
+    padding-inline-end: .5rem;
+  }
 
+  .product_select_quantity {
+    flex: 1 3 5%;
+  }
+}
+
+@media (width<=415px) {
   .product_background {
-    width: 105%;
     padding-inline-start: .9rem;
     height: 4rem;
+    flex: 2 1 95%;
   }
 
   .product_image img {

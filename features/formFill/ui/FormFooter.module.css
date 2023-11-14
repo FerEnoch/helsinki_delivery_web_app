@@ -11,7 +11,8 @@
   height: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding-block: 1rem;
+  padding-inline-start: 1rem;
   border: 1px solid #999;
   border-radius: 14px;
   background-color: var(--app-red-background);
@@ -47,7 +48,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding-block: 1rem;
+  padding-inline-end: 1rem;
   border-radius: 14px;
   flex: 1 0 50%;
   border: 1px solid #999;
@@ -85,12 +87,18 @@
 
 @media (width <=400px) {
 
+  .back_button_wrapper,
+  .submit_button_wrapper {
+    padding-block: .6rem;
+  }
+
   .back_button_input {
-    padding-inline-end: .3rem
+    padding-inline-end: .8rem
   }
 
   .submit_button_wrapper>p {
-    padding-inline-start: .3rem
+    line-height: 1.6rem;
+    padding-inline-start: .8rem
   }
 
 }

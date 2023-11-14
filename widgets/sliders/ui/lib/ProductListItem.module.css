@@ -9,6 +9,7 @@
   display: inline-flex;
   width: 85%;
   padding-inline-start: .8rem;
+  padding-inline-end: .2rem;
   background-color: white;
   border-radius: 16px;
   height: 3rem;

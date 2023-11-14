@@ -35,6 +35,7 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
         <p className={classes.input_label}> <Dot />{labelText}</p>
       </label>
       <UserInput
+        isInvalid={invalidInput}
         required
         id='clientAddressID'
         type='text'

@@ -43,7 +43,7 @@
   position: absolute;
   left: 1rem;
   font-size: 1rem;
-  top: 115%;
+  top: 110%;
   font-weight: 600;
   z-index: 100;
 }
@@ -56,5 +56,6 @@
 
   .invalid_input_message {
     font-size: .8rem;
+    top: 115%;
   }
 }
