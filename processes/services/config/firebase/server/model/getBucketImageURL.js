@@ -6,7 +6,7 @@ export async function getBucketImageURL (imageId) {
     const fileRef = bucket.file(`images/${imageId}`)
     return await getDownloadURL(fileRef)
   } catch (e) {
-    console.error(`Something happened with imagen ID ${imageId}--> message ${e.message}`)
+    console.error(`Something happened when trying to get firebase URL for the image ID ${imageId}--> message ${e.message}`)
     console.table(e)
     return null
   }

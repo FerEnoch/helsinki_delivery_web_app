@@ -2,13 +2,15 @@ import classes from './PaymentsServiceFooter.module.css'
 import { ShareIcon } from '@/shared/ui/lib/svg/ShareIcon'
 import { CopyPasteIcon } from '@/shared/ui/lib/svg/CopyPasteIcon'
 import { useSharePaymentData } from '@/features/sharePaymentData/model/useSharePaymentData'
+import { codecProBold } from '@/shared/config/fonts'
+import { memo } from 'react'
 
 const SHARE_BUTTON_TYPES = {
   COPY_PASTE: 'COPY',
   SHARE_API: 'SHARE'
 }
 
-export default function PaymentsServiceFooter ({ kindOfService }) {
+export default memo(function PaymentsServiceFooter ({ kindOfService }) {
   const {
     shareUIButtonText,
     shareData,
@@ -28,30 +30,31 @@ export default function PaymentsServiceFooter ({ kindOfService }) {
   }
 
   return (
-    <section className={classes.pay_method_footer}>
+    <section className={`${classes.pay_method_footer} ${codecProBold.className}`}>
       <div className={classes.buttons_container}>
         {
         isShareApiCompatible &&
         (
           <div className={classes.share_button_wrapper} onClick={handleShare(SHARE_BUTTON_TYPES.SHARE_API)}>
-            <div className={classes.share_icon}>
-              <ShareIcon />
-            </div>
             <button className={classes.share_button}>
-              <h3>{shareUIButtonText}</h3>
+              <div className={classes.share_icon}>
+                <ShareIcon />
+              </div>
+              <h3 className={classes.share_text}>{shareUIButtonText}</h3>
             </button>
           </div>
         )
         }
         <div className={classes.share_button_wrapper} onClick={handleShare(SHARE_BUTTON_TYPES.COPY_PASTE)}>
-          <div className={classes.share_icon}>
-            <CopyPasteIcon />
-          </div>
           <button className={classes.share_button}>
-            <h3>{copyPasteUIButtonText}</h3>
+            <div className={classes.share_icon}>
+              <CopyPasteIcon />
+            </div>
+            <h3 className={classes.share_text}>{copyPasteUIButtonText}</h3>
           </button>
         </div>
       </div>
     </section>
   )
 }
+)

@@ -1,5 +1,6 @@
 import { useAppStore } from '@/entities/lib/store'
 import classes from './QRServicesTab.module.css'
+import { codecProRegular } from '@/shared/config/fonts'
 
 export default function QRServicesTab ({ services }) {
   const { QRService, pickQRService } = useAppStore()
@@ -8,7 +9,7 @@ export default function QRServicesTab ({ services }) {
   }
 
   return (
-    <section className={classes.tab_section}>
+    <section className={`${classes.tab_section} ${codecProRegular.className}`}>
       <ul className={classes.tab_list}>
         {
           services.map(({ service }) => {

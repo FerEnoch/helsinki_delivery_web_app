@@ -1,8 +1,9 @@
 import { useAppStore } from '@/entities/lib/store'
 import QRImage from './QRImage'
 import QRServicesTab from '@/features/pay/QRServicesTab'
+import { memo } from 'react'
 
-export default function QRServiceOption ({ services }) {
+export default memo(function QRServiceOption ({ services }) {
   const { QRService: { service, image } } = useAppStore()
   return (
     <>
@@ -14,3 +15,4 @@ export default function QRServiceOption ({ services }) {
     </>
   )
 }
+)

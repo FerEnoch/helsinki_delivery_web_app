@@ -4,22 +4,27 @@ import TransferenceOption from './TransferenceOption'
 import { useShowPaymentMethod } from '../model/useShowPaymentMethod'
 import PaymentsServiceFooter from '../../../features/sharePaymentData/ui/PaymentsServiceFooter'
 import QRServiceOption from './QRServiceOption'
+import { useMemo } from 'react'
 
 export default function PaymentMethod ({ allPaymentMethods }) {
   const { chosenQRpaymentData, servicesQR, chosenTransference, kindOfService } = useShowPaymentMethod(allPaymentMethods)
+
+  const memoServices = useMemo(() => servicesQR, [servicesQR])
+  const memoTransferenceData = useMemo(() => chosenTransference, [chosenTransference])
+  const memodKindOfService = useMemo(() => kindOfService, [kindOfService])
 
   return (
     <main className={classes.method_container}>
       {
         chosenQRpaymentData
           ? servicesQR && (
-            <QRServiceOption services={servicesQR} />
+            <QRServiceOption services={memoServices} />
           )
           : chosenTransference && (
-            <TransferenceOption transferenceData={chosenTransference} />
+            <TransferenceOption transferenceData={memoTransferenceData} />
           )
       }
-      <PaymentsServiceFooter kindOfService={kindOfService} />
+      <PaymentsServiceFooter kindOfService={memodKindOfService} />
     </main>
   )
 }

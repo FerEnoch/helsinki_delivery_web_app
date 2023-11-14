@@ -1,7 +1,8 @@
 import { useSharePaymentData } from '@/features/sharePaymentData/model/useSharePaymentData'
 import classes from './TransferenceOption.module.css'
+import { memo } from 'react'
 
-export default function TransferenceOption ({ transferenceData }) {
+export default memo(function TransferenceOption ({ transferenceData }) {
   const { shareData } = useSharePaymentData()
   const handleClick = async () => {
     const textToClipboard = `${shareData.title}\n${shareData.text}\n${shareData?.url || shareData?.transferData}`
@@ -25,3 +26,4 @@ export default function TransferenceOption ({ transferenceData }) {
     </section>
   )
 }
+)

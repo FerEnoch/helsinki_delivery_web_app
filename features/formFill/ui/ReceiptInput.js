@@ -57,7 +57,7 @@ export default memo(function ReceiptInput () {
           required
           id='fileInputID'
           type='file'
-          accept='image/*,.pdf'
+          accept='image/*,.pdf,.gif'
           style={{ position: 'absolute', visibility: 'hidden' }}
         />
         {
