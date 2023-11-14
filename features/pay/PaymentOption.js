@@ -3,19 +3,15 @@ import UncheckedBoxIcon from '@/shared/ui/lib/svg/UncheckedBoxIcon'
 import classes from './PaymentOption.module.css'
 import CheckedBoxIcon from '@/shared/ui/lib/svg/CheckedBoxIcon'
 import { useAppStore } from '@/entities/lib/store'
-import { Suspense, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function PaymentOption ({ id, children, label, comment }) {
-  const { paymentMethod, pickPaymentOption, setIsShareApiCompatible } = useAppStore()
+  const { paymentMethod, pickPaymentOption } = useAppStore()
   const [isChosen, setIsChosen] = useState(undefined)
 
-  const handleChoosePaymentMethod = (id) => {
-    return () => {
-      const isCompatibleShareAPI = navigator.share().catch(() => {})
-      if (isCompatibleShareAPI) setIsShareApiCompatible(true)
-      if (id === paymentMethod.id) return pickPaymentOption(undefined)
-      pickPaymentOption(id)
-    }
+  const handleChoosePaymentMethod = (id) => () => {
+    if (id === paymentMethod.id) return pickPaymentOption(undefined)
+    pickPaymentOption(id)
   }
 
   const formatLabel = label.toUpperCase()
@@ -35,8 +31,7 @@ export default function PaymentOption ({ id, children, label, comment }) {
         style={{ backgroundColor: `${isChosen ? 'var(--app-payments-green)' : 'var(--app-backgound-gray)'}` }}
       >
         <div className={classes.checkbox}>
-          <Suspense>
-            {
+          {
             isChosen
               ? (
                 <span className={classes.checkbox_checked}>
@@ -44,8 +39,7 @@ export default function PaymentOption ({ id, children, label, comment }) {
                 </span>
                 )
               : <UncheckedBoxIcon />
-                }
-          </Suspense>
+         }
         </div>
       </span>
       <span className={classes.icon_wrapper}>

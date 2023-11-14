@@ -50,6 +50,14 @@
   cursor: pointer
 }
 
+.share_icon:active svg {
+  background-color: var(--app-payments-green);
+  opacity: .2;
+  border-radius: 100%;
+  fill: var(--app-payments-green);
+  color: var(--app-payments-green);
+}
+
 .share_button:active {
   color: var(--app-payments-green);
   border: 3px solid var(--app-payments-green);

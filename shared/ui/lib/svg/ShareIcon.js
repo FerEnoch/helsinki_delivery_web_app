@@ -1,17 +1,12 @@
-export function ShareIcon (props) {
+export function ShareIcon () {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       width='37mm'
       height='26mm'
       viewBox='0 0 131.102 92.126'
-      {...props}
     >
       <g
-        style={{
-          fill: '#000',
-          fillOpacity: 1
-        }}
         transform='matrix(.59951 0 0 .59951 93.336 -429.511)'
       >
         <rect
@@ -70,10 +65,6 @@ export function ShareIcon (props) {
         />
       </g>
       <g
-        style={{
-          fill: '#000',
-          fillOpacity: 1
-        }}
         transform='matrix(.59951 0 0 -.59951 92.397 526.474)'
       >
         <rect

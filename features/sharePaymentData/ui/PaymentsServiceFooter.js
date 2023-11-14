@@ -9,7 +9,12 @@ const SHARE_BUTTON_TYPES = {
 }
 
 export default function PaymentsServiceFooter ({ kindOfService }) {
-  const { shareUIButtonText, shareData, isShareApiCompatible, copyPasteUIButtonText } = useSharePaymentData(kindOfService)
+  const {
+    shareUIButtonText,
+    shareData,
+    isShareApiCompatible,
+    copyPasteUIButtonText
+  } = useSharePaymentData(kindOfService)
 
   const handleShare = (type) => async () => {
     const { SHARE_API } = SHARE_BUTTON_TYPES
@@ -17,7 +22,7 @@ export default function PaymentsServiceFooter ({ kindOfService }) {
     if (type === SHARE_API && isShareApiCompatible) {
       return await navigator.share(shareData)
     } else {
-      const textToClipboard = `${shareData.title}\n${shareData.text}\n${shareData?.url || shareData?.transferData}`
+      const textToClipboard = `${shareData.title}\n${shareData.text}`
       return await navigator.clipboard.writeText(textToClipboard)
     }
   }
