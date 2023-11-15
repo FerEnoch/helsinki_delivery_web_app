@@ -28,9 +28,13 @@ export const i18n = {
           PAYMENT_OPTIONS,
           PAY_METHOD: '3 - Aboná en tu app de pagos preferida'
         },
-        MENU: 'Menu',
-        PRESENTATION: 'Quienes somos',
-        CONTACT: 'Contacto',
+        MENU: {
+          ABOUT: 'Quienes somos',
+          CONTACT: 'Contacto',
+          FAQ: 'Preguntas frecuentes',
+          ATTENTION: 'Día y horario de pedidos',
+          DELIVERY_ZONE: 'Zonas de entrega'
+        },
         DETAIL_CARD_PRODUCT: {
           BODY: {
             generic_description: 'Llevamos nuestros productos directo a la puerta de tu casa'
