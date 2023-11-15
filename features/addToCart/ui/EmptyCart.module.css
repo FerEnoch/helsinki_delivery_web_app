@@ -2,8 +2,10 @@
   background-color: var(--app-backgound-gray);
   display: grid;
   height: 11rem;
+  line-height: 2rem;
   margin-block: 0.5rem;
   padding: 0.5rem;
+  text-wrap: balance;
   place-content: center;
   width: 22rem;
   z-index: 6;

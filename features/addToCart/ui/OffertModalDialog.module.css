@@ -94,13 +94,17 @@
 
 @media (width <=390px) {
   .continue_buying_button {
-    margin-block-start: 1rem;
+    margin-block-start: 1.3rem;
   }
 }
 
 .continue_buying_button>p {
   margin-inline: auto;
-  padding-block: 0.8rem;
+  padding-block: 1.5rem;
+}
+
+.continue_buying_button:active>p {
+  font-weight: 600;
 }
 
 @keyframes dialog-in {

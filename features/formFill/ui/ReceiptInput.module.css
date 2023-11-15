@@ -102,6 +102,7 @@
 }
 
 .invalid_input_message {
+  font-size: .9rem;
   color: red;
   position: absolute;
   top: 82%;

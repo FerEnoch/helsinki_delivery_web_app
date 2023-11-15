@@ -1,0 +1,34 @@
+.message_wrapper {
+  /* flex: 1 1 25% */
+}
+
+.text {
+  margin-block: 1rem;
+  font-size: 1.1rem;
+  width: 60%;
+  text-wrap: balance;
+  margin-inline: auto;
+  line-height: 1.3rem;
+}
+
+
+.back_home_button {
+  font-size: 1.2rem;
+  border-radius: 14px;
+  border: 1px solid #999;
+  background-color: var(--app-white-text);
+  width: 50%;
+  padding: 1rem;
+  box-shadow: gray 1px 2px 5px;
+}
+
+.back_home_button:hover {
+  cursor: pointer
+}
+
+
+.back_home_button:active {
+  color: var(--app-payments-green);
+  transform: scale(1.1);
+  border: 1px solid var(--app-payments-green);
+}

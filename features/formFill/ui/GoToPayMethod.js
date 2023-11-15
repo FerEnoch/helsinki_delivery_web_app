@@ -11,7 +11,7 @@ export default function GoToPayMethod ({ label }) {
   const disableOpenForm = !(cart.length > 0) || !paymentMethod?.label
   const formatedLebel = label.toUpperCase()
 
-  const goToPaymentMethod = () => router.push('/cart/payments/pay-method')
+  const goToPaymentMethod = () => !disableOpenForm && router.push('/cart/payments/pay-method')
 
   return (
     <div

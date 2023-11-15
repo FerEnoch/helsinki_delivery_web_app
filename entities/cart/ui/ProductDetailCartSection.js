@@ -3,11 +3,11 @@ import AddToCartButton from '@/features/addToCart/ui/AddToCartButton'
 import SelectQuantitySection from '@/features/addToCart/ui/SelectQuantitySection'
 import classes from './ProductDetailCartSection.module.css'
 import { useAppStore } from '@/entities/lib/store'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 import { codecProBold } from '@/shared/config/fonts'
 
-export default function ProductDetailCartSection ({ product }) {
+export default memo(function ProductDetailCartSection ({ product }) {
   const { addToCart } = useAppStore()
   const [productQuantity, setProductQuantity] = useState(1)
 
@@ -25,7 +25,7 @@ export default function ProductDetailCartSection ({ product }) {
           {
          hasStock
            ? (
-             <span>
+             <span className={classes.price_number}>
                {formattedPrice}
              </span>
              )
@@ -55,3 +55,4 @@ export default function ProductDetailCartSection ({ product }) {
     </section>
   )
 }
+)

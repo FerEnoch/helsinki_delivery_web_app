@@ -54,7 +54,6 @@
   flex: 1 0 50%;
   border: 1px solid #999;
   background-color: var(--app-payments-green);
-
 }
 
 .submit_button_triangle svg {

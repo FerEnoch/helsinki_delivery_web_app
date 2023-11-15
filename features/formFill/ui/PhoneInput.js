@@ -12,7 +12,11 @@ export default memo(function PhoneInput ({ isDetailsOpen }) {
     handlePhoneCharacteristic,
     handlePhoneNumber,
     inputStyle,
-    isNumberTooShort
+    isNumberTooShort,
+    missingNumber: {
+      missingPhoneCharacteristic,
+      missingPhoneNumber
+    }
   } = useValidatePhoneInput(isDetailsOpen)
 
   const {
@@ -31,14 +35,21 @@ export default memo(function PhoneInput ({ isDetailsOpen }) {
         </p>
       )
     }
-    if (!invalidInput && isNumberTooShort) {
+    if (missingPhoneCharacteristic || missingPhoneNumber || (!invalidInput && isNumberTooShort)) {
       return (
         <p className={classes.invalid_input_message}>
           {onTooShortText}
         </p>
       )
     }
-  }, [invalidInput, isNumberTooShort, onInvalidText, onTooShortText])
+  }, [
+    invalidInput,
+    isNumberTooShort,
+    onInvalidText,
+    onTooShortText,
+    missingPhoneCharacteristic,
+    missingPhoneNumber
+  ])
 
   return (
     <div
@@ -57,7 +68,7 @@ export default memo(function PhoneInput ({ isDetailsOpen }) {
             style={{
               width: '6.5rem'
             }}
-            isInvalid={invalidInput || isNumberTooShort}
+            isInvalid={invalidInput || isNumberTooShort || missingPhoneCharacteristic}
             autoComplete='off'
             type='tel'
             id='clientPhoneID'

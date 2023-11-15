@@ -10,10 +10,36 @@ export function useValidatePhoneInput (isDetailsOpen) {
   const [invalidInput, setInvalidInput] = useState(false)
   const [sanitizedPhoneCharacteristic, setSanitizedPhoneCharacteristic] = useState('')
   const [sanitizedPhoneNumber, setSanitizedPhoneNumber] = useState('')
+  const [missingPhoneCharacteristic, setMissingPhoneCharacteristic] = useState(false)
+  const [missingPhoneNumber, setMissingPhoneNumber] = useState(false)
   const { setClientPhone, client } = useAppStore()
 
   const handlePhoneCharacteristic = (e) => setPhoneCharacteristic(e.target.value)
   const handlePhoneNumber = (e) => setPhoneNumber(e.target.value)
+
+  useEffect(() => {
+    let characteristicIsMissintTimeout
+    let phoneNumberIsMissintTimeout
+    if ((sanitizedPhoneNumber && !sanitizedPhoneCharacteristic)) {
+      characteristicIsMissintTimeout = setTimeout(() => setMissingPhoneCharacteristic(true), 3000)
+    }
+    if (!sanitizedPhoneNumber && sanitizedPhoneCharacteristic) {
+      phoneNumberIsMissintTimeout = setTimeout(() => setMissingPhoneNumber(true), 3000)
+    }
+    return () => {
+      if (characteristicIsMissintTimeout) {
+        setMissingPhoneCharacteristic(false)
+        clearTimeout(characteristicIsMissintTimeout)
+      }
+      if (phoneNumberIsMissintTimeout) {
+        setMissingPhoneNumber(false)
+        clearTimeout(phoneNumberIsMissintTimeout)
+      }
+    }
+  }, [
+    sanitizedPhoneNumber,
+    sanitizedPhoneCharacteristic
+  ])
 
   useEffect(() => {
     const [processedPhoneChar, [specialCharInputMatchPhonaChar]] = sanitizeInput(phoneCharacteristic, 'NUMBER')
@@ -61,6 +87,10 @@ export function useValidatePhoneInput (isDetailsOpen) {
     handlePhoneCharacteristic,
     handlePhoneNumber,
     inputStyle: openDetailsPhoneInputStyle,
-    isNumberTooShort
+    isNumberTooShort,
+    missingNumber: {
+      missingPhoneCharacteristic,
+      missingPhoneNumber
+    }
   }
 }

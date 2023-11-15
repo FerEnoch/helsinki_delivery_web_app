@@ -10,20 +10,50 @@ import ClientDataFields from './ClientDataFields'
 import FormFooter from '@/features/formFill/ui/FormFooter'
 import FormHeader from './FormHeader'
 import DialogContainer from './DialogContainer'
-import { ORDER_OPERATION_TIME } from '@/features/formFill/config/orderOperationTime'
-
-const { SUCCESS_OPERATION_MAX_TIME_MS } = ORDER_OPERATION_TIME
+import SuccessHero from './SuccessHero'
+import SuccessOperationMessage from './SuccessOperationMessage'
+import { useRouter } from 'next/navigation'
 
 export default forwardRef(function FormDialog (props, ref) {
-  const { formLoadingState, formSuccessfulSubmitOperation } = useAppStore()
+  const {
+    formLoadingState,
+    formSuccessfulSubmitOperation,
+    clearClientData,
+    clearCart,
+    clearPaymentSlice,
+    deleteReceiptFile,
+    setFormSuccessfulSubmitOperation
+  } = useAppStore()
+  const router = useRouter()
   const { closeFormDialog } = useFormModal(ref)
 
   const closeDialog = useCallback(() => closeFormDialog(), [closeFormDialog])
+  const handleBackHomeOperation = useCallback(() => {
+    setFormSuccessfulSubmitOperation(false)
+    clearClientData()
+    clearCart()
+    clearPaymentSlice()
+    deleteReceiptFile()
+    closeDialog()
+    router.push('/')
+  }, [
+    closeDialog,
+    router,
+    clearClientData,
+    clearCart,
+    clearPaymentSlice,
+    deleteReceiptFile,
+    setFormSuccessfulSubmitOperation
+  ])
 
   const clientFormStates = useMemo(() => {
     if (formSuccessfulSubmitOperation && !formLoadingState) {
-      setTimeout(() => closeDialog(), SUCCESS_OPERATION_MAX_TIME_MS)
-      return <FormSuccessfulState />
+      return (
+        <FormSuccessfulState>
+          <SuccessHero />
+          <SuccessOperationMessage handleBackHomeOperation={handleBackHomeOperation} />
+        </FormSuccessfulState>
+      )
     }
     if (formLoadingState && !formSuccessfulSubmitOperation) return <FormLoadingState />
     if (!formLoadingState && !formSuccessfulSubmitOperation) {
@@ -36,7 +66,12 @@ export default forwardRef(function FormDialog (props, ref) {
         </ClientForm>
       )
     }
-  }, [formLoadingState, formSuccessfulSubmitOperation, closeDialog])
+  }, [
+    formLoadingState,
+    formSuccessfulSubmitOperation,
+    closeDialog,
+    handleBackHomeOperation
+  ])
 
   return (
     <dialog

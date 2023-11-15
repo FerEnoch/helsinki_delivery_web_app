@@ -1,6 +1,5 @@
 import confetti from 'canvas-confetti'
 import { useAppStore } from '@/entities/lib/store'
-import { useRouter } from 'next/navigation'
 import { FORM_FIELDS } from '../config/formFieldsOrder'
 import { timeFormatter } from '@/shared/lib/timeFormat'
 import { sendOrderData } from '../model/sendOrderData'
@@ -23,10 +22,9 @@ const {
   ORDER_ID
 } = FORM_FIELDS
 
-const { PROCESSING_MIN_TIME_MS, SUCCESS_OPERATION_MAX_TIME_MS } = ORDER_OPERATION_TIME
+const { PROCESSING_MIN_TIME_MS } = ORDER_OPERATION_TIME
 
 export function useFormSubscription () {
-  const router = useRouter()
   const {
     paymentMethod: { label: method, receipt },
     getCartTotalAmount,
@@ -50,11 +48,6 @@ export function useFormSubscription () {
       clearPaymentSlice()
       deleteReceiptFile()
       confetti()
-
-      setTimeout(() => {
-        setFormSuccessfulSubmitOperation(false)
-        router.push('/')
-      }, SUCCESS_OPERATION_MAX_TIME_MS)
     }, PROCESSING_MIN_TIME_MS)
   }
 

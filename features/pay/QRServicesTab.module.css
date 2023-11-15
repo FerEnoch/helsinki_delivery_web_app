@@ -3,7 +3,6 @@
   flex: 1 1 15%;
   display: grid;
   place-content: center;
-  gap: .5rem;
   padding-block-start: .5rem;
 }
 
@@ -16,12 +15,15 @@
 }
 
 .service_item {
+  text-wrap: balance;
+  line-height: 1.2rem;
   padding-block: .5rem;
+  padding-inline: 1rem;
+  margin-inline: .2rem;
   opacity: .6;
   font-size: .7rem;
   box-shadow: gray 1px 2px 5px;
   border-radius: 12px;
-  padding-inline: .5rem;
 }
 
 .service_item:hover {
@@ -32,11 +34,11 @@
   font-size: .8rem;
   opacity: 1;
   padding-block: .5rem;
-  border-bottom: 3px solid var(--app-payments-green);
+  border-bottom: 2px solid var(--app-payments-green);
   transition: all 200ms ease;
 }
 
-@media (width<=410px) {
+@media (width<=440px) {
 
   .tab_list {
     gap: .5rem;

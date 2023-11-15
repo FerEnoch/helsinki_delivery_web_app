@@ -1,0 +1,16 @@
+.SVGLogo {
+  width: 100%;
+  height: 100%;
+  animation: viking-skeleton 600ms ease-out infinite alternate;
+}
+
+
+@keyframes viking-skeleton {
+  0% {
+    opacity: .1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

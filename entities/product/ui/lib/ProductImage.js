@@ -2,9 +2,10 @@
 import { i18n } from '@/shared/model/i18n'
 import { prodGenericImage } from '@/shared/config/prodGenericImage'
 import Image from 'next/image'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import IceIcon from '@/shared/ui/lib/svg/IceIcon'
 import CigarIcon from '@/shared/ui/lib/svg/CigarIcon'
+import SuspenseFallbackLogo from '@/shared/ui/lib/SuspenseFallbackLogo'
 
 /** disabled --> image-optimization... OK! */
 const { DETAIL_CARD_PRODUCT: { FOOTER: cardFooterTexts } } = i18n.LANG.ESP.UI
@@ -44,14 +45,16 @@ export default function ProductImage ({
   }
   if (!isCigarOrExtra || (isCigarOrExtra && src)) {
     return (
-      <Image
-        width={width}
-        height={height}
-        alt={alt}
-        src={!errorImage ? (src || prodGenericImage) : prodGenericImage}
-        onError={() => setErrorImage(true)}
-        priority
-      />
+      <SuspenseFallbackLogo>
+        <Image
+          width={width}
+          height={height}
+          alt={alt}
+          src={!errorImage ? (src || prodGenericImage) : prodGenericImage}
+          onError={() => setErrorImage(true)}
+          priority
+        />
+      </SuspenseFallbackLogo>
     )
   }
 }

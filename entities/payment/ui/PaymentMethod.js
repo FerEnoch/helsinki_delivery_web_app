@@ -5,6 +5,7 @@ import { useShowPaymentMethod } from '../model/useShowPaymentMethod'
 import PaymentsServiceFooter from '../../../features/sharePaymentData/ui/PaymentsServiceFooter'
 import QRServiceOption from './QRServiceOption'
 import { useMemo } from 'react'
+import SuspenseFallbackLogo from '@/shared/ui/lib/SuspenseFallbackLogo'
 
 export default function PaymentMethod ({ allPaymentMethods }) {
   const { chosenQRpaymentData, servicesQR, chosenTransference, kindOfService } = useShowPaymentMethod(allPaymentMethods)
@@ -15,7 +16,8 @@ export default function PaymentMethod ({ allPaymentMethods }) {
 
   return (
     <main className={classes.method_container}>
-      {
+      <SuspenseFallbackLogo>
+        {
         chosenQRpaymentData
           ? servicesQR && (
             <QRServiceOption services={memoServices} />
@@ -23,8 +25,9 @@ export default function PaymentMethod ({ allPaymentMethods }) {
           : chosenTransference && (
             <TransferenceOption transferenceData={memoTransferenceData} />
           )
-      }
-      <PaymentsServiceFooter kindOfService={memodKindOfService} />
+          }
+        <PaymentsServiceFooter kindOfService={memodKindOfService} />
+      </SuspenseFallbackLogo>
     </main>
   )
 }

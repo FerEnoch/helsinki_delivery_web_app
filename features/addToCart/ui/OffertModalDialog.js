@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import classes from './OffertModalDialog.module.css'
 import { i18n } from '@/shared/model/i18n'
+import { codecProRegular } from '@/shared/config/fonts'
 
 const { CART: { CONTINUE_SHOPPING } } = i18n.LANG.ESP.UI
 
@@ -30,7 +31,9 @@ export default function OffertModalDialog ({ openModal, closeDialog, children })
             className={classes.continue_buying_button}
             onClick={closeDialog}
           >
-            <p>{backButtonText}</p>
+            <p className={codecProRegular.className}>
+              {backButtonText}
+            </p>
           </button>
         </div>
       </div>

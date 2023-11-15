@@ -1,5 +1,5 @@
 'use client'
-import { Suspense, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import classes from './CartProducts.module.css'
 import { scrollToNextProduct } from '../lib/scrollToNextProduct'
 import { useAppStore } from '@/entities/lib/store'
@@ -51,25 +51,23 @@ export default forwardRef(function CartProducts ({ handleArrowsVisibility }, ref
   if (!cart.length) return <EmptyCart />
 
   return (
-    <Suspense>
-      <section ref={listRef} className={classes.cart_list_container}>
-        <div
-          className={classes.gray_background}
-          style={{ height: `${cart.length * cartGrayBackgroundHeight}rem` }}
-        />
-        <ul className={classes.product_list}>
-          {cart.length > 0 &&
+    <section ref={listRef} className={classes.cart_list_container}>
+      <div
+        className={classes.gray_background}
+        style={{ height: `${cart.length * cartGrayBackgroundHeight}rem` }}
+      />
+      <ul className={classes.product_list}>
+        {cart.length > 0 &&
           cart.map(product => {
             return (
               <CartItem
                 key={product.id}
-                product={{ ...product }}
+                product={product}
                 showArrows={setShowArrows}
               />
             )
           })}
-        </ul>
-      </section>
-    </Suspense>
+      </ul>
+    </section>
   )
 })

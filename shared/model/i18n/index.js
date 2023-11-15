@@ -76,7 +76,9 @@ export const i18n = {
         },
         ORDER_SUCCESS: {
           title: 'Tu pedido está en camino',
-          message: 'Gracias por tu compra'
+          message: 'Gracias por tu compra',
+          text: (contact) => `Cualquier cosa que suceda nos comunicaremos con vos. Podés ponerte en contacto con nosotros al ${contact}`,
+          action: 'Volver a inicio'
         }
       },
       G_DRIVE_UI: {
