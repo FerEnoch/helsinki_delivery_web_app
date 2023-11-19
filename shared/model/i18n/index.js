@@ -31,9 +31,9 @@ export const i18n = {
         MENU: {
           ABOUT: 'Quienes somos',
           CONTACT: 'Contacto',
-          FAQ: 'Preguntas frecuentes',
-          ATTENTION: 'Día y horario de pedidos',
-          DELIVERY_ZONE: 'Zonas de entrega'
+          ATTENTION: 'Día y horario de envíos',
+          DELIVERY_ZONE: 'Zonas de entrega',
+          FAQ: 'Preguntas frecuentes'
         },
         DETAIL_CARD_PRODUCT: {
           BODY: {

@@ -17,11 +17,11 @@ export default async function CartFirstStep () {
       <h2 className={classes.title}>{cartTexts.FIRST_STEP_TITLE.toUpperCase()}</h2>
       <CartProductsSlider />
       {cartTexts.ADDS_LABELS.length > 0 && (
-        <>
+        <section className={classes.adds_section}>
           <div className={classes.add_text}>
             <h2 className={classes.title}>{cartTexts.FIRST_STEP_ADDS.toUpperCase()}</h2>
           </div>
-          <section className={classes.ice_or_cigar_sliders}>
+          <div className={classes.ice_or_cigar_sliders}>
             {
               cartTexts?.ADDS_LABELS.map(({ label, categoryOffering }) => {
                 return (
@@ -34,8 +34,8 @@ export default async function CartFirstStep () {
                 )
               })
             }
-          </section>
-        </>
+          </div>
+        </section>
       )}
       <CartFooter />
     </main>

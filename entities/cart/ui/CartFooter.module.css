@@ -8,3 +8,11 @@
   height: 3.5rem;
   z-index: 20;
 }
+
+
+@media (width>=520px) and (height<=680px) {
+  .footer_container {
+    position: relative;
+    top: -4rem;
+  }
+}

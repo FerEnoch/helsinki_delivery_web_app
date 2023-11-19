@@ -2,6 +2,7 @@
   margin: 0 auto;
   position: absolute;
   text-align: center;
+  max-height: 9rem;
   top: 1.5rem;
   width: 85%;
   z-index: 10;
@@ -46,4 +47,27 @@
 
 .button_menu:hover {
   cursor: pointer
+}
+
+
+@media (width>=520px) and (height<=620px) {
+  .name_first {
+    font-size: 3.5rem;
+    letter-spacing: 0.5rem;
+    padding-inline-start: 0.6rem;
+    width: 75%;
+  }
+
+  .name_second {
+    font-size: 1.2rem;
+    margin-block-start: 5px;
+    margin-block-end: .2rem;
+  }
+}
+
+@media (width>=520px) and (height<=700px) {
+  .header_container {
+    height: 8rem;
+    margin-block-end: 1rem;
+  }
 }

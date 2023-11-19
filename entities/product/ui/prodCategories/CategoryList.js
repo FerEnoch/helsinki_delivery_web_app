@@ -1,34 +1,28 @@
 'use client'
-import Link from 'next/link'
-import listClasses from './CategoryListContainer.module.css'
-import linkClasses from './CategoryList.module.css'
+import classes from './CategoryList.module.css'
 import { formatUpperCase } from '@/shared/lib/textFormat/giveFormat'
 import { useProducts } from '../../lib/useProducts'
-import { Suspense } from 'react'
+import Category from './Category'
 
 export default function CategoryList ({ categories }) {
   useProducts()
 
   return (
-    <Suspense>
-      <section className={listClasses.list_container}>
-        <ul className={linkClasses.link_list}>
-          {
+    <section className={classes.list_container}>
+      <ul className={classes.link_list}>
+        {
          categories?.length > 0 && categories?.map(category => {
            const formattedCategory = formatUpperCase(category)
            return (
-             <article key={category}>
-               <Link href={`/${encodeURIComponent(category)}`}>
-                 <li className={linkClasses.link}>
-                   {formattedCategory || category.toUpperCase()}
-                 </li>
-               </Link>
-             </article>
+             <Category
+               key={category}
+               path={category}
+               category={formattedCategory || category.toUpperCase()}
+             />
            )
          })
         }
-        </ul>
-      </section>
-    </Suspense>
+      </ul>
+    </section>
   )
 }

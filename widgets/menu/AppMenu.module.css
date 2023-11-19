@@ -1,0 +1,48 @@
+.menu_popover {
+  position: absolute;
+  padding: 1rem;
+  background-color: var(--app-type-background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 50;
+  border-radius: 12px;
+  animation: show-menu 300ms ease;
+  width: 100%;
+}
+
+.menu_popover:backdrop {
+  filter: blur(5px) grayscale(10%)
+}
+
+.menu_list {
+  padding-block-start: 1.3rem;
+  position: relative;
+  font-size: 1.5rem;
+}
+
+.close_triangle {
+  position: absolute;
+  left: -25px;
+  top: 0;
+  transform: scale(1.5, 1);
+}
+
+.item_selected {
+  transform: scale(1, 1.5) rotate(90deg);
+  transition: all 250ms ease;
+}
+
+
+@keyframes show-menu {
+  0% {
+    transform: scale(1, 0);
+    transform-origin: top;
+  }
+
+  100% {
+    transform-origin: top;
+    transform: scale(1);
+  }
+}

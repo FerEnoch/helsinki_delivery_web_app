@@ -23,3 +23,20 @@
     transform: scale(.8)
   }
 }
+
+@media (height<=615px) {
+  .nav_container {
+    margin-block-end: .1rem;
+  }
+}
+
+@media (width>=520px) and (height<=700px) {
+  .nav_container {
+    margin-block: .5rem;
+    height: 1rem;
+  }
+
+  .back_link {
+    padding-block-start: 1.5rem;
+  }
+}

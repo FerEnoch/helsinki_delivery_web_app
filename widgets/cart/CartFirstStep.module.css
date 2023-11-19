@@ -25,6 +25,11 @@
   margin-block: .5rem;
 }
 
+.adds_section {
+  z-index: 20;
+  width: 100%;
+}
+
 .add_text {
   margin-block: -5px;
   display: flex;
@@ -37,4 +42,11 @@
 .ice_or_cigar_sliders {
   width: 100%;
   z-index: 15;
+}
+
+
+@media (width>=520px) and (height<=680px) {
+  .adds_section {
+    margin-block-end: 4rem;
+  }
 }

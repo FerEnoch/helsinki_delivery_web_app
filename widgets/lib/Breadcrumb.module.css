@@ -10,3 +10,17 @@
 .breadcrumb_link:hover {
   cursor: pointer;
 }
+
+
+@media (width>=520px) and (height<=700px) {
+  .breadcrumb {
+    padding-block-start: 1rem;
+  }
+}
+
+
+@media (width>=520px) and (height<=655px) {
+  .breadcrumb {
+    padding-block-start: .2rem;
+  }
+}

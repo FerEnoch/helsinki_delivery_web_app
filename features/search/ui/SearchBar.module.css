@@ -6,6 +6,7 @@
   position: relative;
   width: 100%;
   right: -2px;
+  height: 1.5rem;
 }
 
 .input_search {
@@ -13,7 +14,7 @@
   border: transparent;
   flex-basis: 30rem;
   font-size: 1.3rem;
-  height: 2.8rem;
+  height: 5vh;
   padding-inline-start: 1rem;
 }
 
@@ -25,4 +26,12 @@
   margin-block-start: 4px;
   margin-left: 10px;
   transform: rotate(90deg) scale(1.2);
+}
+
+
+@media (height<=700px) {
+  .search_container {
+    width: 90%;
+    margin-inline: auto;
+  }
 }

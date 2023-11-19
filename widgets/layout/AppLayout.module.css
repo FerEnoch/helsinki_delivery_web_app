@@ -15,9 +15,15 @@
   z-index: 1;
 }
 
-@media (min-width: 520px) {
+@media (width>=520px) {
   .app_background {
     height: 90vh;
     width: 520px
+  }
+}
+
+@media (width>=520px) and (height<=700px) {
+  .app_background {
+    width: 400px
   }
 }
