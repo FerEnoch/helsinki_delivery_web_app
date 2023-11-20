@@ -1,11 +1,17 @@
 .success_view_container {
   background-color: #ffd077;
   border-radius: 50px;
-  padding: 3rem;
-  max-width: 90%;
-  margin-inline: auto;
   display: grid;
+  height: 100%;
+  margin-inline: auto;
+  width: 90%;
+  padding: 3rem;
   place-content: center;
   transition: all 350ms linear forwards;
-  height: 100%;
+}
+
+@media (width<=420px) {
+  .success_view_container {
+    width: 100%;
+  }
 }

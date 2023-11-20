@@ -1,0 +1,7 @@
+.wrapper {
+  background-color: var(--app-type-background);
+  border-radius: 14px;
+  height: 100%;
+  margin-inline: auto;
+  width: 90%;
+}

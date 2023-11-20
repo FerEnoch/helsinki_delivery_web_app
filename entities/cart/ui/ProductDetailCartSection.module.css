@@ -60,3 +60,19 @@
 .product_add_to_cart>button>svg {
   transform: scale(1.4);
 }
+
+@media (width>=520px) and (height<=670px) {
+
+  .price_number {
+    font-size: 1.7rem;
+  }
+
+  .product_price>p {
+    padding-block-start: .2rem;
+  }
+
+  .product_add_to_cart>button>svg {
+    transform: scale(1.2);
+  }
+
+}

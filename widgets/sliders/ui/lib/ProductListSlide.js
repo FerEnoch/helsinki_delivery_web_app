@@ -60,7 +60,7 @@ export default forwardRef(function ProductListSlide ({ products }, ref) {
               return (
                 <SlideCard
                   key={product.id}
-                  product={{ ...product }}
+                  product={product}
                 />
               )
             })

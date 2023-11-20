@@ -57,6 +57,7 @@
 }
 
 .product_name {
+  text-wrap: balance;
   padding-block-start: 0.1rem;
   text-align: center;
   padding-inline: 0.4rem;
@@ -72,9 +73,10 @@
   }
 }
 
+
 @media (width>=520px) and (height<=700px) {
   .product_card_wrapper {
-    padding-block-start: 1rem;
+    padding-block-start: 1.5rem;
     height: 75%;
   }
 
@@ -83,6 +85,10 @@
   }
 
   .product_card {
-    padding: .5rem .5rem .8rem;
+    padding: .5rem .5rem 1rem;
+  }
+
+  .product_data {
+    flex: 0 0 8rem;
   }
 }

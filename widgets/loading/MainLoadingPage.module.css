@@ -21,3 +21,9 @@
     opacity: 1;
   }
 }
+
+@media (height<=630px) {
+  .loading_page_container {
+    width: 35%;
+  }
+}

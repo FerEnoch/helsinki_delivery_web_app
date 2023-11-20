@@ -50,3 +50,15 @@
     margin-block-end: 4rem;
   }
 }
+
+@media (width>=520px) and (height<=630px) {
+  .add_text {
+    margin-block: -15px;
+  }
+}
+
+@media (width>=520px) and (height<=630px) {
+  .cart_container {
+    padding-block-start: .5rem;
+  }
+}

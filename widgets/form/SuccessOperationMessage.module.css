@@ -1,11 +1,11 @@
 .message_wrapper {
-  /* flex: 1 1 25% */
+  width: 100%;
 }
 
 .text {
   margin-block: 1rem;
   font-size: 1.1rem;
-  width: 60%;
+  width: 70%;
   text-wrap: balance;
   margin-inline: auto;
   line-height: 1.3rem;
@@ -31,4 +31,25 @@
   color: var(--app-payments-green);
   transform: scale(1.1);
   border: 1px solid var(--app-payments-green);
+}
+
+@media (width<=420px) {
+  .text {
+    margin-block: .5rem;
+    font-size: .9rem;
+    max-width: 90%;
+  }
+
+  .back_home_button {
+    font-size: 1rem;
+    padding: .8rem;
+  }
+}
+
+@media (width>=520px) and (height<=700px) {
+  .text {
+    margin-block: .5rem;
+    font-size: 1rem;
+    width: 100%;
+  }
 }

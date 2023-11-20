@@ -21,6 +21,6 @@
 
 @media (width>=520px) and (height<=655px) {
   .breadcrumb {
-    padding-block-start: .2rem;
+    padding-block-start: 2rem;
   }
 }

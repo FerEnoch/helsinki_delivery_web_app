@@ -11,6 +11,7 @@
 }
 
 .text {
+  text-wrap: nowrap;
   font-size: 1rem;
   font-weight: 600;
   width: 105%;
@@ -34,7 +35,6 @@
 }
 
 @media (height<=680px) {
-
   .text {
     font-size: .9rem;
   }

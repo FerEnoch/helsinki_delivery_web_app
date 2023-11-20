@@ -31,7 +31,7 @@ export default function SlideCard ({ product }) {
               <h2>{formatUpperCase(name) || name.toUpperCase()}</h2>
             </Link>
           </div>
-          <ProductDetailCartSection product={{ ...product }} />
+          <ProductDetailCartSection product={product} />
         </div>
       </li>
     </article>
