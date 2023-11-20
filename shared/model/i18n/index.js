@@ -1,5 +1,6 @@
-import { OFFERED_PRODUCTS } from './adds_products'
-import { PAYMENT_OPTIONS } from './payment_options'
+import { OFFERED_PRODUCTS } from '../adds_products'
+import { PAYMENT_OPTIONS } from '../payment_options'
+import { MENU } from '../menu'
 
 export const i18n = {
   TRADE_MARK: 'Helsinki Delivery',
@@ -9,6 +10,7 @@ export const i18n = {
       APP_TITLE: 'Helsinki Devlivery App',
       APP_DESCRIPTION: 'Conocé nuestros productos y hacé tu pedido online. Te enviamos cualquier bebida o accesorio al instante',
       UI: {
+        MENU,
         CART: {
           FIRST_STEP_TITLE: '1 - Revisa tu compra',
           FIRST_STEP_ADDS: 'No te olvides de agregar',
@@ -27,13 +29,6 @@ export const i18n = {
           },
           PAYMENT_OPTIONS,
           PAY_METHOD: '3 - Aboná en tu app de pagos preferida'
-        },
-        MENU: {
-          ABOUT: 'Quienes somos',
-          CONTACT: 'Contacto',
-          ATTENTION: 'Día y horario de envíos',
-          DELIVERY_ZONE: 'Zonas de entrega',
-          FAQ: 'Preguntas frecuentes'
         },
         DETAIL_CARD_PRODUCT: {
           BODY: {

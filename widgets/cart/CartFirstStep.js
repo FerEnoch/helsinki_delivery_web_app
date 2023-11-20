@@ -4,7 +4,7 @@ import { i18n } from '@/shared/model/i18n'
 import IceOrCigarSlider from '@/features/addToCart/ui/IceOrCigarSlider'
 import CartFooter from '@/entities/cart/ui/CartFooter'
 import { getAggregates } from '@/entities/product/lib/getAggregates'
-import { OFFERED_PRODUCTS } from '@/shared/model/i18n/adds_products'
+import { OFFERED_PRODUCTS } from '@/shared/model/adds_products'
 
 const { CART: cartTexts } = i18n.LANG.ESP.UI
 

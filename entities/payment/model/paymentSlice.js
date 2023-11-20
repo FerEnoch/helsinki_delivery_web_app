@@ -1,4 +1,4 @@
-import { PAYMENT_OPTIONS } from '@/shared/model/i18n/payment_options'
+import { PAYMENT_OPTIONS } from '@/shared/model/payment_options'
 
 export const paymentSlice = (set, get) => {
   return {

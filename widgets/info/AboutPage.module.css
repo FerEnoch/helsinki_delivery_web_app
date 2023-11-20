@@ -1,0 +1,49 @@
+.title {
+  letter-spacing: 1px;
+  font-size: 1.8rem;
+  transform: scale(1, 1.2);
+}
+
+.info_container {
+  padding: 1rem;
+  max-width: 90%;
+  margin-inline: auto;
+}
+
+.text {
+  font-weight: 600;
+  text-align: start;
+  transform: scale(1.1, 1.2);
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+  margin-block: 1rem;
+}
+
+.main_info_text {
+  padding-inline-start: 2px;
+}
+
+.extra_info_text {
+  max-width: 30ch;
+}
+
+@media (width<=400px) {
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .text {
+    font-size: .9rem;
+  }
+}
+
+
+@media (height<=700px) {
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .text {
+    font-size: .9rem;
+  }
+}

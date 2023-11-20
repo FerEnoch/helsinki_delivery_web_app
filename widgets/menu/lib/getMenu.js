@@ -1,11 +1,11 @@
 import { i18n } from '@/shared/model/i18n'
 
 export function getMenuTitles () {
-  const uiTexts = []
+  const labels = []
   const menuTexts = i18n.LANG.ESP.UI.MENU
   /* eslint-disable-next-line */
-  for (const [label, text] of Object.entries(menuTexts)) {
-    uiTexts.push(text)
+  for (const [_, {label}] of Object.entries(menuTexts)) {
+    labels.push(label)
   }
-  return uiTexts
+  return labels
 }

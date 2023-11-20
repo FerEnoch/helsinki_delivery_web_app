@@ -1,7 +1,14 @@
 .wrapper {
   background-color: var(--app-type-background);
   border-radius: 14px;
-  height: 100%;
+  box-shadow: 1px 1px 5px #000;
+  flex: 1 1 35%;
+  margin-block-start: 10%;
+  margin-block-end: 15%;
   margin-inline: auto;
+  max-height: 70%;
+  overflow: hidden;
+  padding: 1rem;
   width: 90%;
+  z-index: 20;
 }
