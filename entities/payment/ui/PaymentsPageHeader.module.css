@@ -50,3 +50,10 @@
     font-size: 1.3rem;
   }
 }
+
+
+@media (height<=700px) {
+  .title {
+    font-size: 1.3rem;
+  }
+}

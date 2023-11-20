@@ -78,3 +78,14 @@
     font-size: .7rem;
   }
 }
+
+
+@media (height<=700px) {
+  .pay_method_footer {
+    margin-block-end: .3rem;
+  }
+
+  .share_text {
+    font-size: .7rem;
+  }
+}

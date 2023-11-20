@@ -13,6 +13,7 @@
 @media (width>=520px) and (height<=680px) {
   .footer_container {
     position: relative;
-    top: -4rem;
+    top: -5rem;
+    height: 3rem;
   }
 }

@@ -65,7 +65,7 @@
 }
 
 .uploading_start {
-  animation: start-uploading 500ms ease-in-out forwards;
+  animation: start-uploading 500ms ease-in-out;
   transition: all 500ms ease-in-out;
 }
 
@@ -114,5 +114,28 @@
 @media (width<=400px) {
   .invalid_input_message {
     font-size: .8rem;
+  }
+}
+
+
+@media (height<=700px) {
+  .file_upload_section {
+    margin-block-end: .1rem;
+  }
+
+  .receipt_input_wrapper {
+    padding-block: .1rem;
+  }
+
+  .input_label {
+    font-size: 1.2rem;
+  }
+
+  .invalid_input_message {
+    font-size: .8rem;
+  }
+
+  .upload_action {
+    margin-block: .2rem;
   }
 }

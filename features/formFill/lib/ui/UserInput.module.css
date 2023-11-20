@@ -19,3 +19,12 @@
     padding-inline-end: .5rem;
   }
 }
+
+
+@media (height<=700px) {
+  .user_input {
+    font-size: 1.2rem;
+    padding-inline-start: .8rem;
+    padding-inline-end: .5rem;
+  }
+}

@@ -12,7 +12,6 @@
   letter-spacing: 1.5px;
 }
 
-
 .numbers_section {
   display: flex;
   align-items: center;
@@ -57,5 +56,20 @@
   .invalid_input_message {
     font-size: .8rem;
     top: 115%;
+  }
+}
+
+@media (height<=700px) {
+  .input_label {
+    font-size: 1.2rem;
+  }
+
+  .invalid_input_message {
+    font-size: .8rem;
+    top: 85%;
+  }
+
+  .numbers_section {
+    margin-block-end: 1rem;
   }
 }

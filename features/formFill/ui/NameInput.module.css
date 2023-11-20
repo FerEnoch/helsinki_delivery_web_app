@@ -33,3 +33,21 @@
     font-size: .8rem;
   }
 }
+
+
+@media (height<=700px) {
+  .name_input {
+    margin-block-end: 1.2rem;
+
+  }
+
+  .input_label {
+    font-size: 1.2rem;
+    margin-block-end: .2rem;
+  }
+
+  .invalid_input_message {
+    font-size: .8rem;
+    top: 105%;
+  }
+}

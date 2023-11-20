@@ -49,3 +49,10 @@
     font-size: 1.6rem;
   }
 }
+
+@media (height<=700px) {
+  .action_text {
+    font-size: 1.4rem;
+    line-height: 1.3rem;
+  }
+}

@@ -12,14 +12,14 @@ export const PAYMENT_OPTIONS = [
   },
   {
     id: '#pm_02',
-    label: 'App con código QR',
+    label: 'QR de Billetera Santa Fe',
     comment: 'Obligatorio: enviar comprobante de operación',
     receipt: 'REQUIRED',
     icon: <IconQR />
   },
   {
     id: '#pm_03',
-    label: 'Transferencia',
+    label: 'Transferencia Marcado Pago',
     comment: 'Obligatorio: enviar comprobante de operación',
     receipt: 'REQUIRED',
     icon: <BankTransferenceIcon />

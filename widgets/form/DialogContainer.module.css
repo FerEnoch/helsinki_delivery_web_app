@@ -8,3 +8,9 @@
   align-items: center;
   justify-content: center;
 }
+
+@media (width<=520px) and (height<=780px) {
+  .dialog_container {
+    padding: 1.5rem;
+  }
+}

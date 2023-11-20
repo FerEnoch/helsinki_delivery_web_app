@@ -99,5 +99,22 @@
     line-height: 1.6rem;
     padding-inline-start: .8rem
   }
+}
 
+
+@media (height<=780px) {
+
+  .back_button_wrapper,
+  .submit_button_wrapper {
+    padding-block: .6rem;
+  }
+
+  .back_button_input {
+    padding-inline-end: .8rem
+  }
+
+  .submit_button_wrapper>p {
+    line-height: 1.6rem;
+    padding-inline-start: .8rem
+  }
 }

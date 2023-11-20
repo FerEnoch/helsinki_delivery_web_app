@@ -22,7 +22,7 @@
 }
 
 
-@media (width >=520px) {
+@media (width>=520px) {
   .form_dialog_container {
     top: 10rem;
     width: 30rem;
@@ -31,7 +31,7 @@
   }
 }
 
-@media (width <520px) {
+@media (width<520px) {
   .form_dialog_container {
     top: 5rem;
     width: 85%;
@@ -67,4 +67,23 @@
   border-radius: 10px;
   width: 95%;
   height: 5px;
+}
+
+@media (width>=520px) and (height<=780px) {
+  .form_dialog_container {
+    top: 3rem;
+    min-width: 35rem;
+    width: 50%;
+    max-width: 35rem;
+    max-height: 90%;
+  }
+}
+
+
+@media (width>=520px) and (height<=700px) {
+  .form_dialog_container {
+    min-width: 35rem;
+    max-width: 30rem;
+    max-height: 90%;
+  }
 }

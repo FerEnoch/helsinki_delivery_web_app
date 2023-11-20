@@ -39,9 +39,21 @@
 }
 
 @media (width<=440px) {
-
   .tab_list {
     gap: .5rem;
     width: 100%;
+  }
+}
+
+
+@media (height<=700px) {
+  .service_item {
+    line-height: 1rem;
+    padding-block: .3rem;
+  }
+
+  .chosen {
+    font-size: .7rem;
+    padding-block: .3rem;
   }
 }

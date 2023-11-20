@@ -33,3 +33,11 @@
   margin-inline: 0.2rem;
   flex: 0 0 1rem;
 }
+
+@media (width>=520px) and (height<=700px) {
+
+  .text {
+    line-height: .9rem;
+    font-size: .8rem;
+  }
+}

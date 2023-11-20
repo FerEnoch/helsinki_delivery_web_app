@@ -13,8 +13,22 @@
   border-radius: 12px;
 }
 
-@media (width >=410px) {
+@media (width>=410px) {
   .qr_image {
     transform: scale(1.2);
+  }
+}
+
+
+@media (height<=780px) {
+  .qr_image {
+    transform: scale(1);
+  }
+}
+
+@media (height<=700px) {
+  .qr_image {
+    transform: scale(.8);
+
   }
 }
