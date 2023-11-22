@@ -1,14 +1,9 @@
+import { i18n } from '@/shared/model/i18n'
 import MainErrorBoundary from '@/widgets/error/MainErrorBoundary'
-import { AboutPage } from '@/widgets/info/AboutPage'
-import ContactPage from '@/widgets/info/ContactPage'
 import InfoPageWrapper from '@/widgets/info/InfoPageWrapper'
+import { CORPORATIVE_INFO } from '@/widgets/info/model/corporativeInfo'
 
-export const CORPORATIVE_INFO = (title) => {
-  switch (title) {
-    case 'Quienes somos': return <AboutPage title={title} />
-    case 'Contacto': return <ContactPage title={title} />
-  }
-}
+const errorTypeTexts = i18n.LANG.ESP.UI.ERROR.NOT_FOUND
 
 export default async function InfoPage ({ params }) {
   const { slug } = params
@@ -18,7 +13,7 @@ export default async function InfoPage ({ params }) {
 
   return (
     <InfoPageWrapper>
-      {slugComponent || <MainErrorBoundary />}
+      {slugComponent || <MainErrorBoundary type={errorTypeTexts} />}
     </InfoPageWrapper>
   )
 }

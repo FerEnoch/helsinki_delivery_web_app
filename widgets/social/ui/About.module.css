@@ -1,0 +1,10 @@
+.about_link {
+  margin-block: .4rem 0;
+  color: var(--app-white-text);
+  font-size: .9rem;
+  letter-spacing: .1rem;
+}
+
+.about_link>h3 {
+  font-weight: lighter;
+}

@@ -11,10 +11,9 @@ export default function HeaderMenuIcon () {
 
   return (
     <>
-      <button popovertarget='menu' className={classes.button_menu}>
+      <button className={classes.button_menu}>
         <MenuIcon
           onClick={handleOpenMenu}
-          popovertarget='menu'
           className={classes.icon_menu}
           width={25}
           height={25}

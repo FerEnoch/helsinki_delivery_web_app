@@ -27,7 +27,7 @@
 @media (width<=415px) {
 
   .price_number {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
   }
 
 }
@@ -61,10 +61,16 @@
   transform: scale(1.4);
 }
 
+@media (height<=700px) {
+  .price_number {
+    font-size: 1.5rem;
+  }
+}
+
 @media (width>=520px) and (height<=670px) {
 
   .price_number {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
   }
 
   .product_price>p {

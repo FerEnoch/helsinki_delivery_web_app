@@ -28,14 +28,14 @@ export default forwardRef(function FormDialog (props, ref) {
   const { closeFormDialog } = useFormModal(ref)
 
   const closeDialog = useCallback(() => closeFormDialog(), [closeFormDialog])
-  const handleBackHomeOperation = useCallback(() => {
+  const handleBackHomeOperation = useCallback((target) => {
     setFormSuccessfulSubmitOperation(false)
     clearClientData()
     clearCart()
     clearPaymentSlice()
     deleteReceiptFile()
     closeDialog()
-    router.push('/')
+    router.push(target)
   }, [
     closeDialog,
     router,

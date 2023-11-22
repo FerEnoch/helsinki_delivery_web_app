@@ -76,8 +76,20 @@ export const i18n = {
         ORDER_SUCCESS: {
           title: 'Tu pedido está en camino',
           message: 'Gracias por tu compra',
-          text: (contact) => `Cualquier cosa que suceda nos comunicaremos con vos. Podés ponerte en contacto con nosotros al ${contact}`,
+          text: 'Si es necesario nos comunicaremos con vos',
+          contact: ['¿Alguna duda?', 'Contactate con nosotros'],
           action: 'Volver a inicio'
+        },
+        ERROR: {
+          NOT_FOUND: {
+            LABEL: 'Lo sentimos...',
+            MESSAGE: 'Parece que no hay nada por aquí...'
+          },
+          APP_ERROR: {
+            LABEL: 'Oops...',
+            MESSAGE: 'Algo ha sucedido y la app está temporalmente fuera de servicio',
+            MESSAGE_2: 'Intenta de nuevo más tarde por favor'
+          }
         }
       },
       G_DRIVE_UI: {

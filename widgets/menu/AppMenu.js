@@ -8,7 +8,7 @@ export default memo(function AppMenu ({ handleOpenMenu }) {
   const titles = getMenuTitles()
 
   return (
-    <div popover id='menu' auto modal className={classes.menu_popover}>
+    <div className={classes.menu_popover}>
       <ul className={classes.menu_list}>
         <div>
           <TriangleButton

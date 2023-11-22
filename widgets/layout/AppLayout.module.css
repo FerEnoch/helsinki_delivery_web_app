@@ -3,7 +3,6 @@
   background-color: var(--app-white-text);
   box-shadow: rgba(47, 48, 49, 0.5) 0px 8px 24px;
   box-shadow: rgba(47, 48, 49, 1) 0px -8px -24px;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -17,6 +16,7 @@
 
 @media (width>=520px) {
   .app_background {
+    border-radius: 10px;
     height: 90vh;
     width: 520px
   }

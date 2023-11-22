@@ -69,15 +69,18 @@
 
 @media (height<=700px) {
   .product_name {
-    font-size: .9rem;
+    font-size: .8rem;
   }
 }
 
 
 @media (width>=520px) and (height<=700px) {
+  .product_name {
+    font-size: .8rem;
+  }
+
   .product_card_wrapper {
     padding-block-start: 1.5rem;
-    height: 75%;
   }
 
   .plusInfoButton_wrapper {

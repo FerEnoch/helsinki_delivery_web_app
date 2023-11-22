@@ -31,7 +31,7 @@
 }
 
 
-@media (height<=700px) {
+@media (width>=520px) and (height<=700px) {
   .search_container {
     width: 90%;
     margin-inline: auto;

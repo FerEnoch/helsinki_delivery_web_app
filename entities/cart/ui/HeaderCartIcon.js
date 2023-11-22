@@ -4,7 +4,7 @@ import classes from './HeaderCartIcon.module.css'
 import Cart from '@/shared/ui/lib/svg/Cart'
 import { useAppStore } from '@/entities/lib/store'
 import SmallCircle from '@/shared/ui/lib/svg/SmallCircle'
-import { Suspense, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function HeaderCartIcon () {
   const { cart, getCartTotalAmount } = useAppStore()
@@ -37,11 +37,9 @@ export default function HeaderCartIcon () {
         />
         {
             cart.length > 0 && (
-              <Suspense>
-                <span className={classes.small_circle}>
-                  <SmallCircle radius={8} />
-                </span>
-              </Suspense>
+              <span className={classes.small_circle}>
+                <SmallCircle radius={8} />
+              </span>
             )
           }
       </Link>

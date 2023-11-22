@@ -16,7 +16,8 @@
   font-size: 2rem;
 }
 
-.text {
+.subtitle {
+  text-wrap: balance;
   font-weight: 600;
   font-size: 1.5rem;
   margin-block: .5rem;
@@ -41,10 +42,30 @@
 }
 
 .discharge {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
   display: grid;
   place-content: center;
   flex: 1 1 25%;
   width: 80%;
   margin-inline: auto;
   text-wrap: balance;
+}
+
+@media (width<=400px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    margin-block: 1rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media (height<=700px) {
+  .discharge {
+    font-size: 1rem;
+    line-height: 1.2rem;
+  }
 }

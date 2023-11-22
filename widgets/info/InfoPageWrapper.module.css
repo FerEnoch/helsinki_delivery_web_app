@@ -3,12 +3,12 @@
   border-radius: 14px;
   box-shadow: 1px 1px 5px #000;
   flex: 1 1 35%;
-  margin-block-start: 10%;
-  margin-block-end: 15%;
+  margin-block-start: 15%;
+  margin-block-end: 5%;
   margin-inline: auto;
-  max-height: 70%;
+  height: 90%;
   overflow: hidden;
   padding: 1rem;
   width: 90%;
-  z-index: 20;
+  z-index: 25;
 }

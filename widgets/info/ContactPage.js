@@ -16,14 +16,13 @@ export default async function ContactPage ({ title }) {
   const formattedTitle = formatUpperCase(title)
   const formattedTelText = formatUpperCase(TEL_TEXT)
   const formattedEmailText = formatUpperCase(EMAIL_TEXT)
-  const formattedDischargeText = formatUpperCase(DISCHARGE)
 
   return (
     <article className={classes.wrapper}>
       <header className={classes.header}>
         <h1 className={classes.title}>{formattedTitle}</h1>
       </header>
-      <p className={classes.text}>{formattedTelText}</p>
+      <p className={classes.subtitle}>{formattedTelText}</p>
       <p className={`${classes.tel} ${codecProRegular.className}`}>
         {tel}
         <span className={classes.whats_app_icon}>
@@ -36,10 +35,10 @@ export default async function ContactPage ({ title }) {
           </a>
         </span>
       </p>
-      <p className={classes.text}>{formattedEmailText}</p>
+      <p className={classes.subtitle}>{formattedEmailText}</p>
       <p className={`${classes.mail} ${codecProRegular.className}`}>{mail}</p>
-      <section className={`${classes.discharge} ${classes.text}`}>
-        <p>{formattedDischargeText}</p>
+      <section className={`${classes.discharge} ${codecProRegular.className}`}>
+        <p>{DISCHARGE}</p>
       </section>
     </article>
   )
