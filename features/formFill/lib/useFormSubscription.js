@@ -12,9 +12,9 @@ const {
   ORDER,
   CLIENT_PHONE,
   CLIENT_NAME,
-  PAYMENT_METHOD,
   TOTAL,
   CLIENT_WHATSAPP,
+  PAYMENT_METHOD,
   PAYMENT_STATE,
   PAYMENT_RECEIPT: { label: receiptLabel },
   RECEIPT_NAME,
@@ -27,6 +27,7 @@ const { PROCESSING_MIN_TIME_MS } = ORDER_OPERATION_TIME
 export function useFormSubscription () {
   const {
     paymentMethod: { label: method, receipt },
+    QRService,
     getCartTotalAmount,
     cart,
     clearCart,
@@ -57,14 +58,13 @@ export function useFormSubscription () {
 
     const formData = new FormData()
     const date = new Date()
-
     formData.set(TIMESTAMP, timeFormatter(date))
     formData.set(CLIENT_ADDRESS, client?.address.trim())
     formData.set(CLIENT_COMMENTS, client?.addressComments.trim())
     formData.set(ORDER, JSON.stringify(cart))
     formData.set(CLIENT_PHONE, client?.phone.trim())
     formData.set(CLIENT_NAME, client?.name.trim())
-    formData.set(PAYMENT_METHOD, method)
+    formData.set(PAYMENT_METHOD, `${method}${QRService?.service ? ` - Servicio: ${QRService.service}` : ''}`)
     formData.set(TOTAL, getCartTotalAmount())
     formData.set(CLIENT_WHATSAPP, client?.phone.trim())
     formData.set(PAYMENT_STATE.label, PAYMENT_STATE.state)
@@ -82,10 +82,7 @@ export function useFormSubscription () {
     const { message } = await sendOrderData(formData)
     if (message === 'success') return successHandler()
     console.log(message)
-    throw new Error()
-    /**
-     * handle error!
-     */
+    throw new Error('No se pudo enviar el pedido. Por favor póngase en contacto con Helsinki.')
   }
 
   return {

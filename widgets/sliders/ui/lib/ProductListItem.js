@@ -24,7 +24,10 @@ export default function ProductListItem ({ isCigarOrExtra, product }) {
   return (
     <article>
       <li className={classes.product_item}>
-        <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`} prefetch={false}>
+        <Link
+          href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`}
+          prefetch={false}
+        >
           <span className={classes.plusInfoButton_wrapper}>
             <PlusInfoButton />
           </span>
@@ -42,7 +45,10 @@ export default function ProductListItem ({ isCigarOrExtra, product }) {
         </Link>
         <div className={classes.product_background}>
           <span className={classes.product_name}>
-            <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`} prefetch={false}>
+            <Link
+              href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`}
+              prefetch={false}
+            >
               <h2>{productName}</h2>
             </Link>
           </span>

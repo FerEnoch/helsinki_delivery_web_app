@@ -28,6 +28,10 @@
   font-weight: 600;
 }
 
+.contact_link:hover {
+  cursor: pointer
+}
+
 .back_home_button {
   margin-block-start: 1rem;
   font-size: 1.2rem;

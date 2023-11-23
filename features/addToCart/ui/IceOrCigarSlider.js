@@ -40,7 +40,11 @@ export default function IceOrCigarSlider ({ products, label, categoryOffering })
           {label?.toUpperCase()}
         </h3>
         {categoryOffering && (
-          <Link href={`/${encodeURIComponent(categoryOffering)}`} className={classes.offering_category} prefetch={false}>
+          <Link
+            href={`/${encodeURIComponent(categoryOffering)}`}
+            className={classes.offering_category}
+            prefetch={false}
+          >
             VER <strong> {categoryOffering.toUpperCase()} </strong>
           </Link>
         )}
@@ -61,7 +65,10 @@ export default function IceOrCigarSlider ({ products, label, categoryOffering })
                  return (
                    <li key={id} id={index} className={classes.product_item}>
                      <p>
-                       <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`} prefetch={false}>
+                       <Link
+                         href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`}
+                         prefetch={false}
+                       >
                          {name}
                        </Link>
                      </p>

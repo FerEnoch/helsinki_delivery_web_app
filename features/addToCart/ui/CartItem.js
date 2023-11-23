@@ -31,7 +31,10 @@ export default function CartItem ({ product, showArrows }) {
     >
       <li className={classes.product_item}>
         <div className={classes.product_image}>
-          <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`} prefetch={false}>
+          <Link
+            href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`}
+            prefetch={false}
+          >
             <div className={classes.image_mask}>
               <ProductImage
                 width={isCigarOrExtra ? 30 : 75}
@@ -44,12 +47,14 @@ export default function CartItem ({ product, showArrows }) {
           </Link>
         </div>
         <div className={classes.product_background}>
-          <span
-            className={classes.product_name}
-            style={{ fontSize: `${name?.length > 20 ? '0.6rem' : '.8rem'}` }}
-          >
-            <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`} prefetch={false}>
-              <h2>{productName}</h2>
+          <span className={classes.product_name_span}>
+            <Link
+              href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`}
+              prefetch={false}
+            >
+              <h2 className={classes.product_name}>
+                {productName}
+              </h2>
             </Link>
           </span>
           <span className={classes.product_price}>
