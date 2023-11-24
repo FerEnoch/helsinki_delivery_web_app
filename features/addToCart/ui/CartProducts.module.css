@@ -21,6 +21,7 @@
 
 .gray_background {
   background-color: var(--app-backgound-gray);
+  box-shadow: -10px 1px 20px #dfdede;
   top: 0;
   right: 0rem;
   width: 82%;

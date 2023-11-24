@@ -5,8 +5,8 @@
   color: white;
   display: grid;
   height: 100%;
-  place-content: center;
   padding-inline: .5rem;
+  place-content: center;
   width: 7rem;
 }
 

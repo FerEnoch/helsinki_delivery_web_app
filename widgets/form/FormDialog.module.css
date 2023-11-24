@@ -11,7 +11,6 @@
   padding: 1rem;
 }
 
-
 .form_dialog_container::backdrop {
   backdrop-filter: blur(1px) saturate(120%) brightness(65%);
 }
@@ -20,7 +19,6 @@
   visibility: visible;
   animation: dialog-in 250ms ease-in-out forwards;
 }
-
 
 @media (width>=520px) {
   .form_dialog_container {

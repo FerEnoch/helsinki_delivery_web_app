@@ -31,11 +31,11 @@
 }
 
 .action_text {
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   flex: 1 0 80%;
   text-align: start;
   padding-inline-start: 1rem;
-  line-height: 1.5rem;
+  line-height: 1.7rem;
 }
 
 .triangle_button {
@@ -45,15 +45,13 @@
 
 @media (width <=400px) {
   .action_text {
-    font-size: 1.5rem;
-    line-height: 1.4rem;
+    font-size: 1.6rem;
   }
 }
 
-
-@media (width>=520px) and (height<=700px) {
+@media (height<=700px) {
   .action_text {
-    font-size: 1.5rem;
-    line-height: 1.4rem;
+    font-size: 1.4rem;
+    line-height: 1.3rem;
   }
 }

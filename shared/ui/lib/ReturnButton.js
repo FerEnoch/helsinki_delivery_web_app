@@ -3,6 +3,15 @@ import classes from './ReturnButton.module.css'
 import { useRouter } from 'next/navigation'
 import TriangleButton from './TriangleButton'
 import { codecProRegular } from '@/shared/config/fonts'
+import { i18n } from '@/shared/model/i18n'
+
+const {
+  CART: {
+    FOOTER_BUTTONS: {
+      BACK
+    }
+  }
+} = i18n.LANG.ESP.UI
 
 export default function ReturnButton () {
   const router = useRouter()
@@ -24,7 +33,7 @@ export default function ReturnButton () {
       <input
         type='button'
         className={`${classes.back_button_input} ${codecProRegular.className}`}
-        value='Volver'
+        value={BACK}
       />
     </div>
   )

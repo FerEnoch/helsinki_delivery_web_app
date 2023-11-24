@@ -9,7 +9,7 @@ export default function DeliveryZone ({ title }) {
         <h1 className={classes.title}>{formattedTitle}</h1>
       </header>
       <section className={classes.map_wrapper}>
-        MAPA
+        En construcción...
       </section>
     </article>
   )

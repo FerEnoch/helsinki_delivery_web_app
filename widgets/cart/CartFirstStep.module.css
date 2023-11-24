@@ -13,6 +13,7 @@
   height: 0.3rem;
   width: 100%;
   background-color: var(--app-type-background);
+  box-shadow: 1px 1px 20px #dfdeded0;
 }
 
 .title {
@@ -21,7 +22,6 @@
   font-weight: 100;
   margin-block: 1rem;
   transform: scaleY(1.05) scaleX(.9);
-  z-index: 10;
   margin-block: .5rem;
 }
 

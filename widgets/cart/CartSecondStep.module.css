@@ -10,6 +10,7 @@
 }
 
 .golden_line {
+  box-shadow: 1px 1px 20px #dfdeded0;
   height: 0.3rem;
   width: 100%;
   background-color: var(--app-type-background);

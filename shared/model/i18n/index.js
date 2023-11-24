@@ -11,6 +11,9 @@ export const i18n = {
       APP_DESCRIPTION: 'Conocé nuestros productos y hacé tu pedido online. Te enviamos cualquier bebida o accesorio al instante',
       UI: {
         MENU,
+        SEARCH_BAR: {
+          PLACEHOLDER: 'Buscá tu producto'
+        },
         CART: {
           FIRST_STEP_TITLE: '1 - Revisa tu compra',
           FIRST_STEP_ADDS: 'No te olvides de agregar',
