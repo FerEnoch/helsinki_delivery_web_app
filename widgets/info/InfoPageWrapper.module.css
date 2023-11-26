@@ -9,6 +9,29 @@
   height: 90%;
   overflow: hidden;
   padding: 1rem;
+  position: relative;
   width: 90%;
   z-index: 25;
+}
+
+.viking_image {
+  filter: opacity(.3) sepia(.2);
+  position: absolute;
+  bottom: 18%;
+  right: 15%;
+  transform: scale(2, 2.5);
+  z-index: -1;
+}
+
+@media (width<=520px) {
+  .viking_image {
+    right: 18%;
+  }
+}
+
+@media (height<=700px) {
+  .viking_image {
+    transform: scale(1.7, 2.1);
+    bottom: 15%;
+  }
 }
