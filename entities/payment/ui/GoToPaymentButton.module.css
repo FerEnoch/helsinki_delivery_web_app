@@ -1,5 +1,6 @@
 .go_to_payment_button {
   color: white;
+  box-shadow: 1px 1px 15px #555;
   background-color: var(--app-payments-green);
   border: 2px solid white;
   display: grid;

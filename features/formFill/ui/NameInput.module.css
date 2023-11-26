@@ -23,7 +23,8 @@
   z-index: 100;
 }
 
-@media (width<=415px) {
+
+@media (width<=425px) and (height<=740px) {
 
   .input_label {
     font-size: 1.2rem;
@@ -31,9 +32,9 @@
 
   .invalid_input_message {
     font-size: .8rem;
+    top: 110%;
   }
 }
-
 
 @media (height<=700px) {
   .name_input {

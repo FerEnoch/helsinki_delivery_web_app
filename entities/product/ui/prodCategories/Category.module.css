@@ -7,7 +7,7 @@
   padding-block: 2px;
   padding-inline: .5rem;
   z-index: 10;
-  box-shadow: 1px 1px 2px #555;
+  box-shadow: 1px 1px 15px #555;
 }
 
 .link:hover {

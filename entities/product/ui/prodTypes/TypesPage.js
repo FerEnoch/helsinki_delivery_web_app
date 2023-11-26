@@ -18,7 +18,10 @@ export default function TypesPage ({ category, subtypes }) {
                   style={subtypes.length === 1 ? { gridArea: 'center' } : {}}
                   key={type}
                 >
-                  <Link href={`/${encodeURIComponent(category)}/${encodeURIComponent(type)}`}>
+                  <Link
+                    href={`/${encodeURIComponent(category)}/${encodeURIComponent(type)}`}
+                    prefetch={false}
+                  >
                     <li className={classes.link}>
                       {formattedType || type.toUpperCase()}
                     </li>

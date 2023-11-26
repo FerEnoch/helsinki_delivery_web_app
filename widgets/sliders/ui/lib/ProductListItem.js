@@ -6,10 +6,10 @@ import SelectQuantitySection from '@/features/addToCart/ui/SelectQuantitySection
 import Link from 'next/link'
 import classes from './ProductListItem.module.css'
 import { useAppStore } from '@/entities/lib/store'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 
-export default function ProductListItem ({ isCigarOrExtra, product }) {
+export default memo(function ProductListItem ({ isCigarOrExtra, product }) {
   const { addToCart } = useAppStore()
   const [productQuantity, setProductQuantity] = useState(1)
 
@@ -64,3 +64,4 @@ export default function ProductListItem ({ isCigarOrExtra, product }) {
     </article>
   )
 }
+)

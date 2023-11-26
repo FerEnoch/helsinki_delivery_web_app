@@ -28,7 +28,7 @@
 
 @media (width<=415px) {
   .receipt_input_wrapper {
-    padding-block: .5rem;
+    padding-block: .2rem;
   }
 
   .title {

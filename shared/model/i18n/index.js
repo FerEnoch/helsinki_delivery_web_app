@@ -12,7 +12,8 @@ export const i18n = {
       UI: {
         MENU,
         SEARCH_BAR: {
-          PLACEHOLDER: 'Buscá tu producto'
+          PLACEHOLDER: 'Buscá tu producto',
+          NOT_FOUND_PRODUCTS: 'No se encuentran productos. Prueba modificar el texto'
         },
         CART: {
           FIRST_STEP_TITLE: '1 - Revisa tu compra',

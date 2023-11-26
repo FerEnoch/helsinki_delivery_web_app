@@ -2,7 +2,7 @@
 import { i18n } from '@/shared/model/i18n'
 import { prodGenericImage } from '@/shared/config/prodGenericImage'
 import Image from 'next/image'
-import { Suspense, useState } from 'react'
+import { useState } from 'react'
 import IceIcon from '@/shared/ui/lib/svg/IceIcon'
 import CigarIcon from '@/shared/ui/lib/svg/CigarIcon'
 import SuspenseFallbackLogo from '@/shared/ui/lib/SuspenseFallbackLogo'

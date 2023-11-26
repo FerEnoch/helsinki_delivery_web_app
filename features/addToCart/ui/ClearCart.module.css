@@ -1,6 +1,7 @@
 .clear_cart_button {
   background-color: white;
   border-radius: 12px;
+  box-shadow: 1px 1px 15px #555;
   border: 1px solid white;
   color: var(--app-footer-color);
   display: grid;
