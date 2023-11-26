@@ -9,6 +9,7 @@
   align-items: stretch;
   background-color: white;
   border-radius: 20px;
+  box-shadow: 1px 1px 10px #666;
   display: flex;
   flex-direction: column;
   height: 100%;

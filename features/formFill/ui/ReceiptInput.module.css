@@ -73,6 +73,11 @@
   background-color: var(--app-payments-green);
 }
 
+.file_name {
+  height: .5rem;
+  margin-block-end: -.5rem;
+}
+
 @keyframes start-uploading {
   0% {
     background-color: var(--app-type-background);
@@ -102,6 +107,8 @@
 }
 
 .invalid_input_message {
+  background-color: #fff;
+  line-height: 1rem;
   font-size: .9rem;
   color: red;
   position: absolute;

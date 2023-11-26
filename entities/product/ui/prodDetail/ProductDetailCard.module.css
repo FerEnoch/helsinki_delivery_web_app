@@ -1,5 +1,6 @@
 .card {
   background-color: white;
+  box-shadow: 1px 1px 20px #666;
   border-radius: 14px;
   display: flex;
   flex-direction: column;
@@ -15,6 +16,8 @@
 }
 
 .product_name {
+  display: grid;
+  place-content: center;
   flex: 1 0 10%;
   background-color: var(--app-type-background);
   border-radius: 14px 14px 0 0;

@@ -58,7 +58,14 @@ export default function SearchBar () {
           )
         : (
           <section className={classes.product_list_container}>
-            <SuspenseFallbackLogo>
+            <SuspenseFallbackLogo
+              isLoading={isLoading}
+              height={100}
+              logoStyle={{
+                fill: '#fff',
+                fillOpacity: 0.9
+              }}
+            >
               <h4 className={codecProRegular.className}>{NOT_FOUND_PRODUCTS}</h4>
             </SuspenseFallbackLogo>
           </section>

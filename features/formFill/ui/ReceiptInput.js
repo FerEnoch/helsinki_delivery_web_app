@@ -45,7 +45,7 @@ export default memo(function ReceiptInput () {
         </label>
         {
           uploadingEnd && (
-            <p>{receiptFile.name}</p>
+            <p className={classes.file_name}>{receiptFile.name}</p>
           )
         }
         <input

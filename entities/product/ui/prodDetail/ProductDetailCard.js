@@ -9,21 +9,21 @@ import { ProductDataDetail } from './ProductDataDetail'
 export default function ProductDetailCard ({ product }) {
   const memoProduct = useMemo(() => product, [product])
   const {
-    prodInfo: { formattedName, category, image },
+    prodInfo: { name, category, image },
     prodDetailInfo
   } = useProductData(memoProduct)
 
   return (
     <article className={classes.card}>
       <h1 className={classes.product_name}>
-        {formattedName}
+        {name}
       </h1>
       <section className={classes.card_body}>
         <div className={classes.product_image}>
           <ProductImage
             width={270}
             height={300}
-            alt={formattedName}
+            alt={name}
             src={image}
             category={category}
           />

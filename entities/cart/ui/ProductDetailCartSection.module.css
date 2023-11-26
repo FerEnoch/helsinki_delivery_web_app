@@ -10,6 +10,7 @@
 }
 
 .product_price {
+  box-shadow: 1px 1px 6px #bbb;
   display: grid;
   place-content: center;
   background-color: var(--app-black-text);
