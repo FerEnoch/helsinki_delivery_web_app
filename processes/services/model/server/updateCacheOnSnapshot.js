@@ -23,21 +23,29 @@ async function addCacheProduct (productsIDs) {
 }
 
 async function updateCacheProduct (firestoreIDs) {
-  const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
+  const { FIREBASE_DATABASE: { PRODUCTS, PRODUCTS_CATEGORIES: CATEGORIES_PRODUCTS } } = MEM_CACHE
 
   const result = new Set()
   firestoreIDs.forEach(async firestoreID => {
-    const updatedFirestoreProduct = await getDatabaseProductByFirestoreID(firestoreID)
-    if (!updatedFirestoreProduct) {
+    const updatedCategory = await getDatabaseProductByFirestoreID(firestoreID, CATEGORIES_PRODUCTS)
+    if (!updatedCategory) {
       console.log(`Something happened updating ${firestoreID} product... :(`)
       return
     }
-    console.log('UPDATING PRODUCT from cache --->', updatedFirestoreProduct?.id)
-    const operationResult = await setProdInFirebaseCache(updatedFirestoreProduct, PRODUCTS)
-    if (!operationResult) {
-      result.add('failure')
-      console.log(`failed operation __ --_  NOT updating ${firestoreID} product...`)
-    }
+    console.log(updatedCategory)
+    /**
+     * parse category products
+     */
+    const [categoryData] = Object.values(updatedCategory)
+    const updatedCatProducts = JSON.parse(categoryData).flat()
+    updatedCatProducts.forEach(async product => {
+      console.log('UPDATING PRODUCT from cache --->', product?.id)
+      const operationResult = await setProdInFirebaseCache(product, PRODUCTS)
+      if (!operationResult) {
+        result.add('failure')
+        console.log(`failed operation __ --_  NOT updating ${firestoreID} product...`)
+      }
+    })
   })
   return !result.has('failure')
 }
@@ -57,7 +65,7 @@ async function deleteCacheProduct (productIDs) {
   return !result.has('failure')
 }
 
-async function undateInfoCache (content) {
+async function updateInfoCache (content) {
   const { FIREBASE_DATABASE: { INFO: activeCache } } = MEM_CACHE
   console.log(`UPDATING ${content}`)
   const activeCacheMap = getFromMainCache(activeCache)
@@ -88,12 +96,12 @@ async function updatePaymentMethodsCache (content) {
 const { FIREBASE_DATABASE: { INFO, PAYMENT_METHODS, PRODUCTS } } = MEM_CACHE
 const DATABASE_UPDATE_ACTIONS = {
   [PRODUCTS]: {
-    ADD: addCacheProduct,
+    ADD: addCacheProduct, // prox to be deprecated
     UPDATE: updateCacheProduct,
     DELETE: deleteCacheProduct
   },
   [INFO]: {
-    UPDATE: undateInfoCache
+    UPDATE: updateInfoCache
   },
   [PAYMENT_METHODS]: {
     UPDATE: updatePaymentMethodsCache

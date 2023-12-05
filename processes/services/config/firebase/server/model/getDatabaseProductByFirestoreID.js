@@ -1,9 +1,11 @@
 import { FIREBASE_DATABASES } from '../../databases'
 import { firestoreDatabaseAdmin } from '../config'
 
-export async function getDatabaseProductByFirestoreID (firestoreID) {
+export async function getDatabaseProductByFirestoreID (firestoreID, database) {
   const { PRODUCTS } = FIREBASE_DATABASES
-  const docRef = firestoreDatabaseAdmin.collection(PRODUCTS).doc(firestoreID)
+  const collection = database || PRODUCTS
+
+  const docRef = firestoreDatabaseAdmin.collection(collection).doc(firestoreID)
   const docSnapshot = await docRef.get()
 
   if (docSnapshot.exists) {

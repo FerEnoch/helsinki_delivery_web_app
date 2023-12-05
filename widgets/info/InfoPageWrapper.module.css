@@ -15,7 +15,7 @@
 }
 
 .viking_image {
-  filter: opacity(.3) sepia(.2);
+  filter: opacity(.15) sepia(.5);
   position: absolute;
   bottom: 18%;
   right: 15%;

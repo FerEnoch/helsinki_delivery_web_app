@@ -63,18 +63,21 @@ export function deleteKeyFromMainCache (key) {
 
 export async function setProdInFirebaseCache (product, activeCache) {
   const databaseCache = getFromMainCache(activeCache)
-  // console.log(`...adding product: ${product.id} --> ${product.name}`)
+  // console.log(`...adding product: ${product.id} --> ${String(product.name)}`)
 
-  const { imageID, imageURL, ...productFields } = product
+  const { name, type, category, imageID, imageURL, ...restProductFields } = product
   const image = imageID ? (await getBucketImageURL(imageID) || imageURL) : (imageURL || null)
 
   return databaseCache.set(
     product.id,
     JSON.stringify(
       {
-        ...productFields,
+        name: String(name),
+        category: String(category),
+        type: String(type),
         image,
-        quantity: 0
+        quantity: 0,
+        ...restProductFields
       }
     ))
 }

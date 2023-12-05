@@ -28,7 +28,8 @@ export const formatDeveloper = () => {
   ].join(' ')
 }
 
-export const formatUpperCase = (string) => {
+export const formatUpperCase = (incommingData) => {
+  const string = String(incommingData)
   const toLowerCaseChar = ['Q', 'U']
   let formattedString
   const allUpperCase = string.toUpperCase()

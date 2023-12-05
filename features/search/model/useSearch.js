@@ -17,7 +17,7 @@ function search (param, allProducts) {
 };
 
 export function useSearch () {
-  const [userInput, setUserInput] = useState(null)
+  const [userInput, setUserInput] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [searchResults, setSearchResults] = useState(null)
   const { stockProducts } = useAppStore()

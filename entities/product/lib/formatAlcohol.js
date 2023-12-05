@@ -1,10 +1,6 @@
 export const formatAlcohol = (alcohol) => {
-  let number
-  if (alcohol.includes('%')) {
-    const string = alcohol.replace('%', '')
-    number = Number(string)
-  } else {
-    number = Number(alcohol)
-  }
-  return number
+  let string
+  string = String(alcohol)
+  if (string.includes('%')) string = string.replace('%', '')
+  return string
 }
