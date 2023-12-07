@@ -16,11 +16,27 @@
   font-size: 2rem;
 }
 
-.map_wrapper {
+.limits_wrapper {
   display: grid;
   place-content: center;
   flex: 1 1 80%;
+  margin-block-end: 20%;
 }
+
+.zone {
+  line-height: 1.5rem;
+  margin-block: 1rem;
+}
+
+.limit {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.sentence {
+  font-size: 1.2rem;
+}
+
 
 @media (width<=400px) {
   .title {
