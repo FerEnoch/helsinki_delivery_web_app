@@ -21,6 +21,8 @@ export default function SlideCard ({ product }) {
         </Link>
         <div className={classes.product_image}>
           <ProductImage
+            svgWidth={180}
+            svgHeight={200}
             width={150}
             height={200}
             alt={name}

@@ -1,6 +1,5 @@
 import ProductImage from '@/entities/product/ui/lib/ProductImage'
 import ProductPrice from '@/entities/product/ui/lib/ProductPrice'
-import { i18n } from '@/shared/model/i18n'
 import Link from 'next/link'
 import CartUnitsSection from './CartUnitsSection'
 import { useAppStore } from '@/entities/lib/store'
@@ -8,14 +7,11 @@ import classes from './CartItem.module.css'
 import { useEffect, useMemo } from 'react'
 import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 
-const { DETAIL_CARD_PRODUCT: { FOOTER: cardFooterTexts } } = i18n.LANG.ESP.UI
-
 export default function CartItem ({ product, showArrows }) {
   const { cart } = useAppStore()
   const { id, category, name, image, price, stock: hasStock } = useMemo(() => product, [product])
   const productName = name?.toUpperCase()
   const formattedPrice = priceFormater(price)
-  const isCigarOrExtra = cardFooterTexts.generic_action.categories.find(categRegExp => categRegExp.test(category))
 
   useEffect(() => {
     showArrows(cart.length)
@@ -37,8 +33,10 @@ export default function CartItem ({ product, showArrows }) {
           >
             <div className={classes.image_mask}>
               <ProductImage
-                width={isCigarOrExtra ? 30 : 75}
-                height={isCigarOrExtra ? 50 : 106}
+                width={75}
+                height={106}
+                svgWidth={28}
+                svgHeight={42}
                 alt={name}
                 src={image}
                 category={category}

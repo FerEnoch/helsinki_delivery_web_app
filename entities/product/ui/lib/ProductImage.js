@@ -12,6 +12,8 @@ const { DETAIL_CARD_PRODUCT: { FOOTER: cardFooterTexts } } = i18n.LANG.ESP.UI
 export default function ProductImage ({
   width,
   height,
+  svgWidth,
+  svgHeight,
   alt,
   src,
   category
@@ -24,8 +26,8 @@ export default function ProductImage ({
     if (cardFooterTexts.generic_action.categories[0].test(category)) {
       return (
         <IceIcon
-          width={width || 30}
-          height={height || 45}
+          width={svgWidth || 30}
+          height={svgHeight || 45}
           title={category}
           priority
         />
@@ -35,8 +37,8 @@ export default function ProductImage ({
     if (cardFooterTexts.generic_action.categories[1].test(category)) {
       return (
         <CigarIcon
-          width={width || 30}
-          height={height || 45}
+          width={svgWidth || 30}
+          height={svgHeight || 45}
           title={category}
         />
       )

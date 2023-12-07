@@ -84,8 +84,8 @@ export async function setProdInFirebaseCache (product, activeCache) {
 
 export function deleteProdInFirebaseCache (productID, activeCache) {
   const databaseCache = getFromMainCache(activeCache)
-  console.log(`...removing product: ${productID}`)
   if (databaseCache.has(productID)) {
+    console.log(`...removing product: ${productID}`)
     return databaseCache.delete(productID)
   } else {
     console.log(`No product found to delete with id ${productID}`)

@@ -1,18 +1,26 @@
-import { memo } from 'react'
+import { memo, useEffect, useRef } from 'react'
 import classes from './AppMenu.module.css'
 import { getMenuTitles } from './lib/getMenu'
 import MenuTitle from './MenuTitle'
 import TriangleButton from '@/shared/ui/lib/TriangleButton'
 
-export default memo(function AppMenu ({ handleOpenMenu }) {
+export default memo(function AppMenu ({ toggleMenu, closeMenu }) {
+  const menuRef = useRef(null)
   const titles = getMenuTitles()
 
+  useEffect(() => {
+    window.addEventListener('keydown', closeMenu)
+    return () => {
+      window.removeEventListener('keydown', null)
+    }
+  }, [closeMenu])
+
   return (
-    <div className={classes.menu_popover}>
+    <div ref={menuRef} className={classes.menu_popover}>
       <ul className={classes.menu_list}>
         <div>
           <TriangleButton
-            onClick={handleOpenMenu}
+            onClick={toggleMenu}
             customClasses={classes.close_triangle}
             width={18}
             height={18}
@@ -23,7 +31,7 @@ export default memo(function AppMenu ({ handleOpenMenu }) {
             <MenuTitle
               key={title}
               title={title}
-              onClick={handleOpenMenu}
+              onClick={toggleMenu}
             />
           )
         })}

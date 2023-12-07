@@ -7,13 +7,14 @@ import AppMenu from './AppMenu'
 export default function HeaderMenuIcon () {
   const [openMenu, setOpenMenu] = useState(false)
 
-  const handleOpenMenu = useCallback(() => setOpenMenu(isOpen => !isOpen), [])
+  const toggleMenu = useCallback(() => setOpenMenu(isOpen => !isOpen), [])
+  const closeMenu = useCallback(() => setOpenMenu(false), [])
 
   return (
     <>
       <button className={classes.button_menu}>
         <MenuIcon
-          onClick={handleOpenMenu}
+          onClick={toggleMenu}
           className={classes.icon_menu}
           width={25}
           height={25}
@@ -21,7 +22,7 @@ export default function HeaderMenuIcon () {
         />
       </button>
       {
-        openMenu && <AppMenu handleOpenMenu={handleOpenMenu} />
+        openMenu && <AppMenu toggleMenu={toggleMenu} closeMenu={closeMenu} />
       }
     </>
   )

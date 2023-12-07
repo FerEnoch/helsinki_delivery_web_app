@@ -4,7 +4,8 @@ import { MEM_CACHE } from '@/processes/cache/config'
 import { getDatabaseProdByProdID } from '../../config/firebase/server/model/getDatabaseProdByProdID'
 import { revalidatePath } from 'next/cache'
 import { getPaymentMethodsCollection } from '../../config/firebase/server/model/getPaymentMethodsCollection'
-import { getInfoCollection } from '../../config/firebase/server/model/getInfoCollection'
+import { getFirebaseCollection } from '../../config/firebase/server/model/getFirebaseCollection'
+import { FIREBASE_DATABASES } from '../../config/firebase/databases'
 
 async function addCacheProduct (productsIDs) {
   const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
@@ -32,7 +33,7 @@ async function updateCacheProduct (firestoreIDs) {
       console.log(`Something happened updating ${firestoreID} product... :(`)
       return
     }
-    console.log(updatedCategory)
+    // console.log(updatedCategory)
     /**
      * parse category products
      */
@@ -69,9 +70,23 @@ async function updateInfoCache (content) {
   const { FIREBASE_DATABASE: { INFO: activeCache } } = MEM_CACHE
   console.log(`UPDATING ${content}`)
   const activeCacheMap = getFromMainCache(activeCache)
-
-  const [{ info }] = await getInfoCollection()
+  const { INFO } = FIREBASE_DATABASES
+  const [{ info }] = await getFirebaseCollection(INFO)
   activeCacheMap.set(activeCache, info)
+  /* Creating cache loggin */
+  console.log(`
+  CACHE POPULATED/**** data from **> ${activeCache}
+  **>`)
+  return true
+}
+
+async function updateFaqCache (content) {
+  const { FIREBASE_DATABASE: { FAQ: activeCache } } = MEM_CACHE
+  console.log(`UPDATING ${content}`)
+  const activeCacheMap = getFromMainCache(activeCache)
+  const { FAQ } = FIREBASE_DATABASES
+  const [{ faq }] = await getFirebaseCollection(FAQ)
+  activeCacheMap.set(activeCache, faq)
   /* Creating cache loggin */
   console.log(`
   CACHE POPULATED/**** data from **> ${activeCache}
@@ -93,7 +108,7 @@ async function updatePaymentMethodsCache (content) {
   return true
 }
 
-const { FIREBASE_DATABASE: { INFO, PAYMENT_METHODS, PRODUCTS } } = MEM_CACHE
+const { FIREBASE_DATABASE: { INFO, FAQ, PAYMENT_METHODS, PRODUCTS } } = MEM_CACHE
 const DATABASE_UPDATE_ACTIONS = {
   [PRODUCTS]: {
     ADD: addCacheProduct, // prox to be deprecated
@@ -102,6 +117,9 @@ const DATABASE_UPDATE_ACTIONS = {
   },
   [INFO]: {
     UPDATE: updateInfoCache
+  },
+  [FAQ]: {
+    UPDATE: updateFaqCache
   },
   [PAYMENT_METHODS]: {
     UPDATE: updatePaymentMethodsCache

@@ -27,7 +27,7 @@ export function useProductData (product) {
     prodDetailInfo: {
       prodDescription: { description, genericDescription },
       prodDestillery: { destillery, destilleryUIText },
-      prodAlcohol: { alcohol, alcoholUIText, formattedAlcohol }
+      prodAlcohol: { alcoholUIText, formattedAlcohol }
     }
   }
 }

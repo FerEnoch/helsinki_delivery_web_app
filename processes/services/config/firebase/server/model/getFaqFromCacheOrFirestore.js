@@ -3,8 +3,8 @@ import { MEM_CACHE } from '@/processes/cache/config'
 import { getFirebaseCollection } from './getFirebaseCollection'
 import { FIREBASE_DATABASES } from '../../databases'
 
-export async function getInfoFromCacheOrFirestore () {
-  const { FIREBASE_DATABASE: { INFO: activeCache } } = MEM_CACHE
+export async function getFaqFromCacheOrFirestore () {
+  const { FIREBASE_DATABASE: { FAQ: activeCache } } = MEM_CACHE
 
   let activeCacheMap
   try {
@@ -13,14 +13,14 @@ export async function getInfoFromCacheOrFirestore () {
     if (isCacheToClear) deleteKeyFromMainCache(activeCache)
 
     if (!activeCacheMap || !activeCacheMap.size) {
-      const { INFO } = FIREBASE_DATABASES
-      const [{ info }] = await getFirebaseCollection(INFO)
-      activeCacheMap.set(activeCache, info)
+      const { FAQ } = FIREBASE_DATABASES
+      const [{ faq }] = await getFirebaseCollection(FAQ)
+      activeCacheMap.set(activeCache, faq)
       /* Creating cache loggin */
       console.log(`
       CACHE POPULATED/**** data from **> ${activeCache}
       **>`)
-      return [JSON.parse(info)]
+      return [JSON.parse(faq)]
     }
 
     activeCacheMap = getFromMainCache(activeCache)

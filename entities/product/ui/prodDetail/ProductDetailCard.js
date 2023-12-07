@@ -21,6 +21,8 @@ export default function ProductDetailCard ({ product }) {
       <section className={classes.card_body}>
         <div className={classes.product_image}>
           <ProductImage
+            svgWidth={180}
+            svgHeight={200}
             width={270}
             height={300}
             alt={name}

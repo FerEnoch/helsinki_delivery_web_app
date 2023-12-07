@@ -4,7 +4,7 @@ export function ProductDataDetail ({ children, prodDetailInfo }) {
   const {
     prodDescription: { description, genericDescription },
     prodDestillery: { destillery, destilleryUIText },
-    prodAlcohol: { alcohol, alcoholUIText, formattedAlcohol }
+    prodAlcohol: { alcoholUIText, formattedAlcohol }
   } = prodDetailInfo
 
   return (
@@ -21,7 +21,7 @@ export function ProductDataDetail ({ children, prodDetailInfo }) {
             </span>
           </p>
         )}
-        {alcohol && (
+        {!formattedAlcohol.includes('0%') && (
           <p className={classes.alcohol_text}>
             {alcoholUIText}
             <span className={classes.alcohol_var}>
@@ -33,7 +33,6 @@ export function ProductDataDetail ({ children, prodDetailInfo }) {
       <div className={classes.cart_section}>
         {children}
       </div>
-
     </div>
   )
 }
