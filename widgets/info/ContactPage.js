@@ -13,15 +13,15 @@ export default async function ContactPage ({ title }) {
   const { INFO } = FIREBASE_DATABASES
   const [{ tel, mail }] = await getCorporativeInfo(INFO)
 
-  const formattedTitle = formatUpperCase(title)
+  // const formattedTitle = formatUpperCase(title)
   const formattedTelText = formatUpperCase(TEL_TEXT)
   const formattedEmailText = formatUpperCase(EMAIL_TEXT)
 
   return (
     <article className={classes.wrapper}>
-      <header className={classes.header}>
+      {/* <header className={classes.header}>
         <h1 className={classes.title}>{formattedTitle}</h1>
-      </header>
+      </header> */}
       <p className={classes.subtitle}>{formattedTelText}</p>
       <p className={`${classes.tel} ${codecProRegular.className}`}>
         {tel}

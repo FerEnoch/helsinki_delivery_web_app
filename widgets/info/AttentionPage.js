@@ -17,12 +17,13 @@ export default async function AttentionPage ({ title }) {
       <section className={classes.info_wrapper}>
         {
         sentences.map(sentence => {
+          const formattedSentence = formatUpperCase(sentence)
           return (
             <p
               key={sentence}
               className={classes.text}
             >
-              {sentence}
+              {formattedSentence}
             </p>
           )
         })

@@ -6,6 +6,7 @@
   height: 100%;
 }
 
+/* 
 .header {
   flex: 1 1 10%;
   display: grid;
@@ -14,13 +15,13 @@
 
 .title {
   font-size: 2rem;
-}
+} */
 
 .subtitle {
   text-wrap: balance;
   font-weight: 600;
   font-size: 1.5rem;
-  margin-block: .5rem;
+  padding-block: 1rem;
 }
 
 .tel {
@@ -53,9 +54,9 @@
 }
 
 @media (width<=400px) {
-  .title {
+  /* .title {
     font-size: 1.5rem;
-  }
+  } */
 
   .subtitle {
     margin-block: 1rem;

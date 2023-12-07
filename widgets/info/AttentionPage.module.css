@@ -18,12 +18,12 @@
 }
 
 .info_wrapper {
-  flex: 1 1 60%
+  flex: 1 1 60%;
 }
 
 .text {
   font-size: 1.2rem;
-  line-height: 1.5rem;
+  line-height: 2rem;
 }
 
 @media (width<=400px) {
