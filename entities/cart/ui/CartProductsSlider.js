@@ -3,23 +3,29 @@ import VerticalSliderBackgound from '@/widgets/sliders/ui/lib/VerticalSliderBack
 import { useRef, useState } from 'react'
 import classes from './CartProductsSlider.module.css'
 import CartProducts from '@/features/addToCart/ui/CartProducts'
+import { Toaster } from 'sonner'
+import useAgePolicyToast from '../lib/useAgePolicyToast'
 
 export default function CartProductsSlider () {
   const scrollRef = useRef(null)
   const [isArrowVisible, setArrowVisibility] = useState(false)
+  useAgePolicyToast()
 
   const handleArrowsVisibility = (prodQuantity) => {
     setArrowVisibility(prodQuantity > 2)
   }
 
   return (
-    <VerticalSliderBackgound
-      scrollRef={scrollRef}
-      className={classes.cart_products_slider_container}
-      controlsSize={{ width: 18, height: 18 }}
-      isArrowVisible={isArrowVisible}
-    >
-      <CartProducts ref={scrollRef} handleArrowsVisibility={handleArrowsVisibility} />
-    </VerticalSliderBackgound>
+    <>
+      <VerticalSliderBackgound
+        scrollRef={scrollRef}
+        className={classes.cart_products_slider_container}
+        controlsSize={{ width: 18, height: 18 }}
+        isArrowVisible={isArrowVisible}
+      >
+        <CartProducts ref={scrollRef} handleArrowsVisibility={handleArrowsVisibility} />
+      </VerticalSliderBackgound>
+      <Toaster />
+    </>
   )
 }

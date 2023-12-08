@@ -11,6 +11,14 @@ export const i18n = {
       APP_DESCRIPTION: 'Conocé nuestros productos y hacé tu pedido online. Te enviamos cualquier bebida o accesorio al instante',
       UI: {
         MENU,
+        TOAST: {
+          DISCOUNT: 'Estás de suerte! Tenemos 10% de descuento por pago efectivo!',
+          AGE_POLICY: {
+            MESSAGE: 'Debes tener más de 18 años para comprar bebidas alcohólicas',
+            FAQ: 'Revisar política',
+            AGREE: 'De acuerdo'
+          }
+        },
         SEARCH_BAR: {
           PLACEHOLDER: 'Buscá tu producto',
           NOT_FOUND_PRODUCTS: 'No se encuentran productos. Prueba modificar el texto'

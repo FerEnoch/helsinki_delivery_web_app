@@ -8,6 +8,7 @@
   text-wrap: balance;
   place-content: center;
   width: 22rem;
+  margin-inline: auto;
   z-index: 6;
 }
 

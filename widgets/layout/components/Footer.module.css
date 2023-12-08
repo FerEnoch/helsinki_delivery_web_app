@@ -2,7 +2,7 @@
   flex: 0 0 40px;
   display: grid;
   place-content: baseline;
-  z-index: 10;
+  z-index: -1;
 }
 
 .developer {

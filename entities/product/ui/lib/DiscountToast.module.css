@@ -1,0 +1,27 @@
+.toast_wrapper {
+  background-color: var(--app-type-background);
+  border-radius: 14px;
+  border: 3px solid white;
+  color: var(--app-black-text);
+  display: flex;
+  justify-content: space-around;
+  line-height: 1.6rem;
+  padding: .5rem;
+}
+
+.discount_text {
+  font-size: 1.1rem;
+  margin-block-end: 1rem;
+  text-align: center;
+  text-wrap: balance;
+  display: grid;
+  width: 70%;
+  place-content: center;
+}
+
+.viking_image {
+  filter: opacity(.40) sepia(.5);
+  position: relative;
+  right: 1rem;
+  z-index: 100;
+}

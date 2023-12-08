@@ -6,7 +6,6 @@
   margin-inline: auto
 }
 
-
 .link_list {
   display: grid;
   grid-template-columns: 1fr 1fr;

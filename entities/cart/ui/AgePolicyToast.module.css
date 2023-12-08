@@ -1,0 +1,73 @@
+.toast_wrapper {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--app-payments-green);
+  border-radius: 14px;
+  padding: .5rem;
+}
+
+.logo {
+  flex: 1 1 15%;
+}
+
+.info_center {
+  flex: 1 1 85%;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.title_text {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.1rem;
+  text-wrap: balance;
+}
+
+.buttons {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+
+.policy_button {
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 1px solid #999;
+  box-shadow: gray 1px 2px 5px;
+  background-color: transparent;
+  width: 50%;
+  display: grid;
+  place-content: center;
+  margin-inline: auto;
+  text-wrap: nowrap;
+  padding: .5rem 1rem;
+}
+
+.policy_button:hover,
+.agree_button:hover {
+  cursor: pointer
+}
+
+.policy_button:active,
+.agree_button:active {
+  color: var(--app-payments-green);
+  transform: scale(1.1);
+  border: 1px solid var(--app-payments-green);
+}
+
+
+.agree_button {
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 1px solid #999;
+  box-shadow: gray 1px 2px 5px;
+  background-color: var(--app-payments-green);
+  color: var(--app-white-text);
+  width: 50%;
+  display: grid;
+  place-content: center;
+  margin-inline: auto;
+  text-wrap: nowrap;
+  padding: .5rem 1rem;
+}
