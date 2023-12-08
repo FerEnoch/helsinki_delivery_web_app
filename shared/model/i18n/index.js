@@ -19,6 +19,11 @@ export const i18n = {
             AGREE: 'De acuerdo'
           }
         },
+        ZONES_PROMPT: {
+          PROMPT: 'Atención\n Antes de seguir, revisa si estás dentro de las zonas de envío',
+          BUTTON: 'Ver zonas de envío',
+          MAP_BUTTON: 'Ver mapa de entregas'
+        },
         SEARCH_BAR: {
           PLACEHOLDER: 'Buscá tu producto',
           NOT_FOUND_PRODUCTS: 'No se encuentran productos. Prueba modificar el texto'

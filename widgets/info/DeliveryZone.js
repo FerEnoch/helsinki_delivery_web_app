@@ -3,6 +3,7 @@ import classes from './DeliveryZone.module.css'
 import { formatUpperCase } from '@/shared/lib/textFormat/giveFormat'
 import { getCorporativeInfo } from '@/processes/services/model/server/getCorporativeInfo'
 import { formatZones } from './lib/formatZones'
+import SeeZonesButton from './lib/SeeZonesButton'
 
 export default async function DeliveryZone ({ title }) {
   const { INFO } = FIREBASE_DATABASES
@@ -14,6 +15,7 @@ export default async function DeliveryZone ({ title }) {
     <article className={classes.wrapper}>
       <header className={classes.header}>
         <h1 className={classes.title}>{formattedTitle}</h1>
+        <SeeZonesButton />
       </header>
       <section className={classes.limits_wrapper}>
         {formattedZones.length > 0 &&

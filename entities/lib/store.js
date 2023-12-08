@@ -18,10 +18,9 @@ export const useAppStore = create(
     }),
     {
       name: 'cart-storage',
-      storage: createJSONStorage(() => sessionStorage),
+      storage: createJSONStorage(() => sessionStorage), /* eslint-disable-line */
       partialize: (state) => ({
         cart: state.cart,
-        paymentMethod: state.paymentMethod,
         isShareApiCompatible: state.isShareApiCompatible
       })
     }

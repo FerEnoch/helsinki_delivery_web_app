@@ -5,7 +5,7 @@ import CheckedBoxIcon from '@/shared/ui/lib/svg/CheckedBoxIcon'
 import { useAppStore } from '@/entities/lib/store'
 import { useEffect, useState } from 'react'
 
-export default function PaymentOption ({ id, children, label, comment }) {
+export default function PaymentOption ({ id, children, label, comment, openZonesModal }) {
   const { paymentMethod, pickPaymentOption } = useAppStore()
   const [isChosen, setIsChosen] = useState(undefined)
 
@@ -19,7 +19,11 @@ export default function PaymentOption ({ id, children, label, comment }) {
 
   useEffect(() => {
     setIsChosen(paymentMethod?.id === id)
-  }, [paymentMethod, id])
+  }, [paymentMethod, id, openZonesModal])
+
+  useEffect(() => {
+    if (isChosen) openZonesModal()
+  }, [isChosen, openZonesModal])
 
   return (
     <section

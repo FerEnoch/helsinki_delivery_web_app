@@ -1,4 +1,5 @@
 'use client'
+import classes from './ProductImage.module.css'
 import { i18n } from '@/shared/model/i18n'
 import { prodGenericImage } from '@/shared/config/prodGenericImage'
 import Image from 'next/image'
@@ -47,6 +48,7 @@ export default function ProductImage ({
   if (!isCigarOrExtra || (isCigarOrExtra && src)) {
     return (
       <Image
+        className={classes.product_image}
         width={width}
         height={height}
         alt={alt}

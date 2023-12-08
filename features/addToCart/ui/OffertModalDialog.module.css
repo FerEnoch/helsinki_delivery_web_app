@@ -1,5 +1,7 @@
 .offert_dialog_container {
   background-color: var(--app-red-background);
+  box-shadow: rgba(47, 48, 49, 0.5) 0px 8px 24px;
+  box-shadow: rgba(47, 48, 49, 1) 0px -8px -24px;
   border-radius: 25px;
   border: transparent;
   display: grid;
@@ -90,6 +92,10 @@
   position: relative;
   top: 0.8rem;
   width: 180%;
+}
+
+.continue_buying_button:hover {
+  cursor: pointer;
 }
 
 @media (width <=390px) {
