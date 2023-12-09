@@ -65,7 +65,6 @@
 .attention {
   font-weight: 600;
   display: block;
-  transform: scale(1.5. 1);
   letter-spacing: 3px;
   color: var(--app-white-text);
 }

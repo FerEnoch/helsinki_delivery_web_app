@@ -34,12 +34,12 @@ export default function ZonesPromptDialog ({ openModal, closeDialog }) {
             width={150}
             height={80}
           />
-          <h4 className={classes.prompt}>
-            <span className={classes.attention}>
+          <div className={classes.prompt}>
+            <h3 className={classes.attention}>
               {attention}
-            </span>
+            </h3>
             {promptText}
-          </h4>
+          </div>
         </header>
         <div className={classes.buttons_section}>
           <Link
