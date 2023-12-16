@@ -11,7 +11,7 @@ export const MENU = {
     }
   },
   ATTENTION: {
-    label: 'Día y horario de envíos'
+    label: 'Días y horarios de envíos'
   },
   DELIVERY_ZONE: {
     label: 'Zonas de entrega'

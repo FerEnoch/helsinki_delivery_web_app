@@ -1,6 +1,9 @@
 import { OFFERED_PRODUCTS } from '../adds_products'
 import { PAYMENT_OPTIONS } from '../payment_options'
+import { TIME_BLOCKER } from '../timeBlockerMessages'
+
 import { MENU } from '../menu'
+import { CASH_DISCOUNT_PERCENTAGE } from '@/shared/config/cacheDiscount'
 
 export const i18n = {
   TRADE_MARK: 'Helsinki Delivery',
@@ -12,12 +15,14 @@ export const i18n = {
       UI: {
         MENU,
         TOAST: {
-          DISCOUNT: 'Estás de suerte! Tenemos 10% de descuento por pago efectivo!',
+          DISCOUNT: `Estás de suerte! Tenemos ${CASH_DISCOUNT_PERCENTAGE}% de descuento por pago efectivo!`,
+          SEE_BUSINESS_HOURS: 'Días y horarios de atención',
           AGE_POLICY: {
             MESSAGE: 'Debes tener más de 18 años para comprar bebidas alcohólicas',
             FAQ: 'Revisar política',
             AGREE: 'De acuerdo'
-          }
+          },
+          TIME_BLOCKER
         },
         ZONES_PROMPT: {
           PROMPT: 'Atención\n Antes de seguir, revisa si estás dentro de las zonas de envío',

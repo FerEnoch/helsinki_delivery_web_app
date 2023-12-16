@@ -7,7 +7,7 @@ import { Warning } from '@/shared/ui/lib/svg/Warning'
 
 const { CART: { CONTINUE_SHOPPING }, ZONES_PROMPT: { PROMPT, BUTTON } } = i18n.LANG.ESP.UI
 
-export default function ZonesPromptDialog ({ openModal, closeDialog }) {
+export default function ZonesPromptDialog ({ openModal, closeDialog, disabledApp }) {
   const offertDialogRef = useRef(null)
 
   const continueShoppingText = CONTINUE_SHOPPING.toUpperCase()
@@ -21,6 +21,12 @@ export default function ZonesPromptDialog ({ openModal, closeDialog }) {
       offertDialogRef.current?.close()
     }
   }, [openModal])
+
+  useEffect(() => {
+    if (disabledApp) {
+      offertDialogRef.current?.showModal()
+    }
+  }, [disabledApp])
 
   return (
     <dialog

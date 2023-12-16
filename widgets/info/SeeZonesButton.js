@@ -7,11 +7,11 @@ import { Toaster, toast } from 'sonner'
 import Image from 'next/image'
 
 const { MAP_BUTTON } = i18n.LANG.ESP.UI.ZONES_PROMPT
+let showing
 
 export default function SeeZonesButton () {
   const buttonText = MAP_BUTTON.toUpperCase()
 
-  let showing
   const showMap = () => {
     if (!showing) {
       showing = true

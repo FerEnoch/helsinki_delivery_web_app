@@ -3,7 +3,7 @@ import classes from './DeliveryZone.module.css'
 import { formatUpperCase } from '@/shared/lib/textFormat/giveFormat'
 import { getCorporativeInfo } from '@/processes/services/model/server/getCorporativeInfo'
 import { formatZones } from './lib/formatZones'
-import SeeZonesButton from './lib/SeeZonesButton'
+import SeeZonesButton from './SeeZonesButton'
 
 export default async function DeliveryZone ({ title }) {
   const { INFO } = FIREBASE_DATABASES
