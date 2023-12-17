@@ -3,7 +3,7 @@ import { PAYMENT_OPTIONS } from '../payment_options'
 import { TIME_BLOCKER } from '../timeBlockerMessages'
 
 import { MENU } from '../menu'
-import { CASH_DISCOUNT_PERCENTAGE } from '@/shared/config/cacheDiscount'
+import { CASH_DISCOUNT_PERCENTAGE } from '@/shared/config/cashDiscount'
 
 export const i18n = {
   TRADE_MARK: 'Helsinki Delivery',

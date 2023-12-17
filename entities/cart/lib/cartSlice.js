@@ -1,5 +1,5 @@
 import { CART_OPERATIONS } from '@/features/addToCart/lib/updateQuantityOperations'
-import { CASH_DISCOUNT_PERCENTAGE } from '@/shared/config/cacheDiscount'
+import { CASH_DISCOUNT_PERCENTAGE } from '@/shared/config/cashDiscount'
 
 export const cartSlice = (set, get) => {
   return {
