@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { getBusinessHoursMessage } from './lib/getBusinessHoursMessage'
 
 export function useTimeBlocker () {
-  const [businessHoursMessage, setBusinessHoursMessage] = useState(undefined)
+  const [businessHoursMessage, setBusinessHoursMessage] = useState('')
 
   useEffect(() => {
     const UIMessage = getBusinessHoursMessage()

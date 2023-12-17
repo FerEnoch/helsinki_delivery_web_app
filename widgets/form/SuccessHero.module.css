@@ -3,12 +3,13 @@
 .success_title {
   font-size: 2rem;
   font-weight: 100;
-  width: 20ch;
-  max-width: 90%;
-  text-align: center;
   margin-inline: auto;
+  max-width: 90%;
   position: relative;
+  text-align: center;
+  text-wrap: balance;
   top: .5rem;
+  width: 20ch;
 }
 
 .success_image {

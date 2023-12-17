@@ -4,11 +4,11 @@ import { formatUpperCase } from '@/shared/lib/textFormat/giveFormat'
 import { useProducts } from '../../lib/useProducts'
 import Category from './Category'
 import { Toaster } from 'sonner'
-import { useDicountToast } from '../../lib/useDiscountToast'
+import { useInitialToast } from '../../lib/useInitialToast'
 
 export default function CategoryList ({ categories }) {
   useProducts()
-  useDicountToast()
+  useInitialToast()
 
   return (
     <>

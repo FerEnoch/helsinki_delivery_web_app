@@ -1,0 +1,51 @@
+.warning_dialog_container {
+  -webkit-backdrop-filter: blur(8px) saturate(200%);
+  backdrop-filter: blur(8px) saturate(200%);
+  background-color: rgb(154, 0, 0, 0.70);
+  border-radius: 25px;
+  border: 1px solid var(--app-type-background);
+  box-shadow: rgba(47, 48, 49, 0.5) 0px 8px 24px;
+  box-shadow: rgba(47, 48, 49, 1) 0px -8px -24px;
+  display: none;
+  height: fit-content;
+  left: 0;
+  margin-inline: auto;
+  min-width: 22rem;
+  overflow: hidden;
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  position: absolute;
+  top: 30%;
+  visibility: hidden;
+}
+
+.warning_dialog_container::backdrop {
+  backdrop-filter: grayscale(10%) blur(16px) brightness(40%);
+  opacity: .6;
+}
+
+.warning_dialog_container[open] {
+  visibility: visible;
+  display: grid;
+  place-content: center;
+  animation: dialog-in 200ms ease-in-out;
+}
+
+@media (width >=520px) {
+  .warning_dialog_container {
+    width: 30rem;
+  }
+}
+
+
+@keyframes dialog-in {
+  0% {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

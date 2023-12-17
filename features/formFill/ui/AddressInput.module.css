@@ -5,6 +5,20 @@
   transition: height opacity 350ms ease-out;
 }
 
+.takeAway_title {
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-align: center;
+  margin-block-end: .6rem;
+  letter-spacing: 1.1px;
+  text-wrap: nowrap;
+}
+
+.takeAway_text {
+  font-size: 1.1rem;
+  margin-block: .5rem;
+}
+
 .input_label {
   font-weight: 600;
   font-size: 1.4rem;

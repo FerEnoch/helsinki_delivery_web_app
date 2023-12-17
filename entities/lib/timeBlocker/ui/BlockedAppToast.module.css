@@ -1,0 +1,74 @@
+.toast_wrapper {
+  background-color: var(--app-red-background);
+  border: 1px solid gray;
+  box-shadow: gray 1px 2px 5px;
+  border-radius: 14px;
+  justify-content: space-around;
+  line-height: 1.6rem;
+  width: 100%;
+  padding: .5rem 2.5rem;
+}
+
+.info_wrapper {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.logo {
+  fill: white;
+  animation: viking-skeleton 600ms ease-out infinite alternate;
+}
+
+.info {
+  display: grid;
+  place-content: center;
+  flex: 1 1 80%
+}
+
+.blocking_title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--app-white-text);
+  text-align: start;
+}
+
+.blocking_text {
+  color: var(--app-white-text);
+  font-weight: 100;
+  font-size: 1rem;
+  text-align: start;
+  text-wrap: balance;
+}
+
+.agree {
+  border-radius: 14px;
+  border: 1px solid #999;
+  background-color: var(--app-white-text);
+  padding: .3rem;
+  font-size: 1rem;
+  color: var(--app-black-text);
+  display: grid;
+  place-content: center;
+  box-shadow: gray 1px 2px 5px;
+}
+
+.agree:hover {
+  cursor: pointer
+}
+
+.agree:active {
+  color: var(--app-payments-green);
+  transform: scale(1.1);
+  border: 1px solid var(--app-payments-green);
+}
+
+
+@keyframes viking-skeleton {
+  0% {
+    opacity: .1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

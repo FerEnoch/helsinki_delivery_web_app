@@ -1,3 +1,4 @@
+import { timeBlockerSlice } from './timeBlocker/lib/timeBlockerSlice.js'
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
@@ -14,14 +15,16 @@ export const useAppStore = create(
       ...cartSlice(...args),
       ...paymentSlice(...args),
       ...clientSlice(...args),
-      ...formSlice(...args)
+      ...formSlice(...args),
+      ...timeBlockerSlice(...args)
     }),
     {
       name: 'cart-storage',
       storage: createJSONStorage(() => sessionStorage), /* eslint-disable-line */
       partialize: (state) => ({
         cart: state.cart,
-        isShareApiCompatible: state.isShareApiCompatible
+        isShareApiCompatible: state.isShareApiCompatible,
+        isAppBlocked: state.isAppBlocked
       })
     }
   )

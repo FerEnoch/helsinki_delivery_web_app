@@ -20,7 +20,7 @@ export const businessHours = {
     startingHour: 2
   }, {
     day: weekDays[1], // monday
-    startingHour: 0.3
+    startingHour: 0
   }, {
     day: weekDays[2], // tuesday
     startingHour: 0

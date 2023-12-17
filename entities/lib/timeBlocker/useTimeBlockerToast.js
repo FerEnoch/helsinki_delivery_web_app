@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useTimeBlocker } from './useTimeBlocker'
 import { toast } from 'sonner'
 import TimeBlockerToast from './ui/TimeBlockerToast'
 import { i18n } from '@/shared/model/i18n'
-
-let isFirstTime = true
+import { useAppStore } from '../store'
 
 const {
   TIME_BLOCKER: {
@@ -16,35 +15,30 @@ const {
 } = i18n.LANG.ESP.UI.TOAST
 
 export default function useTimeBlockerToast () {
-  const [disabledApp, setDisabledApp] = useState(null)
+  const { setIsAppBlocked } = useAppStore()
   const { businessHoursMessage } = useTimeBlocker()
 
   useEffect(() => {
     if (!businessHoursMessage) return
     switch (businessHoursMessage) {
-      case 'OK': return setDisabledApp(false)
+      case 'OK': return setIsAppBlocked(false)
       case ADD_TAKE_AWAY:
       case BOOK_ORDER_NOT_DELIVERY:
-        setDisabledApp(false)
-        if (isFirstTime) {
-          toast((
-            <TimeBlockerToast message={businessHoursMessage} />
-          ), {
-            style: {
-              padding: '.5rem'
-            },
-            position: 'bottom-center',
-            duration: 10000,
-            important: true
-          })
-        }
-        isFirstTime = false
+        setIsAppBlocked(false)
+        toast((
+          <TimeBlockerToast message={businessHoursMessage} />
+        ), {
+          style: {
+            padding: '.5rem'
+          },
+          position: 'bottom-center',
+          duration: 30000,
+          important: true
+        })
         break
       case DISABLED_DAY:
       case DISABLED_HOURS:
-        return setDisabledApp(true)
+        return setIsAppBlocked(true)
     }
-  }, [businessHoursMessage])
-
-  return { disabledApp }
+  }, [businessHoursMessage, setIsAppBlocked])
 }

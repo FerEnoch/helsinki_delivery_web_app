@@ -6,6 +6,7 @@ export const PAYMENT_OPTIONS = [
   {
     id: '#pm_01',
     label: 'Abono en el domicilio',
+    takeAwayLabel: 'Abono en efectivo',
     comment: 'Se agradece pagar con el monto justo',
     receipt: 'NOT_REQUIRED',
     icon: <CashOnDeliveryIcon />

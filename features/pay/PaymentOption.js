@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 
 export default function PaymentOption ({ id, children, label, comment, openZonesModal }) {
   const { paymentMethod, pickPaymentOption } = useAppStore()
+
   const [isChosen, setIsChosen] = useState(undefined)
 
   const handleChoosePaymentMethod = (id) => () => {

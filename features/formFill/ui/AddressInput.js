@@ -5,15 +5,16 @@ import Triangle from '@/shared/ui/lib/svg/Triangle'
 import { useValidateAddressInput } from '../lib/useValidateAddressInput'
 import UserInput from '../lib/ui/UserInput'
 import Dot from '../lib/ui/Dot'
+import { useAppStore } from '@/entities/lib/store'
 
-const { CLIENT_FORM: { FIELD_ADDRESS: { LABEL, EXTRA_INFO, ON_INVALID, SUMMARY } } } = i18n.LANG.ESP.UI
-const labelText = LABEL.toUpperCase()
+const { CLIENT_FORM: { FIELD_ADDRESS: { LABEL, EXTRA_INFO, ON_INVALID, SUMMARY, TAKE_AWAY } } } = i18n.LANG.ESP.UI
 const extraInfoText = EXTRA_INFO.toUpperCase()
 const onInvalidText = ON_INVALID.toUpperCase()
 const summaryText = SUMMARY.toUpperCase()
 
 export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState }) {
   const detailsRef = useRef(null)
+  const { client: { takeAway } } = useAppStore()
   const [address, setAddress] = useState('')
   const [addressComments, setAddressComments] = useState('')
   const [{ sanitizedAddress, sanitizedComments }, invalidInput] = useValidateAddressInput({ address, addressComments })
@@ -27,6 +28,31 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
       detailsRef.current.open = false
       setDetailsOpenState(false)
     }
+  }
+
+  const labelText = takeAway ? TAKE_AWAY.toUpperCase() : LABEL.toUpperCase()
+
+  if (takeAway) {
+    const [title, ...sentences] = labelText.split('\n')
+    return (
+      <div className={classes.address_input}>
+        <div>
+          <h4 className={classes.takeAway_title}>{title}</h4>
+          {
+          sentences.map(sentence => {
+            return (
+              <p
+                key={sentences}
+                className={classes.takeAway_text}
+              >
+                {sentence}
+              </p>
+            )
+          })
+        }
+        </div>
+      </div>
+    )
   }
 
   return (

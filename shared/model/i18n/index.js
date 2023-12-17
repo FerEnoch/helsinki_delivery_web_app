@@ -15,7 +15,8 @@ export const i18n = {
       UI: {
         MENU,
         TOAST: {
-          DISCOUNT: `Estás de suerte! Tenemos ${CASH_DISCOUNT_PERCENTAGE}% de descuento por pago efectivo!`,
+          TAKE_AWAY_LABEL: 'Lo paso a buscar!',
+          DISCOUNT: `Estás de suerte!\nTenemos ${CASH_DISCOUNT_PERCENTAGE}% de descuento por pago efectivo!`,
           SEE_BUSINESS_HOURS: 'Días y horarios de atención',
           AGE_POLICY: {
             MESSAGE: 'Debes tener más de 18 años para comprar bebidas alcohólicas',
@@ -25,9 +26,14 @@ export const i18n = {
           TIME_BLOCKER
         },
         ZONES_PROMPT: {
-          PROMPT: 'Atención\n Antes de seguir, revisa si estás dentro de las zonas de envío',
+          PROMPT: 'Atención\nAntes de seguir, revisa si estás dentro de las zonas de envío',
           BUTTON: 'Ver zonas de envío',
           MAP_BUTTON: 'Ver mapa de entregas'
+        },
+        BLOCKED_APP_PROMPT: {
+          ATTENTION: 'Atención\n',
+          BUTTON: 'Ver días y horarios de atención',
+          AGREE: 'De acuerdo'
         },
         SEARCH_BAR: {
           PLACEHOLDER: 'Buscá tu producto',
@@ -76,7 +82,8 @@ export const i18n = {
             LABEL: 'Dirección de entrega',
             EXTRA_INFO: 'Añadir información extra',
             SUMMARY: 'Información extra o aclaración que necesitemos saber para el envío',
-            ON_INVALID: '** No se permiten caracteres especiales'
+            ON_INVALID: '** No se permiten caracteres especiales',
+            TAKE_AWAY: 'Punto de encuentro:\nUrquiza y Cándido Pujato\nHora: a coordinar'
           },
           FIELD_PHONE: {
             LABEL: 'Nº telefónico',
@@ -97,6 +104,7 @@ export const i18n = {
         },
         ORDER_SUCCESS: {
           title: 'Tu pedido está en camino',
+          takeAwayTitle: 'Nos veremos en el punto de encuentro',
           message: 'Gracias por tu compra',
           text: 'Si es necesario nos comunicaremos con vos',
           contact: ['¿Alguna duda?', 'Contactate con nosotros'],
