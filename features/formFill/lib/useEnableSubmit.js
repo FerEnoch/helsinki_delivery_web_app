@@ -7,7 +7,8 @@ export function useEnableSubmit () {
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false)
 
   useEffect(() => {
-    const isInformationCompleted = client?.name && client?.address && client?.phone
+    const needAddress = !client?.takeAway
+    const isInformationCompleted = client?.name && (needAddress ? client?.address : true) && client?.phone
 
     let isReceiptAddedOn = true
     if (receipt === 'REQUIRED') {

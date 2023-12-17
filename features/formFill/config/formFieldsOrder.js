@@ -21,6 +21,7 @@ export const FORM_FIELDS = {
   TIMESTAMP: 'timestamp', // Día y horario
   CLIENT_ADDRESS: 'clientAddress', // Dirección
   CLIENT_COMMENTS: 'clientComments',
+  TAKE_AWAY: ORDER.TAKE_AWAY_MESSAGE,
   ORDER: 'order', // Pedido
   CLIENT_PHONE: 'clientPhone', // Teléfono
   CLIENT_NAME: 'clientName', // Nombre

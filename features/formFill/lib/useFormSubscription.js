@@ -9,6 +9,7 @@ const {
   TIMESTAMP,
   CLIENT_ADDRESS,
   CLIENT_COMMENTS,
+  TAKE_AWAY,
   ORDER,
   CLIENT_PHONE,
   CLIENT_NAME,
@@ -58,9 +59,13 @@ export function useFormSubscription () {
 
     const formData = new FormData()
     const date = new Date()
+
+    const addressInfo = client?.takeAway ? TAKE_AWAY : client?.address.trim()
+    const addressDetailsInfo = client?.takeAway ? '' : client?.addressComments.trim()
+
     formData.set(TIMESTAMP, timeFormatter(date))
-    formData.set(CLIENT_ADDRESS, client?.address.trim())
-    formData.set(CLIENT_COMMENTS, client?.addressComments.trim())
+    formData.set(CLIENT_ADDRESS, addressInfo)
+    formData.set(CLIENT_COMMENTS, addressDetailsInfo)
     formData.set(ORDER, JSON.stringify(cart))
     formData.set(CLIENT_PHONE, client?.phone.trim())
     formData.set(CLIENT_NAME, client?.name.trim())

@@ -124,7 +124,8 @@ export const i18n = {
       },
       G_DRIVE_UI: {
         ORDER: {
-          NO_RECEIPT_MESSAGE: 'No se adjuntó comprobante de pago'
+          NO_RECEIPT_MESSAGE: 'Paga en efectivo',
+          TAKE_AWAY_MESSAGE: 'TAKE-AWAY'
         }
       }
     }
