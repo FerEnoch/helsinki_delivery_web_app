@@ -14,6 +14,7 @@ export const i18n = {
       APP_DESCRIPTION: 'Conocé nuestros productos y hacé tu pedido online. Te enviamos cualquier bebida o accesorio al instante',
       UI: {
         MENU,
+        DISCOUNT_PIN: `${CASH_DISCOUNT_PERCENTAGE}% OFF`,
         TOAST: {
           TAKE_AWAY_LABEL: 'Lo paso a buscar!',
           DISCOUNT: `Estás de suerte!\nTenemos ${CASH_DISCOUNT_PERCENTAGE}% de descuento por pago efectivo!`,

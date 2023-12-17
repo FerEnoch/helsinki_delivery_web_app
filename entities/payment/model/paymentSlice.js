@@ -12,8 +12,8 @@ export const paymentSlice = (set, get) => {
         return
       }
       const [chosenPaymentOption] = PAYMENT_OPTIONS.filter(({ id }) => id === selectedId)
-      const { id, label, receipt } = chosenPaymentOption
-      set({ paymentMethod: { id, label, receipt } })
+      const { id, label, receipt, isCash } = chosenPaymentOption
+      set({ paymentMethod: { id, label, receipt, isCash } })
     },
     pickQRService: (service) => {
       set({ QRService: { ...service } })

@@ -5,6 +5,7 @@ import IconQR from '@/shared/ui/lib/svg/IconQR'
 export const PAYMENT_OPTIONS = [
   {
     id: '#pm_01',
+    isCash: true,
     label: 'Abono en el domicilio',
     takeAwayLabel: 'Abono en efectivo',
     comment: 'Se agradece pagar con el monto justo',
@@ -13,6 +14,7 @@ export const PAYMENT_OPTIONS = [
   },
   {
     id: '#pm_02',
+    isCash: false,
     label: 'QR de Billetera Santa Fe', // App con código QR
     comment: 'Obligatorio: enviar comprobante de operación',
     receipt: 'REQUIRED',
@@ -20,6 +22,7 @@ export const PAYMENT_OPTIONS = [
   },
   {
     id: '#pm_03',
+    isCash: false,
     label: 'Transferencia Marcado Pago', // Transferencia bancaria
     comment: 'Obligatorio: enviar comprobante de operación',
     receipt: 'REQUIRED',

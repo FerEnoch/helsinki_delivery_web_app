@@ -1,4 +1,5 @@
 import { CART_OPERATIONS } from '@/features/addToCart/lib/updateQuantityOperations'
+import { CASH_DISCOUNT_PERCENTAGE } from '@/shared/config/cacheDiscount'
 
 export const cartSlice = (set, get) => {
   return {
@@ -37,11 +38,17 @@ export const cartSlice = (set, get) => {
       set({ cart })
     },
     getCartTotalAmount: () => {
-      const cart = get().cart
+      const { cart, paymentMethod } = get()
       const totalPrice = cart.reduce((total, product) => {
         return total + (Number(product.price) * product.quantity)
       }, 0)
-      return totalPrice.toFixed(2)
+      const totalAmount = totalPrice.toFixed(2)
+      if (paymentMethod?.isCash) {
+        const discount = Number(totalAmount) * CASH_DISCOUNT_PERCENTAGE / 100
+        const cartCashTotalAmount = Number(totalAmount) - discount
+        return cartCashTotalAmount.toFixed(2)
+      }
+      return totalAmount
     },
     getProductCurrentQuantity: (id) => {
       const cart = get().cart

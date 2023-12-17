@@ -4,8 +4,11 @@ import classes from './PaymentOption.module.css'
 import CheckedBoxIcon from '@/shared/ui/lib/svg/CheckedBoxIcon'
 import { useAppStore } from '@/entities/lib/store'
 import { useEffect, useState } from 'react'
+import { i18n } from '@/shared/model/i18n'
 
-export default function PaymentOption ({ id, children, label, comment, openZonesModal }) {
+const { DISCOUNT_PIN } = i18n.LANG.ESP.UI
+
+export default function PaymentOption ({ id, isCash, label, comment, openZonesModal, children }) {
   const { paymentMethod, pickPaymentOption } = useAppStore()
 
   const [isChosen, setIsChosen] = useState(undefined)
@@ -52,6 +55,13 @@ export default function PaymentOption ({ id, children, label, comment, openZones
       </span>
       <h3 className={classes.payment_label}>{formatLabel}</h3>
       <p className={classes.payment_comment}>{formatComments}</p>
+      {
+        isCash && (
+          <div className={classes.discount_pin}>
+            {DISCOUNT_PIN}
+          </div>
+        )
+      }
     </section>
   )
 }

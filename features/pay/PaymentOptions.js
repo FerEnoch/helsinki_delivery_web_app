@@ -19,7 +19,7 @@ export default function PaymentOptions () {
     <>
       <section className={classes.payment_options_container}>
         {
-        PAYMENT_OPTIONS.map(({ id, label, takeAwayLabel, comment }, methodIndex) => {
+        PAYMENT_OPTIONS.map(({ id, isCash, label, takeAwayLabel, comment }, methodIndex) => {
           let paymentLabel = label
           if (takeAway && takeAwayLabel) paymentLabel = takeAwayLabel
           return (
@@ -27,6 +27,7 @@ export default function PaymentOptions () {
               key={id}
               id={id}
               label={paymentLabel}
+              isCash={isCash}
               comment={comment}
               openZonesModal={() => openDialog()}
             >
