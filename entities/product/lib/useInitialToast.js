@@ -22,6 +22,7 @@ export function useInitialToast () {
   const { businessHoursMessage } = useTimeBlocker()
 
   useEffect(() => {
+    if (!isFirstTime) return
     if (!businessHoursMessage) return
     switch (businessHoursMessage) {
       case 'OK': return setIsAppBlocked(false)
@@ -44,21 +45,22 @@ export function useInitialToast () {
         })
         break
     }
+    isFirstTime = false
   }, [businessHoursMessage, setIsAppBlocked])
 
   useEffect(() => {
-    if (isFirstTime && !isAppBlocked) {
-      toast((
-        <DiscountToast />
-      ), {
-        style: {
-          backgroundColor: 'rgb(210, 256, 210)',
-          padding: '.5rem'
-        },
-        duration: 6000,
-        position: 'bottom-center'
-      })
-    }
+    if (!isFirstTime) return
+    if (isAppBlocked) return
+    toast((
+      <DiscountToast />
+    ), {
+      style: {
+        backgroundColor: 'rgb(210, 256, 210)',
+        padding: '.5rem'
+      },
+      duration: 6000,
+      position: 'bottom-center'
+    })
     isFirstTime = false
   }, [isAppBlocked])
 }

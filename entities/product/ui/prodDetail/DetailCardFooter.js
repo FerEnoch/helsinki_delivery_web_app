@@ -49,7 +49,7 @@ export default async function DetailCardFooter ({ category }) {
               key={label}
               label={label}
               categoryOffering={categoryOffering}
-              products={label.match(OFFERED_PRODUCTS[0].regExp) ? [...iceProducts] : [...cigarProducts]}
+              products={label.match(OFFERED_PRODUCTS[0].regExp) ? iceProducts : cigarProducts}
             >
               {label.match(OFFERED_PRODUCTS[0].regExp)
                 ? (

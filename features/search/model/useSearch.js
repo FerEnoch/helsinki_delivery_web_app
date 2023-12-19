@@ -1,20 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useAppStore } from '@/entities/lib/store'
+import { search } from '../lib/search'
 import { sanitizeInput } from '@/features/formFill/lib/sanitizeInput'
-
-function search (param, allProducts) {
-  const searchParam = String(param).trim().toLowerCase()
-  const [sanitizedParam] = sanitizeInput(searchParam)
-  const result = new Set()
-  allProducts.forEach(prod => {
-    const { category, type, name, description } = prod
-    if (category.toLowerCase().includes(sanitizedParam)) return result.add(prod)
-    if (type.toLowerCase().includes(sanitizedParam)) return result.add(prod)
-    if (name.toLowerCase().includes(sanitizedParam)) return result.add(prod)
-    if (description.toLowerCase().includes(sanitizedParam)) return result.add(prod)
-  })
-  return [...result]
-};
 
 export function useSearch () {
   const [userInput, setUserInput] = useState('')
@@ -23,7 +10,10 @@ export function useSearch () {
   const { stockProducts } = useAppStore()
 
   const getSearchParam = useCallback((e) => {
-    setUserInput(e.target.value)
+    // sanitize user input
+    const searchParam = String(e.target.value).trim().toLowerCase()
+    const [sanitizedSearchParam] = sanitizeInput(searchParam)
+    setUserInput(sanitizedSearchParam)
   }, [])
 
   const cleanSearchParams = useCallback(() => {
@@ -36,7 +26,7 @@ export function useSearch () {
     if (!userInput?.length) return setSearchResults(null)
     setIsLoading(true)
     const debounce = setTimeout(() => {
-      const foundResult = userInput && search(userInput, stockProducts)
+      const foundResult = userInput && search(userInput, stockProducts).reverse()
       setSearchResults(foundResult)
     }, [1000])
     return () => debounce && clearTimeout(debounce)

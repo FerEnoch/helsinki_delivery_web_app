@@ -10,7 +10,6 @@ const {
 export function sanitizeInput (processInput, flag) {
   let sanitizedInput = processInput
   let foundInvalidCharacters
-
   if (flag === 'NO_SCRIPT') {
     const scriptRegex = [HTML_REGEXP, SCRIPT_REGEXP]
     scriptRegex.forEach(regex => {
