@@ -6,6 +6,7 @@
   position: relative;
   width: 100%;
   right: -2px;
+  height: 5vh;
 }
 
 .input_search {
@@ -13,8 +14,8 @@
   border: transparent;
   flex-basis: 30rem;
   font-size: 1.3rem;
-  height: 2.8rem;
   padding-inline-start: 1rem;
+  box-shadow: 1px 1px 4px #222;
 }
 
 .search_lupe:hover {
@@ -22,7 +23,52 @@
 }
 
 .icon_lupe {
+  filter: drop-shadow(1px 1px 2px #333);
   margin-block-start: 4px;
   margin-left: 10px;
   transform: rotate(90deg) scale(1.2);
+}
+
+
+@media (width>=520px) and (height<=700px) {
+  .search_container {
+    width: 90%;
+    margin-inline: auto;
+  }
+}
+
+.product_list_container {
+  position: relative;
+  top: -3rem;
+  left: -1rem;
+  background-color: var(--app-backgound-gray);
+  max-height: 15rem;
+  overflow-y: scroll;
+  margin-inline: auto;
+  margin-block: .5rem;
+  padding: 0.5rem;
+  width: 90%;
+  border-radius: 12px;
+  z-index: 100;
+}
+
+.product_list_container::-webkit-scrollbar {
+  background-color: transparent;
+  width: .5rem;
+}
+
+.product_list_container::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 12px;
+}
+
+.product_list_container::-webkit-scrollbar:hover {
+  cursor: pointer;
+}
+
+.product_list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-inline: auto;
 }

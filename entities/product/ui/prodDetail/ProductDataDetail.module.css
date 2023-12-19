@@ -1,0 +1,52 @@
+.product_data {
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+}
+
+.product_description {
+  flex: 2 0 80%;
+}
+
+.product_description>p {
+  font-size: 1.1rem;
+  line-height: 1.2;
+  padding: 1rem;
+}
+
+.destillery_text,
+.alcohol_text {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.destillery_var,
+.alcohol_var {
+  font-weight: normal;
+  margin-inline-start: .2rem;
+}
+
+
+@media (width<=420px) {
+  .product_description>p {
+    padding: .5rem;
+  }
+}
+
+@media (height<=700px) {
+  .product_description>p {
+    padding: .5rem;
+  }
+}
+
+
+
+@media (width<=360px) {
+  .product_description>p {
+    padding: .3rem;
+  }
+}
+
+.cart_section {
+  flex: 0 1 20%;
+}

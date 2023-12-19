@@ -9,15 +9,22 @@
   z-index: 6;
 }
 
+@media (width<=425px) {
+  .cart_list_container {
+    width: 118%;
+  }
+}
+
 .cart_list_container::-webkit-scrollbar {
   display: none;
 }
 
 .gray_background {
   background-color: var(--app-backgound-gray);
+  box-shadow: -10px -.7rem 20px #dfdede;
   top: 0;
   right: 0rem;
-  width: 22rem;
+  width: 82%;
   position: absolute;
 }
 

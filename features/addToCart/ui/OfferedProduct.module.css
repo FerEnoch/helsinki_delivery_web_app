@@ -27,7 +27,7 @@
 }
 
 
-@media (width >=500px) {
+@media (width >=500px) and (height>=700px) {
 
   .product_icon {
     padding-inline-start: 1rem;

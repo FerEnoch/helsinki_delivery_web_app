@@ -9,6 +9,7 @@
   align-items: stretch;
   background-color: white;
   border-radius: 20px;
+  box-shadow: 1px 1px 10px #666;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -57,10 +58,41 @@
 }
 
 .product_name {
+  text-wrap: balance;
   padding-block-start: 0.1rem;
   text-align: center;
   padding-inline: 0.4rem;
   flex: 0 1 2rem;
   line-height: 1.2rem;
   z-index: 10;
+}
+
+
+@media (height<=700px) {
+  .product_name {
+    font-size: .8rem;
+  }
+}
+
+
+@media (width>=520px) and (height<=700px) {
+  .product_name {
+    font-size: .8rem;
+  }
+
+  .product_card_wrapper {
+    padding-block-start: 1.5rem;
+  }
+
+  .plusInfoButton_wrapper {
+    top: 1.5rem;
+  }
+
+  .product_card {
+    padding: .5rem .5rem 1rem;
+  }
+
+  .product_data {
+    flex: 0 0 8rem;
+  }
 }

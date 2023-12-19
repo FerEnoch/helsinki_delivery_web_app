@@ -10,14 +10,31 @@
 }
 
 .product_price {
+  box-shadow: 1px 1px 6px #bbb;
+  display: grid;
+  place-content: center;
   background-color: var(--app-black-text);
   border-radius: 16px;
   color: var(--app-white-text);
-  font-size: 2rem;
-  font-weight: 600;
   margin-inline: auto;
   width: 95%;
   padding: .5rem;
+}
+
+.price_number {
+  font-size: 2rem;
+}
+
+@media (width<=415px) {
+
+  .price_number {
+    font-size: 1.4rem;
+  }
+
+}
+
+.product_price>p {
+  padding-block-start: .5rem;
 }
 
 .quantity_cart_section {
@@ -43,4 +60,26 @@
 
 .product_add_to_cart>button>svg {
   transform: scale(1.4);
+}
+
+@media (height<=700px) {
+  .price_number {
+    font-size: 1.5rem;
+  }
+}
+
+@media (width>=520px) and (height<=670px) {
+
+  .price_number {
+    font-size: 1.4rem;
+  }
+
+  .product_price>p {
+    padding-block-start: .2rem;
+  }
+
+  .product_add_to_cart>button>svg {
+    transform: scale(1.2);
+  }
+
 }

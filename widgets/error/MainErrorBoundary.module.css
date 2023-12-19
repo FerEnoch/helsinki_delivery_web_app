@@ -1,0 +1,54 @@
+.main_container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.subtitle {
+  transform: scale(1, 1.1);
+  font-size: 2rem;
+  padding-inline-start: .5rem;
+  padding-block-end: .2rem;
+  display: grid;
+  flex: 1 1 8%;
+  align-self: flex-start;
+  align-items: flex-end;
+}
+
+.bottle_container {
+  align-self: center;
+  width: 80%;
+  flex: 1 1 30%;
+}
+
+.message {
+  font-size: 1.5rem;
+  align-content: start;
+  transform: scale(1, 1.1);
+  text-wrap: balance;
+  display: grid;
+  margin-block-end: 1rem;
+  flex: 1 1 8%;
+}
+
+@media (width<=350px) {
+  .message {
+    font-size: 1.2rem;
+  }
+}
+
+@media (width>=520px) and (height<=700px) {
+  .subtitle {
+    font-size: 1.6rem
+  }
+
+  .bottle_container {
+    align-self: center;
+    width: 60%;
+    flex: 1 1 30%;
+  }
+
+  .message {
+    font-size: 1.2rem;
+  }
+}

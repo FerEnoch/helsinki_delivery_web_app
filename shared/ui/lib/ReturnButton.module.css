@@ -1,0 +1,33 @@
+.back_button_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-radius: 14px;
+  padding: 1rem;
+  border: 1px solid #999;
+  background-color: var(--app-white-text);
+  box-shadow: gray 1px 2px 5px;
+}
+
+.back_button_triangle svg {
+  transform: rotate(-92.5deg);
+}
+
+.back_button_input {
+  font-size: 1.5rem;
+  border: none;
+  background-color: transparent;
+}
+
+
+.back_button_wrapper:hover {
+  cursor: pointer
+}
+
+
+.back_button_wrapper:active {
+  color: var(--app-payments-green);
+  transform: scale(1.1);
+  border: 1px solid var(--app-payments-green);
+}

@@ -5,8 +5,15 @@ import { useProducts } from '@/entities/product/lib/useProducts'
 import { i18n } from '@/shared/model/i18n'
 import { scrollToNextProduct } from '@/features/addToCart/lib/scrollToNextProduct'
 import ProductListItem from './ProductListItem'
+import SuspenseFallbackLogo from '@/shared/ui/lib/SuspenseFallbackLogo'
 
-const { DETAIL_CARD_PRODUCT: { FOOTER: cardFooterTexts } } = i18n.LANG.ESP.UI
+const {
+  DETAIL_CARD_PRODUCT: {
+    FOOTER: {
+      generic_action: genericAction
+    }
+  }
+} = i18n.LANG.ESP.UI
 
 export default forwardRef(function ProductList ({
   category,
@@ -19,7 +26,7 @@ export default forwardRef(function ProductList ({
     { criteria: 'category', value: category },
     { whereField: 'type', isEqual: type || '*' })
 
-  const isCigarOrExtra = cardFooterTexts.generic_action.categories.find(categRegExp => categRegExp.test(category))
+  const isCigarOrExtra = genericAction.categories.find(categRegExp => categRegExp.test(category))
 
   useImperativeHandle(ref, () => {
     return {
@@ -61,22 +68,28 @@ export default forwardRef(function ProductList ({
       ref={listRef}
       className={classes.product_list_container}
     >
-      {
-        isLoading && <h2>Loading...</h2>
-      }
       <ul className={classes.product_list}>
-        {
-        !!categoryProductList?.length &&
+        <SuspenseFallbackLogo
+          isLoading={isLoading}
+          height={100}
+          logoStyle={{
+            fill: '#fff',
+            fillOpacity: 0.9
+          }}
+        >
+          {
+          !!categoryProductList?.length &&
           categoryProductList.map(product => {
             return (
               <ProductListItem
                 isCigarOrExtra={isCigarOrExtra}
                 key={product.id}
-                product={{ ...product }}
+                product={product}
               />
             )
           })
-      }
+            }
+        </SuspenseFallbackLogo>
       </ul>
     </section>
   )

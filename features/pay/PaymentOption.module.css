@@ -10,6 +10,10 @@
   overflow: hidden;
 }
 
+.payment_option:hover {
+  cursor: pointer;
+}
+
 .button_wrapper {
   width: 100%;
   display: grid;
@@ -32,7 +36,7 @@
 }
 
 .checkbox_checked>svg {
-  animation: appearCheckbox 160ms ease-out forwards
+  animation: appearCheckbox 200ms ease-out forwards
 }
 
 .icon_wrapper {
@@ -53,11 +57,27 @@
 }
 
 .payment_comment {
-  padding-inline: .2rem;
+  position: relative;
+  padding-inline: .5rem;
   text-align: start;
   line-height: 1rem;
+  text-wrap: balance;
 }
 
+.discount_pin {
+  animation: pin-in 250ms ease-in forwards;
+  position: absolute;
+  display: grid;
+  place-content: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--app-white-text);
+  border-radius: 50%;
+  background-color: var(--app-red-background);
+  bottom: -.6rem;
+  right: -.4rem;
+  border: 2px solid var(--app-type-background);
+}
 
 @media (width >=405px) {
   .payment_option {
@@ -118,5 +138,30 @@
   100% {
     opacity: 1;
     transform: scale(.9);
+  }
+}
+
+@keyframes pin-in {
+  0% {
+    opacity: 0;
+  }
+
+  60% {
+    opacity: .6;
+    transform: rotate(180deg);
+    height: 4.4rem;
+    width: 4.4rem;
+  }
+
+  90% {
+    height: 2.4rem;
+    width: 2.4rem;
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(-30deg);
+    height: 3.4rem;
+    width: 3.4rem;
   }
 }

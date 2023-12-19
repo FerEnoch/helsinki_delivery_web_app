@@ -1,11 +1,13 @@
-import Link from 'next/link'
+import { i18n } from '@/shared/model/i18n'
+import MainErrorBoundary from '@/widgets/error/MainErrorBoundary'
+import InfoPageWrapper from '@/widgets/info/InfoPageWrapper'
+
+const notFoundErrorTexts = i18n.LANG.ESP.UI.ERROR.NOT_FOUND
 
 export default function NotFound () {
   return (
-    <>
-      <h2>Not Found</h2>
-      <p>Estas viendo esta página porque no se encuentra el recurso...</p>
-      <Link href='/'>Return Home</Link>
-    </>
+    <InfoPageWrapper>
+      <MainErrorBoundary type={notFoundErrorTexts} />
+    </InfoPageWrapper>
   )
 }

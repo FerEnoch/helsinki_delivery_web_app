@@ -1,0 +1,59 @@
+.tab_section {
+  width: 100%;
+  flex: 1 1 15%;
+  display: grid;
+  place-content: center;
+  padding-block-start: .5rem;
+}
+
+.tab_list {
+  width: 110%;
+  place-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.service_item {
+  text-wrap: balance;
+  line-height: 1.2rem;
+  padding-block: .5rem;
+  padding-inline: 1rem;
+  margin-inline: .2rem;
+  opacity: .6;
+  font-size: .7rem;
+  box-shadow: gray 1px 2px 5px;
+  border-radius: 12px;
+}
+
+.service_item:hover {
+  cursor: pointer
+}
+
+.chosen {
+  font-size: .8rem;
+  opacity: 1;
+  padding-block: .5rem;
+  border-bottom: 2px solid var(--app-payments-green);
+  transition: all 200ms ease;
+}
+
+@media (width<=440px) {
+  .tab_list {
+    gap: .5rem;
+    width: 100%;
+  }
+}
+
+
+@media (height<=700px) {
+  .service_item {
+    line-height: 1rem;
+    padding-block: .3rem;
+  }
+
+  .chosen {
+    font-size: .7rem;
+    padding-block: .3rem;
+  }
+}

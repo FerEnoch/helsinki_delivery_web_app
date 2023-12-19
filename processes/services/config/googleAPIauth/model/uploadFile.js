@@ -1,11 +1,12 @@
-import { InvoicesFolderID } from '@/processes/services/googleAPIauth/config/spreadsheet'
 import { Readable } from 'node:stream'
-import { drive } from '../processes/services/googleAPIauth/googleDriveClient'
 import 'server-only'
+import { authenticate } from '../config/googleDriveClient'
+import { GOOGLE_API_SERVICES } from '../config/services'
+import { InvoicesFolderID } from '../config/spreadsheet'
 
-export async function uploadFile (file) {
+export async function uploadFile ({ receipt: file, receiptName }) {
   const fileMetadata = {
-    name: file.name,
+    name: receiptName,
     parents: [InvoicesFolderID]
   }
   const fileStream = await file.stream()
@@ -16,11 +17,12 @@ export async function uploadFile (file) {
   }
 
   try {
-    const response = await drive.files.create({
+    const driveService = authenticate(GOOGLE_API_SERVICES.googe_drive)
+    const response = await driveService.files.create({
       resource: fileMetadata,
       media: fileMedia
     })
-    console.log(response.data)
+
     if (response.data) {
       return { message: 'OK' }
     }

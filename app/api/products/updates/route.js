@@ -1,7 +1,9 @@
+import { MEM_CACHE } from '@/processes/cache/config'
 import { updateCacheOnSnapshot } from '@/processes/services/model/server/updateCacheOnSnapshot'
 import { NextResponse } from 'next/server'
 
 export async function PATCH (request) {
+  const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
   try {
     console.log('*///* Incomming PATCH request *///*')
     const content = await request.json()
@@ -12,7 +14,7 @@ export async function PATCH (request) {
       throw new Error('BAD REQUEST')
     }
 
-    const { code, message } = await updateCacheOnSnapshot({ action: 'UPDATE', content })
+    const { code, message } = await updateCacheOnSnapshot({ cache: PRODUCTS, action: 'UPDATE', content })
     if (code === 200 && message === 'Success') {
       console.log('**/ Successfull operation UPDATE **/')
       return NextResponse.json({ message }, { status: code })
@@ -38,6 +40,8 @@ export async function PATCH (request) {
 }
 
 export async function PUT (request) {
+  const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
+
   try {
     console.log('*///* Incomming ADD request *///*')
     const content = await request.json()
@@ -48,7 +52,7 @@ export async function PUT (request) {
       throw new Error('BAD REQUEST')
     }
 
-    const { code, message } = await updateCacheOnSnapshot({ action: 'ADD', content })
+    const { code, message } = await updateCacheOnSnapshot({ cache: PRODUCTS, action: 'ADD', content })
     if (code === 200 && message === 'Success') {
       console.log('**/ Successfull operation ADD **/')
 
@@ -75,6 +79,8 @@ export async function PUT (request) {
 }
 
 export async function DELETE (request) {
+  const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
+
   try {
     console.log('*///* Incomming DELETE request *///*')
     const content = await request.json()
@@ -85,7 +91,7 @@ export async function DELETE (request) {
       throw new Error('BAD REQUEST')
     }
 
-    const { code, message } = await updateCacheOnSnapshot({ action: 'DELETE', content })
+    const { code, message } = await updateCacheOnSnapshot({ cache: PRODUCTS, action: 'DELETE', content })
     if (code === 200 && message === 'Success') {
       console.log('**/ Successfull operation DELETE **/')
 

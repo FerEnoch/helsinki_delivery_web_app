@@ -1,10 +1,15 @@
 'use client'
 
+import { i18n } from '@/shared/model/i18n'
+import MainErrorBoundary from '@/widgets/error/MainErrorBoundary'
+import InfoPageWrapper from '@/widgets/info/InfoPageWrapper'
+
+const appErrorTexts = i18n.LANG.ESP.UI.ERROR.APP_ERROR
+
 export default function ErrorBoundary () {
   return (
-    <>
-      <h1>Temporalmente fuera de servicio...</h1>
-      <h2>Por favor intenta de nuevo en unos minutos</h2>
-    </>
+    <InfoPageWrapper>
+      <MainErrorBoundary type={appErrorTexts} />
+    </InfoPageWrapper>
   )
 }

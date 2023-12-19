@@ -1,0 +1,16 @@
+.dialog_container {
+  border: 2.5px solid var(--app-payments-green);
+  border-radius: 22px;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (width<=520px) and (height<=780px) {
+  .dialog_container {
+    padding: 1.5rem;
+  }
+}

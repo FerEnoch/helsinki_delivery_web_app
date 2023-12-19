@@ -1,5 +1,5 @@
+import MainLoadingPage from '@/widgets/loading/MainLoadingPage'
+
 export default function MainLoading () {
-  return (
-    <h1>Main Loading</h1>
-  )
+  return <MainLoadingPage />
 }

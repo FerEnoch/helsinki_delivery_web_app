@@ -1,0 +1,29 @@
+.app_background {
+  align-items: center;
+  background-color: var(--app-white-text);
+  box-shadow: rgba(47, 48, 49, 0.5) 0px 8px 24px;
+  box-shadow: rgba(47, 48, 49, 1) 0px -8px -24px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100lvh;
+  justify-content: space-around;
+  padding-block-start: 3rem;
+  position: absolute;
+  width: 100vw;
+  z-index: 1;
+}
+
+@media (width>=520px) {
+  .app_background {
+    border-radius: 10px;
+    height: 90vh;
+    width: 520px
+  }
+}
+
+@media (width>=520px) and (height<=700px) {
+  .app_background {
+    width: 400px
+  }
+}

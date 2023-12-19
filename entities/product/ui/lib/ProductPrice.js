@@ -1,32 +1,28 @@
 'use client'
-import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 import classes from './ProductPrice.module.css'
+import { codecProBold } from '@/shared/config/fonts'
+import { memo } from 'react'
 
-export default function ProductPrice ({ price, hasStock }) {
-  const formattedPrice = priceFormater(price)
+export default memo(function ProductPrice ({ price, hasStock }) {
+  const isInteger = Number.isInteger(Number(price.replace('$', '')))
+
   return (
-    <span className={classes.product_price}>
+    <span className={`${codecProBold.className} ${classes.product_price}`}>
       <p>
         {
    hasStock
      ? (
-       <span style={{
-         display: 'grid',
-         fontSize: `${Number.isInteger(Number(price)) ? '1.3rem' : '1.15rem'}`,
-         placeContent: 'center'
-       }}
+       <span
+         className={`
+         ${classes.price_number} 
+         ${isInteger ? classes.is_integer : classes.not_integer}
+         `}
        >
-         {formattedPrice}
+         {price}
        </span>
        )
      : (
-       <span style={{
-         color: '#e85a5a',
-         display: 'grid',
-         fontSize: '.8rem',
-         placeContent: 'center'
-       }}
-       >
+       <span className={classes.no_stock}>
          S/STOCK
        </span>
        )
@@ -34,4 +30,4 @@ export default function ProductPrice ({ price, hasStock }) {
       </p>
     </span>
   )
-}
+})

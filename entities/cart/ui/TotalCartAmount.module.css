@@ -1,21 +1,25 @@
 .total_amount_wrapper {
   background-color: white;
-  border: 1px solid white;
   border-radius: 12px;
-  padding-inline: .5rem;
-  padding-block: 0.8rem;
-  height: 100%;
+  border: 1px solid white;
   display: grid;
-  place-content: center;
+  height: 100%;
   line-height: 1rem;
+  padding-block: 0.8rem;
+  padding-inline: 1rem;
+  place-content: center;
+  box-shadow: 1px 1px 15px #555;
 }
 
 .text {
+  text-wrap: nowrap;
   font-size: 1rem;
   font-weight: 600;
+  width: 105%;
+  margin-block-end: .2rem;
 }
 
-@media (width <=405px) {
+@media (width <=425px) {
   .text {
     font-size: .9rem;
   }
@@ -25,8 +29,14 @@
   }
 }
 
-.mount {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-block: .4rem;
+.amount {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-block-start: .4rem;
+}
+
+@media (height<=680px) {
+  .text {
+    font-size: .9rem;
+  }
 }

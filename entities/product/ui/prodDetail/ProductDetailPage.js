@@ -1,4 +1,4 @@
-import Nav from '@/shared/ui/model/components/Nav'
+import CategoryTitleNav from '@/widgets/lib/CategoryTitleNav'
 import ProductDetailCard from './ProductDetailCard'
 import classes from './ProductDetailPage.module.css'
 
@@ -9,7 +9,7 @@ export default function ProductDetailPage ({ product }) {
   return (
     <>
       <div className={classes.nav_container}>
-        <Nav
+        <CategoryTitleNav
           category={category}
           type={hasType ? type : ''}
         />

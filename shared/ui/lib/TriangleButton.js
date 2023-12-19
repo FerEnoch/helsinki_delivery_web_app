@@ -16,7 +16,7 @@ export default function TriangleButton ({
       className={`
         ${customClasses}
         ${isUpDownSlider
-        ? `${triangleButtonClasses.triangle_button_y}`
+          ? `${triangleButtonClasses.triangle_button_y}`
          : `${triangleButtonClasses.triangle_button_x}`}
           `}
     >

@@ -1,11 +1,14 @@
+import { FIREBASE_DATABASES } from '../../databases'
 import { firestoreDatabaseAdmin } from '../config'
 
-export async function getDatabaseProductByFirestoreID (firestoreID) {
-  const docRef = firestoreDatabaseAdmin.collection('products').doc(firestoreID)
+export async function getDatabaseProductByFirestoreID (firestoreID, database) {
+  const { PRODUCTS } = FIREBASE_DATABASES
+  const collection = database || PRODUCTS
+
+  const docRef = firestoreDatabaseAdmin.collection(collection).doc(firestoreID)
   const docSnapshot = await docRef.get()
 
   if (docSnapshot.exists) {
-    // console.log('Document data:', docSnapshot.data())
     return docSnapshot.data()
   } else {
     console.log(`No documents found in firestore with ID ${firestoreID}`)

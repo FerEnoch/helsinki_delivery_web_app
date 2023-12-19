@@ -1,0 +1,28 @@
+.link {
+  font-size: 2rem;
+  margin: 5px;
+  border-radius: 10px;
+  background-color: var(--app-type-background);
+  text-align: center;
+  padding-block: 2px;
+  padding-inline: .5rem;
+  z-index: 10;
+  box-shadow: 1px 1px 15px #555;
+}
+
+.link:hover {
+  cursor: pointer;
+}
+
+@media (width <=330px) {
+  .link {
+    font-size: 1.5rem;
+    padding-inline: .4rem;
+  }
+}
+
+@media (height<=700px) {
+  .link {
+    font-size: 1.5rem;
+  }
+}

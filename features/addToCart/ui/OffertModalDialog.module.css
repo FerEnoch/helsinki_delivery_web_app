@@ -1,17 +1,22 @@
 .offert_dialog_container {
   background-color: var(--app-red-background);
+  box-shadow: rgba(47, 48, 49, 0.5) 0px 8px 24px;
+  box-shadow: rgba(47, 48, 49, 1) 0px -8px -24px;
   border-radius: 25px;
   border: transparent;
   display: grid;
-  height: 18%;
+  height: 11rem;
   left: 0;
   margin-inline: auto;
   overflow: hidden;
   padding-block-start: .5rem;
+  padding-inline: 1rem;
   place-content: center;
   position: absolute;
   top: 60%;
-  width: 80%;
+  visibility: hidden;
+  display: none;
+  min-width: 25rem;
 }
 
 .offert_dialog_container::backdrop {
@@ -19,50 +24,103 @@
   opacity: .6;
 }
 
-.article_button_wrapper {
-  width: 90%;
-  margin-inline: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.article_button_wrapper>article {
-  position: relative;
-  /* max-width: 26rem; */
-  /* width: clamp(18rem, 80%, 26rem) */
-
-  width: clamp(18rem, 100%, 20rem);
+.offert_dialog_container[open] {
+  visibility: visible;
+  display: block;
+  animation: dialog-in 200ms ease-in-out;
 }
 
 @media (width >=520px) {
   .offert_dialog_container {
-    max-width: 30rem;
+    width: 30rem;
   }
 }
 
-@media (width <=390px) {
+@media (width >=390px) {
   .offert_dialog_container {
-    height: 18%;
+    height: 10.5rem;
   }
+}
+
+.dialog_content {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  margin-inline: auto;
+}
+
+@media (width <520px) {
+  .dialog_content {
+    justify-content: center;
+  }
+}
+
+.article_button_wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-inline: -15%;
+  max-width: 25rem;
+  width: 100%;
+}
+
+@media (width <=480px) {
+  .dialog_content {
+    width: 90%;
+  }
+
+  .article_button_wrapper {
+    width: 95%;
+  }
+}
+
+.article_button_wrapper>article {
+  position: relative;
 }
 
 .continue_buying_button {
   background-color: var(--app-type-background);
-  color: var(--app-black-text);
+  border-radius: 12px;
   border: transparent;
+  color: var(--app-black-text);
+  display: grid;
   font-family: inherit;
   height: 4rem;
-  display: grid;
-  place-content: start center;
-  width: 200%;
   margin-block-start: 0.5rem;
+  place-content: start center;
   position: relative;
   top: 0.8rem;
+  width: 180%;
+}
+
+.continue_buying_button:hover {
+  cursor: pointer;
+}
+
+@media (width <=390px) {
+  .continue_buying_button {
+    margin-block-start: 1.3rem;
+  }
 }
 
 .continue_buying_button>p {
   margin-inline: auto;
-  padding-block: 0.8rem;
+  padding-block: 1.5rem;
+}
+
+.continue_buying_button:active>p {
+  font-weight: 600;
+}
+
+@keyframes dialog-in {
+  0% {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

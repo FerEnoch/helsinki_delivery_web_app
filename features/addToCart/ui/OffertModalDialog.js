@@ -1,11 +1,14 @@
 import { useEffect, useRef } from 'react'
 import classes from './OffertModalDialog.module.css'
 import { i18n } from '@/shared/model/i18n'
+import { codecProRegular } from '@/shared/config/fonts'
 
-const { CART: cartTexts } = i18n.LANG.ESP.UI
+const { CART: { CONTINUE_SHOPPING } } = i18n.LANG.ESP.UI
 
 export default function OffertModalDialog ({ openModal, closeDialog, children }) {
   const offertDialogRef = useRef(null)
+
+  const backButtonText = CONTINUE_SHOPPING.toUpperCase()
 
   useEffect(() => {
     if (openModal) {
@@ -19,19 +22,20 @@ export default function OffertModalDialog ({ openModal, closeDialog, children })
     <dialog
       className={classes.offert_dialog_container}
       ref={offertDialogRef}
-      style={{ visibility: `${openModal ? 'visible' : 'hidden'}` }}
       onClose={closeDialog}
     >
-      <div className={classes.article_button_wrapper}>
-        {children}
-        <button
-          className={classes.continue_buying_button}
-          onClick={closeDialog}
-        >
-          <p>
-            {cartTexts.CONTINUE_SHOPPING.toUpperCase()}
-          </p>
-        </button>
+      <div className={classes.dialog_content}>
+        <div className={classes.article_button_wrapper}>
+          {children}
+          <button
+            className={classes.continue_buying_button}
+            onClick={closeDialog}
+          >
+            <p className={codecProRegular.className}>
+              {backButtonText}
+            </p>
+          </button>
+        </div>
       </div>
     </dialog>
   )

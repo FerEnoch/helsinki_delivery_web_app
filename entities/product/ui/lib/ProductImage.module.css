@@ -1,0 +1,4 @@
+.product_image {
+  background: center / contain no-repeat url('../../../../public/assets/spinner.gif');
+  background-color: white;
+}

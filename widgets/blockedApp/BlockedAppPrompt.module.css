@@ -1,0 +1,105 @@
+.dialog_content {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem;
+  height: 100%;
+}
+
+@media (width <=480px) {
+  .dialog_content {
+    width: 90%;
+  }
+}
+
+.header {
+  color: var(--app-type-background);
+  display: grid;
+  flex: 1 1 90%;
+  font-size: 1.5rem;
+  height: fit-content;
+  line-height: 1.5rem;
+  margin-block-end: 1rem;
+  padding-block: .5rem;
+  place-content: center;
+  text-align: start;
+  text-wrap: balance;
+  width: 100%;
+}
+
+.attention_header {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.attention_text {
+  color: var(--app-white-text);
+  display: block;
+  font-weight: 600;
+  letter-spacing: 5px;
+  padding-inline-start: 1rem;
+  transform: scale(1, 1.3);
+}
+
+
+.info_header {
+  color: var(--app-white-text);
+  margin-block-start: 1rem;
+  line-height: 1.8rem;
+}
+
+.info_sentence {
+  font-size: 1.3rem;
+}
+
+.buttons_section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.see_attention_hours {
+  border-radius: 14px;
+  border: 1px solid #999;
+  background-color: var(--app-white-text);
+  width: 50%;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--app-black-text);
+  display: grid;
+  place-content: center;
+  box-shadow: gray 1px 2px 5px;
+  height: 3rem;
+}
+
+.see_attention_hours:hover,
+.agree_button:hover {
+  cursor: pointer
+}
+
+.see_attention_hours:active,
+.agree_button:active {
+  color: var(--app-payments-green);
+  transform: scale(1.1);
+  border: 1px solid var(--app-payments-green);
+}
+
+.agree_button {
+  border-radius: 14px;
+  font-size: 1rem;
+  border: transparent;
+  background-color: var(--app-white-text);
+  width: 50%;
+  padding: 1rem;
+  color: var(--app-black-text);
+  box-shadow: gray 1px 2px 5px;
+  display: grid;
+  place-content: center;
+  height: 3rem;
+}

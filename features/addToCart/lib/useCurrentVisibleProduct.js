@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
-export const useCurrentVisibleProduct = (products, listRef) => {
+export function useCurrentVisibleProduct (products, listRef) {
   const [currentVisibleProduct, setCurrentVisibleProduct] = useState({})
   const [currentVisibleProdIndex, setCurrentVisibleProdIndex] = useState(0)
 
@@ -20,7 +20,6 @@ export const useCurrentVisibleProduct = (products, listRef) => {
 
   useEffect(() => {
     const observer = getObserver(setCurrentVisibleProdIndex)
-
     const items = listRef.current.children
     Array.from(items).forEach(item => {
       observer.observe(item)

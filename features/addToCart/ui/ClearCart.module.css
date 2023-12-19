@@ -1,15 +1,17 @@
 .clear_cart_button {
   background-color: white;
   border-radius: 12px;
+  box-shadow: 1px 1px 15px #555;
   border: 1px solid white;
   color: var(--app-footer-color);
   display: grid;
   grid-template-columns: 20% 65%;
   height: 100%;
-  padding-block: .8rem;
-  place-content: center;
-  width: 6rem;
   line-height: .8rem;
+  padding-block: .8rem;
+  padding-inline-start: 4%;
+  place-content: center;
+  max-width: 7rem;
 }
 
 .clear_cart_button:hover {
@@ -17,18 +19,18 @@
 }
 
 .trash_cube {
-  margin-inline-start: -0.6rem;
+  margin-inline-start: -1.2rem;
 }
 
 .trash_cube {
   transform: scale(.9);
 }
 
-
 .text {
   font-size: 0.8rem;
   font-weight: 600;
   margin-block: auto;
+  transform: scale(1.3, 1.2);
   margin-inline-start: 0.3rem;
   text-align: start;
 }

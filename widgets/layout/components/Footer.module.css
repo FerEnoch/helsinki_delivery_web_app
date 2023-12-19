@@ -1,0 +1,25 @@
+.footer_container {
+  flex: 0 0 40px;
+  display: grid;
+  place-content: baseline;
+  z-index: -1;
+}
+
+.developer {
+  color: var(--app-footer-color);
+  font-size: 1.3rem;
+}
+
+.dev_firstPart {
+  font-weight: 600;
+}
+
+.dev_secondPart {
+  font-weight: 300;
+}
+
+.icon_dynamo {
+  position: relative;
+  margin-inline: 4px;
+  top: 7px;
+}

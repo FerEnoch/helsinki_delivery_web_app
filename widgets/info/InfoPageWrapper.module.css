@@ -1,0 +1,37 @@
+.wrapper {
+  background-color: var(--app-type-background);
+  border-radius: 14px;
+  box-shadow: 1px 1px 5px #000;
+  flex: 1 1 35%;
+  margin-block-start: 15%;
+  margin-block-end: 5%;
+  margin-inline: auto;
+  height: 90%;
+  overflow: hidden;
+  padding: 1rem;
+  position: relative;
+  width: 90%;
+  z-index: 25;
+}
+
+.viking_image {
+  filter: opacity(.15) sepia(.5);
+  position: absolute;
+  bottom: 18%;
+  right: 15%;
+  transform: scale(2, 2.5);
+  z-index: -1;
+}
+
+@media (width<=520px) {
+  .viking_image {
+    right: 18%;
+  }
+}
+
+@media (height<=700px) {
+  .viking_image {
+    transform: scale(1.7, 2.1);
+    bottom: 15%;
+  }
+}

@@ -1,21 +1,24 @@
-import { OrdersSpreadSheetID } from '@/processes/services/googleAPIauth/config/spreadsheet'
-import { sheets } from '../processes/services/googleAPIauth/googleDriveClient'
 import 'server-only'
+import { authenticate } from '../config/googleDriveClient'
+import { GOOGLE_API_SERVICES } from '../config/services'
+import { OrdersSpreadSheetID } from '../config/spreadsheet'
 
-export async function writeOrder ({ timestamp, id, order, payment }) {
+export async function writeOrderInSheets (orderData) {
   try {
-    const response = await sheets.spreadsheets.values.append({
+    const sheetsClient = authenticate(GOOGLE_API_SERVICES.googe_sheets)
+
+    const response = await sheetsClient.spreadsheets.values.append({
       spreadsheetId: OrdersSpreadSheetID,
-      range: 'A2:C1',
+      range: 'A2:Z2',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
-        values: [[timestamp, order, payment, id]]
+        values: [orderData] // Has to be a 2-dimentional array
       }
     })
     if (response.data.spreadsheetId) {
       return { message: 'OK' }
     }
   } catch (e) {
-    console.error(e.message)
+    console.log(e.message)
   }
 }

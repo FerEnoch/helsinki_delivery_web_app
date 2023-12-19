@@ -1,0 +1,85 @@
+.message_wrapper {
+  width: 100%;
+}
+
+.message_text {
+  margin-block-start: 1rem;
+  margin-block-end: .5rem;
+  font-size: 1.1rem;
+  width: 70%;
+  text-wrap: balance;
+  margin-inline: auto;
+  line-height: 1.3rem;
+}
+
+.contact_text {
+  font-size: 1.1rem;
+  width: 70%;
+  text-wrap: balance;
+  margin-inline: auto;
+  line-height: 1.3rem;
+}
+
+.contact_link {
+  background-color: transparent;
+  border: none;
+  border-bottom: .5px solid black;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.contact_link:hover {
+  cursor: pointer
+}
+
+.back_home_button {
+  margin-block-start: 1rem;
+  font-size: 1.2rem;
+  border-radius: 14px;
+  border: 1px solid #999;
+  background-color: var(--app-white-text);
+  width: 50%;
+  padding: 1rem;
+  box-shadow: gray 1px 2px 5px;
+}
+
+.back_home_button:hover {
+  cursor: pointer
+}
+
+.back_home_button:active {
+  color: var(--app-payments-green);
+  transform: scale(1.1);
+  border: 1px solid var(--app-payments-green);
+}
+
+@media (width<=420px) {
+  .message_text {
+    margin-block-start: .5rem;
+    margin-block-end: .2rem;
+    font-size: .9rem;
+    max-width: 90%;
+  }
+
+  .contact_link {
+    font-size: .9rem;
+  }
+
+  .back_home_button {
+    font-size: 1rem;
+    padding: .8rem;
+  }
+}
+
+@media (width>=520px) and (height<=700px) {
+  .message_text {
+    margin-block-start: .5rem;
+    margin-block-end: .2rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .contact_link {
+    font-size: .9rem;
+  }
+}

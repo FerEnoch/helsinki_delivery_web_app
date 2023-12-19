@@ -1,0 +1,44 @@
+.go_to_payment_button {
+  color: white;
+  box-shadow: 1px 1px 15px #555;
+  background-color: var(--app-payments-green);
+  border: 2px solid white;
+  display: grid;
+  height: 100%;
+  place-content: center;
+  border-radius: 12px;
+  width: 7rem;
+}
+
+.triangle_button svg {
+  transform: rotate(90deg)
+}
+
+.go_to_payment_button>a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  text-align: start;
+  margin-inline-start: clamp(.5rem, .6rem, .8rem);
+  flex: 1 0 2rem;
+  line-height: 1rem;
+  font-size: 1rem;
+}
+
+.triangle_button {
+  padding-block-start: .4rem;
+  margin-inline: 0.2rem;
+  flex: 0 0 1rem;
+}
+
+@media (width>=520px) and (height<=700px) {
+
+  .text {
+    line-height: .9rem;
+    font-size: .8rem;
+  }
+}

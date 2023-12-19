@@ -1,8 +1,9 @@
 .cart_container {
+  padding-block-start: 1.5rem;
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 80%;
+  height: 100%;
   justify-content: flex-start;
   margin: 0 auto;
   width: 80%;
@@ -12,6 +13,7 @@
   height: 0.3rem;
   width: 100%;
   background-color: var(--app-type-background);
+  box-shadow: 1px 1px 20px #dfdeded0;
 }
 
 .title {
@@ -20,8 +22,12 @@
   font-weight: 100;
   margin-block: 1rem;
   transform: scaleY(1.05) scaleX(.9);
-  z-index: 10;
   margin-block: .5rem;
+}
+
+.adds_section {
+  z-index: 20;
+  width: 100%;
 }
 
 .add_text {
@@ -36,4 +42,23 @@
 .ice_or_cigar_sliders {
   width: 100%;
   z-index: 15;
+}
+
+
+@media (width>=520px) and (height<=680px) {
+  .adds_section {
+    margin-block-end: 4rem;
+  }
+}
+
+@media (width>=520px) and (height<=630px) {
+  .add_text {
+    margin-block: -15px;
+  }
+}
+
+@media (width>=520px) and (height<=630px) {
+  .cart_container {
+    padding-block-start: .5rem;
+  }
 }

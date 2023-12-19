@@ -1,0 +1,97 @@
+.dialog_content {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: fit-content;
+  padding-block: .5rem;
+  width: 100%;
+}
+
+@media (width <=480px) {
+  .dialog_content {
+    width: 90%;
+  }
+}
+
+.attention {
+  font-weight: 600;
+  display: block;
+  letter-spacing: 3px;
+  color: var(--app-white-text);
+}
+
+.prompt {
+  text-align: start;
+  padding-inline-start: 1rem;
+  display: grid;
+  place-content: center;
+  text-wrap: balance;
+  font-weight: 100;
+  transform: scale(1, 1.3);
+  line-height: 1.5rem;
+  font-size: 1.5rem;
+  margin-block-end: 1rem;
+  color: var(--app-type-background);
+  border-radius: 12px;
+}
+
+.buttons_section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.see_zones {
+  border-radius: 14px;
+  border: 1px solid #999;
+  background-color: var(--app-white-text);
+  width: 50%;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--app-black-text);
+  display: grid;
+  place-content: center;
+  box-shadow: gray 1px 2px 5px;
+  height: 3rem;
+}
+
+.see_zones:hover {
+  cursor: pointer
+}
+
+.see_zones:active {
+  color: var(--app-payments-green);
+  transform: scale(1.1);
+  border: 1px solid var(--app-payments-green);
+}
+
+.continue_buying_button {
+  border-radius: 14px;
+  font-size: 1rem;
+  border: transparent;
+  background-color: var(--app-white-text);
+  width: 50%;
+  padding: 1rem;
+  color: var(--app-black-text);
+  box-shadow: gray 1px 2px 5px;
+  display: grid;
+  place-content: center;
+  height: 3rem;
+}
+
+.continue_buying_button:hover {
+  cursor: pointer;
+}

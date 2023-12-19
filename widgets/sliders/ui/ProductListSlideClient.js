@@ -1,10 +1,10 @@
 'use client'
 import classes from './ProductListSlideClient.module.css'
 import listSlideButtons from './ListSlideButtons.module.css'
-import Nav from '@/shared/ui/model/components/Nav'
 import TriangleButton from '@/shared/ui/lib/TriangleButton'
 import ProductListSlide from './lib/ProductListSlide'
 import { useRef } from 'react'
+import CategoryTitleNav from '@/widgets/lib/CategoryTitleNav'
 
 export default function ProductListSlideClient ({ category, type = '', specificProductList }) {
   const scrollRef = useRef(null)
@@ -17,7 +17,7 @@ export default function ProductListSlideClient ({ category, type = '', specificP
 
   return (
     <section className={classes.product_list_client_container}>
-      <Nav category={category} type={type} />
+      <CategoryTitleNav category={category} type={type} />
       <div className={classes.product_list_client_slider}>
         <TriangleButton
           slideDirection='x'

@@ -2,19 +2,19 @@ import PaymentsPageHeader from '@/entities/payment/ui/PaymentsPageHeader'
 import classes from './CartSecondStep.module.css'
 import PaymentOptions from '@/features/pay/PaymentOptions'
 import CartResume from '@/entities/cart/ui/CartResume'
-import PaymentsPageFooter from '@/entities/cart/ui/PaymentsPageFooter'
+import PaymentsPageFooter from '@/entities/payment/ui/PaymentsPageFooter'
+import { i18n } from '@/shared/model/i18n'
 
-/**
- * Traer los datos de los medios de pago y CBU del server acá o en page.js
- */
+const { CART: { SECOND_STEP_TITLE, FOOTER_BUTTONS: { CONFIRM_ORDER } } } = i18n.LANG.ESP.UI
+
 export default function CartSecondStep () {
   return (
     <main className={classes.cart_container}>
       <div className={classes.golden_line} />
-      <PaymentsPageHeader />
+      <PaymentsPageHeader label={SECOND_STEP_TITLE} />
       <PaymentOptions />
       <CartResume />
-      <PaymentsPageFooter />
+      <PaymentsPageFooter label={CONFIRM_ORDER} />
     </main>
   )
 }

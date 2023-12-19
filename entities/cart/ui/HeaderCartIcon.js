@@ -41,7 +41,7 @@ export default function HeaderCartIcon () {
                 <SmallCircle radius={8} />
               </span>
             )
-        }
+          }
       </Link>
     </div>
   )

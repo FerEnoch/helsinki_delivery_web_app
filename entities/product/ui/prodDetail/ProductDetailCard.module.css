@@ -1,5 +1,6 @@
 .card {
   background-color: white;
+  box-shadow: 1px 1px 20px #666;
   border-radius: 14px;
   display: flex;
   flex-direction: column;
@@ -15,6 +16,8 @@
 }
 
 .product_name {
+  display: grid;
+  place-content: center;
   flex: 1 0 10%;
   background-color: var(--app-type-background);
   border-radius: 14px 14px 0 0;
@@ -46,30 +49,4 @@
   .product_image>img {
     transform: scale(2.5);
   }
-}
-
-.product_data {
-  display: flex;
-  flex-direction: column;
-  padding: .5rem;
-}
-
-.product_description {
-  flex: 2 0 80%;
-}
-
-.product_description>p {
-  line-height: 1.5;
-  padding: 1rem;
-}
-
-@media (max-width: 360px) {
-  .product_description>p {
-    padding: .3rem;
-  }
-}
-
-.cart_section {
-  margin-block-end: 3rem;
-  flex: 0 1 20%;
 }

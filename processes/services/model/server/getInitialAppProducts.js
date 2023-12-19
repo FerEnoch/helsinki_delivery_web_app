@@ -21,8 +21,8 @@ import 'server-only'
 
 MemoryUsage()
 export async function getInitialAppProducts () {
+  const { FIREBASE_DATABASE: { PRODUCTS: activeCache } } = MEM_CACHE
   try {
-    const activeCache = MEM_CACHE.FIREBASE_DATABASE
     let activeCacheMap = getFromMainCache(activeCache)
 
     const isCacheToClear = mainCache.get(`STALE_DATA_${activeCache}`)
@@ -57,11 +57,11 @@ export async function getInitialAppProducts () {
   } catch (error) {
     console.error(`
     Application unabled to compile initial data to render...
-    No products were found neither in firebase nor in drive stock sheet
+    No products were found in firebase 
     `)
     throw new Error(
       `FAILED TO GET INITIAL DATA */** ${error.message} `,
-      { cause: `Impossible firebase or drive connection due to => ${error.cause}` }
+      { cause: `Impossible firebase connection due to => ${error.cause}` }
     )
   }
 }

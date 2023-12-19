@@ -1,0 +1,34 @@
+.qr_image_container {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: 100%;
+  padding: .5rem;
+  overflow: hidden;
+  max-width: 90%;
+  border-radius: 12px;
+}
+
+.qr_image {
+  border-radius: 12px;
+}
+
+@media (width>=410px) {
+  .qr_image {
+    transform: scale(1.2);
+  }
+}
+
+
+@media (height<=780px) {
+  .qr_image {
+    transform: scale(1);
+  }
+}
+
+@media (height<=700px) {
+  .qr_image {
+    transform: scale(.8);
+
+  }
+}

@@ -1,11 +1,16 @@
+'use client'
 import UncheckedBoxIcon from '@/shared/ui/lib/svg/UncheckedBoxIcon'
 import classes from './PaymentOption.module.css'
 import CheckedBoxIcon from '@/shared/ui/lib/svg/CheckedBoxIcon'
 import { useAppStore } from '@/entities/lib/store'
 import { useEffect, useState } from 'react'
+import { i18n } from '@/shared/model/i18n'
 
-export default function PaymentOption ({ id, children, label, comment }) {
+const { DISCOUNT_PIN } = i18n.LANG.ESP.UI
+
+export default function PaymentOption ({ id, isCash, label, comment, openZonesModal, children }) {
   const { paymentMethod, pickPaymentOption } = useAppStore()
+
   const [isChosen, setIsChosen] = useState(undefined)
 
   const handleChoosePaymentMethod = (id) => () => {
@@ -13,9 +18,16 @@ export default function PaymentOption ({ id, children, label, comment }) {
     pickPaymentOption(id)
   }
 
+  const formatLabel = label.toUpperCase()
+  const formatComments = comment.toUpperCase()
+
   useEffect(() => {
     setIsChosen(paymentMethod?.id === id)
-  }, [paymentMethod, id])
+  }, [paymentMethod, id, openZonesModal])
+
+  useEffect(() => {
+    if (isChosen) openZonesModal()
+  }, [isChosen, openZonesModal])
 
   return (
     <section
@@ -28,22 +40,28 @@ export default function PaymentOption ({ id, children, label, comment }) {
       >
         <div className={classes.checkbox}>
           {
-             isChosen
-               ? (
-                 <span className={classes.checkbox_checked}>
-                   <CheckedBoxIcon />
-                 </span>
-                 )
-               : <UncheckedBoxIcon />
-          }
+            isChosen
+              ? (
+                <span className={classes.checkbox_checked}>
+                  <CheckedBoxIcon />
+                </span>
+                )
+              : <UncheckedBoxIcon />
+         }
         </div>
       </span>
       <span className={classes.icon_wrapper}>
         {children}
       </span>
-      <h3 className={classes.payment_label}>{label.toUpperCase()}</h3>
-      <p className={classes.payment_comment}>{comment.toUpperCase()}</p>
+      <h3 className={classes.payment_label}>{formatLabel}</h3>
+      <p className={classes.payment_comment}>{formatComments}</p>
+      {
+        isCash && (
+          <div className={classes.discount_pin}>
+            {DISCOUNT_PIN}
+          </div>
+        )
+      }
     </section>
-
   )
 }

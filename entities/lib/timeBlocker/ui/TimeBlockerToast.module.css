@@ -1,0 +1,99 @@
+.toast_wrapper {
+  display: flex;
+  align-items: center;
+  background-color: var(--app-type-background);
+  border-radius: 14px;
+  padding: .5rem;
+  width: 100%;
+}
+
+.info_center {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-inline: auto;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.4rem;
+  margin-block: 1rem;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.label {
+  background-color: transparent;
+  background-color: var(--app-white-text);
+  border-radius: 12px;
+  border: 1px solid #999;
+  box-shadow: gray 1px 2px 5px;
+  font-size: 1.1rem;
+  margin-inline: auto;
+  padding: .5rem 1rem;
+
+
+  display: flex;
+  gap: 1rem;
+  margin-inline: auto;
+  align-items: baseline;
+}
+
+.text {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3rem;
+  text-wrap: balance;
+  padding-inline: .3rem;
+}
+
+.buttons {
+  display: flex;
+  gap: .5rem;
+  align-items: stretch;
+}
+
+.policy_button {
+  background-color: transparent;
+  background-color: var(--app-white-text);
+  border-radius: 12px;
+  border: 1px solid #999;
+  box-shadow: gray 1px 2px 5px;
+  display: grid;
+  font-size: 1rem;
+  margin-inline: auto;
+  padding: .5rem 1rem;
+  place-content: center;
+  width: 50%;
+}
+
+.policy_button:hover,
+.agree_button:hover,
+.label:hover {
+  cursor: pointer
+}
+
+.policy_button:active,
+.agree_button:active,
+.label:active {
+  color: var(--app-payments-green);
+  transform: scale(1.1);
+  border: 1px solid var(--app-payments-green);
+}
+
+
+.agree_button {
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 1px solid #999;
+  box-shadow: gray 1px 2px 5px;
+  background-color: var(--app-payments-green);
+  color: var(--app-white-text);
+  width: 50%;
+  display: grid;
+  place-content: center;
+  margin-inline: auto;
+  text-wrap: nowrap;
+  padding: .5rem 1rem;
+}

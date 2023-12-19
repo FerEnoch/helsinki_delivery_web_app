@@ -4,9 +4,23 @@
   flex-direction: column;
   overflow-x: visible;
   position: relative;
-  z-index: 20;
+  z-index: 25;
 }
 
-.product_list_client_container svg {
-  z-index: 100;
+@media (width>=520px) and (height<=680px) {
+  .product_list_client_container {
+    height: 22rem;
+  }
+}
+
+@media (width>=520px) and (height<=655px) {
+  .product_list_client_container {
+    height: 21rem;
+  }
+}
+
+@media (width>=520px) and (height<=650px) {
+  .product_list_client_container {
+    height: 19rem;
+  }
 }

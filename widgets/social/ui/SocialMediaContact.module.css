@@ -1,0 +1,18 @@
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.7rem;
+  margin-block: 1rem;
+}
+
+.icon_facebook {
+  transform: scale(2.15);
+}
+
+.icon_instagram {
+  transform: scale(1.7);
+}
+
+.icon_tiktok {
+  transform: scale(1.7);
+}

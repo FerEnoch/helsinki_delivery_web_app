@@ -1,0 +1,34 @@
+.dialog_main {
+  height: 100%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.form_first_section {
+  flex: 2 1 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.form_receipt_section {
+  flex: 1 0 25%;
+}
+
+.red_line {
+  background-color: var(--app-red-background);
+  border-radius: 10px;
+  width: 95%;
+  height: 5px;
+  margin-block-start: .5rem;
+}
+
+@media (width<=440px) {
+  .red_line {
+    margin-block-start: 1rem;
+  }
+}

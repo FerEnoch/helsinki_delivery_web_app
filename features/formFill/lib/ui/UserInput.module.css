@@ -1,0 +1,30 @@
+.user_input {
+  height: 2.5rem;
+  padding-inline: 1rem;
+  border: 1.5px solid var(--app-red-background);
+  border-radius: 30px;
+  width: 100%;
+  font-size: 1.5rem;
+  /* letter-spacing: 1px; */
+}
+
+.invalid_user_input {
+  background-color: rgba(255, 0, 0, 0.42);
+}
+
+@media (width<=415px) {
+  .user_input {
+    font-size: 1.2rem;
+    padding-inline-start: .8rem;
+    padding-inline-end: .5rem;
+  }
+}
+
+
+@media (height<=700px) {
+  .user_input {
+    font-size: 1.2rem;
+    padding-inline-start: .8rem;
+    padding-inline-end: .5rem;
+  }
+}

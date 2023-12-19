@@ -9,6 +9,7 @@ export default function OfferedProduct ({ children, label, products, categoryOff
   const [openModalDialog, setOpenModalDialog] = useState(false)
 
   const closeDialog = () => setOpenModalDialog(false)
+  const openDialog = () => setOpenModalDialog(true)
 
   return (
     <>
@@ -22,7 +23,7 @@ export default function OfferedProduct ({ children, label, products, categoryOff
           categoryOffering={categoryOffering}
         />
       </OffertModalDialog>
-      <button className={classes.prod_wrapper} onClick={() => setOpenModalDialog(true)}>
+      <button className={classes.prod_wrapper} onClick={openDialog}>
         <span className={classes.product_icon}>
           {children}
         </span>

@@ -1,0 +1,21 @@
+.helsinki_logo {
+  bottom: -166px;
+  margin-inline: auto;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+  filter: drop-shadow(1px 1px 10px rgba(234, 232, 232, 0.483))
+}
+
+
+@media (width>=425px) {
+  .helsinki_logo {
+    transform: scale(1.3);
+  }
+}
+
+@media (height<=700px) {
+  .helsinki_logo {
+    transform: scale(1);
+  }
+}

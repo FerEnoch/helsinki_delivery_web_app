@@ -8,13 +8,14 @@ export function useProducts (criteria = null, must = null) {
   const { stockProducts, setInitialStockProducts } = useAppStore()
 
   useEffect(() => {
-    async function fetchInitialProducts () {
-      await getProductList({ category: '*' })
-        .then(products => setInitialStockProducts([...products]))
-        // .catch(console.log) // esto está mal! cambiarlo !!
-    }
-
-    fetchInitialProducts()
+    /**
+    * Doesn't matter the fact that it continues retrieving products from database
+    * again and again on every hook call, because the products are in cache memory in the
+    * server, and this cache memory is automatically updated with main stock crud operations
+    * in the google drive sheet info
+    */
+    getProductList({ category: '*' })
+      .then(products => setInitialStockProducts(products))
     setIsLoading(false)
   }, [setInitialStockProducts])
 

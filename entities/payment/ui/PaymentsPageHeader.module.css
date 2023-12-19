@@ -19,11 +19,8 @@
   transform: scale(.9);
 }
 
-@media (width <=390px) {
-  .back_link {
-    transform: scale(.6);
-    top: 6px;
-  }
+.back_link:hover {
+  cursor: pointer;
 }
 
 .title {
@@ -34,4 +31,29 @@
   transform: scaleY(1.05) scaleX(.9);
   z-index: 20;
   margin-block: .5rem;
+}
+
+@media (width <=445px) {
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .back_link {
+    transform: scale(.6);
+    top: 6px;
+  }
+}
+
+
+@media (width <=415px) {
+  .title {
+    font-size: 1.3rem;
+  }
+}
+
+
+@media (height<=700px) {
+  .title {
+    font-size: 1.3rem;
+  }
 }

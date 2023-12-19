@@ -1,0 +1,52 @@
+.menu_popover {
+  align-items: center;
+  animation: show-menu 300ms ease forwards;
+  background-color: var(--app-type-background);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  position: absolute;
+  width: 100%;
+  z-index: 50;
+}
+
+.menu_list {
+  padding-block-start: .5rem;
+  position: relative;
+  font-size: 1.5rem;
+}
+
+.close_triangle {
+  position: absolute;
+  left: -18%;
+  top: 0;
+  transform: scale(1.5, 1);
+}
+
+@keyframes show-menu {
+  0% {
+    transform: scale(1, 0);
+    transform-origin: top;
+    box-shadow: 1px 1px .5px #666;
+  }
+
+  100% {
+    transform-origin: top;
+    transform: scale(1);
+    box-shadow: 1px 1px 5px #666;
+  }
+}
+
+@media (width>=460px) {
+  .close_triangle {
+    left: -30%;
+  }
+}
+
+@media (width>=460px) and (height<=700px) {
+  .close_triangle {
+    left: -20%;
+  }
+}

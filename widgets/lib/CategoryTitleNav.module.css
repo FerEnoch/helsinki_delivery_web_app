@@ -1,0 +1,46 @@
+.nav_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  width: 90%;
+  margin-inline: auto;
+}
+
+.back_link {
+  position: absolute;
+  background-color: transparent;
+  border: transparent;
+  z-index: 50;
+}
+
+.back_link>svg {
+  z-index: 100;
+}
+
+.back_link:hover {
+  cursor: pointer
+}
+
+@media (width <=360px) {
+  .back_link {
+    transform: scale(.8)
+  }
+}
+
+@media (height<=615px) {
+  .nav_container {
+    margin-block-end: .1rem;
+  }
+}
+
+@media (width>=520px) and (height<=700px) {
+  .nav_container {
+    margin-block: .5rem;
+    height: 1rem;
+  }
+
+  .back_link {
+    padding-block-start: 1.5rem;
+  }
+}

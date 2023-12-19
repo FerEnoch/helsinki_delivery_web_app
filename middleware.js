@@ -4,10 +4,7 @@ const currentEnvOrigin = process.env.NODE_ENV === 'development'
   ? process.env.NEXT_PUBLIC_LOCAL_BASE_URL
   : process.env.NEXT_PUBLIC_PROD_BASE_URL
 
-const allowedOrigins = [
-  currentEnvOrigin,
-  'https://sjq5dd8h-3000.brs.devtunnels.ms'
-]
+const allowedOrigins = [currentEnvOrigin]
 
 export const config = {
   matcher: '/api/:path*'

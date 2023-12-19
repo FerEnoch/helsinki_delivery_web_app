@@ -2,13 +2,15 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 80%;
+  padding-block-start: 1.5rem;
+  height: 100%;
   justify-content: flex-start;
   margin: 0 auto;
   width: 80%;
 }
 
 .golden_line {
+  box-shadow: 1px 1px 20px #dfdeded0;
   height: 0.3rem;
   width: 100%;
   background-color: var(--app-type-background);

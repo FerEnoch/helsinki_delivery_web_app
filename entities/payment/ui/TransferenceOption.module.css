@@ -1,0 +1,23 @@
+.transference_section_container {
+  flex: 1 1 90%;
+  display: grid;
+  place-content: center;
+}
+
+.data_wrapper {
+  border: 2px solid var(--app-payments-green);
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+.data_wrapper:hover {
+  cursor: pointer;
+}
+
+.data_wrapper:active {
+  transition: all 100ms ease;
+  color: var(--app-payments-green);
+  border: 3px solid var(--app-payments-green);
+}

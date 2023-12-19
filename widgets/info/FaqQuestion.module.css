@@ -1,0 +1,26 @@
+.faq_article {
+  margin-block: .5rem;
+  width: 90%;
+  text-wrap: balance;
+  margin-inline: auto;
+  text-align: start;
+}
+
+.ask {
+  font-size: 1.2rem;
+}
+
+.answer {
+  font-size: 1rem;
+}
+
+
+@media (width>=450px) {
+  .ask {
+    font-size: 1.4rem;
+  }
+
+  .answer {
+    font-size: 1.1rem;
+  }
+}

@@ -1,3 +1,4 @@
+import localFont from 'next/font/local'
 /* eslint-disable-next-line */
 import { Unica_One, Poppins } from 'next/font/google'
 
@@ -5,8 +6,8 @@ export const unicaOne = Unica_One({
   subsets: ['latin'],
   weight: ['400'],
   display: 'swap',
-  fallback: ['poppins', 'system-ui', 'arial']
-  // variable: '--font-unica',
+  fallback: ['poppins', 'system-ui', 'arial'],
+  variable: '--font-unica'
 })
 
 export const poppins = Poppins({
@@ -15,4 +16,18 @@ export const poppins = Poppins({
   display: 'swap',
   fallback: ['system-ui', 'arial']
   // variable: '--font-poppins'
+})
+
+export const codecProBold = localFont({
+  src: '../../../public/assets/fonts/CodecPro-Bold.woff2',
+  display: 'swap',
+  fallback: ['poppins', 'system-ui', 'arial'],
+  variable: '--font-codec'
+})
+
+export const codecProRegular = localFont({
+  src: '../../../public/assets/fonts/CodecPro-News.woff2',
+  display: 'swap',
+  fallback: ['poppins', 'system-ui', 'arial'],
+  variable: '--font-codec'
 })

@@ -1,0 +1,41 @@
+.toast_wrapper {
+  background-color: var(--app-type-background);
+  border: 1px solid var(--app-payments-green);
+  box-shadow: gray 1px 2px 5px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-around;
+  line-height: 1.6rem;
+  width: 100%;
+  padding: .5rem 2.5rem;
+}
+
+.info {
+  display: grid;
+  place-content: center;
+  flex: 1 1 80%
+}
+
+.discount_title {
+  font-weight: bolder;
+  color: var(--app-black-text);
+  text-align: start;
+}
+
+.discount_text {
+  color: var(--app-black-text);
+  font-weight: 100;
+  font-size: 1.1rem;
+  text-align: start;
+  text-wrap: balance;
+  display: grid;
+  place-content: center;
+}
+
+.viking_image {
+  flex: 1 1 20%;
+  filter: opacity(.40);
+  position: relative;
+  right: 1rem;
+  z-index: 100;
+}

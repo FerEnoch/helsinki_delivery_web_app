@@ -8,11 +8,13 @@ export const formatTradeMark = () => {
 }
 
 export const formatContactLink = () => {
-  return i18n.LANG.ESP.UI.CONTACT.toUpperCase()
+  const { CONTACT: { label: contactInfo } } = i18n.LANG.ESP.UI.MENU
+  return contactInfo.toUpperCase()
 }
 
 export const formatAbout = () => {
-  const allUpperCase = i18n.LANG.ESP.UI.PRESENTATION.toUpperCase()
+  const { ABOUT: { label: presentationInfo } } = i18n.LANG.ESP.UI.MENU
+  const allUpperCase = presentationInfo.toUpperCase()
   const formatCharI = charFormat(allUpperCase, 'i', textFormat.LOW_CASE)
   return charFormat(formatCharI, 'q', textFormat.LOW_CASE)
 }
@@ -26,7 +28,8 @@ export const formatDeveloper = () => {
   ].join(' ')
 }
 
-export const formatUpperCase = (string) => {
+export const formatUpperCase = (incommingData) => {
+  const string = String(incommingData)
   const toLowerCaseChar = ['Q', 'U']
   let formattedString
   const allUpperCase = string.toUpperCase()
@@ -37,5 +40,5 @@ export const formatUpperCase = (string) => {
       formattingString = formattedString
     }
   }
-  return formattedString
+  return formattedString || allUpperCase
 }

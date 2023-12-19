@@ -6,13 +6,16 @@ import SelectQuantitySection from '@/features/addToCart/ui/SelectQuantitySection
 import Link from 'next/link'
 import classes from './ProductListItem.module.css'
 import { useAppStore } from '@/entities/lib/store'
-import { useState } from 'react'
+import { memo, useState } from 'react'
+import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 
-export default function ProductListItem ({ isCigarOrExtra, product }) {
+export default memo(function ProductListItem ({ isCigarOrExtra, product }) {
   const { addToCart } = useAppStore()
   const [productQuantity, setProductQuantity] = useState(1)
 
   const { id, category, name, image, price, stock: hasStock } = product
+  const formattedPrice = priceFormater(price)
+  const productName = name.toUpperCase()
 
   const handleAddToCart = () => {
     addToCart({ ...product }, productQuantity)
@@ -21,7 +24,10 @@ export default function ProductListItem ({ isCigarOrExtra, product }) {
   return (
     <article>
       <li className={classes.product_item}>
-        <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`} prefetch={false}>
+        <Link
+          href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`}
+          prefetch={false}
+        >
           <span className={classes.plusInfoButton_wrapper}>
             <PlusInfoButton />
           </span>
@@ -30,7 +36,7 @@ export default function ProductListItem ({ isCigarOrExtra, product }) {
               <ProductImage
                 width={!isCigarOrExtra ? 50 : null}
                 height={!isCigarOrExtra ? 75 : null}
-                alt={name}
+                alt={productName}
                 src={image}
                 category={category}
               />
@@ -39,11 +45,14 @@ export default function ProductListItem ({ isCigarOrExtra, product }) {
         </Link>
         <div className={classes.product_background}>
           <span className={classes.product_name}>
-            <Link href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`} prefetch={false}>
-              <h2>{name.toUpperCase()}</h2>
+            <Link
+              href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`}
+              prefetch={false}
+            >
+              <h2>{productName}</h2>
             </Link>
           </span>
-          <ProductPrice price={price} hasStock={hasStock} />
+          <ProductPrice price={formattedPrice} hasStock={hasStock} />
           <span className={classes.product_select_quantity}>
             <SelectQuantitySection disabled={!hasStock} setProductQuantity={setProductQuantity} />
           </span>
@@ -55,3 +64,4 @@ export default function ProductListItem ({ isCigarOrExtra, product }) {
     </article>
   )
 }
+)
