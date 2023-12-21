@@ -11,7 +11,7 @@ export function useSearch () {
 
   const getSearchParam = useCallback((e) => {
     // sanitize user input
-    const searchParam = String(e.target.value).trim().toLowerCase()
+    const searchParam = String(e.target.value).toLowerCase()
     const [sanitizedSearchParam] = sanitizeInput(searchParam)
     setUserInput(sanitizedSearchParam)
   }, [])
