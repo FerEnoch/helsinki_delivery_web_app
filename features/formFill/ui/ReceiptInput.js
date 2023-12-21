@@ -5,8 +5,6 @@ import { unicaOne } from '@/shared/config/fonts'
 import { useAppStore } from '@/entities/lib/store'
 import Check from '@/shared/ui/lib/svg/Check'
 
-const uploadAction = 'Sube tu comprobante'
-
 export default memo(function ReceiptInput () {
   const [uploadingStart, setUploadingStart] = useState(false)
   const [uploadingEnd, setUploadingEnd] = useState(false)
@@ -17,6 +15,7 @@ export default memo(function ReceiptInput () {
     handleInvalidInput,
     handleChangeFileInput,
     receiptNeededUIMessage,
+    uploadButtonMessage,
     receiptInputUILabel
   } = useHandleFileInput()
 
@@ -39,7 +38,7 @@ export default memo(function ReceiptInput () {
               ${uploadingEnd && classes.uploading_end}
            `}
           >
-            {uploadAction}
+            {uploadButtonMessage}
             {uploadingEnd && <Check className={classes.check} />}
           </p>
         </label>

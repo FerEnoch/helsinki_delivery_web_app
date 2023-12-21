@@ -3,7 +3,7 @@ import { i18n } from '@/shared/model/i18n'
 import { useAppStore } from '@/entities/lib/store'
 import { sanitizeFile } from './sanitizeFile'
 
-const { CLIENT_FORM: { FIELD_RECEIPT: { LABEL, ON_INVALID } } } = i18n.LANG.ESP.UI
+const { CLIENT_FORM: { FIELD_RECEIPT: { LABEL, ON_INVALID, BUTTON_ACTION } } } = i18n.LANG.ESP.UI
 const receiptNeededUIMessage = ON_INVALID?.toUpperCase()
 const receiptInputUILabel = `5 - ${LABEL?.toUpperCase()}`
 
@@ -30,6 +30,7 @@ export function useHandleFileInput () {
     handleInvalidInput,
     handleChangeFileInput,
     receiptNeededUIMessage,
+    uploadButtonMessage: BUTTON_ACTION,
     receiptInputUILabel
   }
 }

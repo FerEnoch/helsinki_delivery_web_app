@@ -95,7 +95,8 @@ export const i18n = {
           },
           FIELD_RECEIPT: {
             LABEL: 'Adjunta tu comprobante de pago',
-            ON_INVALID: '** Por favor adjunta un comprobante de pago válido'
+            ON_INVALID: '** Por favor adjunta un comprobante de pago válido',
+            BUTTON_ACTION: 'Sube tu comprobante (max 3MB)'
           },
           FORM_SUBMIT: 'Enviar pedido'
         },
