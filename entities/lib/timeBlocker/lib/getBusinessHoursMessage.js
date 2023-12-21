@@ -1,10 +1,9 @@
 import { BusinessDay } from './BusinessDay'
 import { MessagesUI } from './MessagesUI'
 import { weekDays } from './config'
-import { getTimeInfo } from './getTimeInfo'
+import { currentTime, currrentDay } from './getTimeInfo'
 
 export function getBusinessHoursMessage () {
-  const { currrentDay, currentTime } = getTimeInfo()
   const currentWeekDay = new BusinessDay(weekDays[currrentDay])
   const returnMessages = new MessagesUI()
 

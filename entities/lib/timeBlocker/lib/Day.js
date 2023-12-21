@@ -1,6 +1,6 @@
 import { businessHoursMap } from './businessHoursMap'
 import { businessHours } from './config'
-import { getTimeInfo } from './getTimeInfo'
+import { currentTime } from './getTimeInfo'
 
 const { middayTakeAway, notBusinessDays } = businessHours
 
@@ -11,9 +11,6 @@ export class Day {
   }
 
   isBusinessDay () {
-    const { currentTime } = getTimeInfo()
-    // console.log(`It's ${this.day} - ${currentTime} hs`)
-
     const isBusinessHour = new Set(notBusinessDays
       .map(({ day, startingHour: closeHour }) => {
         if (this.day !== day) return true

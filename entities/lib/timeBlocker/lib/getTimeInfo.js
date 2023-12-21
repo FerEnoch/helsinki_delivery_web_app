@@ -1,4 +1,4 @@
-export function getTimeInfo () {
+function getTimeInfo () {
   const date = new Date()
 
   const currrentDay = date.getDay()
@@ -12,3 +12,8 @@ export function getTimeInfo () {
     currentTime
   }
 }
+
+export const {
+  currrentDay,
+  currentTime
+} = getTimeInfo()

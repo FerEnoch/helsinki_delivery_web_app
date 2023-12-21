@@ -1,6 +1,6 @@
 export const timeBlockerSlice = (set, get) => {
   return {
-    isAppBlocked: false,
+    isAppBlocked: null,
     setIsAppBlocked: (bool) => set(({ isAppBlocked: bool }))
   }
 }

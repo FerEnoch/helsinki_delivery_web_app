@@ -1,4 +1,6 @@
 .qr_image_container {
+  background: center / contain no-repeat url('../../../public/assets/spinner.gif');
+  background-color: white;
   display: grid;
   place-content: center;
   width: 100%;

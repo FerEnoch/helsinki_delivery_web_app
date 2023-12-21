@@ -24,6 +24,7 @@ export function useInitialToast () {
   useEffect(() => {
     if (!isFirstTime) return
     if (!businessHoursMessage) return
+
     switch (businessHoursMessage) {
       case 'OK': return setIsAppBlocked(false)
       case ADD_TAKE_AWAY:
@@ -32,6 +33,7 @@ export function useInitialToast () {
         break
       case DISABLED_DAY:
       case DISABLED_HOURS:
+        isFirstTime = false
         setIsAppBlocked(true)
         toast((
           <BlockedAppToast message={businessHoursMessage} />
@@ -45,12 +47,14 @@ export function useInitialToast () {
         })
         break
     }
-    isFirstTime = false
   }, [businessHoursMessage, setIsAppBlocked])
 
   useEffect(() => {
     if (!isFirstTime) return
+    if (!businessHoursMessage) return
     if (isAppBlocked) return
+
+    isFirstTime = false
     toast((
       <DiscountToast />
     ), {
@@ -59,8 +63,8 @@ export function useInitialToast () {
         padding: '.5rem'
       },
       duration: 6000,
-      position: 'bottom-center'
+      position: 'bottom-center',
+      important: true
     })
-    isFirstTime = false
-  }, [isAppBlocked])
+  }, [isAppBlocked, businessHoursMessage])
 }
