@@ -9,7 +9,7 @@ import { useAppStore } from '@/entities/lib/store'
 import { memo, useState } from 'react'
 import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 
-export default memo(function ProductListItem ({ isCigarOrExtra, product }) {
+export default memo(function ProductListItem ({ product }) {
   const { addToCart } = useAppStore()
   const [productQuantity, setProductQuantity] = useState(1)
 
@@ -34,8 +34,8 @@ export default memo(function ProductListItem ({ isCigarOrExtra, product }) {
           <span className={classes.product_image}>
             <div className={classes.image_mask}>
               <ProductImage
-                width={!isCigarOrExtra ? 50 : null}
-                height={!isCigarOrExtra ? 75 : null}
+                width={50}
+                height={75}
                 alt={productName}
                 src={image}
                 category={category}

@@ -9,13 +9,6 @@ import ProductListItem from '@/widgets/sliders/ui/lib/ProductListItem'
 import SuspenseFallbackLogo from '@/shared/ui/lib/SuspenseFallbackLogo'
 
 const { PLACEHOLDER, NOT_FOUND_PRODUCTS } = i18n.LANG.ESP.UI.SEARCH_BAR
-const {
-  DETAIL_CARD_PRODUCT: {
-    FOOTER: {
-      generic_action: genericAction
-    }
-  }
-} = i18n.LANG.ESP.UI
 
 export default function SearchBar () {
   const {
@@ -42,11 +35,8 @@ export default function SearchBar () {
             >
               <ul className={classes.product_list}>
                 {foundProducts.map(product => {
-                  const isCigarOrExtra = genericAction.categories
-                    .find(categRegExp => categRegExp.test(product.category))
                   return (
                     <ProductListItem
-                      isCigarOrExtra={isCigarOrExtra}
                       key={product.id}
                       product={product}
                     />
