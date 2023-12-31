@@ -15,7 +15,7 @@ export function useProducts (criteria = null, must = null) {
     * in the google drive sheet info
     */
     getProductList({ category: '*' })
-      .then(products => setInitialStockProducts(products))
+      .then(setInitialStockProducts)
     setIsLoading(false)
   }, [setInitialStockProducts])
 

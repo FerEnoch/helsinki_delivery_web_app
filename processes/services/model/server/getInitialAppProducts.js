@@ -15,7 +15,7 @@ import 'server-only'
  *  imageID: { stringValue: imageID },
  *  destillery: { stringValue: destillery },
  *  alcohol: { stringValue: alcohol },
- *  stock: { booleanValue: stock },  ******different one**********//****
+ *  stock: { booleanValue: stock },
  *  price: { stringValue: price },
  */
 
