@@ -1,4 +1,10 @@
-export function scrollToNextProduct ({ index, containerRef, direction, correctionPixels = 0 }) {
+export function scrollToNextProduct ({
+  index,
+  containerRef,
+  direction,
+  correctionPixels = 0,
+  cardWidth
+}) {
   const list = containerRef?.current
   let productSize
   let offsetDirection
@@ -12,7 +18,7 @@ export function scrollToNextProduct ({ index, containerRef, direction, correctio
   }
 
   list?.scrollTo({
-    [offsetDirection]: index * productSize,
+    [offsetDirection]: cardWidth ? index * cardWidth : index * productSize,
     behavior: 'smooth'
   })
   return index

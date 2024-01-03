@@ -14,12 +14,12 @@ export default forwardRef(function ProductListSlide ({ products }, ref) {
         if (scrollDirection === 'left') {
           nextCardIndex = currentProdsViewIndex - 1
           if (nextCardIndex < 0) {
-            nextCardIndex = ((products.length / 2)) - 1
+            nextCardIndex = products.length - 1
           }
         }
         if (scrollDirection === 'right') {
           nextCardIndex = currentProdsViewIndex + 1
-          if (nextCardIndex >= (products.length / 2)) {
+          if (nextCardIndex >= products.length) {
             nextCardIndex = 0
           }
         }
@@ -28,7 +28,7 @@ export default forwardRef(function ProductListSlide ({ products }, ref) {
           containerRef: listRef,
           direction: 'x',
           index: nextCardIndex,
-          correctionPixels: 10
+          cardWidth: listRef.current.children[0]?.offsetWidth
         })
 
         setCurrentProdsViewIndex(currentIndex)

@@ -22,14 +22,14 @@ export default forwardRef(function ProductList ({
       handleScroll (scrollDirection) {
         let nextCardIndex
         if (scrollDirection === 'up') {
-          nextCardIndex = currentProdsViewIndex - 1
+          nextCardIndex = currentProdsViewIndex - 2
           if (nextCardIndex < 0) {
-            nextCardIndex = ((categoryProductList.length / 4)) - 1
+            nextCardIndex = categoryProductList.length - 2
           }
         }
         if (scrollDirection === 'down') {
-          nextCardIndex = currentProdsViewIndex + 1
-          if (nextCardIndex >= (categoryProductList.length / 4)) {
+          nextCardIndex = currentProdsViewIndex + 2
+          if (nextCardIndex >= categoryProductList.length - 2) {
             nextCardIndex = 0
           }
         }
@@ -38,7 +38,7 @@ export default forwardRef(function ProductList ({
           containerRef: listRef,
           direction: 'y',
           index: nextCardIndex,
-          correctionPixels: 4
+          cardWidth: listRef.current.children[0]?.firstChild.offsetHeight + 5
         })
 
         setCurrentProdsViewIndex(currentIndex)
