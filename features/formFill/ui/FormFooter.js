@@ -40,14 +40,16 @@ export default memo(function FormFooter ({ closeFormDialog }) {
         disabled={submitButtonDisabled}
       >
         <p> {submitText} </p>
-        <span className={classes.submit_button_triangle}>
-          <TriangleButton
-            slideDirection='x'
-            width={18}
-            height={18}
-            triangleStyle={{ fill: 'white' }}
-          />
-        </span>
+        {!submitButtonDisabled && (
+          <span className={classes.submit_button_triangle}>
+            <TriangleButton
+              slideDirection='x'
+              width={18}
+              height={18}
+              triangleStyle={{ fill: 'white' }}
+            />
+          </span>
+        )}
       </button>
     </footer>
   )

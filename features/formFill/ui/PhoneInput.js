@@ -76,6 +76,7 @@ export default memo(function PhoneInput ({ isDetailsOpen }) {
             value={sanitizedPhoneCharacteristic}
             onChange={handlePhoneCharacteristic}
             onBlur={handlePhoneCharacteristic}
+            required
           />
         </div>
         <div className={classes.phone_input_phone}>
@@ -93,6 +94,7 @@ export default memo(function PhoneInput ({ isDetailsOpen }) {
             value={sanitizedPhoneNumber}
             onChange={handlePhoneNumber}
             onBlur={handlePhoneNumber}
+            required
           />
         </div>
         {uiDangerMessage}
