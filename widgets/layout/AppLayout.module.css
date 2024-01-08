@@ -24,6 +24,7 @@
 
 @media (width>=520px) and (height<=700px) {
   .app_background {
-    width: 400px
+    width: 400px;
+    height: 100vh;
   }
 }

@@ -103,3 +103,12 @@
     width: 100%
   }
 }
+
+
+
+@media (width>=520px) and (height<=725px) {
+  .titles_wrapper {
+    margin-block-start: .2rem;
+    margin-block-end: .2rem;
+  }
+}

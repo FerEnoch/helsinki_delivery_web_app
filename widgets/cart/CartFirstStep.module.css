@@ -25,7 +25,7 @@
   margin-block: .5rem;
 }
 
-@media (width>=520px) and (height<=630px) {
+@media (width>=520px) and (height<=725px) {
   .cart_container {
     padding-block-start: .5rem;
   }

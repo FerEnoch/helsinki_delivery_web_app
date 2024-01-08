@@ -1,12 +1,3 @@
-.title {
-  color: var(--app-type-background);
-  font-size: 1.5rem;
-  font-weight: 100;
-  margin-block: 1rem;
-  transform: scaleY(1.05) scaleX(.9);
-  margin-block: .5rem;
-}
-
 .adds_section {
   z-index: 20;
   width: 100%;
@@ -21,11 +12,18 @@
   justify-content: flex-start;
 }
 
+.title {
+  color: var(--app-type-background);
+  font-size: 1.5rem;
+  font-weight: 100;
+  transform: scaleY(1.05) scaleX(.9);
+  margin-block: .5rem;
+}
+
 .ice_or_cigar_sliders {
   width: 100%;
   z-index: 15;
 }
-
 
 @media (width>=520px) and (height<=680px) {
   .adds_section {
@@ -36,5 +34,11 @@
 @media (width>=520px) and (height<=630px) {
   .add_text {
     margin-block: -15px;
+  }
+}
+
+@media (width>=520px) and (height<=725px) {
+  .title {
+    margin-block: .2rem;
   }
 }
