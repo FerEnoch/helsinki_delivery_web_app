@@ -57,7 +57,12 @@ export default forwardRef(function ProductList ({
       ref={listRef}
       className={classes.product_list_container}
     >
-      <ul className={classes.product_list}>
+      <ul
+        style={{
+          height: `${categoryProductList.length > 4 ? '15.5rem' : ''}`
+        }}
+        className={classes.product_list}
+      >
         <SuspenseFallbackLogo
           isLoading={isLoading}
           height={100}

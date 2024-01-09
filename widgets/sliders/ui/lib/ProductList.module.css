@@ -1,6 +1,5 @@
 .product_list_container {
   background-color: var(--app-backgound-gray);
-  height: 15rem;
   overflow-y: scroll;
   margin-inline: auto;
   margin-block: .5rem;

@@ -31,7 +31,7 @@ export default async function CategoryPage ({ params }) {
   return (
     <CategoryHomePage
       category={category}
-      specificProductList={specificProductList.reverse()}
+      // specificProductList={specificProductList.reverse()}
     />
   )
 }
