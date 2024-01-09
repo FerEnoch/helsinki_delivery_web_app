@@ -8,7 +8,7 @@ import { i18n } from '@/shared/model/i18n'
 
 const { DISCOUNT_PIN } = i18n.LANG.ESP.UI
 
-export default function PaymentOption ({ id, isCash, label, comment, openZonesModal, children }) {
+export default function PaymentOption ({ id, isCash, label, comment, /* openZonesModal, */ children }) {
   const { paymentMethod, pickPaymentOption } = useAppStore()
 
   const [isChosen, setIsChosen] = useState(undefined)
@@ -23,11 +23,11 @@ export default function PaymentOption ({ id, isCash, label, comment, openZonesMo
 
   useEffect(() => {
     setIsChosen(paymentMethod?.id === id)
-  }, [paymentMethod, id, openZonesModal])
+  }, [paymentMethod, id])
 
-  useEffect(() => {
-    if (isChosen) openZonesModal()
-  }, [isChosen, openZonesModal])
+  // useEffect(() => {
+  //   if (isChosen) openZonesModal()
+  // }, [isChosen, openZonesModal])
 
   return (
     <section
