@@ -5,13 +5,13 @@ import { PAYMENT_OPTIONS } from '@/shared/model/payment_options'
 import useTimeBlockerToast from '@/entities/lib/timeBlocker/useTimeBlockerToast'
 import { Toaster } from 'sonner'
 import { useAppStore } from '@/entities/lib/store'
-import ZonesPrompt from '@/widgets/zones/ZonesPrompt'
+// import ZonesPrompt from '@/widgets/zones/ZonesPrompt'
 import WarningDialog from '@/shared/ui/lib/warningModal/WarningDialog'
 import { useWarningModal } from '@/shared/ui/lib/warningModal/useWarningModal'
 import BlockedAppPrompt from '@/widgets/blockedApp/BlockedAppPrompt'
 
 export default function PaymentOptions () {
-  const { openModalDialog, closeDialog, openDialog } = useWarningModal()
+  const { openModalDialog, closeDialog /*, openDialog */ } = useWarningModal()
   const { isAppBlocked, client: { takeAway } } = useAppStore()
   useTimeBlockerToast()
 
@@ -29,7 +29,7 @@ export default function PaymentOptions () {
               label={paymentLabel}
               isCash={isCash}
               comment={comment}
-              openZonesModal={() => openDialog()}
+              // openZonesModal={() => openDialog()}
             >
               {PAYMENT_OPTIONS[methodIndex].icon}
             </PaymentOption>
@@ -37,7 +37,7 @@ export default function PaymentOptions () {
         })
       }
       </section>
-      {
+      {/* {
         !takeAway && (
           <WarningDialog
             openModal={openModalDialog}
@@ -46,7 +46,7 @@ export default function PaymentOptions () {
             <ZonesPrompt closeDialog={closeDialog} />
           </WarningDialog>
         )
-      }
+      } */}
       {
         isAppBlocked && (
           <WarningDialog

@@ -6,11 +6,11 @@ import { useRouter } from 'next/navigation'
 
 export default function CategoryTitleNav ({ category, type = '' }) {
   const router = useRouter()
-  const goBack = () => router.back()
+  const goHome = () => router.push('/')
 
   return (
     <nav className={classes.nav_container}>
-      <button onClick={goBack} className={classes.back_link}>
+      <button onClick={goHome} className={classes.back_link}>
         <Triangle
           style={{ fill: 'black', transform: 'rotate(-90deg) scale(1.8, 1)' }}
           width={20}

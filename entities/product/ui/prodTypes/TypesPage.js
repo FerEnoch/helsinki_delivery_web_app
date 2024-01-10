@@ -5,6 +5,8 @@ import ProductListClient from '@/widgets/sliders/ui/ProductListClient'
 import CategoryTitleNav from '@/widgets/lib/CategoryTitleNav'
 
 export default function TypesPage ({ category, subtypes }) {
+  const isSubtypePage = subtypes && subtypes.length === 1
+
   return (
     <div className={classes.type_product_container}>
       <CategoryTitleNav category={category} />
@@ -32,7 +34,7 @@ export default function TypesPage ({ category, subtypes }) {
         }
         </ul>
       </section>
-      <ProductListClient category={category} />
+      <ProductListClient category={category} type={isSubtypePage ? subtypes[0] : null} />
     </div>
   )
 }

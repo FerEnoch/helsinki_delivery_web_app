@@ -12,12 +12,15 @@ export const periods = ['earlyMorning', 'midday', 'day', 'night']
 
 export const businessHours = {
   defaultStartBusinessDay: 10,
-  defaultEndBusinessDay: 0.3,
-  extendedBusinessDay: 2,
   defaultStartDelivery: 20,
+  // defaultEndBusinessDay: 0.3,
+  defaultEndBusinessDay: 0.15,
+  // extendedBusinessDay: 2,
+  extendedBusinessDay: 1.45,
   notBusinessDays: [{
     day: weekDays[0], // sunday
-    startingHour: 2
+    // startingHour: 2
+    startingHour: 1.45
   }, {
     day: weekDays[1], // monday
     startingHour: 0
