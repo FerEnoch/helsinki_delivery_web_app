@@ -2,8 +2,8 @@ import { FIREBASE_DATABASES } from '../../databases'
 import { firestoreDatabaseAdmin } from '../config'
 
 export async function getDatabaseProductByFirestoreID (firestoreID, database) {
-  const { PRODUCTS } = FIREBASE_DATABASES
-  const collection = database || PRODUCTS
+  const { /* PRODUCTS */ PRODUCT_CATEGORIES } = FIREBASE_DATABASES
+  const collection = database || PRODUCT_CATEGORIES
 
   const docRef = firestoreDatabaseAdmin.collection(collection).doc(firestoreID)
   const docSnapshot = await docRef.get()

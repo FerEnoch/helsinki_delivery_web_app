@@ -9,6 +9,7 @@ export async function PATCH (request) {
   try {
     console.log('*///* Incomming PATCH request *///*')
     const content = await request.json()
+    console.log(content)
 
     const isContentNull = new Set(content)
     if (!content.length || isContentNull.has(null) || isContentNull.has(undefined)) {
@@ -47,6 +48,7 @@ export async function DELETE (request) {
   try {
     console.log('*///* Incomming DELETE request *///*')
     const content = await request.json()
+    console.log(content)
 
     const isContentNull = new Set(content)
     if (!content.length || isContentNull.has(null) || isContentNull.has(undefined)) {

@@ -59,7 +59,7 @@ export default forwardRef(function ProductList ({
     >
       <ul
         style={{
-          height: `${categoryProductList.length > 4 ? '15.5rem' : ''}`
+          height: `${categoryProductList?.length > 4 ? '15.5rem' : ''}`
         }}
         className={classes.product_list}
       >

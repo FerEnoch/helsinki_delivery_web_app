@@ -14,7 +14,7 @@ export function useProducts (criteria = null, must = null) {
     * server, and this cache memory is automatically updated with main stock crud operations
     * in the google drive sheet info
     */
-    getProductList({ category: '*' })
+    getProductList()
       .then(setInitialStockProducts)
     setIsLoading(false)
   }, [setInitialStockProducts])

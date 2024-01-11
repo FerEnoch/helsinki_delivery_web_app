@@ -1,27 +1,27 @@
 import { deleteProdInFirebaseCache, getFromMainCache, setProdInFirebaseCache } from '@/processes/cache'
 import { getDatabaseProductByFirestoreID } from '../../config/firebase/server/model/getDatabaseProductByFirestoreID'
 import { MEM_CACHE } from '@/processes/cache/config'
-import { getDatabaseProdByProdID } from '../../config/firebase/server/model/getDatabaseProdByProdID'
+// import { getDatabaseProdByProdID } from '../../config/firebase/server/model/getDatabaseProdByProdID'
 import { revalidatePath } from 'next/cache'
 import { getPaymentMethodsCollection } from '../../config/firebase/server/model/getPaymentMethodsCollection'
 import { getFirebaseCollection } from '../../config/firebase/server/model/getFirebaseCollection'
 import { FIREBASE_DATABASES } from '../../config/firebase/databases'
 
-async function addCacheProduct (productsIDs) {
-  const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
+// async function addCacheProduct (productsIDs) {
+//   const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
 
-  const result = new Set()
-  productsIDs.forEach(async productID => {
-    const productFromFirestore = await getDatabaseProdByProdID(productID)
-    console.log('ADDING PRODUCT to cache --->', productFromFirestore?.id)
-    const operationResult = await setProdInFirebaseCache(productFromFirestore, PRODUCTS)
-    if (!operationResult) {
-      result.add('failure')
-      console.log(`failed operation __ --_  NOT adding ${productID} product...`)
-    }
-  })
-  return !result.has('failure')
-}
+//   const result = new Set()
+//   productsIDs.forEach(async productID => {
+//     const productFromFirestore = await getDatabaseProdByProdID(productID)
+//     console.log('ADDING PRODUCT to cache --->', productFromFirestore?.id)
+//     const operationResult = await setProdInFirebaseCache(productFromFirestore, PRODUCTS)
+//     if (!operationResult) {
+//       result.add('failure')
+//       console.log(`failed operation __ --_  NOT adding ${productID} product...`)
+//     }
+//   })
+//   return !result.has('failure')
+// }
 
 async function updateCacheProduct (firestoreIDs) {
   const { FIREBASE_DATABASE: { PRODUCTS, PRODUCTS_CATEGORIES: CATEGORIES_PRODUCTS } } = MEM_CACHE
@@ -111,7 +111,7 @@ async function updatePaymentMethodsCache (content) {
 const { FIREBASE_DATABASE: { INFO, FAQ, PAYMENT_METHODS, PRODUCTS } } = MEM_CACHE
 const DATABASE_UPDATE_ACTIONS = {
   [PRODUCTS]: {
-    ADD: addCacheProduct, // prox to be deprecated
+    // ADD: addCacheProduct, // prox to be deprecated
     UPDATE: updateCacheProduct,
     DELETE: deleteCacheProduct
   },
