@@ -24,11 +24,12 @@ import { FIREBASE_DATABASES } from '../../config/firebase/databases'
 // }
 
 async function updateCacheProduct (firestoreIDs) {
-  const { FIREBASE_DATABASE: { PRODUCTS, PRODUCTS_CATEGORIES: CATEGORIES_PRODUCTS } } = MEM_CACHE
+  const { FIREBASE_CACHE: { PRODUCTS } } = MEM_CACHE
+  const { PRODUCT_CATEGORIES } = FIREBASE_DATABASES
 
   const result = new Set()
   firestoreIDs.forEach(async firestoreID => {
-    const updatedCategory = await getDatabaseProductByFirestoreID(firestoreID, CATEGORIES_PRODUCTS)
+    const updatedCategory = await getDatabaseProductByFirestoreID(firestoreID, PRODUCT_CATEGORIES)
     if (!updatedCategory) {
       console.log(`Something happened updating ${firestoreID} product... :(`)
       return
@@ -52,7 +53,7 @@ async function updateCacheProduct (firestoreIDs) {
 }
 
 async function deleteCacheProduct (productIDs) {
-  const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
+  const { FIREBASE_CACHE: { PRODUCTS } } = MEM_CACHE
 
   console.log('DELETING PRODUCTS from cache --->', productIDs)
   const result = new Set()
@@ -67,7 +68,7 @@ async function deleteCacheProduct (productIDs) {
 }
 
 async function updateInfoCache (content) {
-  const { FIREBASE_DATABASE: { INFO: activeCache } } = MEM_CACHE
+  const { FIREBASE_CACHE: { INFO: activeCache } } = MEM_CACHE
   console.log(`UPDATING ${content}`)
   const activeCacheMap = getFromMainCache(activeCache)
   const { INFO } = FIREBASE_DATABASES
@@ -81,7 +82,7 @@ async function updateInfoCache (content) {
 }
 
 async function updateFaqCache (content) {
-  const { FIREBASE_DATABASE: { FAQ: activeCache } } = MEM_CACHE
+  const { FIREBASE_CACHE: { FAQ: activeCache } } = MEM_CACHE
   console.log(`UPDATING ${content}`)
   const activeCacheMap = getFromMainCache(activeCache)
   const { FAQ } = FIREBASE_DATABASES
@@ -95,7 +96,7 @@ async function updateFaqCache (content) {
 }
 
 async function updatePaymentMethodsCache (content) {
-  const { FIREBASE_DATABASE: { PAYMENT_METHODS: activeCache } } = MEM_CACHE
+  const { FIREBASE_CACHE: { PAYMENT_METHODS: activeCache } } = MEM_CACHE
   console.log(`UPDATING ${content}`)
   const activeCacheMap = getFromMainCache(activeCache)
 
@@ -108,7 +109,7 @@ async function updatePaymentMethodsCache (content) {
   return true
 }
 
-const { FIREBASE_DATABASE: { INFO, FAQ, PAYMENT_METHODS, PRODUCTS } } = MEM_CACHE
+const { FIREBASE_CACHE: { INFO, FAQ, PAYMENT_METHODS, PRODUCTS } } = MEM_CACHE
 const DATABASE_UPDATE_ACTIONS = {
   [PRODUCTS]: {
     // ADD: addCacheProduct, // prox to be deprecated

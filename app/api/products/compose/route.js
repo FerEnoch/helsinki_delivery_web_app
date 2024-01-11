@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server'
   * NEW API!
   */
 export async function PATCH (request) {
-  const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
+  const { FIREBASE_CACHE: { PRODUCTS } } = MEM_CACHE
   try {
     console.log('*///* Incomming PATCH request *///*')
     const content = await request.json()
@@ -43,7 +43,7 @@ export async function PATCH (request) {
 }
 
 export async function DELETE (request) {
-  const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
+  const { FIREBASE_CACHE: { PRODUCTS } } = MEM_CACHE
 
   try {
     console.log('*///* Incomming DELETE request *///*')

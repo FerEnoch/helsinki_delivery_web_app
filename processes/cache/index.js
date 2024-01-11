@@ -61,24 +61,26 @@ export function deleteKeyFromMainCache (key) {
       `)
 }
 
-export async function setProdInFirebaseCache (product, activeCache) {
+export async function setProdInFirebaseCache ({ category, products }, activeCache) {
   const databaseCache = getFromMainCache(activeCache)
-  // console.log(`...adding product: ${product.id} --> ${String(product.name)}`)
+  console.log(`...adding category ${category} --> ${products?.length} products`)
 
-  const { name, type, category, imageID, imageURL, ...restProductFields } = product
-  const image = imageID ? (await getBucketImageURL(imageID) || imageURL) : (imageURL || null)
-
+  const prodWithImages = Promise.all(products.map(async product => {
+    const { name, type, category, imageID, imageURL, ...restProductFields } = product
+    const image = imageID ? (await getBucketImageURL(imageID) || imageURL) : (imageURL || null)
+    return {
+      name: String(name),
+      category: String(category),
+      type: String(type),
+      image,
+      quantity: 0,
+      ...restProductFields
+    }
+  }))
   return databaseCache.set(
-    product.id,
+    category,
     JSON.stringify(
-      {
-        name: String(name),
-        category: String(category),
-        type: String(type),
-        image,
-        quantity: 0,
-        ...restProductFields
-      }
+      await prodWithImages
     ))
 }
 
