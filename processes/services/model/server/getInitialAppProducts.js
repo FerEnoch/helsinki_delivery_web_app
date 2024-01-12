@@ -1,9 +1,9 @@
-import { deleteKeyFromMainCache, getFromMainCache, mainCache, setProdInFirebaseCache } from '@/processes/cache'
+import { deleteKeyFromMainCache, getFromMainCache, mainCache } from '@/processes/cache'
 import { MEM_CACHE } from '@/processes/cache/config'
 import MemoryUsage from '@/processes/lib/MemoryUsage'
-import { getDatabaseCategoriesCollection } from '../../config/firebase/server/model/getDatabaseProductsCollection'
 import 'server-only'
 import { revalidatePath } from 'next/cache'
+import { populateCategoriesCache } from './populateCategoriesCache'
 
 /**
  * Documents types! :
@@ -29,25 +29,7 @@ export async function getInitialAppProducts () {
     const isCacheToClear = mainCache.get(`STALE_DATA_${activeCache}`)
     if (isCacheToClear) deleteKeyFromMainCache(activeCache)
 
-    if (!activeCacheMap || !activeCacheMap.size) {
-      const initiallCategories = await getDatabaseCategoriesCollection()
-
-      const categoriesToCache = initiallCategories.map(doc => {
-        const firestoreDocInfo = doc.data()
-        const [firestoreID, categoryData] = Object.entries(firestoreDocInfo).flat()
-        return { firestoreID, categoryData }
-      })
-
-      categoriesToCache.forEach(async ({ firestoreID, categoryData }) => {
-        if (!firestoreID || !categoryData) return
-        await setProdInFirebaseCache({ category: firestoreID, products: JSON.parse(categoryData) }, activeCache)
-      })
-      /* Creating cache logs */
-      console.log(`
-      CACHE POPULATED/**** data from **> ${activeCache} 
-      **> ${categoriesToCache.length} categories
-      `)
-    }
+    if (!activeCacheMap || !activeCacheMap.size) await populateCategoriesCache()
 
     activeCacheMap = getFromMainCache(activeCache)
 

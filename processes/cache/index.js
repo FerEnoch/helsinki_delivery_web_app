@@ -42,16 +42,16 @@ export function getFromMainCache (key, TTLInMinutes) {
         )
       }`)
   }
-
   return mainCache.get(key)
 }
 
 export function deleteKeyFromMainCache (key) {
   if (!key) return
-
-  const isCacheToClear = mainCache.get(`STALE_DATA_${key}`)
-  if (!isCacheToClear) return
   mainCache.delete(key)
+
+  // const isCacheToClear = mainCache.get(`STALE_DATA_${key}`)
+  // if (!isCacheToClear) return
+  // mainCache.delete(key)
   if (deleteCacheTimeout) clearTimeout(deleteCacheTimeout)
 
   console.log(`
@@ -84,13 +84,13 @@ export async function setProdInFirebaseCache ({ category, products }, activeCach
     ))
 }
 
-export function deleteProdInFirebaseCache (productID, activeCache) {
-  const databaseCache = getFromMainCache(activeCache)
-  if (databaseCache.has(productID)) {
-    console.log(`...removing product: ${productID}`)
-    return databaseCache.delete(productID)
-  } else {
-    console.log(`No product found to delete with id ${productID}`)
-    return true
-  }
-}
+// export function deleteProdInFirebaseCache (productID, activeCache) {
+//   const databaseCache = getFromMainCache(activeCache)
+//   if (databaseCache.has(productID)) {
+//     console.log(`...removing product: ${productID}`)
+//     return databaseCache.delete(productID)
+//   } else {
+//     console.log(`No product found to delete with id ${productID}`)
+//     return true
+//   }
+// }

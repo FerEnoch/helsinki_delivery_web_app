@@ -16,9 +16,7 @@ export async function getAggregates () {
   )
 
   const cigarProducts = allCigarProducts?.filter(product => product.stock)
-  const iceProducts = initialProducts
-    ?.filter(product => product.name.match(cartTexts.ADDS_LABELS[0]?.regExp))
-    ?.filter(product => product.stock)
+  const iceProducts = initialProducts?.filter(product => product.name.match(cartTexts.ADDS_LABELS[0]?.regExp))?.filter(product => product.stock)
 
   return [[...cigarProducts], [...iceProducts]]
 }
