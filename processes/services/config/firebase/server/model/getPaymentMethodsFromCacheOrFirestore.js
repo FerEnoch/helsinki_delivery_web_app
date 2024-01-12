@@ -3,7 +3,7 @@ import { deleteKeyFromMainCache, getFromMainCache, mainCache } from '@/processes
 import { getPaymentMethodsCollection } from './getPaymentMethodsCollection'
 
 export async function getPaymentMethodsFromCacheOrFirestore () {
-  const { FIREBASE_DATABASE: { PAYMENT_METHODS: activeCache } } = MEM_CACHE
+  const { FIREBASE_CACHE: { PAYMENT_METHODS: activeCache } } = MEM_CACHE
 
   let activeCacheMap
   try {

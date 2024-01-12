@@ -15,13 +15,6 @@ export function divideBySubtypes (currentStockProducts, categoryList) {
         isEqual: ''
       })
 
-    // const hasSubs = typeList.length !== 0 || typeList[0]?.match(category)
-    // if (hasSubs && !(typeList[0]?.match(category))) {
-    //   withSubtypes.push(category)
-    // } else {
-    //   notSubtypes.push(category)
-    // }
-
     if (isOnlyOneCategory(typeList)) {
       notSubtypes.push(category)
     } else {
@@ -32,5 +25,5 @@ export function divideBySubtypes (currentStockProducts, categoryList) {
 }
 
 function isOnlyOneCategory (typelist) {
-  return typelist.length === 0 || typelist.length === 1
+  return typelist.length === 0 // || typelist.length === 1
 }

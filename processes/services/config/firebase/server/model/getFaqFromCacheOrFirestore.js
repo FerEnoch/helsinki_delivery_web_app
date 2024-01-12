@@ -4,7 +4,7 @@ import { getFirebaseCollection } from './getFirebaseCollection'
 import { FIREBASE_DATABASES } from '../../databases'
 
 export async function getFaqFromCacheOrFirestore () {
-  const { FIREBASE_DATABASE: { FAQ: activeCache } } = MEM_CACHE
+  const { FIREBASE_CACHE: { FAQ: activeCache } } = MEM_CACHE
 
   let activeCacheMap
   try {

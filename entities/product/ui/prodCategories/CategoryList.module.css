@@ -3,7 +3,8 @@
   place-content: center;
   align-items: center;
   width: 90%;
-  margin-inline: auto
+  margin-inline: auto;
+  min-height: 16rem;
 }
 
 .link_list {

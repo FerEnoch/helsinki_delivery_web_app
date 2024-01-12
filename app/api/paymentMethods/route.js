@@ -3,7 +3,7 @@ import { updateCacheOnSnapshot } from '@/processes/services/model/server/updateC
 import { NextResponse } from 'next/server'
 
 export async function PATCH (request) {
-  const { FIREBASE_DATABASE: { PAYMENT_METHODS } } = MEM_CACHE
+  const { FIREBASE_CACHE: { PAYMENT_METHODS } } = MEM_CACHE
   try {
     console.log('*///* Incomming PATCH request *///*')
     const content = await request.json()
