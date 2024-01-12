@@ -1,11 +1,12 @@
-import { deleteProdInFirebaseCache, getFromMainCache, setProdInFirebaseCache } from '@/processes/cache'
-import { getDatabaseProductByFirestoreID } from '../../config/firebase/server/model/getDatabaseProductByFirestoreID'
+import { deleteKeyFromMainCache, getFromMainCache } from '@/processes/cache'
+// import { getDatabaseProductByFirestoreID } from '../../config/firebase/server/model/getDatabaseProductByFirestoreID'
 import { MEM_CACHE } from '@/processes/cache/config'
 // import { getDatabaseProdByProdID } from '../../config/firebase/server/model/getDatabaseProdByProdID'
 import { revalidatePath } from 'next/cache'
 import { getPaymentMethodsCollection } from '../../config/firebase/server/model/getPaymentMethodsCollection'
 import { getFirebaseCollection } from '../../config/firebase/server/model/getFirebaseCollection'
 import { FIREBASE_DATABASES } from '../../config/firebase/databases'
+import { populateCategoriesCache } from './populateCategoriesCache'
 
 // async function addCacheProduct (productsIDs) {
 //   const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
@@ -23,51 +24,59 @@ import { FIREBASE_DATABASES } from '../../config/firebase/databases'
 //   return !result.has('failure')
 // }
 
-async function updateCacheProduct (firestoreIDs) {
-  const { FIREBASE_DATABASE: { PRODUCTS, PRODUCTS_CATEGORIES: CATEGORIES_PRODUCTS } } = MEM_CACHE
+// async function updateCacheProducts (firestoreIDs) {
+//   const { FIREBASE_CACHE: { PRODUCTS } } = MEM_CACHE
+//   const { PRODUCT_CATEGORIES } = FIREBASE_DATABASES
 
-  const result = new Set()
-  firestoreIDs.forEach(async firestoreID => {
-    const updatedCategory = await getDatabaseProductByFirestoreID(firestoreID, CATEGORIES_PRODUCTS)
-    if (!updatedCategory) {
-      console.log(`Something happened updating ${firestoreID} product... :(`)
-      return
-    }
-    // console.log(updatedCategory)
-    /**
-     * parse category products
-     */
-    const [categoryData] = Object.values(updatedCategory)
-    const updatedCatProducts = JSON.parse(categoryData).flat()
-    updatedCatProducts.forEach(async product => {
-      console.log('UPDATING PRODUCT from cache --->', product?.id)
-      const operationResult = await setProdInFirebaseCache(product, PRODUCTS)
-      if (!operationResult) {
-        result.add('failure')
-        console.log(`failed operation __ --_  NOT updating ${firestoreID} product...`)
-      }
-    })
-  })
-  return !result.has('failure')
+//   const result = new Set()
+//   firestoreIDs.forEach(async firestoreID => {
+//     const updatedCategory = await getDatabaseProductByFirestoreID(firestoreID, PRODUCT_CATEGORIES)
+//     if (!updatedCategory) {
+//       console.log(`Something happened updating ${firestoreID} product... :(`)
+//       return
+//     }
+//     // console.log(updatedCategory)
+//     /**
+//      * parse category products
+//      */
+//     const [categoryData] = Object.values(updatedCategory)
+
+//     const updatedCatProducts = JSON.parse(categoryData).flat()
+//     updatedCatProducts.forEach(async product => {
+//       console.log('UPDATING PRODUCT from cache --->', product?.id)
+//       const operationResult = await setProdInFirebaseCache(product, PRODUCTS)
+//       if (!operationResult) {
+//         result.add('failure')
+//         console.log(`failed operation __ --_  NOT updating ${firestoreID} product...`)
+//       }
+//     })
+//   })
+//   return !result.has('failure')
+// }
+
+// async function deleteCacheProduct (productIDs) {
+//   const { FIREBASE_CACHE: { PRODUCTS } } = MEM_CACHE
+
+//   console.log('DELETING PRODUCTS from cache --->', productIDs)
+//   const result = new Set()
+//   productIDs.forEach(productID => {
+//     const operationResult = deleteProdInFirebaseCache(productID, PRODUCTS)
+//     if (!operationResult) {
+//       result.add('failure')
+//       console.log(`failed operation __ --_  Please check again if product ${productID} exists en cache memory...`)
+//     }
+//   })
+//   return !result.has('failure')
+// }
+
+async function revalidateCacheCategories (key) {
+  deleteKeyFromMainCache(key)
+  await populateCategoriesCache()
+  return true
 }
 
-async function deleteCacheProduct (productIDs) {
-  const { FIREBASE_DATABASE: { PRODUCTS } } = MEM_CACHE
-
-  console.log('DELETING PRODUCTS from cache --->', productIDs)
-  const result = new Set()
-  productIDs.forEach(productID => {
-    const operationResult = deleteProdInFirebaseCache(productID, PRODUCTS)
-    if (!operationResult) {
-      result.add('failure')
-      console.log(`failed operation __ --_  Please check again if product ${productID} exists en cache memory...`)
-    }
-  })
-  return !result.has('failure')
-}
-
-async function updateInfoCache (content) {
-  const { FIREBASE_DATABASE: { INFO: activeCache } } = MEM_CACHE
+async function revalidateInfoCache (content) {
+  const { FIREBASE_CACHE: { INFO: activeCache } } = MEM_CACHE
   console.log(`UPDATING ${content}`)
   const activeCacheMap = getFromMainCache(activeCache)
   const { INFO } = FIREBASE_DATABASES
@@ -80,8 +89,8 @@ async function updateInfoCache (content) {
   return true
 }
 
-async function updateFaqCache (content) {
-  const { FIREBASE_DATABASE: { FAQ: activeCache } } = MEM_CACHE
+async function revalidateFaqCache (content) {
+  const { FIREBASE_CACHE: { FAQ: activeCache } } = MEM_CACHE
   console.log(`UPDATING ${content}`)
   const activeCacheMap = getFromMainCache(activeCache)
   const { FAQ } = FIREBASE_DATABASES
@@ -94,8 +103,8 @@ async function updateFaqCache (content) {
   return true
 }
 
-async function updatePaymentMethodsCache (content) {
-  const { FIREBASE_DATABASE: { PAYMENT_METHODS: activeCache } } = MEM_CACHE
+async function revalidatePaymentMethodsCache (content) {
+  const { FIREBASE_CACHE: { PAYMENT_METHODS: activeCache } } = MEM_CACHE
   console.log(`UPDATING ${content}`)
   const activeCacheMap = getFromMainCache(activeCache)
 
@@ -108,21 +117,22 @@ async function updatePaymentMethodsCache (content) {
   return true
 }
 
-const { FIREBASE_DATABASE: { INFO, FAQ, PAYMENT_METHODS, PRODUCTS } } = MEM_CACHE
+const { FIREBASE_CACHE: { INFO, FAQ, PAYMENT_METHODS, PRODUCTS } } = MEM_CACHE
 const DATABASE_UPDATE_ACTIONS = {
   [PRODUCTS]: {
-    // ADD: addCacheProduct, // prox to be deprecated
-    UPDATE: updateCacheProduct,
-    DELETE: deleteCacheProduct
+    // ADD: addCacheProduct, // delete
+    // UPDATE: updateCacheProducts, // prox to be deprecated
+    // DELETE: deleteCacheProduct, // prox to be deprecated
+    REVALIDATE: revalidateCacheCategories
   },
   [INFO]: {
-    UPDATE: updateInfoCache
+    UPDATE: revalidateInfoCache
   },
   [FAQ]: {
-    UPDATE: updateFaqCache
+    UPDATE: revalidateFaqCache
   },
   [PAYMENT_METHODS]: {
-    UPDATE: updatePaymentMethodsCache
+    UPDATE: revalidatePaymentMethodsCache
   }
 }
 
@@ -139,6 +149,7 @@ export async function updateCacheOnSnapshot ({ cache, action, content }) {
 
   revalidatePath('/')
   revalidatePath('/cart/payments/pay-method')
+
   return {
     message: 'Success',
     code: 200

@@ -5,6 +5,7 @@
   border-radius: 25px;
   border: transparent;
   display: grid;
+  grid-template-columns: 1fr;
   height: 11rem;
   left: 0;
   margin-inline: auto;
@@ -26,7 +27,7 @@
 
 .offert_dialog_container[open] {
   visibility: visible;
-  display: block;
+  display: grid;
   animation: dialog-in 200ms ease-in-out;
 }
 
@@ -45,6 +46,7 @@
 .dialog_content {
   width: 100%;
   display: grid;
+  grid-template-columns: 1fr;
   justify-items: center;
   margin-inline: auto;
 }
