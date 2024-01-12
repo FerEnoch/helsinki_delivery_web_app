@@ -32,13 +32,13 @@ export const businessHours = {
     {
       day: weekDays[5], // friday
       hours: {
-        [periods[1]]: [13.3, 15.3]
+        [periods[1]]: [14.3, 16.3]
       }
     },
     {
       day: weekDays[6], // saturday
       hours: {
-        [periods[1]]: [13.3, 15.3]
+        [periods[1]]: [14.3, 16.3]
       }
     }
   ]
