@@ -85,21 +85,21 @@ export async function setProdInFirebaseCache ({ category, products }, activeCach
     }
   }))
 
-  prodsWithImg.then((prods) => {
-    setTimeout(() => {
-      databaseCache.set(
-        category,
-        JSON.stringify(
-          [...prods]
-        ))
-    }, 0)
-  })
-
-  return databaseCache.set(
+  // add products inmediately in order to SSR to show all categories without delay
+  databaseCache.set(
     category,
     JSON.stringify(
       [...buildedProducts]
     ))
+
+  // add products with img src promise resolved
+  prodsWithImg.then((prods) => {
+    databaseCache.set(
+      category,
+      JSON.stringify(
+        [...prods]
+      ))
+  })
 }
 
 // export function deleteProdInFirebaseCache (productID, activeCache) {
