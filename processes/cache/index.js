@@ -65,22 +65,40 @@ export async function setProdInFirebaseCache ({ category, products }, activeCach
   const databaseCache = getFromMainCache(activeCache)
   console.log(`...adding category ${category} --> ${products?.length} products`)
 
-  const prodWithImages = Promise.all(products.map(async product => {
-    const { name, type, category, imageID, imageURL, ...restProductFields } = product
-    const image = imageID ? (await getBucketImageURL(imageID) || imageURL) : (imageURL || null)
+  const buildedProducts = products.map(product => {
+    const { name, type, category, ...restProductFields } = product
     return {
       name: String(name),
       category: String(category),
       type: String(type),
-      image,
       quantity: 0,
       ...restProductFields
     }
+  })
+
+  const prodsWithImg = Promise.all(buildedProducts.map(async prod => {
+    const { imageID, imageURL } = prod
+    const image = imageID ? (await getBucketImageURL(imageID) || imageURL) : (imageURL || null)
+    return {
+      ...prod,
+      image
+    }
   }))
+
+  prodsWithImg.then((prods) => {
+    setTimeout(() => {
+      databaseCache.set(
+        category,
+        JSON.stringify(
+          [...prods]
+        ))
+    }, 0)
+  })
+
   return databaseCache.set(
     category,
     JSON.stringify(
-      await prodWithImages
+      [...buildedProducts]
     ))
 }
 
