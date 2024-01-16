@@ -10,7 +10,17 @@
 }
 
 .product_list_container::-webkit-scrollbar {
-  display: none;
+  background-color: transparent;
+  width: .5rem;
+}
+
+.product_list_container::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 12px;
+}
+
+.product_list_container::-webkit-scrollbar:hover {
+  cursor: grab;
 }
 
 .product_list {
