@@ -9,7 +9,8 @@
 }
 
 .product_description>p {
-  font-size: 1.1rem;
+  text-wrap: balance;
+  text-align: start;
   line-height: 1.2;
   padding: 1rem;
 }
@@ -17,7 +18,6 @@
 .destillery_text,
 .alcohol_text {
   font-weight: bold;
-  font-size: 1.2rem;
 }
 
 .destillery_var,
@@ -27,13 +27,13 @@
 }
 
 
-@media (width<=420px) {
+@media (width<=450px) {
   .product_description>p {
     padding: .5rem;
   }
 }
 
-@media (height<=700px) {
+@media (height<=730px) {
   .product_description>p {
     padding: .5rem;
   }

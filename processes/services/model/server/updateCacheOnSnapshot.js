@@ -146,9 +146,7 @@ export async function updateCacheOnSnapshot ({ cache, action, content }) {
       code: 500
     }
   }
-
-  revalidatePath('/')
-  revalidatePath('/cart/payments/pay-method')
+  revalidatePath('/', 'layout')
 
   return {
     message: 'Success',
