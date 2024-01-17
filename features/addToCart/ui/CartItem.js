@@ -9,7 +9,7 @@ import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 
 export default function CartItem ({ product, showArrows }) {
   const { cart } = useAppStore()
-  const { id, category, name, image, price, stock: hasStock } = useMemo(() => product, [product])
+  const { id, category, name, image, imageID, price, stock: hasStock } = useMemo(() => product, [product])
   const productName = name?.toUpperCase()
   const formattedPrice = priceFormater(price)
 
@@ -39,6 +39,7 @@ export default function CartItem ({ product, showArrows }) {
                 svgHeight={42}
                 alt={name}
                 src={image}
+                imageID={imageID}
                 category={category}
               />
             </div>

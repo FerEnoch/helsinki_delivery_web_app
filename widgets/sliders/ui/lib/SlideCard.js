@@ -6,7 +6,7 @@ import PlusInfoButton from '@/entities/product/ui/lib/PlusInfoButton'
 import ProductImage from '@/entities/product/ui/lib/ProductImage'
 
 export default function SlideCard ({ product }) {
-  const { category, id, name, image } = product
+  const { category, id, name, image, imageID } = product
 
   return (
     <article className={classes.product_card_wrapper}>
@@ -27,6 +27,7 @@ export default function SlideCard ({ product }) {
             height={200}
             alt={name}
             src={image}
+            imageID={imageID}
             category={category}
           />
         </div>

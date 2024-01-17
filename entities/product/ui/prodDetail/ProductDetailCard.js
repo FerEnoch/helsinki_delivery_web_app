@@ -9,7 +9,7 @@ import { ProductDataDetail } from './ProductDataDetail'
 export default function ProductDetailCard ({ product }) {
   const memoProduct = useMemo(() => product, [product])
   const {
-    prodInfo: { name, category, image },
+    prodInfo: { name, category, image, imageID },
     prodDetailInfo
   } = useProductData(memoProduct)
 
@@ -27,6 +27,7 @@ export default function ProductDetailCard ({ product }) {
             height={300}
             alt={name}
             src={image}
+            imageID={imageID}
             category={category}
           />
         </div>
