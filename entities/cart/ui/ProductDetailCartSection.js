@@ -11,15 +11,21 @@ export default memo(function ProductDetailCartSection ({ product }) {
   const { addToCart } = useAppStore()
   const [productQuantity, setProductQuantity] = useState(1)
 
-  const { price, stock: hasStock } = product
+  const { price, stock: hasStock, description } = product
   const formattedPrice = priceFormater(price)
+  const isDescriptionLong = description?.length > 145
 
   const handleAddToCart = () => {
     addToCart({ ...product }, productQuantity)
   }
 
   return (
-    <section className={classes.cart_section}>
+    <section
+      style={{
+        height: `${isDescriptionLong ? '60%' : '30%'}`
+      }}
+      className={classes.cart_section}
+    >
       <header className={`${classes.product_price} ${codecProBold.className}`}>
         <p>
           {
