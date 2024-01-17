@@ -13,7 +13,8 @@ export function useProductData (product) {
     image,
     description,
     destillery,
-    alcohol
+    alcohol,
+    imageID
   } = product
 
   const formattedAlcohol = `${formatAlcohol(alcohol)}%`
@@ -22,7 +23,8 @@ export function useProductData (product) {
     prodInfo: {
       name: `${formatUpperCase(name) || name.toUpperCase()}`,
       category,
-      image
+      image,
+      imageID
     },
     prodDetailInfo: {
       prodDescription: { description, genericDescription },

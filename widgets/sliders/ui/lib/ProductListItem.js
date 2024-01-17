@@ -13,7 +13,7 @@ export default memo(function ProductListItem ({ product }) {
   const { addToCart } = useAppStore()
   const [productQuantity, setProductQuantity] = useState(1)
 
-  const { id, category, name, image, price, stock: hasStock } = product
+  const { id, category, name, image, imageID, price, stock: hasStock } = product
   const formattedPrice = priceFormater(price)
   const productName = name.toUpperCase()
 
@@ -38,6 +38,7 @@ export default memo(function ProductListItem ({ product }) {
                 height={75}
                 alt={productName}
                 src={image}
+                imageID={imageID}
                 category={category}
               />
             </div>
