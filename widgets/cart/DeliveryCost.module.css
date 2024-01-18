@@ -2,70 +2,11 @@
   padding-block-start: 0.6rem;
   z-index: 6;
   display: flex;
+  flex-direction: column;
   justify-content: stretch;
   align-items: center;
-  width: 118%;
-  padding-inline-end: 6%;
-}
-
-.delivery_cost_item {
-  display: flex;
-  align-items: center;
-  position: relative;
-  margin-block: 0.2rem;
   width: 100%;
-}
-
-.item_image {
-  flex: 0 1 15%;
-  overflow: visible;
-  position: relative;
-  z-index: 15;
-  left: 1rem;
-  border-radius: 50%;
-  display: grid;
-  place-content: center;
-}
-
-.item_image svg {
-  position: relative;
-  right: 4px;
-  bottom: 2px;
-}
-
-.image_mask {
-  display: block;
-  background-color: var(--app-type-background);
-  position: relative;
-  overflow: hidden;
-  width: 3.5rem;
-  border-radius: 100%;
-  height: 3.5rem;
-}
-
-.item_background {
-  flex: 2 1 90%;
-  display: inline-flex;
-  padding-inline-start: .8rem;
-  padding-inline-end: .2rem;
-  background-color: white;
-  border-radius: 16px;
-  height: 3rem;
-  align-items: center;
-}
-
-.item_text {
-  font-size: .7rem;
-  flex: 1 0 30%;
-  height: 100%;
-  display: grid;
-  place-content: center;
-}
-
-@media (width<=440px) {
-  .item_text {
-    font-size: .6rem;
-  }
+  margin-block-end: 1rem;
 }
 
 @media (width>=520px) and (height<=680px) {

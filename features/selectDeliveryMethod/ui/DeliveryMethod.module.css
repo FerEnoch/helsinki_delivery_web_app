@@ -1,0 +1,75 @@
+.delivery_cost_item {
+  flex: 1 0 50%;
+  margin-block: 0.2rem;
+  width: 100%;
+  background-color: white;
+  border-radius: 16px;
+  min-height: 3rem;
+  max-height: 4rem;
+}
+
+.item_content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding-inline: 1.3rem;
+}
+
+.item_header {
+  flex: 1 1 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3px;
+}
+
+.label {
+  font-size: 1.2rem;
+}
+
+.info {
+  font-size: 1.1rem;
+  text-align: start;
+}
+
+.price {
+  flex: 1 1 15%;
+  font-size: 1.1rem
+}
+
+@media (width<=440px) {
+  .item_text {
+    font-size: .6rem;
+  }
+
+
+
+  /* .item_image {
+    flex: 0 1 15%;
+    overflow: visible;
+    position: relative;
+    z-index: 15;
+    left: 1rem;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+  }
+  
+  .item_image svg {
+    position: relative;
+    right: 4px;
+    bottom: 2px;
+  }
+  
+  .image_mask {
+    display: block;
+    background-color: var(--app-type-background);
+    position: relative;
+    overflow: hidden;
+    width: 3.5rem;
+    border-radius: 100%;
+    height: 3.5rem;
+  } */
+}

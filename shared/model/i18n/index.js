@@ -48,7 +48,6 @@ export const i18n = {
           EMPTY_CART_MESSAGE: 'No hay productos en tu carrito',
           ADDS_LABELS: OFFERED_PRODUCTS,
           CONTINUE_SHOPPING: 'Seguir comprando',
-          DELIVERY_COST: 'Costo de envío',
           FOOTER_BUTTONS: {
             BACK: 'Volver',
             CLEAR_CART: 'Vaciar carrito',
