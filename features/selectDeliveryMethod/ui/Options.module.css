@@ -1,0 +1,17 @@
+.option {
+  width: 100%;
+  padding: .3rem 1rem;
+}
+
+.list_item {
+  color: var(--app-black-text);
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list_item:hover>p {
+  opacity: .8;
+  border-bottom: 1px solid black;
+}

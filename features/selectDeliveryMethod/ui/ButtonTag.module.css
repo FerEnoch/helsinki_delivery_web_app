@@ -1,0 +1,17 @@
+.tags_button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  border-radius: 8px;
+  padding: .3rem .5rem;
+  color: var(--app-white-text);
+  background-color: var(--app-black-text);
+  margin-block-end: .3rem;
+}
+
+.tags_button:hover,
+.tags_button:active {
+  background-color: var(--app-payments-green);
+}

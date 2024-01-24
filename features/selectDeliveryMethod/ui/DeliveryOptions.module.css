@@ -1,0 +1,17 @@
+.options_container {
+  height: 100%;
+  width: 80%;
+  margin-inline: auto;
+  color: var(--app-black-text);
+  z-index: 100;
+  border: none;
+}
+
+.tags_container {
+  height: 100%;
+  width: 100%;
+  margin-inline: auto;
+  color: var(--app-black-text);
+  z-index: 100;
+  border: none;
+}

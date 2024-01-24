@@ -1,3 +1,4 @@
+import { deliverySlice } from '../../features/selectDeliveryMethod/lib/deliverySlice'
 import { timeBlockerSlice } from './timeBlocker/lib/timeBlockerSlice.js'
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
@@ -13,6 +14,7 @@ export const useAppStore = create(
     (...args) => ({
       ...productsSlice(...args),
       ...cartSlice(...args),
+      ...deliverySlice(...args),
       ...paymentSlice(...args),
       ...clientSlice(...args),
       ...formSlice(...args),
@@ -23,6 +25,7 @@ export const useAppStore = create(
       storage: createJSONStorage(() => sessionStorage), /* eslint-disable-line */
       partialize: (state) => ({
         cart: state.cart,
+        deliveryMethod: state.selectedDeliveryMethod,
         isShareApiCompatible: state.isShareApiCompatible,
         isAppBlocked: state.isAppBlocked
       })

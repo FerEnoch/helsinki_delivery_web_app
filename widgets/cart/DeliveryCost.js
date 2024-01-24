@@ -8,13 +8,21 @@ export default async function DeliveryCost () {
   return (
     <section className={classes.delivery_cost_container}>
       {
-        deliveryMethods?.length > 0 && deliveryMethods.map(({ label, info, price }) => {
+        deliveryMethods?.length > 0 && deliveryMethods.map(({
+          label,
+          info,
+          price,
+          isDefault,
+          options
+        }) => {
           return (
             <DeliveryMethod
               key={label}
               label={label}
               info={info}
               price={price}
+              isDefault={isDefault}
+              options={options}
             />
           )
         })

@@ -5,6 +5,7 @@
   justify-content: space-evenly;
   align-items: center;
   background-color: white;
+  box-shadow: 1px 1px 15px #555;
   max-height: 5rem;
   position: relative;
   overflow: hidden;

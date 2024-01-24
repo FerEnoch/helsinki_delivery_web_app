@@ -1,23 +1,26 @@
 .delivery_cost_container {
-  padding-block-start: 0.6rem;
-  z-index: 6;
+  align-items: center;
   display: flex;
   flex-direction: column;
+  gap: .6rem;
   justify-content: stretch;
-  align-items: center;
+  margin-block-end: 2.5rem;
+  padding-block-start: 0.6rem;
   width: 100%;
-  margin-block-end: 1rem;
+  z-index: 100;
 }
 
-@media (width>=520px) and (height<=680px) {
+@media (height<=680px) {
   .delivery_cost_container {
-    position: relative;
-    top: -4rem;
+    gap: .4rem;
+    margin-block-end: 1.8rem;
   }
 }
 
 @media (height<=710px) {
   .delivery_cost_container {
+    margin-block-end: 2rem;
+    gap: .5rem;
     padding-block-start: 0.2rem;
   }
 }
