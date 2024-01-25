@@ -22,7 +22,7 @@ export default function Options ({ day, ops, toggleOptions }) {
       onClick={toggleOptions}
     >
       <div className={classes.list_item}>
-        <p>{day.toUpperCase()}</p>
+        <p className={classes.day}>{day.toUpperCase()}</p>
         {
     ops.map(({ tag, businessHours }) => {
       return (

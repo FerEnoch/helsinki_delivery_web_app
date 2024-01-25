@@ -13,7 +13,7 @@
   justify-content: space-between;
 }
 
-.list_item:hover>p {
+.list_item:hover>.day {
   opacity: .8;
   border-bottom: 1px solid black;
 }

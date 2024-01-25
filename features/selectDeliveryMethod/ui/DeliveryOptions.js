@@ -14,19 +14,21 @@ export default function DeliveryOptions ({ options, showTags }) {
   const toggleOptionList = () => setOpenOptions(prevState => !prevState)
 
   return (
-    <div className={`${showTags ? classes.tags_container : classes.options_container}`}>
+    <div className={`
+    ${classes.container}
+    ${showTags ? classes.tags : classes.options}
+    `}
+    >
       {
       showTags
         ? (
           <SelectedTags
             toggleOptionList={toggleOptionList}
-            openOptions={openOptions}
           >
             {
               openOptions
                 ? (
                   <ShowOptions
-                    options={options}
                     label={options?.label.toUpperCase()}
                     toggleOptionList={toggleOptionList}
                     openOptions={openOptions}
@@ -59,7 +61,6 @@ export default function DeliveryOptions ({ options, showTags }) {
           )
         : (
           <ShowOptions
-            options={options}
             label={options?.label.toUpperCase()}
             toggleOptionList={toggleOptionList}
             openOptions={openOptions}
