@@ -2,7 +2,7 @@ export async function getDeliveryMethods () {
   /// fetch
 
   const numbers = {
-    deliveryCostNumber: 750,
+    deliveryCostNumber: 1000,
     takeAwayCostNumber: 0
   }
 

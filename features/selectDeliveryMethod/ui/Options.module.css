@@ -1,6 +1,8 @@
 .option {
   width: 100%;
   padding: .3rem 1rem;
+  background-color: white;
+  border-radius: 12px;
 }
 
 .list_item {

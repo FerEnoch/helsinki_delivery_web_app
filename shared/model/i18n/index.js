@@ -16,7 +16,7 @@ export const i18n = {
         MENU,
         DISCOUNT_PIN: `${CASH_DISCOUNT_PERCENTAGE}% OFF`,
         TOAST: {
-          TAKE_AWAY_LABEL: 'Lo paso a buscar!',
+          // TAKE_AWAY_LABEL: 'Lo paso a buscar!',
           DISCOUNT: `Estás de suerte!\nTenemos ${CASH_DISCOUNT_PERCENTAGE}% de descuento por pago efectivo!`,
           SEE_BUSINESS_HOURS: 'Días y horarios de atención',
           AGE_POLICY: {
@@ -84,7 +84,7 @@ export const i18n = {
             EXTRA_INFO: 'Añadir información extra',
             SUMMARY: 'Información extra o aclaración que necesitemos saber para el envío',
             ON_INVALID: '** No se permiten caracteres especiales',
-            TAKE_AWAY: 'Punto de encuentro:\nUrquiza y Cándido Pujato\nHora: a coordinar'
+            TAKE_AWAY: 'Punto de encuentro:\nUrquiza y Cándido Pujato\nTe escribiremos para terminar de coordinar'
           },
           FIELD_PHONE: {
             LABEL: 'Nº telefónico',

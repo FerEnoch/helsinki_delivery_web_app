@@ -7,7 +7,7 @@ import { useAppStore } from '../store'
 
 const {
   TIME_BLOCKER: {
-    ADD_TAKE_AWAY,
+    // ADD_TAKE_AWAY,
     BOOK_ORDER_NOT_DELIVERY,
     DISABLED_DAY,
     DISABLED_HOURS
@@ -22,7 +22,7 @@ export default function useTimeBlockerToast () {
     if (!businessHoursMessage) return
     switch (businessHoursMessage) {
       case 'OK': return setIsAppBlocked(false)
-      case ADD_TAKE_AWAY:
+      // case ADD_TAKE_AWAY:
       case BOOK_ORDER_NOT_DELIVERY:
         setIsAppBlocked(false)
         toast((

@@ -31,24 +31,25 @@ export const cartSlice = (set, get) => {
             return
           }
         } else if (action === CART_OPERATIONS.INCREMENT) {
-          /** CONSULTAR SI EXISTE ALGÚN LÍMITE PARA LA CANTIDAD DE C/PRODUCTO */
           foundProduct.quantity += 1
         }
       }
       set({ cart })
     },
     getCartTotalAmount: () => {
-      const { cart, paymentMethod } = get()
-      const totalPrice = cart.reduce((total, product) => {
+      const { cart, paymentMethod, selectedDeliveryMethod } = get()
+      let productsTotal = cart.reduce((total, product) => {
         return total + (Number(product.price) * product.quantity)
       }, 0)
-      const totalAmount = totalPrice.toFixed(2)
+
+      const deliveryMethodTotal = selectedDeliveryMethod?.price
+
       if (paymentMethod?.isCash) {
-        const discount = Number(totalAmount) * CASH_DISCOUNT_PERCENTAGE / 100
-        const cartCashTotalAmount = Number(totalAmount) - discount
-        return cartCashTotalAmount.toFixed(2)
+        const discount = productsTotal * CASH_DISCOUNT_PERCENTAGE / 100
+        productsTotal = productsTotal - discount
       }
-      return totalAmount
+
+      return (productsTotal + deliveryMethodTotal).toFixed(2)
     },
     getProductCurrentQuantity: (id) => {
       const cart = get().cart

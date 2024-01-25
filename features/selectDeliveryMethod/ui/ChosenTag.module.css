@@ -1,7 +1,8 @@
 .tag {
   display: grid;
   place-content: center;
-  background-color: var(--app-white-text);
+  /* background-color: var(--app-white-text); */
+  background-color: white;
   color: var(--app-black-text);
   padding: .5rem 1rem;
   border-radius: 12px;

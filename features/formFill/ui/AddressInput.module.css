@@ -29,6 +29,13 @@
   text-wrap: nowrap;
 }
 
+.takeAway_tag {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-block: .5rem;
+}
+
 .invalid_input_message {
   color: red;
   position: absolute;

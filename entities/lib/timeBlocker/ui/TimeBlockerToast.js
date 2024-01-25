@@ -3,7 +3,7 @@ import classes from './TimeBlockerToast.module.css'
 import { i18n } from '@/shared/model/i18n'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { useAppStore } from '../../store'
+// import { useAppStore } from '../../store'
 
 const {
   TIME_BLOCKER: {
@@ -13,18 +13,18 @@ const {
   // DISABLED_DAY
   // DISABLED_HOURS
   },
-  SEE_BUSINESS_HOURS,
-  TAKE_AWAY_LABEL
+  SEE_BUSINESS_HOURS
+  // TAKE_AWAY_LABEL
 } = i18n.LANG.ESP.UI.TOAST
 
 export default function TimeBlockerToast ({ message }) {
   const router = useRouter()
-  const { setTakeAway } = useAppStore()
+  // const { setTakeAway } = useAppStore()
 
   const [title, ...info] = message.split('\n')
-  const isTakeAwayMessage = /take-?\s?away/i.test(message)
+  // const isTakeAwayMessage = /take-?\s?away/i.test(message)
 
-  const handleInputChange = (e) => setTakeAway(e.target.checked)
+  // const handleInputChange = (e) => setTakeAway(e.target.checked)
 
   return (
     <div className={`${classes.toast_wrapper} ${codecProRegular.className}`}>
@@ -32,7 +32,7 @@ export default function TimeBlockerToast ({ message }) {
         <h4 className={classes.title}>
           {title.toUpperCase()}
         </h4>
-        {
+        {/* {
           isTakeAwayMessage && (
             <label className={classes.label} htmlFor='take-away'>
               {TAKE_AWAY_LABEL}
@@ -44,7 +44,7 @@ export default function TimeBlockerToast ({ message }) {
               />
             </label>
           )
-        }
+        } */}
         {
           info.map(sentence => {
             return (

@@ -25,7 +25,7 @@ export const useAppStore = create(
       storage: createJSONStorage(() => sessionStorage), /* eslint-disable-line */
       partialize: (state) => ({
         cart: state.cart,
-        deliveryMethod: state.selectedDeliveryMethod,
+        selectedDeliveryMethod: state.selectedDeliveryMethod,
         isShareApiCompatible: state.isShareApiCompatible,
         isAppBlocked: state.isAppBlocked
       })
