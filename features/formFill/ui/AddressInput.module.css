@@ -17,6 +17,8 @@
 .takeAway_text {
   font-size: 1.1rem;
   margin-block: .5rem;
+  line-height: 1.5rem;
+  text-wrap: balance;
 }
 
 .input_label {
@@ -30,7 +32,7 @@
 }
 
 .takeAway_tag {
-  display: block;
+  margin-inline: .5rem;
   font-size: 1.4rem;
   font-weight: 600;
   margin-block: .5rem;

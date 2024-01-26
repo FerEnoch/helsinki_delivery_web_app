@@ -38,7 +38,16 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
     return (
       <div className={classes.address_input}>
         <div>
-          <h4 className={classes.takeAway_title}>{title}</h4>
+          <h4 className={classes.takeAway_title}>{selectedDeliveryMethod.label.toUpperCase()}</h4>
+          <p className={classes.takeAway_text}>
+            <span className={classes.takeAway_tag}>
+              {selectedDeliveryMethod?.day}
+            </span>
+            <span className={classes.takeAway_tag}>
+              {selectedDeliveryMethod?.businessHours}
+            </span>
+          </p>
+          <p className={classes.takeAway_text}>{title}</p>
           {
           sentences.map(sentence => {
             return (
@@ -51,14 +60,6 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
             )
           })
         }
-          <p className={classes.takeAway_text}>
-            <span className={classes.takeAway_tag}>
-              {selectedDeliveryMethod?.day}
-            </span>
-            <span className={classes.takeAway_tag}>
-              {selectedDeliveryMethod?.businessHours}
-            </span>
-          </p>
         </div>
       </div>
     )
