@@ -3,6 +3,7 @@
   padding: .3rem 1rem;
   background-color: white;
   border-radius: 12px;
+  min-height: 4.5rem;
 }
 
 .list_item {
@@ -11,6 +12,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.day {
+  border-bottom: 1px solid transparent;
 }
 
 .list_item:hover>.day {

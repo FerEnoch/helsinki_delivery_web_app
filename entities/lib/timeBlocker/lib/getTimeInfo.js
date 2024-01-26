@@ -13,7 +13,4 @@ function getTimeInfo () {
   }
 }
 
-export const {
-  currrentDay,
-  currentTime
-} = getTimeInfo()
+export const { currrentDay, currentTime } = getTimeInfo()

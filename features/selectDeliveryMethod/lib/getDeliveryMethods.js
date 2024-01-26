@@ -1,12 +1,17 @@
+import { spanishWeekDay } from '@/entities/lib/timeBlocker/lib/config'
+import { currrentDay } from '@/entities/lib/timeBlocker/lib/getTimeInfo'
+
 export async function getDeliveryMethods () {
   /// fetch
 
+  // tener en cuenta para hacer la API -> mapear los días: 'lunes' -> 'lun'
+
   const numbers = {
-    deliveryCostNumber: 1000,
+    deliveryCostNumber: 500,
     takeAwayCostNumber: 0
   }
 
-  return [
+  const fetchedData = [
     {
       label: 'Delivery',
       info: '',
@@ -16,7 +21,7 @@ export async function getDeliveryMethods () {
     },
     {
       label: 'Take away',
-      info: '(Urquiza y Cánd. Pujato)',
+      info: 'Urquiza y Cánd. Pujato',
       price: numbers.takeAwayCostNumber,
       isDefault: false,
       options: {
@@ -67,8 +72,20 @@ export async function getDeliveryMethods () {
             ]
           }
         ]
-
       }
     }
   ]
+
+  const [delivery, takeAway] = fetchedData
+
+  return [
+    {
+      ...delivery
+    }, {
+      ...takeAway,
+      options: {
+        label: takeAway.options.label,
+        select: [takeAway.options.select.find(({ day }) => day === spanishWeekDay[currrentDay])]
+      }
+    }]
 }
