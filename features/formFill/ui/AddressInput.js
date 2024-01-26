@@ -14,7 +14,7 @@ const summaryText = SUMMARY.toUpperCase()
 
 export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState }) {
   const detailsRef = useRef(null)
-  const { client: { takeAway } } = useAppStore()
+  const { selectedDeliveryMethod } = useAppStore()
   const [address, setAddress] = useState('')
   const [addressComments, setAddressComments] = useState('')
   const [{ sanitizedAddress, sanitizedComments }, invalidInput] = useValidateAddressInput({ address, addressComments })
@@ -30,14 +30,24 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
     }
   }
 
-  const labelText = takeAway ? TAKE_AWAY.toUpperCase() : LABEL.toUpperCase()
+  const isTakeAwaySelected = selectedDeliveryMethod?.label && /take-?\s?away/i.test(selectedDeliveryMethod.label)
+  const labelText = isTakeAwaySelected ? TAKE_AWAY.toUpperCase() : LABEL.toUpperCase()
 
-  if (takeAway) {
+  if (isTakeAwaySelected) {
     const [title, ...sentences] = labelText.split('\n')
     return (
       <div className={classes.address_input}>
         <div>
-          <h4 className={classes.takeAway_title}>{title}</h4>
+          <h4 className={classes.takeAway_title}>{selectedDeliveryMethod.label.toUpperCase()}</h4>
+          <p className={classes.takeAway_text}>
+            <span className={classes.takeAway_tag}>
+              {selectedDeliveryMethod?.day}
+            </span>
+            <span className={classes.takeAway_tag}>
+              {selectedDeliveryMethod?.businessHours}
+            </span>
+          </p>
+          <p className={classes.takeAway_text}>{title}</p>
           {
           sentences.map(sentence => {
             return (

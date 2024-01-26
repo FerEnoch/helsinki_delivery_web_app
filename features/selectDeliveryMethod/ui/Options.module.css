@@ -1,0 +1,24 @@
+.option {
+  width: 100%;
+  padding: .3rem 1rem;
+  background-color: white;
+  border-radius: 12px;
+  min-height: 4.5rem;
+}
+
+.list_item {
+  color: var(--app-black-text);
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.day {
+  border-bottom: 1px solid transparent;
+}
+
+.list_item:hover>.day {
+  opacity: .8;
+  border-bottom: 1px solid black;
+}

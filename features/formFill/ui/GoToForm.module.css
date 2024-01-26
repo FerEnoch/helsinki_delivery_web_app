@@ -2,6 +2,7 @@
   background-color: var(--app-payments-green);
   border-radius: 12px;
   border: 2px solid white;
+  box-shadow: 1px 1px 15px #555;
   color: white;
   display: grid;
   height: 100%;

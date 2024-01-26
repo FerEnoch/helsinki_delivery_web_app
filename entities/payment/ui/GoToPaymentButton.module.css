@@ -10,6 +10,16 @@
   width: 7rem;
 }
 
+.disabled {
+  opacity: .7;
+  color: #fff;
+  border: 2px solid #aaa;
+}
+
+.disabled *:hover {
+  cursor: not-allowed;
+}
+
 .triangle_button svg {
   transform: rotate(90deg)
 }

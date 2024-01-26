@@ -8,18 +8,25 @@ export const weekDays = [
   'saturday'
 ]
 
+export const spanishWeekDay = [
+  'Dom',
+  'Lun',
+  'Mar',
+  'Mier',
+  'Jue',
+  'Vier',
+  'Sab'
+]
+
 export const periods = ['earlyMorning', 'midday', 'day', 'night']
 
 export const businessHours = {
   defaultStartBusinessDay: 10,
   defaultStartDelivery: 20,
-  // defaultEndBusinessDay: 0.3,
   defaultEndBusinessDay: 0.15,
-  // extendedBusinessDay: 2,
   extendedBusinessDay: 1.45,
   notBusinessDays: [{
     day: weekDays[0], // sunday
-    // startingHour: 2
     startingHour: 1.45
   }, {
     day: weekDays[1], // monday

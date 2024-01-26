@@ -12,21 +12,19 @@ import BlockedAppPrompt from '@/widgets/blockedApp/BlockedAppPrompt'
 
 export default function PaymentOptions () {
   const { openModalDialog, closeDialog /*, openDialog */ } = useWarningModal()
-  const { isAppBlocked, client: { takeAway } } = useAppStore()
+  const { isAppBlocked } = useAppStore()
   useTimeBlockerToast()
 
   return (
     <>
       <section className={classes.payment_options_container}>
         {
-        PAYMENT_OPTIONS.map(({ id, isCash, label, takeAwayLabel, comment }, methodIndex) => {
-          let paymentLabel = label
-          if (takeAway && takeAwayLabel) paymentLabel = takeAwayLabel
+        PAYMENT_OPTIONS.map(({ id, isCash, label, comment }, methodIndex) => {
           return (
             <PaymentOption
               key={id}
               id={id}
-              label={paymentLabel}
+              label={label}
               isCash={isCash}
               comment={comment}
               // openZonesModal={() => openDialog()}

@@ -1,0 +1,33 @@
+.select_button {
+  background-color: var(--app-white-text);
+  border-radius: 16px;
+  border: 1px solid #999;
+  box-shadow: gray 1px 2px 5px;
+  padding: .2rem;
+  width: 100%;
+}
+
+.select_button:hover {
+  cursor: pointer
+}
+
+.select_button:active {
+  border: 1px solid var(--app-payments-green);
+  color: var(--app-payments-green);
+}
+
+.options_section {
+  align-items: center;
+  background-color: var(--app-white-text);
+  border-radius: 16px;
+  border: 1px solid #999;
+  bottom: 10%;
+  box-shadow: gray 1px 2px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 500;
+}

@@ -24,3 +24,10 @@
     margin-block-start: .5rem;
   }
 }
+
+
+@media (height<=680px) {
+  .footer_container {
+    margin-block-start: 0;
+  }
+}

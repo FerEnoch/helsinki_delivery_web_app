@@ -34,6 +34,7 @@ export function useFormSubscription () {
     clearCart,
     clearPaymentSlice,
     client,
+    selectedDeliveryMethod,
     clearClientData,
     receiptFile,
     deleteReceiptFile,
@@ -60,8 +61,12 @@ export function useFormSubscription () {
     const formData = new FormData()
     const date = new Date()
 
-    const addressInfo = client?.takeAway ? TAKE_AWAY : client?.address.trim()
-    const addressDetailsInfo = client?.takeAway ? '' : client?.addressComments.trim()
+    const isTakeAwaySelected = /take-?\s?away/i.test(selectedDeliveryMethod?.label)
+
+    const addressInfo = isTakeAwaySelected ? TAKE_AWAY : client?.address.trim()
+    const addressDetailsInfo = isTakeAwaySelected
+      ? `${selectedDeliveryMethod?.day} - ${selectedDeliveryMethod?.tag} - ${selectedDeliveryMethod?.businessHours}`
+      : client?.addressComments.trim()
 
     formData.set(TIMESTAMP, timeFormatter(date))
     formData.set(CLIENT_ADDRESS, addressInfo)

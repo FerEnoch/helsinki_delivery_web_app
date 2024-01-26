@@ -1,0 +1,15 @@
+.container {
+  border: none;
+  color: var(--app-black-text);
+  height: 100%;
+  margin-inline: auto;
+  z-index: 100;
+}
+
+.options {
+  width: 80%;
+}
+
+.tags {
+  width: 100%;
+}

@@ -1,0 +1,72 @@
+.delivery_cost_item {
+  background-color: var(--app-backgound-gray);
+  border-radius: 12px;
+  border: 2px solid #aaa;
+  color: #222a;
+  flex: 1 0 50%;
+  max-height: 4.5rem;
+  position: relative;
+  text-align: start;
+  transition: all 100ms ease-in-out;
+  width: 100%;
+}
+
+.selected {
+  opacity: 1;
+  background-color: var(--app-payments-green);
+  border: 2px solid #fff;
+  box-shadow: 1px 1px 15px #555;
+  color: #fff;
+  flex: 1 0 70%;
+  padding-block: .5rem;
+  position: relative;
+}
+
+.selected>.item_content .label {
+  font-size: 1.3rem;
+}
+
+.selected~.delivery_cost_item {
+  flex: 0 2 30%;
+}
+
+.selected~.delivery_cost_item .label {
+  font-size: 1.1rem;
+  opacity: .9;
+
+}
+
+.selected~.delivery_cost_item .info {
+  font-size: .9rem;
+  opacity: .9;
+
+}
+
+
+
+/* .item_image {
+    flex: 0 1 15%;
+    overflow: visible;
+    position: relative;
+    z-index: 15;
+    left: 1rem;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+  }
+  
+  .item_image svg {
+    position: relative;
+    right: 4px;
+    bottom: 2px;
+  }
+  
+  .image_mask {
+    display: block;
+    background-color: var(--app-type-background);
+    position: relative;
+    overflow: hidden;
+    width: 3.5rem;
+    border-radius: 100%;
+    height: 3.5rem;
+  } */

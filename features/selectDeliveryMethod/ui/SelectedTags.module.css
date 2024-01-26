@@ -1,0 +1,28 @@
+.item_content {
+  align-items: center;
+  bottom: 0.25rem;
+  color: var(--app-white-text);
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  padding-inline: 1rem;
+  position: relative;
+}
+
+.item_header {
+  display: grid;
+  place-content: center;
+  gap: .2rem;
+  flex: 1 1 35%;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.price {
+  font-weight: 600;
+  display: grid;
+  place-content: center;
+  flex: 1 1 10%
+}

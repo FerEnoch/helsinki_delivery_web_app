@@ -1,0 +1,25 @@
+.tag {
+  display: grid;
+  place-content: center;
+  /* background-color: var(--app-white-text); */
+  background-color: white;
+  color: var(--app-black-text);
+  padding: .5rem 1rem;
+  border-radius: 12px;
+  flex: 1 0 40%;
+}
+
+.day {
+  font-weight: 600;
+  display: grid;
+  place-content: center;
+  flex: 1 1 10%;
+}
+
+.hours {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: .2rem;
+}
