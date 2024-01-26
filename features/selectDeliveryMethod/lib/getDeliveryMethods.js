@@ -1,6 +1,3 @@
-import { spanishWeekDay } from '@/entities/lib/timeBlocker/lib/config'
-import { currrentDay } from '@/entities/lib/timeBlocker/lib/getTimeInfo'
-
 export async function getDeliveryMethods () {
   /// fetch
 
@@ -78,14 +75,5 @@ export async function getDeliveryMethods () {
 
   const [delivery, takeAway] = fetchedData
 
-  return [
-    {
-      ...delivery
-    }, {
-      ...takeAway,
-      options: {
-        label: takeAway.options.label,
-        select: [takeAway.options.select.find(({ day }) => day === spanishWeekDay[currrentDay])]
-      }
-    }]
+  return [delivery, takeAway]
 }

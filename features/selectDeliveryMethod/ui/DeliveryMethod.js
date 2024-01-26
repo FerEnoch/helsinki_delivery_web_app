@@ -4,6 +4,7 @@ import classes from './DeliveryMethod.module.css'
 import { useAppStore } from '@/entities/lib/store'
 import DeliveryOptions from './DeliveryOptions'
 import Method from './Method'
+import { useCurrentDayBusinessHours } from '../lib/useCurrentDayBusinessHours.js'
 // import SelectedTags from './SelectedTags'
 
 // import { HelsinkiTruck } from '@/shared/ui/lib/svg/HelsinkiTruck'
@@ -14,6 +15,8 @@ import Method from './Method'
 
 export default function DeliveryMethod ({ label, info, price, isDefault, options }) {
   const { setDeliveryMethod, selectedDeliveryMethod } = useAppStore()
+  const filteredOptions = useCurrentDayBusinessHours(options)
+
   const [isSelected, setIsSelected] = useState(null)
   const [showTags, setShowTags] = useState(null)
   const [renderOptions, setRenderOptions] = useState(null)
@@ -49,7 +52,7 @@ export default function DeliveryMethod ({ label, info, price, isDefault, options
     >
       {
       renderOptions
-        ? <DeliveryOptions options={options} showTags={showTags} />
+        ? <DeliveryOptions options={filteredOptions} showTags={showTags} />
         : <Method
             label={label}
             price={price}
