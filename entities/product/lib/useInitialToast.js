@@ -8,7 +8,6 @@ import BlockedAppToast from '@/entities/lib/timeBlocker/ui/BlockedAppToast'
 
 const {
   TIME_BLOCKER: {
-    ADD_TAKE_AWAY,
     BOOK_ORDER_NOT_DELIVERY,
     DISABLED_DAY,
     DISABLED_HOURS
@@ -27,7 +26,6 @@ export function useInitialToast () {
 
     switch (businessHoursMessage) {
       case 'OK': return setIsAppBlocked(false)
-      case ADD_TAKE_AWAY:
       case BOOK_ORDER_NOT_DELIVERY:
         setIsAppBlocked(false)
         break

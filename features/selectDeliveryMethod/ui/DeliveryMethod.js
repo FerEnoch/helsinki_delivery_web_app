@@ -5,13 +5,6 @@ import { useAppStore } from '@/entities/lib/store'
 import DeliveryOptions from './DeliveryOptions'
 import Method from './Method'
 import { useCurrentDayBusinessHours } from '../lib/useCurrentDayBusinessHours.js'
-// import SelectedTags from './SelectedTags'
-
-// import { HelsinkiTruck } from '@/shared/ui/lib/svg/HelsinkiTruck'
-//       <div className={classes.item_image} />
-//           <span className={classes.image_mask}>
-//             <HelsinkiTruck />
-//           </span>
 
 export default function DeliveryMethod ({ label, info, price, isDefault, options }) {
   const { setDeliveryMethod, selectedDeliveryMethod } = useAppStore()
@@ -41,7 +34,7 @@ export default function DeliveryMethod ({ label, info, price, isDefault, options
 
   useEffect(() => {
     setShowTags(selectedDeliveryMethod?.day)
-  }, [selectedDeliveryMethod])
+  }, [selectedDeliveryMethod, options?.label])
 
   return (
     <article
@@ -58,7 +51,6 @@ export default function DeliveryMethod ({ label, info, price, isDefault, options
             price={price}
             info={info}
             renderOptions={renderOptions}
-            showTags={showTags}
           />
       }
     </article>

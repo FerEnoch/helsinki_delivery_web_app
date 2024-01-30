@@ -4,7 +4,7 @@ const {
   DISABLED_DAY,
   DISABLED_HOURS,
   BOOK_ORDER_NOT_DELIVERY,
-  ADD_TAKE_AWAY
+  MIDDAY_TAKE_AWAY_POSSIBLE
 } = i18n.LANG.ESP.UI.TOAST.TIME_BLOCKER
 
 export class MessagesUI {
@@ -21,6 +21,6 @@ export class MessagesUI {
   }
 
   addTakeAway () {
-    return ADD_TAKE_AWAY
+    return MIDDAY_TAKE_AWAY_POSSIBLE
   }
 }

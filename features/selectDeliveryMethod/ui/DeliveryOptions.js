@@ -6,9 +6,14 @@ import Options from './Options'
 import ChosenTag from './ChosenTag'
 import { useAppStore } from '@/entities/lib/store'
 
+import { i18n } from '@/shared/model/i18n'
+const { NO_TAKE_AWAY: noTakeAwayMessage } = i18n.LANG.ESP.UI.TOAST.TIME_BLOCKER
+
 export default function DeliveryOptions ({ options, showTags }) {
   const { selectedDeliveryMethod } = useAppStore()
   const [openOptions, setOpenOptions] = useState(null)
+
+  const currentDayTakeAway = !options?.label.match(noTakeAwayMessage)
 
   const { day, tag, businessHours } = selectedDeliveryMethod
   const toggleOptionList = () => setOpenOptions(prevState => !prevState)
@@ -22,16 +27,14 @@ export default function DeliveryOptions ({ options, showTags }) {
       {
       showTags
         ? (
-          <SelectedTags
-            toggleOptionList={toggleOptionList}
-          >
+          <SelectedTags toggleOptionList={toggleOptionList}>
             {
               openOptions
                 ? (
                   <ShowOptions
                     label={options?.label.toUpperCase()}
-                    toggleOptionList={toggleOptionList}
-                    openOptions={openOptions}
+                    toggleOptionList={currentDayTakeAway ? toggleOptionList : () => {}}
+                    openOptions={currentDayTakeAway && openOptions}
                   >
                     {
                   openOptions && (
@@ -44,9 +47,7 @@ export default function DeliveryOptions ({ options, showTags }) {
                           toggleOptions={toggleOptionList}
                         />
                       )
-                    }
-                    )
-                  )
+                    }))
                   }
                   </ShowOptions>
                   )
@@ -62,8 +63,8 @@ export default function DeliveryOptions ({ options, showTags }) {
         : (
           <ShowOptions
             label={options?.label.toUpperCase()}
-            toggleOptionList={toggleOptionList}
-            openOptions={openOptions}
+            toggleOptionList={currentDayTakeAway ? toggleOptionList : () => {}}
+            openOptions={currentDayTakeAway && openOptions}
           >
             {
             openOptions && (

@@ -26,11 +26,11 @@ export const i18n = {
           },
           TIME_BLOCKER
         },
-        ZONES_PROMPT: {
-          PROMPT: 'Atención\nAntes de seguir, revisa si estás dentro de las zonas de envío',
-          BUTTON: 'Ver zonas de envío',
-          MAP_BUTTON: 'Ver mapa de entregas'
-        },
+        // ZONES_PROMPT: {
+        //   PROMPT: 'Atención\nAntes de seguir, revisa si estás dentro de las zonas de envío',
+        //   BUTTON: 'Ver zonas de envío',
+        //   MAP_BUTTON: 'Ver mapa de entregas'
+        // },
         BLOCKED_APP_PROMPT: {
           ATTENTION: 'Atención\n',
           BUTTON: 'Ver días y horarios de atención',

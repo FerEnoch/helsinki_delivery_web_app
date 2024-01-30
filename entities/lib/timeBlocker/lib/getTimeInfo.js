@@ -12,5 +12,4 @@ function getTimeInfo () {
     currentTime
   }
 }
-
 export const { currrentDay, currentTime } = getTimeInfo()

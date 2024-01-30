@@ -42,7 +42,7 @@ export const cartSlice = (set, get) => {
         return total + (Number(product.price) * product.quantity)
       }, 0)
 
-      const deliveryMethodTotal = selectedDeliveryMethod?.price
+      const deliveryMethodTotal = cart.length > 0 ? selectedDeliveryMethod?.price : 0
 
       if (paymentMethod?.isCash) {
         const discount = productsTotal * CASH_DISCOUNT_PERCENTAGE / 100

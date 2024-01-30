@@ -29,7 +29,7 @@ export default function BlockedAppPrompt () {
           </h3>
         </div>
         <h4 className={`${classes.info_header} ${codecProRegular.className}`}>
-          {header}
+          {header.toUpperCase()}
         </h4>
         {
           info.map(sentence => {

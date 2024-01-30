@@ -25,6 +25,33 @@ export async function getDeliveryMethods () {
         label: 'Elegí Día y horario',
         select: [
           {
+            day: 'Dom',
+            ops: [
+              {
+                tag: null,
+                businessHours: null
+              }
+            ]
+          },
+          {
+            day: 'Lun',
+            ops: [
+              {
+                tag: null,
+                businessHours: null
+              }
+            ]
+          },
+          {
+            day: 'Mar',
+            ops: [
+              {
+                tag: null,
+                businessHours: null
+              }
+            ]
+          },
+          {
             day: 'Mier',
             ops: [
               {
