@@ -1,17 +1,18 @@
 .option {
-  width: 100%;
-  padding: .3rem 1rem;
   background-color: white;
   border-radius: 12px;
   min-height: 4.5rem;
+  padding: .3rem 1rem;
+  width: 100%;
 }
 
 .list_item {
-  color: var(--app-black-text);
-  border-bottom: 1px solid black;
-  display: flex;
   align-items: center;
+  border-bottom: 1px solid black;
+  color: var(--app-black-text);
+  display: flex;
   justify-content: space-between;
+  min-height: 3rem;
 }
 
 .day {

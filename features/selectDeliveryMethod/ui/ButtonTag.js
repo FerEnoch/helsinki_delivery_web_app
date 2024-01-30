@@ -4,7 +4,6 @@ export default function ButtonTag ({ tag, businessHours, onClick }) {
   return (
     <button
       className={classes.tags_button}
-      key={tag}
       onClick={onClick}
     >
       <span>
