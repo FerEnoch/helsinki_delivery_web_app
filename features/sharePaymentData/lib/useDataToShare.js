@@ -1,5 +1,4 @@
 import { useAppStore } from '@/entities/lib/store'
-import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 
 export function useDataToShare ({ hasChosenQRService }) {
   const { getCartTotalAmount, QRService, chosenTransferData } = useAppStore()
@@ -10,7 +9,7 @@ export function useDataToShare ({ hasChosenQRService }) {
   const messageText = `
       Helsinki Delivery:
       Pagá tu pedido ${hasChosenQRService ? `con este QR de ${QRService?.service}` : 'con estos datos'}.
-      El monto es ${priceFormater(getCartTotalAmount())}.
+      El monto es ${getCartTotalAmount()}.
       ${hasChosenQRService
         ? `Código QR:\n ${QRService?.image}`
         : `

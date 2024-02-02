@@ -1,11 +1,11 @@
 import PaymentsPageHeader from '@/entities/payment/ui/PaymentsPageHeader'
 import classes from './CartSecondStep.module.css'
 import PaymentOptions from '@/features/pay/PaymentOptions'
-import CartResume from '@/entities/cart/ui/CartResume'
+import CartSummary from '@/entities/cart/ui/CartSummary'
 import PaymentsPageFooter from '@/entities/payment/ui/PaymentsPageFooter'
 import { i18n } from '@/shared/model/i18n'
 
-const { CART: { SECOND_STEP_TITLE, FOOTER_BUTTONS: { CONFIRM_ORDER } } } = i18n.LANG.ESP.UI
+const { CART: { SECOND_STEP_TITLE } } = i18n.LANG.ESP.UI
 
 export default function CartSecondStep () {
   return (
@@ -13,8 +13,8 @@ export default function CartSecondStep () {
       <div className={classes.golden_line} />
       <PaymentsPageHeader label={SECOND_STEP_TITLE} />
       <PaymentOptions />
-      <CartResume />
-      <PaymentsPageFooter label={CONFIRM_ORDER} />
+      <CartSummary />
+      <PaymentsPageFooter page={SECOND_STEP_TITLE} />
     </main>
   )
 }

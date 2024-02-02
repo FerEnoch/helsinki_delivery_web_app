@@ -54,6 +54,7 @@ export const i18n = {
             TOTAL_CART_AMOUNT: 'Monto total',
             GO_TO_PAYMENTS: 'Ver formas de pago',
             CONFIRM_ORDER: 'Confirmar solicitud',
+            SHOW_PURCHASE_SUMMARY: 'Ver resúmen',
             GO_TO_FORM: 'Datos de envío'
           },
           PAYMENT_OPTIONS,
@@ -72,6 +73,11 @@ export const i18n = {
             },
             OFFERED_PRODUCTS
           }
+        },
+        SUMMARY: {
+          TITLE: 'Tu compra',
+          DELIVERY_COST: 'Entrega',
+          TOTAL: 'Total'
         },
         CLIENT_FORM: {
           FORM_TITLE: 'Completá el formulario con tus datos',

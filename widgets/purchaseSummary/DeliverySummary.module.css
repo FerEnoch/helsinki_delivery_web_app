@@ -1,0 +1,29 @@
+.delivery_cost_section {
+  flex: 1 1 10%;
+  width: 100%;
+}
+
+.delivery_cost_list {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  justify-content: center;
+  padding: .5rem;
+  width: 100%;
+}
+
+.info {
+  flex: 1 1 10%;
+  font-size: 1rem;
+  line-height: 1rem;
+  margin-inline-start: -20%;
+}
+
+.day {
+  display: block;
+}
+
+.businessHours {
+  text-wrap: nowrap;
+}

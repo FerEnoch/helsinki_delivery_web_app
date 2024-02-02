@@ -60,13 +60,6 @@
   }
 }
 
-.red_line {
-  background-color: var(--app-red-background);
-  border-radius: 10px;
-  width: 95%;
-  height: 5px;
-}
-
 @media (width>=520px) and (height<=780px) {
   .form_dialog_container {
     top: 3rem;

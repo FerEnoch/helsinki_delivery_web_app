@@ -1,0 +1,15 @@
+.total_section {
+  width: 100%;
+  flex: 1 1 10%;
+}
+
+.total_list {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  justify-content: center;
+  margin-block-end: 1rem;
+  padding: .5rem;
+  width: 100%;
+}

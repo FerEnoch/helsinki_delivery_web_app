@@ -26,8 +26,8 @@ export const useAppStore = create(
       partialize: (state) => ({
         cart: state.cart,
         selectedDeliveryMethod: state.selectedDeliveryMethod,
-        isShareApiCompatible: state.isShareApiCompatible,
-        isAppBlocked: state.isAppBlocked
+        isShareApiCompatible: state.isShareApiCompatible
+        // isAppBlocked: state.isAppBlocked
       })
     }
   )

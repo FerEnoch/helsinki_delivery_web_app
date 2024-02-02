@@ -1,33 +1,39 @@
-.go_to_payment_method_button {
+.purchase_summary_button {
   background-color: var(--app-payments-green);
   border-radius: 12px;
   border: 2px solid white;
+  box-shadow: 1px 1px 15px #555;
   color: white;
   display: grid;
-  flex: 1 0 50%;
   height: 100%;
-  place-content: center;
   padding-inline: .5rem;
+  place-content: center;
   width: 7rem;
 }
 
-.go_to_payment_method_button[disabled] {
+.purchase_summary_button[disabled] {
   opacity: .7;
+  color: #fff;
   border: 2px solid #aaa;
+}
+
+.triangle_button {
+  padding-block-start: .5rem;
+  flex: 1 0 25%;
 }
 
 .triangle_button svg {
   transform: rotate(90deg)
 }
 
-.go_to_payment_method_action {
+.purchase_summary_action {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.go_to_payment_method_action:hover {
+.purchase_summary_action:hover {
   cursor: pointer;
 }
 
@@ -37,11 +43,6 @@
   text-align: start;
   padding-inline-start: 1rem;
   line-height: 1.7rem;
-}
-
-.triangle_button {
-  padding-block-start: .5rem;
-  flex: 1 0 25%;
 }
 
 @media (width <=400px) {

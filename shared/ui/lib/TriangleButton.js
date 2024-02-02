@@ -12,6 +12,7 @@ export default function TriangleButton ({
   const isUpDownSlider = slideDirection === 'y'
   return (
     <button
+      type='button'
       onClick={onClick}
       className={`
         ${customClasses}
