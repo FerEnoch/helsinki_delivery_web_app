@@ -2,13 +2,10 @@
 import FormFooter from '@/features/formFill/ui/FormFooter'
 import classes from './PurchaseSummary.module.css'
 import ContinuePurchaseButton from '@/entities/payment/ui/ContinuePurchaseButton'
-// import { useAppStore } from '@/entities/lib/store'
 import ProductsSummary from './ProductsSummary'
 import DeliverySummary from './DeliverySummary'
 import TotalSummary from './TotalSummary'
-// import { useEffect, useState } from 'react'
 import { i18n } from '@/shared/model/i18n'
-// import PurchaseSummaryPageFooter from './PurchaseSummaryPageFooter'
 import { usePathname, useRouter } from 'next/navigation'
 import DatetimeSection from './DatetimeSection'
 import { useAppStore } from '@/entities/lib/store'
@@ -47,22 +44,24 @@ export default function PurchaseSummary ({ closeFormDialog }) {
           </>
         )
       }
-      {receiptLabel && (
-        <>
-          <div className={classes.red_line} />
-          <PaymentMethodSection />
-        </>
-      )}
+      {
+        receiptLabel && (
+          <>
+            <div className={classes.red_line} />
+            <PaymentMethodSection />
+          </>
+        )
+      }
       <div className={classes.red_line} />
       <TotalSummary />
       {
-      isPurchaseSummaryPage
-        ? <FormFooter closeDialog={handleBackButton} />
-        : (
-          <FormFooter closeDialog={closeFormDialog}>
-            <ContinuePurchaseButton />
-          </FormFooter>
-          )
+        isPurchaseSummaryPage
+          ? <FormFooter closeDialog={handleBackButton} />
+          : (
+            <FormFooter closeDialog={closeFormDialog}>
+              <ContinuePurchaseButton />
+            </FormFooter>
+            )
       }
     </section>
   )
