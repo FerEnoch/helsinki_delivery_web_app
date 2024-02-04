@@ -1,0 +1,40 @@
+.summary_page_header {
+  padding-inline: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 600;
+  gap: .5rem;
+  margin-block: .2rem;
+}
+
+.datetime_section {
+  flex: 1 1 50%;
+  text-align: start;
+  align-self: end;
+}
+
+.datetime_label {}
+
+.datetime {
+  font-size: 1.1rem;
+}
+
+.state {
+  flex: 1 1 50%;
+  border: 2px solid var(--app-white-text);
+  border-radius: 10px;
+  background-color: var(--app-red-background);
+  color: var(--app-white-text);
+  font-size: 1.1rem;
+  padding: .3rem;
+  text-wrap: balance;
+}
+
+.state_label {}
+
+.order_sent {
+  background-color: var(--app-payments-green);
+}

@@ -8,23 +8,21 @@ const actionText = GO_TO_FORM.toUpperCase()
 
 export default function GoToForm ({ goToForm }) {
   return (
-    <>
-      <div
-        className={classes.go_to_form_button}
-        onClick={goToForm}
-      >
-        <section className={classes.go_to_form_action}>
-          <p className={classes.action_text}> {actionText} </p>
-          <span className={classes.triangle_button}>
-            <TriangleButton
-              slideDirection='x'
-              width={20}
-              height={20}
-              triangleStyle={{ fill: 'white' }}
-            />
-          </span>
-        </section>
-      </div>
-    </>
+    <div
+      className={classes.go_to_form_button}
+      onClick={goToForm}
+    >
+      <section className={classes.go_to_form_action}>
+        <p className={classes.action_text}> {actionText} </p>
+        <span className={classes.triangle_button}>
+          <TriangleButton
+            slideDirection='x'
+            width={20}
+            height={20}
+            triangleStyle={{ fill: 'white' }}
+          />
+        </span>
+      </section>
+    </div>
   )
 }

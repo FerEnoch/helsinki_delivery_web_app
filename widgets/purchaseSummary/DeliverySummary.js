@@ -14,6 +14,8 @@ export default function DeliverySummary () {
   const isCash = paymentMethod?.isCash
   const formattedDiscountLabel = paymentMethod?.label?.toUpperCase()
   const formattedDeliveryLabel = selectedDeliveryMethod?.label?.toUpperCase()
+  const formattedDay = selectedDeliveryMethod?.day?.toUpperCase()
+  const formattedBusinessHours = selectedDeliveryMethod?.businessHours?.toUpperCase()
 
   return (
     <>
@@ -32,10 +34,10 @@ export default function DeliverySummary () {
             info={(
               <div className={classes.info}>
                 <span className={classes.day}>
-                  {selectedDeliveryMethod?.day}
+                  {formattedDay}
                 </span>
                 <span className={classes.businessHours}>
-                  {selectedDeliveryMethod?.businessHours}
+                  {formattedBusinessHours}
                 </span>
               </div>
             )}

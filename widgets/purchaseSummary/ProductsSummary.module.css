@@ -1,12 +1,13 @@
 .products_summary_section {
   width: 100%;
   flex: 1 1 50%;
-  overflow-y: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .products_summary_section::-webkit-scrollbar {
   background-color: transparent;
-  width: .5rem;
+  width: .3rem;
 }
 
 .products_summary_section::-webkit-scrollbar-thumb {

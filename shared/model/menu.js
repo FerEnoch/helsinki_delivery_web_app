@@ -18,5 +18,19 @@ export const MENU = {
   },
   FAQ: {
     label: 'Preguntas frecuentes'
+  },
+  PURCHASE_SUMMARY: {
+    label: 'Resumen de compra',
+    SUMMARY_FIELDS: {
+      DATE_LABEL: 'Fecha',
+      ORDER_STATE: {
+        label: 'Estado de pedido',
+        STATES: {
+          ORDER_SENT: 'Enviado',
+          NOT_SENT: 'Pendiente',
+          NO_PRODUCTS: 'Sin productos en tu carrito'
+        }
+      }
+    }
   }
 }

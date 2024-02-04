@@ -7,11 +7,10 @@ import { i18n } from '@/shared/model/i18n'
 const { PAY_METHOD } = i18n.LANG.ESP.UI.CART
 
 export default function ContinuePurchaseButton ({ page, openFormDialog }) {
-  const { paymentMethod: { receipt } } = useAppStore()
-
+  const { togglePurchaseSummary, paymentMethod: { receipt } } = useAppStore()
   return (
     (receipt === 'REQUIRED' && page !== PAY_METHOD)
       ? <GoToPayMethod />
-      : <GoToForm goToForm={openFormDialog} />
+      : <GoToForm goToForm={openFormDialog || togglePurchaseSummary} />
   )
 }

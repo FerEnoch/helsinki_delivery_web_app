@@ -26,11 +26,11 @@ export const i18n = {
           },
           TIME_BLOCKER
         },
-        // ZONES_PROMPT: {
+        ZONES_PROMPT: {
         //   PROMPT: 'Atención\nAntes de seguir, revisa si estás dentro de las zonas de envío',
         //   BUTTON: 'Ver zonas de envío',
-        //   MAP_BUTTON: 'Ver mapa de entregas'
-        // },
+          MAP_BUTTON: 'Ver mapa de entregas'
+        },
         BLOCKED_APP_PROMPT: {
           ATTENTION: 'Atención\n',
           BUTTON: 'Ver días y horarios de atención',
@@ -77,6 +77,13 @@ export const i18n = {
         SUMMARY: {
           TITLE: 'Tu compra',
           DELIVERY_COST: 'Entrega',
+          PAYMENT_METHOD: {
+            TITLE: 'Medio de pago',
+            STATE: {
+              RECEIPT_SENT: 'Recibo de pago enviado',
+              RECEIPT_NOT_SENT: 'Recibo de pago pendiente de envío'
+            }
+          },
           TOTAL: 'Total'
         },
         CLIENT_FORM: {
@@ -116,7 +123,10 @@ export const i18n = {
           message: 'Gracias por tu compra',
           text: 'Si es necesario nos comunicaremos con vos',
           contact: ['¿Alguna duda?', 'Contactate con nosotros'],
-          action: 'Volver a inicio'
+          actions: {
+            endOperation: 'Terminar operación',
+            viewPurchaseSummary: 'Ver resúmen de compra'
+          }
         },
         ERROR: {
           NOT_FOUND: {

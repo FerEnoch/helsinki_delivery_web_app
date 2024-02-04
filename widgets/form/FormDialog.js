@@ -17,8 +17,8 @@ export default forwardRef(function FormDialog (props, ref) {
     togglePurchaseSummary
   } = useAppStore()
   const { closeFormDialog } = useFormModal(ref)
-
   const [showDataForm, setShowDataForm] = useState(false)
+
   useEffect(() => {
     const isPayMethodPage = window.location.href?.includes('pay-method')
     if (isPayMethodPage) setShowDataForm(true)

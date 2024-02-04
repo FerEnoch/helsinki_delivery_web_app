@@ -6,9 +6,11 @@ import { useAppStore } from '@/entities/lib/store'
 import classes from './CartItem.module.css'
 import { useEffect, useMemo } from 'react'
 import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
+import { useClearData } from '@/features/formFill/lib/useClearData'
 
 export default function CartItem ({ product, showArrows }) {
-  const { cart } = useAppStore()
+  const { cart, formSuccessfulSubmitOperation } = useAppStore()
+  const { handleClearData } = useClearData()
   const { id, category, name, image, imageID, price, stock: hasStock } = useMemo(() => product, [product])
   const productName = name?.toUpperCase()
   const formattedPrice = priceFormater(price)
@@ -16,6 +18,10 @@ export default function CartItem ({ product, showArrows }) {
   useEffect(() => {
     showArrows(cart.length)
   }, [cart, showArrows])
+
+  useEffect(() => {
+    if (formSuccessfulSubmitOperation) handleClearData()
+  }, [formSuccessfulSubmitOperation, handleClearData])
 
   return (
     <article

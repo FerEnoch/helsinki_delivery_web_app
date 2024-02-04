@@ -21,9 +21,11 @@
 
 .main_info_text {
   padding-inline-start: 2px;
+  margin-block-end: 1rem;
 }
 
 .extra_info_text {
+  margin-block-start: 2rem;
   max-width: 30ch;
 }
 

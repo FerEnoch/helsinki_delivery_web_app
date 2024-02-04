@@ -19,7 +19,6 @@ export default function ProductsSummary () {
             const formattedName = name.toUpperCase()
             const formattedQuantity = String(quantity)
             const formattedTotal = String(quantity * price || price)
-
             return (
               <SummaryItem
                 key={name}
