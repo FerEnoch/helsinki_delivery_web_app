@@ -6,6 +6,7 @@ export function useClearData () {
     clearCart,
     clearPaymentSlice,
     deleteReceiptFile,
+    setDeliveryMethod,
     setFormSuccessfulSubmitOperation
   } = useAppStore()
 
@@ -15,6 +16,7 @@ export function useClearData () {
     clearCart()
     clearPaymentSlice()
     deleteReceiptFile()
+    setDeliveryMethod(null)
   }
 
   return { handleClearData }
