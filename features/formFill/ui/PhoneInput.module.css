@@ -51,6 +51,7 @@
 
   .input_label {
     font-size: 1.2rem;
+    margin-block-start: 1rem;
   }
 
   .invalid_input_message {
@@ -59,7 +60,7 @@
   }
 }
 
-@media (height<=700px) {
+@media (height<=720px) {
   .input_label {
     font-size: 1.2rem;
   }

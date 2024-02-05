@@ -7,7 +7,9 @@ export function useClearData () {
     clearPaymentSlice,
     deleteReceiptFile,
     setDeliveryMethod,
-    setFormSuccessfulSubmitOperation
+    setFormSuccessfulSubmitOperation,
+    togglePurchaseSummary,
+    showPurchaseSummary
   } = useAppStore()
 
   const handleClearData = () => {
@@ -17,6 +19,7 @@ export function useClearData () {
     clearPaymentSlice()
     deleteReceiptFile()
     setDeliveryMethod(null)
+    if (showPurchaseSummary) togglePurchaseSummary()
   }
 
   return { handleClearData }

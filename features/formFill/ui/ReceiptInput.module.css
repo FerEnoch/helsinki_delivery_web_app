@@ -26,13 +26,15 @@
   }
 }
 
-@media (width<=415px) {
+@media (width<=425px) {
   .receipt_input_wrapper {
     padding-block: .2rem;
   }
 
   .title {
     font-size: 1.2rem;
+    text-wrap: nowrap;
+    margin-block: .5rem;
   }
 }
 
