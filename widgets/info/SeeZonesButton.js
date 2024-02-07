@@ -1,7 +1,6 @@
 'use client'
 import { i18n } from '@/shared/model/i18n'
 import classes from './SeeZonesButton.module.css'
-
 import { codecProRegular } from '@/shared/config/fonts'
 import { Toaster, toast } from 'sonner'
 import Image from 'next/image'

@@ -5,6 +5,7 @@ import classes from './PaymentsPageHeader.module.css'
 
 export default function PaymentsPageHeader ({ label }) {
   const router = useRouter()
+
   const goBack = () => router.back()
   const pageTitle = label.toUpperCase()
 

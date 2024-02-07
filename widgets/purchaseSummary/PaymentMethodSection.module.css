@@ -1,0 +1,36 @@
+.delivery_cost_section {
+  width: 100%;
+  margin-block-end: .5rem;
+  padding-inline: .5rem;
+}
+
+.payment_summary_item {
+  align-items: center;
+  border-bottom: 1px solid var(--app-payments-green);
+  display: flex;
+  font-size: 1rem;
+  font-weight: 600;
+  justify-content: space-between;
+  line-height: 1.2rem;
+  gap: .5rem;
+}
+
+.payment_method {
+  text-align: start;
+}
+
+.payment_state {
+  color: var(--app-red-background);
+  text-align: end;
+  text-wrap: balance;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: .2rem;
+}
+
+.receipt_sent {
+  text-wrap: nowrap;
+  background-color: #fffd;
+  border: 2px solid var(--app-payments-green);
+  color: var(--app-payments-green);
+}

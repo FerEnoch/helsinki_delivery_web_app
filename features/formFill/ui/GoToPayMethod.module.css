@@ -2,8 +2,10 @@
   background-color: var(--app-payments-green);
   border-radius: 12px;
   border: 2px solid white;
+  box-shadow: 1px 1px 15px #555;
   color: white;
   display: grid;
+  flex: 1 0 50%;
   height: 100%;
   place-content: center;
   padding-inline: .5rem;
@@ -16,7 +18,7 @@
 }
 
 .triangle_button svg {
-  transform: rotate(90deg)
+  transform: rotate(90deg) scale(.9)
 }
 
 .go_to_payment_method_action {
@@ -31,27 +33,32 @@
 }
 
 .action_text {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   flex: 1 0 80%;
   text-align: start;
-  padding-inline-start: 1rem;
-  line-height: 1.7rem;
+  padding-inline-start: .2rem;
+  line-height: 1.4rem;
 }
 
 .triangle_button {
   padding-block-start: .5rem;
-  flex: 1 0 25%;
+  flex: 1 0 20%;
 }
 
 @media (width <=400px) {
   .action_text {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
+
+  .triangle_button svg {
+    transform: rotate(90deg) scale(.85)
+  }
+
 }
 
 @media (height<=700px) {
   .action_text {
-    font-size: 1.4rem;
-    line-height: 1.3rem;
+    font-size: 1.3rem;
+    line-height: 1.2rem;
   }
 }

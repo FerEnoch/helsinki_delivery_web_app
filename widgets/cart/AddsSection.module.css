@@ -25,17 +25,17 @@
   z-index: 15;
 }
 
-@media (width>=520px) and (height<=680px) {
-  .adds_section {
-    margin-block-end: 4rem;
-  }
-}
+/* @media (width>=520px) and (height<=680px) { */
+/* .adds_section { */
+/* margin-block-end: 4rem; */
+/* } */
+/* } */
 
-@media (width>=520px) and (height<=630px) {
-  .add_text {
-    margin-block: -15px;
-  }
-}
+/* @media (width>=520px) and (height<=630px) { */
+/* .add_text { */
+/* margin-block: -15px; */
+/* } */
+/* } */
 
 @media (width>=520px) and (height<=725px) {
   .title {

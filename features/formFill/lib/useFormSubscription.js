@@ -2,7 +2,7 @@ import confetti from 'canvas-confetti'
 import { useAppStore } from '@/entities/lib/store'
 import { FORM_FIELDS } from '../config/formFieldsOrder'
 import { timeFormatter } from '@/shared/lib/timeFormat'
-import { sendOrderData } from '../model/sendOrderData'
+// import { sendOrderData } from '../model/sendOrderData'
 import { ORDER_OPERATION_TIME } from '../config/orderOperationTime'
 
 const {
@@ -31,13 +31,9 @@ export function useFormSubscription () {
     QRService,
     getCartTotalAmount,
     cart,
-    clearCart,
-    clearPaymentSlice,
     client,
     selectedDeliveryMethod,
-    clearClientData,
     receiptFile,
-    deleteReceiptFile,
     setFormLoadingState,
     setFormSuccessfulSubmitOperation
   } = useAppStore()
@@ -46,10 +42,6 @@ export function useFormSubscription () {
     setTimeout(() => {
       setFormSuccessfulSubmitOperation(true)
       setFormLoadingState(false)
-      clearClientData()
-      clearCart()
-      clearPaymentSlice()
-      deleteReceiptFile()
       confetti()
     }, PROCESSING_MIN_TIME_MS)
   }
@@ -89,7 +81,9 @@ export function useFormSubscription () {
       }
     }
 
-    const { message } = await sendOrderData(formData)
+    // const { message } = await sendOrderData(formData)
+    const { message } = await mockSubmitOrder(formData)
+
     if (message === 'success') return successHandler()
     console.log(message)
     throw new Error('No se pudo enviar el pedido. Por favor póngase en contacto con Helsinki.')
@@ -98,4 +92,9 @@ export function useFormSubscription () {
   return {
     submitHandler
   }
+}
+
+async function mockSubmitOrder () {
+  console.log('order submitted!')
+  return { message: 'success' }
 }

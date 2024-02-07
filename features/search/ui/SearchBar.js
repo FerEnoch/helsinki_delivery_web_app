@@ -7,10 +7,12 @@ import { codecProRegular } from '@/shared/config/fonts'
 import { useSearch } from '../model/useSearch'
 import ProductListItem from '@/widgets/sliders/ui/lib/ProductListItem'
 import SuspenseFallbackLogo from '@/shared/ui/lib/SuspenseFallbackLogo'
+import { useEffect, useState } from 'react'
 
 const { PLACEHOLDER, NOT_FOUND_PRODUCTS } = i18n.LANG.ESP.UI.SEARCH_BAR
 
 export default function SearchBar () {
+  const [displaySearchBar, setDisplaySearchBar] = useState(true)
   const {
     userInput,
     getSearchParam,
@@ -19,6 +21,11 @@ export default function SearchBar () {
     isLoading
   } = useSearch()
   const pathName = usePathname()
+
+  useEffect(() => {
+    const notDisplaySearchBar = pathName.includes('cart') || pathName.includes('info')
+    setDisplaySearchBar(!notDisplaySearchBar)
+  }, [pathName])
 
   const showResults = () => {
     return (
@@ -68,7 +75,7 @@ export default function SearchBar () {
       <div
         role='search'
         className={classes.search_container}
-        style={{ display: pathName.includes('cart') ? 'none' : 'flex' }}
+        style={{ display: displaySearchBar ? 'flex' : 'none' }}
       >
         <input
           id='search_input'

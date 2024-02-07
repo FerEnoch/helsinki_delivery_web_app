@@ -9,14 +9,14 @@
   z-index: 20;
 }
 
-
+/* 
 @media (width>=520px) and (height<=680px) {
   .footer_container {
     position: relative;
     top: -3rem;
     height: 3rem;
   }
-}
+} */
 
 
 @media (height<=710px) {

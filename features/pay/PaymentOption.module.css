@@ -66,18 +66,19 @@
 }
 
 .discount_pin {
-  animation: pin-in 250ms ease-in forwards;
+  animation: pin-in 350ms ease-in forwards;
   position: absolute;
   display: grid;
   place-content: center;
   font-weight: 600;
   font-size: 1.2rem;
-  color: var(--app-white-text);
+  color: var(--app-black-text);
   border-radius: 50%;
-  background-color: var(--app-red-background);
+  /* background-color: var(--app-red-background); */
+  background-color: var(--app-type-background);
   bottom: -.6rem;
   right: -.4rem;
-  border: 2px solid var(--app-type-background);
+  border: 2px solid var(--app-payments-green);
 }
 
 @media (width >=405px) {

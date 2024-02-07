@@ -26,11 +26,11 @@ export const i18n = {
           },
           TIME_BLOCKER
         },
-        // ZONES_PROMPT: {
+        ZONES_PROMPT: {
         //   PROMPT: 'Atención\nAntes de seguir, revisa si estás dentro de las zonas de envío',
         //   BUTTON: 'Ver zonas de envío',
-        //   MAP_BUTTON: 'Ver mapa de entregas'
-        // },
+          MAP_BUTTON: 'Ver mapa de entregas'
+        },
         BLOCKED_APP_PROMPT: {
           ATTENTION: 'Atención\n',
           BUTTON: 'Ver días y horarios de atención',
@@ -54,6 +54,7 @@ export const i18n = {
             TOTAL_CART_AMOUNT: 'Monto total',
             GO_TO_PAYMENTS: 'Ver formas de pago',
             CONFIRM_ORDER: 'Confirmar solicitud',
+            SHOW_PURCHASE_SUMMARY: 'Ver resúmen',
             GO_TO_FORM: 'Datos de envío'
           },
           PAYMENT_OPTIONS,
@@ -72,6 +73,19 @@ export const i18n = {
             },
             OFFERED_PRODUCTS
           }
+        },
+        SUMMARY: {
+          TITLE: 'Tu compra',
+          CAPTURE_THIS: 'Sacale captura a',
+          DELIVERY_COST: 'Entrega',
+          PAYMENT_METHOD: {
+            TITLE: 'Medio de pago',
+            STATE: {
+              RECEIPT_SENT: 'Recibo de pago enviado',
+              RECEIPT_NOT_SENT: 'Recibo de pago pendiente de envío'
+            }
+          },
+          TOTAL: 'Total'
         },
         CLIENT_FORM: {
           FORM_TITLE: 'Completá el formulario con tus datos',
@@ -110,7 +124,10 @@ export const i18n = {
           message: 'Gracias por tu compra',
           text: 'Si es necesario nos comunicaremos con vos',
           contact: ['¿Alguna duda?', 'Contactate con nosotros'],
-          action: 'Volver a inicio'
+          actions: {
+            endOperation: 'Terminar operación',
+            viewPurchaseSummary: 'Ver resúmen de compra'
+          }
         },
         ERROR: {
           NOT_FOUND: {

@@ -14,15 +14,14 @@
 
 .menu_list {
   padding-block-start: .5rem;
-  position: relative;
   font-size: 1.5rem;
 }
 
-.close_triangle {
+.triangle_wrapper {
   position: absolute;
-  left: -18%;
-  top: 0;
-  transform: scale(1.5, 1);
+  top: 1rem;
+  margin-inline-start: .8rem;
+  align-self: self-start;
 }
 
 @keyframes show-menu {
@@ -40,13 +39,13 @@
 }
 
 @media (width>=460px) {
-  .close_triangle {
+  /* .close_triangle {
     left: -30%;
-  }
+  } */
 }
 
 @media (width>=460px) and (height<=700px) {
-  .close_triangle {
+  /* .close_triangle {
     left: -20%;
-  }
+  } */
 }

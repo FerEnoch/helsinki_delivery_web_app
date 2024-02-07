@@ -44,7 +44,7 @@ export default memo(function ReceiptInput () {
         </label>
         {
           uploadingEnd && (
-            <p className={classes.file_name}>{receiptFile.name}</p>
+            <p className={classes.file_name}>{receiptFile?.name}</p>
           )
         }
         <input
@@ -53,7 +53,6 @@ export default memo(function ReceiptInput () {
           onChange={handleChangeFileInput}
           onInput={handleStartUploading}
           ref={receiptFileRef}
-          required
           id='fileInputID'
           type='file'
           accept='image/*,.pdf,.gif'

@@ -1,0 +1,6 @@
+.red_line {
+  background-color: var(--app-red-background);
+  border-radius: 10px;
+  width: 95%;
+  height: 5px;
+}

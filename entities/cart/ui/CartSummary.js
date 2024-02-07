@@ -1,11 +1,11 @@
 'use client'
 import { useAppStore } from '@/entities/lib/store'
-import classes from './CartResume.module.css'
+import classes from './CartSummary.module.css'
 import { i18n } from '@/shared/model/i18n'
 
 const { CART: cartTexts } = i18n.LANG.ESP.UI
 
-export default function CartResume () {
+export default function CartSummary () {
   const { cart } = useAppStore()
   const cartResume = cart.length > 0
     ? cart?.map(({ name, quantity }) => `(${quantity}) ${name}`).join(' // ')

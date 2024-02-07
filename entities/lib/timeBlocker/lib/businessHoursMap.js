@@ -1,4 +1,4 @@
-import { businessHours, periods, weekDays } from './config'
+import { businessHours, dayPeriods, weekDaysMap } from './config'
 
 const {
   defaultStartBusinessDay,
@@ -8,81 +8,92 @@ const {
   middayTakeAway
 } = businessHours
 
+const { DAY, NIGHT, EARLY_MORNING, MIDDAY } = dayPeriods
+const { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY } = weekDaysMap
+
 const weekDaysDeliveryOpenCloseHours = {
-  [weekDays[0]]: {
+  [SUNDAY]: {
     // sunday
     orders: {
-      [periods[0]]: [0, extendedBusinessDay]
+      [EARLY_MORNING]: [0, extendedBusinessDay],
+      [DAY]: [defaultStartBusinessDay, 23.59] // Agregado de carnaval
     },
     delivery: {
-      [periods[0]]: [0, extendedBusinessDay]
+      [EARLY_MORNING]: [0, extendedBusinessDay],
+      [NIGHT]: [defaultStartDelivery, 23.59] // agregado de carnaval
     },
     takeAway: {}
   },
-  [weekDays[1]]: {
+  [MONDAY]: {
     // monday
     orders: {
-      [periods[0]]: [0, defaultEndBusinessDay]
+      [EARLY_MORNING]: [0, defaultEndBusinessDay], // agregado de carnaval
+      [DAY]: [defaultStartBusinessDay, 23.59] // Agregado de carnaval
     },
     delivery: {
-      [periods[0]]: [0, defaultEndBusinessDay]
+      [EARLY_MORNING]: [0, defaultEndBusinessDay], // agregado de carnaval
+      [NIGHT]: [defaultStartDelivery, 23.59] // agregado de carnaval
     },
     takeAway: {}
   },
-  [weekDays[2]]: {
+  [TUESDAY]: {
     // tuesday
-    orders: {},
-    delivery: {},
+    orders: {
+      [EARLY_MORNING]: [0, defaultEndBusinessDay] // agregado de carnaval
+    },
+    delivery: {
+      [EARLY_MORNING]: [0, defaultEndBusinessDay] // agregado de carnaval
+    },
     takeAway: {}
   },
-  [weekDays[3]]: {
+  [WEDNESDAY]: {
     // wednesday
     orders: {
-      [periods[2]]: [defaultStartBusinessDay, 23.59]
+      [DAY]: [defaultStartBusinessDay, 23.59]
     },
     delivery: {
-      [periods[3]]: [defaultStartDelivery, 23.59]
+      [NIGHT]: [defaultStartDelivery, 23.59]
     },
     takeAway: {}
   },
-  [weekDays[4]]: {
+  [THURSDAY]: {
     // thursday
     orders: {
-      [periods[0]]: [0, defaultEndBusinessDay],
-      [periods[2]]: [defaultStartBusinessDay, 23.59]
+      [EARLY_MORNING]: [0, defaultEndBusinessDay],
+      [DAY]: [defaultStartBusinessDay, 23.59]
     },
     delivery: {
-      [periods[0]]: [0, defaultEndBusinessDay],
-      [periods[3]]: [defaultStartDelivery, 23.59]
+      [EARLY_MORNING]: [0, defaultEndBusinessDay],
+      [NIGHT]: [defaultStartDelivery, 23.59]
     },
     takeAway: {}
   },
-  [weekDays[5]]: {
+  [FRIDAY]: {
     // friday
     orders: {
-      [periods[0]]: [0, defaultEndBusinessDay],
-      [periods[2]]: [defaultStartBusinessDay, 23.59]
+      [EARLY_MORNING]: [0, defaultEndBusinessDay],
+      [DAY]: [defaultStartBusinessDay, 23.59]
     },
     delivery: {
-      [periods[0]]: [0, defaultEndBusinessDay],
-      [periods[3]]: [defaultStartDelivery, 23.59]
+      [EARLY_MORNING]: [0, defaultEndBusinessDay],
+      [NIGHT]: [defaultStartDelivery, 23.59]
     },
     takeAway: {
-      [periods[1]]: middayTakeAway[0].hours[periods[1]]
+      [MIDDAY]: middayTakeAway[0].hours[MIDDAY]
     }
   },
-  [weekDays[6]]: {
+  [SATURDAY]: {
     // saturday
     orders: {
-      [periods[0]]: [0, extendedBusinessDay],
-      [periods[2]]: [defaultStartBusinessDay, 23.59]
+      [EARLY_MORNING]: [0, extendedBusinessDay],
+      [DAY]: [defaultStartBusinessDay, 23.59]
     },
     delivery: {
-      [periods[0]]: [0, extendedBusinessDay],
-      [periods[3]]: [defaultStartDelivery, 23.59]
+      [EARLY_MORNING]: [0, extendedBusinessDay],
+      [NIGHT]: [defaultStartDelivery, 23.59]
     },
     takeAway: {
-      [periods[1]]: middayTakeAway[1].hours[periods[1]]
+      [MIDDAY]: middayTakeAway[1].hours[MIDDAY]
     }
   }
 }

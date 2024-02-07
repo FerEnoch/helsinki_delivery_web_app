@@ -1,5 +1,5 @@
 .address_input {
-  margin-block-end: 3rem;
+  margin-block-end: .5rem;
   width: 100%;
   position: relative;
   transition: height opacity 350ms ease-out;
@@ -124,5 +124,6 @@
 
   .detail {
     font-size: .8rem;
+    padding: .2rem;
   }
 }

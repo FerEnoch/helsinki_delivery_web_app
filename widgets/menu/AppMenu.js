@@ -17,15 +17,15 @@ export default memo(function AppMenu ({ toggleMenu, closeMenu }) {
 
   return (
     <div ref={menuRef} className={classes.menu_popover}>
+      <div className={classes.triangle_wrapper}>
+        <TriangleButton
+          onClick={toggleMenu}
+          customClasses={classes.close_triangle}
+          width={18}
+          height={18}
+        />
+      </div>
       <ul className={classes.menu_list}>
-        <div>
-          <TriangleButton
-            onClick={toggleMenu}
-            customClasses={classes.close_triangle}
-            width={18}
-            height={18}
-          />
-        </div>
         {titles.map(title => {
           return (
             <MenuTitle

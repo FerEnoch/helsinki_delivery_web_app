@@ -8,8 +8,38 @@
   font-size: 1.1rem;
   width: 70%;
   text-wrap: balance;
+  text-wrap: pretty;
   margin-inline: auto;
   line-height: 1.3rem;
+}
+
+.buttons_section {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  align-items: center;
+  justify-content: center;
+  margin-block-end: 1rem;
+}
+
+.back_home_button {
+  background-color: var(--app-white-text);
+  border-radius: 14px;
+  border: 1px solid #999;
+  box-shadow: gray 1px 2px 5px;
+  font-size: 1.2rem;
+  padding: 1rem;
+  width: 50%;
+}
+
+.back_home_button:hover {
+  cursor: pointer
+}
+
+.back_home_button:active {
+  color: var(--app-payments-green);
+  transform: scale(1.1);
+  border: 1px solid var(--app-payments-green);
 }
 
 .contact_text {
@@ -32,33 +62,12 @@
   cursor: pointer
 }
 
-.back_home_button {
-  margin-block-start: 1rem;
-  font-size: 1.2rem;
-  border-radius: 14px;
-  border: 1px solid #999;
-  background-color: var(--app-white-text);
-  width: 50%;
-  padding: 1rem;
-  box-shadow: gray 1px 2px 5px;
-}
-
-.back_home_button:hover {
-  cursor: pointer
-}
-
-.back_home_button:active {
-  color: var(--app-payments-green);
-  transform: scale(1.1);
-  border: 1px solid var(--app-payments-green);
-}
-
-@media (width<=420px) {
+@media (width<=450px) {
   .message_text {
     margin-block-start: .5rem;
     margin-block-end: .2rem;
     font-size: .9rem;
-    max-width: 90%;
+    max-width: 50%;
   }
 
   .contact_link {
@@ -71,7 +80,7 @@
   }
 }
 
-@media (width>=520px) and (height<=700px) {
+@media (width>=490px) and (height<=900px) {
   .message_text {
     margin-block-start: .5rem;
     margin-block-end: .2rem;

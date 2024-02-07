@@ -5,6 +5,7 @@
   box-shadow: 1px 1px 15px #555;
   color: white;
   display: grid;
+  flex: 1 0 50%;
   height: 100%;
   padding-inline: .5rem;
   place-content: center;

@@ -1,36 +1,28 @@
 'use client'
 import TriangleButton from '@/shared/ui/lib/TriangleButton'
 import classes from './GoToForm.module.css'
-import FormDialog from '@/widgets/form/FormDialog'
-import { useFormModal } from '../lib/useFormModal'
-import { useMemo, useRef } from 'react'
+import { i18n } from '@/shared/model/i18n'
 
-export default function GoToForm ({ label }) {
-  const dialogRef = useRef()
-  const { isDisabledModalOpening, openFormDialog } = useFormModal(dialogRef)
-  const actionText = label.toUpperCase()
+const { CART: { FOOTER_BUTTONS: { GO_TO_FORM } } } = i18n.LANG.ESP.UI
+const actionText = GO_TO_FORM.toUpperCase()
 
-  const formDialog = useMemo(() => <FormDialog ref={dialogRef} />, [])
-
+export default function GoToForm ({ goToForm }) {
   return (
-    <>
-      <div
-        disabled={isDisabledModalOpening}
-        className={classes.go_to_form_button}
-      >
-        <section onClick={openFormDialog} className={classes.go_to_form_action}>
-          <p className={classes.action_text}> {actionText} </p>
-          <span className={classes.triangle_button}>
-            <TriangleButton
-              slideDirection='x'
-              width={20}
-              height={20}
-              triangleStyle={{ fill: 'white' }}
-            />
-          </span>
-        </section>
-      </div>
-      {formDialog}
-    </>
+    <div
+      className={classes.go_to_form_button}
+      onClick={goToForm}
+    >
+      <section className={classes.go_to_form_action}>
+        <p className={classes.action_text}> {actionText} </p>
+        <span className={classes.triangle_button}>
+          <TriangleButton
+            slideDirection='x'
+            width={20}
+            height={20}
+            triangleStyle={{ fill: 'white' }}
+          />
+        </span>
+      </section>
+    </div>
   )
 }

@@ -6,7 +6,7 @@ import PaymentMethod from '@/entities/payment/ui/PaymentMethod'
 import { getCorporativeInfo } from '@/processes/services/model/server/getCorporativeInfo'
 import { FIREBASE_DATABASES } from '@/processes/services/config/firebase/databases'
 
-const { CART: { PAY_METHOD, FOOTER_BUTTONS: { GO_TO_FORM } } } = i18n.LANG.ESP.UI
+const { CART: { PAY_METHOD } } = i18n.LANG.ESP.UI
 const { PAYMENT_METHODS } = FIREBASE_DATABASES
 
 export default async function PaymentMethodPage () {
@@ -17,7 +17,7 @@ export default async function PaymentMethodPage () {
       <div className={classes.golden_line} />
       <PaymentsPageHeader label={PAY_METHOD} />
       <PaymentMethod allPaymentMethods={paymentMethods} />
-      <PaymentsPageFooter label={GO_TO_FORM} />
+      <PaymentsPageFooter page={PAY_METHOD} />
     </main>
   )
 }
