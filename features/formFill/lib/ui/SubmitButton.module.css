@@ -1,14 +1,15 @@
 .submit_button_wrapper {
-  height: 100%;
-  display: flex;
   align-items: center;
+  background-color: var(--app-payments-green);
+  border-radius: 14px;
+  border: 1px solid #999;
+  box-shadow: 1px 1px 15px #555;
+  display: flex;
+  flex: 1 0 50%;
+  height: 100%;
   justify-content: space-between;
   padding-block: 1rem;
   padding-inline-end: 1rem;
-  border-radius: 14px;
-  flex: 1 0 50%;
-  border: 1px solid #999;
-  background-color: var(--app-payments-green);
 }
 
 .submit_button_triangle svg {
@@ -19,8 +20,8 @@
 .submit_button_wrapper>p {
   color: white;
   font-size: 1.7rem;
-  line-height: 1.3rem;
   font-weight: 100;
+  line-height: 1.3rem;
   max-width: 5ch;
   padding-inline-start: 1rem;
 }

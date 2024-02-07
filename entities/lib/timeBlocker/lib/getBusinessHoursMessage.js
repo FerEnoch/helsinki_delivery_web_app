@@ -1,10 +1,10 @@
 import { BusinessDay } from './BusinessDay'
 import { MessagesUI } from './MessagesUI'
-import { weekDays } from './config'
+import { weekDaysMap } from './config'
 import { currentTime, currrentDay } from './getTimeInfo'
 
 export function getBusinessHoursMessage () {
-  const currentWeekDay = new BusinessDay(weekDays[currrentDay])
+  const currentWeekDay = new BusinessDay(Object.values(weekDaysMap)[currrentDay])
   const returnMessages = new MessagesUI()
 
   const { isTakeAwayPossible, canBookOrders, isBusinessDay } = currentWeekDay.isOrdersTime(currentTime)

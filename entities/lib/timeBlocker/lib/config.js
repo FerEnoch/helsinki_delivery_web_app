@@ -1,12 +1,26 @@
-export const weekDays = [
-  'sunday',
-  'monday',
-  'tuesday',
-  'wednesday',
-  'thursday',
-  'friday',
-  'saturday'
-]
+/**
+ TO DO :  sacar las const y los maps a otro archivo
+ */
+
+// export const weekDays = [ // old API
+//   'sunday',
+//   'monday',
+//   'tuesday',
+//   'wednesday',
+//   'thursday',
+//   'friday',
+//   'saturday'
+// ]
+
+export const weekDaysMap = {
+  SUNDAY: 'sunday',
+  MONDAY: 'monday',
+  TUESDAY: 'tuesday',
+  WEDNESDAY: 'wednesday',
+  THURSDAY: 'thursday',
+  FRIDAY: 'friday',
+  SATURDAY: 'saturday'
+}
 
 export const spanishWeekDay = [
   'Dom',
@@ -18,34 +32,47 @@ export const spanishWeekDay = [
   'Sab'
 ]
 
-export const periods = ['earlyMorning', 'midday', 'day', 'night']
+// export const periods = ['earlyMorning', 'midday', 'day', 'night'] // old API
+export const dayPeriods = {
+  EARLY_MORNING: 'earlyMorning',
+  MIDDAY: 'midday',
+  DAY: 'day',
+  NIGHT: 'night'
+}
+
+const defaultMiddayTakeAway = [14.3, 16.3]
 
 export const businessHours = {
   defaultStartBusinessDay: 10,
   defaultStartDelivery: 20,
   defaultEndBusinessDay: 0.15,
   extendedBusinessDay: 1.45,
-  notBusinessDays: [{
-    day: weekDays[0], // sunday
-    startingHour: 1.45
-  }, {
-    day: weekDays[1], // monday
-    startingHour: 0
-  }, {
-    day: weekDays[2], // tuesday
-    startingHour: 0
-  }],
+  notBusinessDays: [
+  /**
+   * MODIFICACIONES POR FERIADO DE CARNAVAL
+   */
+    //   {
+    //   day: weekDaysMap.SUNDAY, // sunday
+    //   startingHour: 1.45
+    // }, {
+    //   day: weekDaysMap.MODAY, // monday
+    //   startingHour: 0
+    // },
+    {
+      day: weekDaysMap.TUESDAY, // tuesday
+      startingHour: 0.15
+    }],
   middayTakeAway: [
     {
-      day: weekDays[5], // friday
+      day: weekDaysMap.FRIDAY, // friday
       hours: {
-        [periods[1]]: [14.3, 16.3]
+        [dayPeriods.MIDDAY]: defaultMiddayTakeAway
       }
     },
     {
-      day: weekDays[6], // saturday
+      day: weekDaysMap.SATURDAY, // saturday
       hours: {
-        [periods[1]]: [14.3, 16.3]
+        [dayPeriods.MIDDAY]: defaultMiddayTakeAway
       }
     }
   ]

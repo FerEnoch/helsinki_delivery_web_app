@@ -8,6 +8,7 @@ import { useAppStore } from '@/entities/lib/store'
 const {
   PURCHASE_SUMMARY: {
     label: purchaseSummaryPath,
+    CAPTURE_THIS,
     SUMMARY_FIELDS: {
       DATE_LABEL,
       ORDER_STATE: {
@@ -31,6 +32,7 @@ export default function DatetimeSection () {
     setDatetime(timeFormatter(date))
   }, [])
 
+  const formattedTitle = `${CAPTURE_THIS} ${purchaseSummaryPath}`
   const dateLabel = DATE_LABEL?.toUpperCase()
   const formattedDatetime = datetime?.toUpperCase()
   const formattedStateLabel = label?.toUpperCase()
@@ -44,7 +46,7 @@ export default function DatetimeSection () {
 
   return (
     <>
-      <FormHeader title={purchaseSummaryPath} />
+      <FormHeader title={formattedTitle} />
       <section className={classes.summary_page_header}>
         <div className={classes.datetime_section}>
           <div className={classes.datetime_label}>

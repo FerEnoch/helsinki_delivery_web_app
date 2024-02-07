@@ -21,6 +21,7 @@ export const MENU = {
   },
   PURCHASE_SUMMARY: {
     label: 'Resumen de compra',
+    CAPTURE_THIS: 'Sacale captura a tu',
     SUMMARY_FIELDS: {
       DATE_LABEL: 'Fecha',
       ORDER_STATE: {

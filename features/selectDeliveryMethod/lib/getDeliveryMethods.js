@@ -2,9 +2,11 @@ export async function getDeliveryMethods () {
   /// fetch
 
   // tener en cuenta para hacer la API -> mapear los días: 'lunes' -> 'lun'
-
+  /**
+  * Tener una sola fuente de verdad con businessHoursMap...
+  */
   const numbers = {
-    deliveryCostNumber: 500,
+    deliveryCostNumber: 600,
     takeAwayCostNumber: 0
   }
 
@@ -24,21 +26,40 @@ export async function getDeliveryMethods () {
       options: {
         label: 'Elegí Día y horario',
         select: [
-          {
+          // {
+          //   day: 'Dom',
+          //   ops: [
+          //     {
+          //       tag: null,
+          //       businessHours: null
+          //     }
+          //   ]
+          // },
+          { /** CAMBIOS POR FERIADO DE CARNAVAL 2024 */
             day: 'Dom',
             ops: [
               {
-                tag: null,
-                businessHours: null
+                tag: 'Noche',
+                businessHours: '20 a 0:30 hs'
               }
             ]
           },
+          // {
+          //   day: 'Lun',
+          //   ops: [
+          //     {
+          //       tag: null,
+          //       businessHours: null
+          //     }
+          //   ]
+          // },
+          /** CAMBIOS POR FERIADO DE CARNAVAL 2024 */
           {
             day: 'Lun',
             ops: [
               {
-                tag: null,
-                businessHours: null
+                tag: 'Noche',
+                businessHours: '20 a 0:30 hs'
               }
             ]
           },

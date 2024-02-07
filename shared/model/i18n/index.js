@@ -76,6 +76,7 @@ export const i18n = {
         },
         SUMMARY: {
           TITLE: 'Tu compra',
+          CAPTURE_THIS: 'Sacale captura a',
           DELIVERY_COST: 'Entrega',
           PAYMENT_METHOD: {
             TITLE: 'Medio de pago',

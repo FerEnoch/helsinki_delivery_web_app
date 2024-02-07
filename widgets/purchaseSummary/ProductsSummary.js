@@ -3,15 +3,28 @@ import { useAppStore } from '@/entities/lib/store'
 import SummaryItem from './SummaryItem'
 import { i18n } from '@/shared/model/i18n'
 import FormHeader from '../form/FormHeader'
+import { usePathname } from 'next/navigation'
 
-const { SUMMARY: { TITLE } } = i18n.LANG.ESP.UI
+const {
+  SUMMARY: {
+    CAPTURE_THIS, TITLE
+  }, MENU: {
+    PURCHASE_SUMMARY: {
+      label: purchaseSummaryPath
+    }
+  }
+} = i18n.LANG.ESP.UI
 
 export default function ProductsSummary () {
   const { cart } = useAppStore()
+  const pathName = usePathname()
+
+  const isPurchaseSummaryPage = pathName?.includes(encodeURIComponent(purchaseSummaryPath))
+  const formattedTitle = `${isPurchaseSummaryPage ? '' : CAPTURE_THIS} ${TITLE}`
 
   return (
     <>
-      <FormHeader title={TITLE} />
+      <FormHeader title={formattedTitle} />
       <section className={classes.products_summary_section}>
         <ul className={classes.products_list}>
           {

@@ -7,10 +7,6 @@ import { useHandleAddressDetails } from '@/features/formFill/lib/useHandleAddres
 import { useAppStore } from '@/entities/lib/store'
 import { codecProRegular } from '@/shared/config/fonts'
 
-/**
- * TO DO - handle api error
- */
-
 export default function ClientDataFields () {
   const { paymentMethod: { receipt } } = useAppStore()
   const { isDetailsOpen, setDetailsOpenState } = useHandleAddressDetails()
@@ -18,7 +14,12 @@ export default function ClientDataFields () {
 
   return (
     <main className={`${classes.dialog_main} ${codecProRegular.className}`}>
-      <section className={classes.form_first_section}>
+      <section
+        style={{
+          justifyContent: isReceiptRequired ? 'space-between' : 'space-evenly'
+        }}
+        className={classes.form_first_section}
+      >
         <NameInput />
         <AddressInput isDetailsOpen={isDetailsOpen} setDetailsOpenState={setDetailsOpenState} />
         <PhoneInput isDetailsOpen={isDetailsOpen} />
