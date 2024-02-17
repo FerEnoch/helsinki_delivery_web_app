@@ -6,39 +6,39 @@ const { defaultStartBusinessDay } = businessHours
 
 export class BusinessDay {
   constructor (today) {
-    this.today = today
+    this.today = new Day(today)
   }
 
   getOrdersPeriods () {
-    const day = new Day(this.today)
-    const isBusinessDay = day.isBusinessDay()
+    // const day = new Day(this.today)
+    const isBusinessDay = this.today.isBusinessDay()
     if (!isBusinessDay) {
       const message = new MessagesUI()
       return message.disabledDay()
     }
-    return day.getOrdersTime()
+    return this.today.getOrdersTime()
   }
 
   getDeliveryPeriods () {
-    const day = new Day(this.today)
-    const isBusinessDay = day.isBusinessDay()
+    // const day = new Day(this.today)
+    const isBusinessDay = this.today.isBusinessDay()
     if (!isBusinessDay) {
       const message = new MessagesUI()
       return message.disabledDay()
     }
-    return day.getDeliveryTime()
+    return this.today.getDeliveryTime()
   }
 
   isOrdersTime (hour) {
     let isTakeAwayPossible
 
-    const day = new Day(this.today)
-    const isBusinessDay = day.isBusinessDay()
+    // const day = new Day(this.today)
+    const isBusinessDay = this.today.isBusinessDay()
     if (!isBusinessDay) return { isBusinessDay }
 
-    const isTakeAwayDay = day.isTakeAwayDay()
+    const isTakeAwayDay = this.today.isTakeAwayDay()
     if (isTakeAwayDay) {
-      const takeAwayHours = day.getTakeAwayTime()
+      const takeAwayHours = this.today.getTakeAwayTime()
       const isInbetweenTakeAwayHours = Object.entries(takeAwayHours)
         .map(([_, businessHours]) => {
           const closeTime = businessHours[1]
@@ -50,7 +50,7 @@ export class BusinessDay {
       isTakeAwayPossible = isInbetweenTakeAwayHours.length > 0
     }
 
-    const ordersTime = day.getOrdersTime()
+    const ordersTime = this.today.getOrdersTime()
     const isInbetweenOrdersTime = Object.entries(ordersTime)
       .map(([_, businessHours]) => {
         const initialTime = businessHours[0]
@@ -65,13 +65,13 @@ export class BusinessDay {
   }
 
   isDeliveyTime (hour) {
-    const day = new Day(this.today)
-    const isBusinessDay = day.isBusinessDay()
+    // const day = new Day(this.today)
+    const isBusinessDay = this.today.isBusinessDay()
     if (!isBusinessDay) {
       const message = new MessagesUI()
       return message.disabledDay()
     }
-    const deliveryTime = day.getDeliveryTime()
+    const deliveryTime = this.today.getDeliveryTime()
     const isInbetweenDeliveryTime = Object.entries(deliveryTime)
       .map(([_, businessHours]) => {
         const initialTime = businessHours[0]

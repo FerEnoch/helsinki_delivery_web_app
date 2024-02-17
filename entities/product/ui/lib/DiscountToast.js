@@ -1,7 +1,7 @@
 import { i18n } from '@/shared/model/i18n'
 import classes from './DiscountToast.module.css'
 import { codecProRegular } from '@/shared/config/fonts'
-import Image from 'next/image'
+// import Image from 'next/image'
 
 const { DISCOUNT } = i18n.LANG.ESP.UI.TOAST
 const [title, ...info] = DISCOUNT.split('\n')
@@ -26,12 +26,13 @@ export default function DiscountToast () {
         })
         }
       </div>
-      <Image
+      {/* eslint-disable-next-line */}
+      <img
         className={classes.viking_image}
         alt='Vikingo del logo de Helsinki con un jarrón de cerveza expumante'
         src='/assets/drinking_viking.png'
-        width={40}
-        height={90}
+        // width={10}
+        // height={10}
       />
     </div>
   )

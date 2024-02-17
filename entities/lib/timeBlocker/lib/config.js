@@ -48,16 +48,14 @@ export const businessHours = {
   defaultEndBusinessDay: 0.15,
   extendedBusinessDay: 1.45,
   notBusinessDays: [
-  /**
-   * MODIFICACIONES POR FERIADO DE CARNAVAL
-   */
-    //   {
-    //   day: weekDaysMap.SUNDAY, // sunday
-    //   startingHour: 1.45
-    // }, {
-    //   day: weekDaysMap.MODAY, // monday
-    //   startingHour: 0
-    // },
+    {
+      day: weekDaysMap.SUNDAY, // sunday
+      startingHour: 1.45
+    },
+    {
+      day: weekDaysMap.MONDAY, // monday
+      startingHour: 0
+    },
     {
       day: weekDaysMap.TUESDAY, // tuesday
       startingHour: 0.15

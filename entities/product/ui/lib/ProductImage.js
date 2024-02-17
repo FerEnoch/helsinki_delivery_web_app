@@ -2,7 +2,7 @@
 import classes from './ProductImage.module.css'
 import { i18n } from '@/shared/model/i18n'
 import { prodGenericImage } from '@/shared/config/prodGenericImage'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import IceIcon from '@/shared/ui/lib/svg/IceIcon'
 import CigarIcon from '@/shared/ui/lib/svg/CigarIcon'
@@ -88,14 +88,15 @@ export default function ProductImage ({
   }
   if (!isCigarOrExtra || (isCigarOrExtra && src)) {
     return (
-      <Image
+      // eslint-disable-next-line
+      <img
         className={classes.product_image}
         width={width}
         height={height}
         alt={alt}
         src={imgSrc}
         onError={() => setImgSrc(prodGenericImage)}
-        priority
+        lazy='true'
       />
     )
   }
