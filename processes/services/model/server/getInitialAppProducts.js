@@ -32,7 +32,6 @@ export async function getInitialAppProducts () {
     if (!activeCacheMap || !activeCacheMap.size) await populateCategoriesCache()
 
     activeCacheMap = getFromMainCache(activeCache)
-
     if (activeCacheMap.size > 0) {
       /* Returning from cache logs */
       console.log(`
