@@ -2,9 +2,15 @@ import { FIREBASE_DATABASES } from '../../databases'
 import { firestoreDatabaseAdmin } from '../config'
 
 export async function getDatabaseCategoriesCollection () {
-  const { /* PRODUCTS, */ PRODUCT_CATEGORIES } = FIREBASE_DATABASES
-  const databaseProdsRef = await firestoreDatabaseAdmin.collection(PRODUCT_CATEGORIES).get()
-  console.log(`Getting INITIAL STALE ${databaseProdsRef.docs.length} categories`)
+  const { PRODUCT_CATEGORIES, PRODUCT_COMBOS } = FIREBASE_DATABASES
+  const [prodsRef, combosRef] = await Promise.all(
+    [PRODUCT_CATEGORIES, PRODUCT_COMBOS].map(collection => firestoreDatabaseAdmin.collection(collection).get())
+  )
+  console.log(`Getting INITIAL STALE ${prodsRef.docs.length} categories / ${combosRef.docs.length} combos`)
 
-  return [...databaseProdsRef.docs]
+  return prodsRef.docs.concat(combosRef.docs).map(doc => {
+    const firestoreDocInfo = doc.data()
+    const [firestoreID, categoryData] = Object.entries(firestoreDocInfo).flat()
+    return { firestoreID, categoryData }
+  })
 }

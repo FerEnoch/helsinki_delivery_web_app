@@ -15,6 +15,8 @@ export default async function MainPage () {
     { criteria: 'category', value: '*' }
   )
 
+  console.log(categories)
+
   return (
     <>
       <CategoryList categories={categories} />

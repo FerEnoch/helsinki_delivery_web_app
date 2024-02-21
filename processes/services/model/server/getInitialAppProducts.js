@@ -36,15 +36,13 @@ export async function getInitialAppProducts () {
       /* Returning from cache logs */
       console.log(`
       Returning ****/CACHE/**** data from **> ${activeCache} 
-      **> ${activeCacheMap.size} categories  
+      **> ${activeCacheMap.size} categories (includ. 1 combos, if any)
       `)
       const initialProducts = [...activeCacheMap.values()].flatMap(categoryData => JSON.parse(categoryData))
       return initialProducts
     } else {
       /** retry... */
       activeCacheMap = getFromMainCache(activeCache)
-      // console.log(activeCacheMap)
-      // return [...activeCacheMap.values()].map(prod => JSON.parse(prod)) // old api
       const initialProducts = [...activeCacheMap?.values()].flatMap(categoryData => JSON.parse(categoryData))
       revalidatePath('/')
       return initialProducts

@@ -5,13 +5,7 @@ import { MEM_CACHE } from '@/processes/cache/config'
 export async function populateCategoriesCache () {
   const { FIREBASE_CACHE: { PRODUCTS: activeCache } } = MEM_CACHE
 
-  const initialCategories = await getDatabaseCategoriesCollection()
-
-  const categoriesToCache = initialCategories.map(doc => {
-    const firestoreDocInfo = doc.data()
-    const [firestoreID, categoryData] = Object.entries(firestoreDocInfo).flat()
-    return { firestoreID, categoryData }
-  })
+  const categoriesToCache = await getDatabaseCategoriesCollection()
 
   await Promise.all(categoriesToCache.map(async ({ firestoreID, categoryData }) => {
     if (!firestoreID || !categoryData) return
@@ -20,6 +14,6 @@ export async function populateCategoriesCache () {
   /* Creating cache logs */
   console.log(`
   CACHE POPULATED/**** data from **> ${activeCache} 
-  **> ${categoriesToCache.length} categories
+  **> ${categoriesToCache.length} categories  (includ. 1 combos, if any)
   `)
 }
