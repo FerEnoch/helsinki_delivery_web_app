@@ -1,5 +1,5 @@
-import { businessHoursMap } from './businessHoursMap'
-import { businessHours } from './config'
+import { businessHoursMap } from '../model/businessHoursMap'
+import { businessHours } from './config/config'
 import { currentTime } from './getTimeInfo'
 
 const { middayTakeAway, notBusinessDays } = businessHours

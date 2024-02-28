@@ -1,6 +1,6 @@
 import { Day } from './Day'
 import { MessagesUI } from './MessagesUI'
-import { businessHours } from './config'
+import { businessHours } from './config/config'
 
 const { defaultStartBusinessDay } = businessHours
 

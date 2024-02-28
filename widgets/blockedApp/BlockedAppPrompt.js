@@ -3,7 +3,7 @@ import classes from './BlockedAppPrompt.module.css'
 import { i18n } from '@/shared/model/i18n'
 import { Warning } from '@/shared/ui/lib/svg/Warning'
 import Link from 'next/link'
-import { useTimeBlocker } from '@/entities/lib/timeBlocker/useTimeBlocker'
+import { useTimeBlocker } from '@/entities/timeBlocker/useTimeBlocker'
 import { useRouter } from 'next/navigation'
 
 const { BLOCKED_APP_PROMPT: { ATTENTION, BUTTON, AGREE } } = i18n.LANG.ESP.UI

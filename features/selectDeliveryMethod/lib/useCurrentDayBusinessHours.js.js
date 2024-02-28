@@ -1,7 +1,7 @@
 import { useAppStore } from '@/entities/lib/store'
-import { spanishWeekDay } from '@/entities/lib/timeBlocker/lib/config'
-import { getBusinessHoursMessage } from '@/entities/lib/timeBlocker/lib/getBusinessHoursMessage'
-import { currrentDay, currentTime } from '@/entities/lib/timeBlocker/lib/getTimeInfo'
+import { spanishWeekdays } from '@/entities/timeBlocker/lib/config/weekdays'
+import { getBusinessHoursMessage } from '@/entities/timeBlocker/lib/getBusinessHoursMessage'
+import { currentTime, currrentDay } from '@/entities/timeBlocker/lib/getTimeInfo'
 import { i18n } from '@/shared/model/i18n'
 
 const { NO_TAKE_AWAY: noTakeAwayMessage, MIDDAY_TAKE_AWAY_POSSIBLE } = i18n.LANG.ESP.UI.TOAST.TIME_BLOCKER
@@ -17,7 +17,7 @@ export function useCurrentDayBusinessHours (options) {
     ? (currrentDay === 0 ? 6 : currrentDay - 1)
     : currrentDay
 
-  const currentDaySelect = options?.select.find(({ day }) => day === spanishWeekDay[dayToSeekFor])
+  const currentDaySelect = options?.select.find(({ day }) => day === spanishWeekdays[dayToSeekFor])
   // console.log(currentDaySelect)
   const label = !isAppBlocked && currentDaySelect?.ops[0]?.tag ? options?.label : noTakeAwayMessage
 

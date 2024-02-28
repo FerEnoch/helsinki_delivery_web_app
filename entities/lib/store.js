@@ -1,5 +1,5 @@
 import { deliverySlice } from '../../features/selectDeliveryMethod/lib/deliverySlice'
-import { timeBlockerSlice } from './timeBlocker/lib/timeBlockerSlice.js'
+import { timeBlockerSlice } from '../timeBlocker/lib/timeBlockerSlice'
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 

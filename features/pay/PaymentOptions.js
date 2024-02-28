@@ -2,7 +2,7 @@
 import classes from './PaymentOptions.module.css'
 import PaymentOption from './PaymentOption'
 import { PAYMENT_OPTIONS } from '@/shared/model/payment_options'
-import useTimeBlockerToast from '@/entities/lib/timeBlocker/useTimeBlockerToast'
+import useTimeBlockerToast from '@/entities/timeBlocker/useTimeBlockerToast'
 import { Toaster } from 'sonner'
 import { useAppStore } from '@/entities/lib/store'
 // import ZonesPrompt from '@/widgets/zones/ZonesPrompt'

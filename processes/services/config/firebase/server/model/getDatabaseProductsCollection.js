@@ -6,7 +6,7 @@ export async function getDatabaseCategoriesCollection () {
   const [prodsRef, combosRef] = await Promise.all(
     [PRODUCT_CATEGORIES, PRODUCT_COMBOS].map(collection => firestoreDatabaseAdmin.collection(collection).get())
   )
-  console.log(`Getting INITIAL STALE ${prodsRef.docs.length} categories / ${combosRef.docs.length} combos`)
+  console.log(`Getting INITIAL STALE ${prodsRef.docs.length} categories + ${combosRef.docs.length} combo`)
 
   return prodsRef.docs.concat(combosRef.docs).map(doc => {
     const firestoreDocInfo = doc.data()

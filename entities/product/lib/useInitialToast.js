@@ -2,9 +2,9 @@ import { toast } from 'sonner'
 import { useEffect } from 'react'
 import DiscountToast from '../ui/lib/DiscountToast'
 import { useAppStore } from '@/entities/lib/store'
-import { useTimeBlocker } from '@/entities/lib/timeBlocker/useTimeBlocker'
+import { useTimeBlocker } from '@/entities/timeBlocker/useTimeBlocker'
 import { i18n } from '@/shared/model/i18n'
-import BlockedAppToast from '@/entities/lib/timeBlocker/ui/BlockedAppToast'
+import BlockedAppToast from '@/entities/timeBlocker/ui/BlockedAppToast'
 
 const {
   TIME_BLOCKER: {
