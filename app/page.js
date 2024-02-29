@@ -11,11 +11,13 @@ export default async function MainPage () {
   if (!initialProducts.length) revalidatePath('/')
 
   const { sortPosibilitiesByCriteria: categories } = initialProducts?.length > 0 && extract(
-    [...initialProducts],
+    initialProducts,
     { criteria: 'category', value: '*' }
   )
 
-  console.log(categories)
+  const combos = initialProducts.filter(({ isCombo }) => Boolean(isCombo))
+
+  console.log(combos)
 
   return (
     <>

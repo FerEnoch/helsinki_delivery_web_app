@@ -5,7 +5,19 @@ import { MEM_CACHE } from '@/processes/cache/config'
 export async function populateCategoriesCache () {
   const { FIREBASE_CACHE: { PRODUCTS: activeCache } } = MEM_CACHE
 
-  const categoriesToCache = await getDatabaseCategoriesCollection()
+  let categoriesToCache
+  if (process.env.MOCK_DB) {
+    console.log(`
+      ****/**** RETRIEVING FROM LOCAL MOCK DB ****/****
+    `)
+    const mockDbModule = await import('./mock_db/initialProdsData.js')
+    categoriesToCache = mockDbModule.initialProdsData
+  } else {
+    console.log(`
+      ****/**** RETRIEVING FROM FIREBASE DB ****/****
+    `)
+    categoriesToCache = await getDatabaseCategoriesCollection()
+  }
 
   await Promise.all(categoriesToCache.map(async ({ firestoreID, categoryData }) => {
     if (!firestoreID || !categoryData) return
