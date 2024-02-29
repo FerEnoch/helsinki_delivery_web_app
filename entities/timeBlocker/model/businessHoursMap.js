@@ -1,4 +1,4 @@
-import { businessHours } from '../lib/config/config'
+import { businessHours } from '../lib/config'
 import { dayPeriods } from '../lib/config/periods'
 import { weekdays } from '../lib/config/weekdays'
 
@@ -81,7 +81,7 @@ const weekDaysDeliveryOpenCloseHours = {
       [NIGHT]: [defaultStartDelivery, 23.59]
     },
     takeAway: {
-      [MIDDAY]: middayTakeAway[0].hours[MIDDAY]
+      // [MIDDAY]: middayTakeAway[0].hours[MIDDAY]
     }
   },
   [SATURDAY]: {

@@ -5,7 +5,7 @@
 import { dayPeriods } from './periods'
 import { weekdays } from './weekdays'
 
-const defaultMiddayTakeAway = [14.3, 16.3]
+const defaultMiddayTakeAway = [15, 17]
 
 export const businessHours = {
   defaultStartBusinessDay: 10,

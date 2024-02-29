@@ -4,7 +4,6 @@ function getTimeInfo () {
   const currrentDay = date.getDay()
   const currentHour = date.getHours()
   const currentMinutes = date.getMinutes() * 0.01
-
   const currentTime = currentHour + currentMinutes
 
   return {

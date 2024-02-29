@@ -26,40 +26,21 @@ export async function getDeliveryMethods () {
       options: {
         label: 'Elegí Día y horario',
         select: [
-          // {
-          //   day: 'Dom',
-          //   ops: [
-          //     {
-          //       tag: null,
-          //       businessHours: null
-          //     }
-          //   ]
-          // },
-          { /** CAMBIOS POR FERIADO DE CARNAVAL 2024 */
+          {
             day: 'Dom',
             ops: [
               {
-                tag: 'Noche',
-                businessHours: '20 a 0:30 hs'
+                tag: null,
+                businessHours: null
               }
             ]
           },
-          // {
-          //   day: 'Lun',
-          //   ops: [
-          //     {
-          //       tag: null,
-          //       businessHours: null
-          //     }
-          //   ]
-          // },
-          /** CAMBIOS POR FERIADO DE CARNAVAL 2024 */
           {
             day: 'Lun',
             ops: [
               {
-                tag: 'Noche',
-                businessHours: '20 a 0:30 hs'
+                tag: null,
+                businessHours: null
               }
             ]
           },
@@ -77,7 +58,7 @@ export async function getDeliveryMethods () {
             ops: [
               {
                 tag: 'Noche',
-                businessHours: '20 a 0:30 hs'
+                businessHours: '20:00 a 0:30'
               }
             ]
           },
@@ -86,7 +67,7 @@ export async function getDeliveryMethods () {
             ops: [
               {
                 tag: 'Noche',
-                businessHours: '20 a 0:30 hs'
+                businessHours: '20:00 a 0:30'
               }
             ]
           },
@@ -94,12 +75,8 @@ export async function getDeliveryMethods () {
             day: 'Vier',
             ops: [
               {
-                tag: 'Siesta',
-                businessHours: '14:30 a 16:30'
-              },
-              {
                 tag: 'Noche',
-                businessHours: '20 a 2:00 hs'
+                businessHours: '20:00 a 2:00'
               }
             ]
           },
@@ -108,11 +85,11 @@ export async function getDeliveryMethods () {
             ops: [
               {
                 tag: 'Siesta',
-                businessHours: '14:30 a 16:30'
+                businessHours: '15:00 a 17:00'
               },
               {
                 tag: 'Noche',
-                businessHours: '20 a 2:00 hs'
+                businessHours: '20:00 a 2:00'
               }
             ]
           }
