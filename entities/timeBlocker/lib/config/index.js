@@ -1,11 +1,11 @@
-/**
- TO DO :  sacar las const y los maps a otro archivo
- */
-
 import { dayPeriods } from './periods'
 import { weekdays } from './weekdays'
 
 const defaultMiddayTakeAway = [15, 17]
+
+/*
+*  armar este config con la  api
+*/
 
 export const businessHours = {
   defaultStartBusinessDay: 10,
@@ -29,12 +29,12 @@ export const businessHours = {
       startingHour: 0.15
     }],
   middayTakeAway: [
-    {
-      day: weekdays.FRIDAY, // friday
-      hours: {
-        [dayPeriods.MIDDAY]: defaultMiddayTakeAway
-      }
-    },
+    // {
+    //   day: weekdays.FRIDAY, // friday
+    //   hours: {
+    //     [dayPeriods.MIDDAY]: defaultMiddayTakeAway
+    //   }
+    // },
     {
       day: weekdays.SATURDAY, // saturday
       hours: {

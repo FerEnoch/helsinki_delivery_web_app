@@ -95,7 +95,7 @@ const weekDaysDeliveryOpenCloseHours = {
       [NIGHT]: [defaultStartDelivery, 23.59]
     },
     takeAway: {
-      [MIDDAY]: middayTakeAway[1].hours[MIDDAY]
+      [MIDDAY]: middayTakeAway[0].hours[MIDDAY]
     }
   }
 }
