@@ -72,7 +72,7 @@ export const businessHours = {
     {
       day: weekDaysMap.SATURDAY, // saturday
       hours: {
-        [dayPeriods.MIDDAY]: defaultMiddayTakeAway
+        [dayPeriods.MIDDAY]: [15, 17]
       }
     }
   ]

@@ -29,15 +29,6 @@ export function useCurrentDayBusinessHours (options) {
           ? [currentDaySelect?.ops[1]]
           : currentDaySelect?.ops
       )
-  // console.log(currentTagSelect)
-
-  // console.log({
-  //   label,
-  //   select: [{
-  //     day: currentDaySelect?.day,
-  //     ops: currentTagSelect
-  //   }]
-  // })
 
   return {
     label,
