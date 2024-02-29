@@ -29,12 +29,12 @@ export const businessHours = {
       startingHour: 0.15
     }],
   middayTakeAway: [
-    // {
-    //   day: weekdays.FRIDAY, // friday
-    //   hours: {
-    //     [dayPeriods.MIDDAY]: defaultMiddayTakeAway
-    //   }
-    // },
+    {
+      day: weekdays.FRIDAY, // friday
+      hours: {
+        [dayPeriods.MIDDAY]: defaultMiddayTakeAway
+      }
+    },
     {
       day: weekdays.SATURDAY, // saturday
       hours: {
