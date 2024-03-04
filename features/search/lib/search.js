@@ -9,5 +9,5 @@ export function search (param, allProducts) {
     if (description.toLowerCase().includes(param)) return result.add(prod)
   })
 
-  return [...result]
+  return Array.from(result)
 };

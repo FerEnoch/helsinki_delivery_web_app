@@ -11,8 +11,9 @@ export function useProducts (criteria = null, must = null) {
     /**
     * Doesn't matter the fact that it continues retrieving products from database
     * again and again on every hook call, because the products are in cache memory in the
-    * server, and this cache memory is automatically updated with main stock crud operations
-    * in the google drive sheet info
+    * server, and this cache memory is automatically updated with main stock CRUD operations
+    * in the google drive sheet info.
+    * It needs to be revalidated constantly to retrieve cache last updatings
     */
     getProductList()
       .then(setInitialStockProducts)
@@ -20,7 +21,7 @@ export function useProducts (criteria = null, must = null) {
   }, [setInitialStockProducts])
 
   const reqData = useMemo(() => {
-    return criteria && stockProducts.length > 0 && extract([...stockProducts], criteria, must)
+    return criteria && stockProducts.length > 0 && extract(stockProducts, criteria, must)
   }, [criteria, must, stockProducts])
 
   return {

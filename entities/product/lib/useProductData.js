@@ -13,7 +13,7 @@ export function useProductData (product) {
     image,
     description,
     destillery,
-    alcohol,
+    alcohol = 0,
     imageID
   } = product
 

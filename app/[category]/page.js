@@ -14,9 +14,8 @@ export default async function CategoryPage ({ params }) {
   category = decodeURIComponent(category)
 
   const initialProducts = await getInitialAppProducts()
-
-  const { sortedProducts: specificProductList } = initialProducts?.length > 0 && extract(
-    [...initialProducts],
+  const { sortedProducts: specificProductList } = extract(
+    initialProducts,
     { criteria: 'category', value: category }
   )
 
@@ -31,7 +30,6 @@ export default async function CategoryPage ({ params }) {
   return (
     <CategoryHomePage
       category={category}
-      // specificProductList={specificProductList.reverse()}
     />
   )
 }

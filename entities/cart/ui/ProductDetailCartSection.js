@@ -16,7 +16,7 @@ export default memo(function ProductDetailCartSection ({ product }) {
   const isDescriptionLong = description?.length > 145
 
   const handleAddToCart = () => {
-    addToCart({ ...product }, productQuantity)
+    addToCart(product, productQuantity)
   }
 
   return (

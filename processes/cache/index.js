@@ -66,17 +66,21 @@ export async function setProdInFirebaseCache ({ category, products }, activeCach
   console.log(`...adding category ${category} --> ${products?.length} products`)
 
   const productsToChache = Promise.all(products.map(async (prod) => {
-    const { imageID, imageURL, name, type, isCombo, stock, category, ...restProductFields } = prod
+    const { imageID, imageURL, name, category, type, isCombo, ...restProductFields } = prod
     const firestoreURL = imageID && await getBucketImageURL(imageID)
     const image = firestoreURL || (imageURL || null)
 
+    const description = isCombo && (
+      prod?.products.join(' - ')
+    )
+
     return {
-      name: isCombo ? String(type) : String(name),
+      name: String(name),
       category: String(category),
       type: String(type),
       image,
       quantity: 0,
-      stock: stock || isCombo, // if It's combo, there is stock
+      description,
       isCombo,
       ...restProductFields
     }

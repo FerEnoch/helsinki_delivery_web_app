@@ -1,0 +1,89 @@
+.combo_item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-block-end: .5rem;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.image_mask {
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+}
+
+.combo_image {
+  flex: 1 0 55%;
+  width: 100%;
+  height: 100%;
+}
+
+.combo_image img {
+  transform: scale(1.2);
+  width: 100%;
+  object-position: center;
+  object-fit: cover;
+  height: 100%;
+  max-width: 18rem;
+}
+
+
+.combo_background {
+  background-color: white;
+  flex: 1 0 45%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  padding: .5rem;
+}
+
+.name_message {
+  border: 1px solid var(--app-payments-green);
+  border-radius: 16px;
+  box-shadow: 1px 1px 2px #6e6e6e;
+}
+
+.combo_name {
+  text-wrap: nowrap;
+}
+
+.combo_featMessage {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.combo_description {
+  text-align: start;
+}
+
+
+.combo_buySection {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.combo_buySection span {
+  font-size: 1.6rem;
+}
+
+.combo_selection {
+  display: flex;
+  align-content: flex-end;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.combo_select_quantity button,
+.combo_select_quantity div {
+  font-size: 1.4rem;
+}
+
+.combo_add_to_cart button {
+  position: relative;
+  top: .1rem;
+  transform: scale(1.1);
+}
