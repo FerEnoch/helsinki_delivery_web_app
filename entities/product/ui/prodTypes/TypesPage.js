@@ -6,9 +6,9 @@ import { TypesTitles } from './TypesTitles'
 
 export default function TypesPage ({ category, subtypes, isCombo }) {
   const isSubtypePage = subtypes && subtypes.length === 1
-
   return (
     <div className={classes.type_product_container}>
+      <div className={classes.golden_line} />
       <CategoryTitleNav category={category} />
       {!isCombo && <TypesTitles subtypes={subtypes} category={category} />}
       <Suspense>

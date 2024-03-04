@@ -32,10 +32,14 @@ export default async function TypePage ({ params }) {
 
   const [{ type: subtype }] = Object.values(sort2ndCriteria?.category)
 
+  const combosSet = new Set()
+  initialProducts.filter(({ isCombo }) => isCombo).forEach(({ category }) => combosSet.add(category))
+
   return (
     <TypesPage
       category={category}
       subtypes={[subtype] || null}
+      isCombo={combosSet.has(category)}
     />
   )
 }

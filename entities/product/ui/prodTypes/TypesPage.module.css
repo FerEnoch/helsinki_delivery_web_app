@@ -5,3 +5,11 @@
   justify-content: flex-start;
   margin-block-start: 5rem;
 }
+
+.golden_line {
+  height: 0.3rem;
+  width: 90%;
+  margin-inline: auto;
+  background-color: var(--app-type-background);
+  box-shadow: 1px 1px 20px #dfdeded0;
+}
