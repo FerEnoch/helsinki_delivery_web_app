@@ -18,7 +18,12 @@ export function IndividualProdList ({ categoryProductList, isLoading }) {
         }}
       >
         {!!categoryProductList?.length && categoryProductList.map(product => {
-          return <ProductListItem key={product.id} product={product} />
+          return (
+            <ProductListItem
+              key={product.id}
+              product={product}
+            />
+          )
         }).sort(prod => prod.stock ? -1 : 1)}
       </SuspenseFallbackLogo>
     </ul>

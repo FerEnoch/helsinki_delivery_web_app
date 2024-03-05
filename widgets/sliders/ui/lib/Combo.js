@@ -45,14 +45,19 @@ export function Combo ({ combo, height }) {
       </div>
       <div className={classes.combo_background}>
         <section className={classes.name_message}>
-          <h2 className={classes.combo_name}>
-            {comboName}
-          </h2>
-          {featInfo && (
-            <p className={classes.combo_featMessage}>
-              {comboFeatMessage}
-            </p>
-          )}
+          <Link
+            href={`/${encodeURIComponent(category)}/detail/${encodeURIComponent(id)}`}
+            prefetch={false}
+          >
+            <h2 className={classes.combo_name}>
+              {comboName}
+            </h2>
+            {featInfo && (
+              <p className={classes.combo_featMessage}>
+                {comboFeatMessage}
+              </p>
+            )}
+          </Link>
         </section>
         <p className={classes.combo_description}>
           {description}

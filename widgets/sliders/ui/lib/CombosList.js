@@ -1,14 +1,12 @@
 import { Combo } from './Combo'
-// import classes from './CombosList.module.css'
 import SuspenseFallbackLogo from '@/shared/ui/lib/SuspenseFallbackLogo'
 
 export function CombosList ({ categoryProductList, isLoading }) {
   return (
-    <ul
-      // className={classes.combosList}
-      style={{
-        height: `${categoryProductList.length > 1 ? '26rem' : '16rem'}`
-      }}
+    <ul style={{
+      height: `${categoryProductList.length > 1 ? '28rem' : '16rem'}`
+
+    }}
     >
       <SuspenseFallbackLogo
         isLoading={isLoading} height={100} logoStyle={{

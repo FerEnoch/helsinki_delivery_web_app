@@ -13,14 +13,22 @@ export default function ProductListClient ({ category, type, isCombo }) {
   }, [isCombo])
 
   return (
-    <VerticalSliderBackgound scrollRef={scrollRef} isArrowVisible={isArrowVisible}>
-      <ProductList
-        ref={scrollRef}
-        category={category}
-        type={type}
-        handleArrowsVisibility={handleArrowsVisibility}
-        isCombo={isCombo}
-      />
-    </VerticalSliderBackgound>
+    <div style={isCombo
+      ? {
+          position: 'relative',
+          bottom: '1.5rem'
+        }
+      : {}}
+    >
+      <VerticalSliderBackgound scrollRef={scrollRef} isArrowVisible={isArrowVisible}>
+        <ProductList
+          ref={scrollRef}
+          category={category}
+          type={type}
+          handleArrowsVisibility={handleArrowsVisibility}
+          isCombo={isCombo}
+        />
+      </VerticalSliderBackgound>
+    </div>
   )
 }

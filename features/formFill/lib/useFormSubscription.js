@@ -28,6 +28,7 @@ const { PROCESSING_MIN_TIME_MS } = ORDER_OPERATION_TIME
 export function useFormSubscription () {
   const {
     paymentMethod: { label: method, receipt },
+    stockProducts,
     QRService,
     getCartTotalAmount,
     cart,
@@ -60,10 +61,24 @@ export function useFormSubscription () {
       ? `${selectedDeliveryMethod?.day} - ${selectedDeliveryMethod?.tag} - ${selectedDeliveryMethod?.businessHours}`
       : client?.addressComments.trim()
 
+    const finalCart = cart.flatMap((prod) => {
+      if (prod.isCombo) {
+        return prod.products.map(([comboProdId, comboProdQuantity]) => {
+          const foundProd = stockProducts.find(({ id }) => id === comboProdId)
+          return {
+            ...foundProd,
+            quantity: Number(comboProdQuantity)
+          }
+        })
+      } else {
+        return prod
+      }
+    })
+
     formData.set(TIMESTAMP, timeFormatter(date))
     formData.set(CLIENT_ADDRESS, addressInfo)
     formData.set(CLIENT_COMMENTS, addressDetailsInfo)
-    formData.set(ORDER, JSON.stringify(cart))
+    formData.set(ORDER, JSON.stringify(finalCart))
     formData.set(CLIENT_PHONE, client?.phone.trim())
     formData.set(CLIENT_NAME, client?.name.trim())
     formData.set(PAYMENT_METHOD, `${method}${QRService?.service ? ` - Servicio: ${QRService.service}` : ''}`)
@@ -94,7 +109,8 @@ export function useFormSubscription () {
   }
 }
 
-// async function mockSubmitOrder () {
+// async function mockSubmitOrder (formData) {
+//   console.log(Array.from(formData.entries()))
 //   console.log('order submitted!')
 //   return { message: 'success' }
 // }

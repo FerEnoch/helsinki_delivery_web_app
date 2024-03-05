@@ -28,7 +28,6 @@
   max-width: 18rem;
 }
 
-
 .combo_background {
   background-color: white;
   flex: 1 0 45%;
@@ -42,12 +41,21 @@
 
 .name_message {
   border: 1px solid var(--app-payments-green);
-  border-radius: 16px;
+  border-radius: 10px;
   box-shadow: 1px 1px 2px #6e6e6e;
+  padding: .2rem;
+  margin-block-end: .5rem;
 }
+
 
 .combo_name {
   text-wrap: nowrap;
+}
+
+@media (width <=415px) {
+  .combo_name {
+    font-size: 1.3rem;
+  }
 }
 
 .combo_featMessage {

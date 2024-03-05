@@ -6,7 +6,6 @@
   padding: 0.5rem;
   width: 90%;
   z-index: 6;
-  height: fit-content;
 }
 
 .product_list_container::-webkit-scrollbar {
