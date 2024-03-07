@@ -2,8 +2,9 @@ import confetti from 'canvas-confetti'
 import { useAppStore } from '@/entities/lib/store'
 import { FORM_FIELDS } from '../config/formFieldsOrder'
 import { timeFormatter } from '@/shared/lib/timeFormat'
-import { sendOrderData } from '../model/sendOrderData'
+// import { sendOrderData } from '../model/sendOrderData'
 import { ORDER_OPERATION_TIME } from '../config/orderOperationTime'
+import { useFinalCart } from './utils/finalCart'
 
 const {
   TIMESTAMP,
@@ -28,16 +29,16 @@ const { PROCESSING_MIN_TIME_MS } = ORDER_OPERATION_TIME
 export function useFormSubscription () {
   const {
     paymentMethod: { label: method, receipt },
-    stockProducts,
     QRService,
     getCartTotalAmount,
-    cart,
     client,
     selectedDeliveryMethod,
     receiptFile,
     setFormLoadingState,
     setFormSuccessfulSubmitOperation
   } = useAppStore()
+
+  const finalCart = useFinalCart()
 
   const successHandler = () => {
     setTimeout(() => {
@@ -61,20 +62,6 @@ export function useFormSubscription () {
       ? `${selectedDeliveryMethod?.day} - ${selectedDeliveryMethod?.tag} - ${selectedDeliveryMethod?.businessHours}`
       : client?.addressComments.trim()
 
-    const finalCart = cart.flatMap((prod) => {
-      if (prod.isCombo) {
-        return prod.products.map(([comboProdId, comboProdQuantity]) => {
-          const foundProd = stockProducts.find(({ id }) => id === comboProdId)
-          return {
-            ...foundProd,
-            quantity: Number(comboProdQuantity)
-          }
-        })
-      } else {
-        return prod
-      }
-    })
-
     formData.set(TIMESTAMP, timeFormatter(date))
     formData.set(CLIENT_ADDRESS, addressInfo)
     formData.set(CLIENT_COMMENTS, addressDetailsInfo)
@@ -96,8 +83,8 @@ export function useFormSubscription () {
       }
     }
 
-    const { message } = await sendOrderData(formData)
-    // const { message } = await mockSubmitOrder(formData)
+    // const { message } = await sendOrderData(formData)
+    const { message } = await mockSubmitOrder(formData)
 
     if (message === 'success') return successHandler()
     console.log(message)
@@ -109,8 +96,8 @@ export function useFormSubscription () {
   }
 }
 
-// async function mockSubmitOrder (formData) {
-//   console.log(Array.from(formData.entries()))
-//   console.log('order submitted!')
-//   return { message: 'success' }
-// }
+async function mockSubmitOrder (formData) {
+  console.log(Array.from(formData.entries()))
+  console.log('order submitted!')
+  return { message: 'success' }
+}

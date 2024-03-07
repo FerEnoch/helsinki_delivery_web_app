@@ -41,14 +41,16 @@ export default function SearchBar () {
               }}
             >
               <ul className={classes.product_list}>
-                {foundProducts.map(product => {
-                  return (
-                    <ProductListItem
-                      key={product.id}
-                      product={product}
-                    />
-                  )
-                }).sort(prod => prod.stock ? -1 : 1)}
+                {foundProducts
+                  .toSorted(prod => prod.stock ? -1 : 1)
+                  .map(product => {
+                    return (
+                      <ProductListItem
+                        key={product.id}
+                        product={product}
+                      />
+                    )
+                  })}
               </ul>
             </SuspenseFallbackLogo>
           </section>

@@ -17,7 +17,7 @@ export default async function MainPage () {
   )
 
   const combos = initialProducts.filter(({ isCombo }) => isCombo)
-  const combosLabels = [...new Set(combos.map(combo => combo?.category))]
+  const combosLabels = Array.from(new Set(combos.map(combo => combo.category)))
 
   return (
     <>

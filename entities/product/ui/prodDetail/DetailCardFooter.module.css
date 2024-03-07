@@ -22,10 +22,15 @@
   padding: 1rem;
 }
 
+@media (height<=720px) {
+  .action {
+    font-size: .9rem;
+  }
+}
+
 .generic_action_text {
   padding: 3rem;
 }
-
 
 
 @media (width<=420px) {

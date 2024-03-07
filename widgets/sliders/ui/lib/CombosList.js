@@ -5,7 +5,6 @@ export function CombosList ({ categoryProductList, isLoading }) {
   return (
     <ul style={{
       height: `${categoryProductList.length > 1 ? '28rem' : '16rem'}`
-
     }}
     >
       <SuspenseFallbackLogo

@@ -1,5 +1,5 @@
 export function buildInitialProducts (map) {
-  const initialProducts = [...map?.values()].flatMap((categoryData, _, arr) => {
+  const initialProducts = Array.from(map?.values()).flatMap(categoryData => {
     return JSON.parse(categoryData)
   })
 
@@ -9,7 +9,7 @@ export function buildInitialProducts (map) {
         const { name } = initialProducts.find(({ id }) => id === prodId)
         return [`${name.toUpperCase()} x${quantity}`]
       })
-        .join(' +\n')
+        .join(' + ')
     }
     return prod
   })

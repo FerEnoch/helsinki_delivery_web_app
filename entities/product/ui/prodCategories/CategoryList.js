@@ -32,7 +32,7 @@ export default function CategoryList ({ categories, combosLabels }) {
           }
         <ul className={classes.link_list}>
           {
-          categories?.length > 0 && categories?.map(category => {
+          categories?.length > 0 && categories.toSorted().map(category => {
             const formattedCategory = formatUpperCase(category)
             return (
               <Category

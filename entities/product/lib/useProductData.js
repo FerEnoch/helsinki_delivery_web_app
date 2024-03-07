@@ -14,7 +14,8 @@ export function useProductData (product) {
     description,
     destillery,
     alcohol = 0,
-    imageID
+    imageID,
+    isCombo
   } = product
 
   const formattedAlcohol = `${formatAlcohol(alcohol)}%`
@@ -29,7 +30,8 @@ export function useProductData (product) {
     prodDetailInfo: {
       prodDescription: { description, genericDescription },
       prodDestillery: { destillery, destilleryUIText },
-      prodAlcohol: { alcoholUIText, formattedAlcohol }
+      prodAlcohol: { alcoholUIText, formattedAlcohol },
+      comboProducts: isCombo ? product.products : []
     }
   }
 }

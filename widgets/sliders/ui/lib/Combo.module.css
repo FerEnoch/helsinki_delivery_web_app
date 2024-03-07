@@ -1,10 +1,27 @@
 .combo_item {
-  display: flex;
   align-items: flex-start;
-  justify-content: center;
-  margin-block-end: .5rem;
   border-radius: 16px;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  margin-block-end: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-inline-end: .5rem;
+}
+
+.combo_item::-webkit-scrollbar {
+  background-color: transparent;
+  width: .2rem;
+}
+
+.combo_item::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 12px;
+}
+
+.combo_item::-webkit-scrollbar:hover {
+  cursor: grab;
 }
 
 .image_mask {
@@ -47,7 +64,6 @@
   margin-block-end: .5rem;
 }
 
-
 .combo_name {
   text-wrap: nowrap;
 }
@@ -64,11 +80,12 @@
 }
 
 .combo_description {
-  text-align: start;
+  flex: 1 1 30%;
 }
 
 
 .combo_buySection {
+  flex: 1 1 25%;
   display: flex;
   flex-direction: column;
   gap: .5rem;

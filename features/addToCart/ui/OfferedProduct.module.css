@@ -7,6 +7,12 @@
   margin-inline: 0.5rem;
 }
 
+@media (height<=720px) {
+  .prod_wrapper {
+    margin-inline: 0.2rem;
+  }
+}
+
 .product_icon:hover,
 .action_icon:hover {
   cursor: pointer

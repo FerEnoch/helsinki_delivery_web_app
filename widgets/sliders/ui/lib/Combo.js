@@ -7,12 +7,13 @@ import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
 import { useState } from 'react'
 import classes from './Combo.module.css'
 import Link from 'next/link'
+import ComboDescription from './ComboDescription'
 
 export function Combo ({ combo, height }) {
   const { addToCart } = useAppStore()
   const [productQuantity, setProductQuantity] = useState(1)
 
-  const { id, category, name, image, imageID, price, featInfo, stock, description } = combo
+  const { id, category, name, image, imageID, price, featInfo, stock, products } = combo
   const formattedPrice = priceFormater(price)
   const comboName = name.toUpperCase()
   const comboFeatMessage = featInfo && featInfo.toUpperCase()
@@ -59,9 +60,9 @@ export function Combo ({ combo, height }) {
             )}
           </Link>
         </section>
-        <p className={classes.combo_description}>
-          {description}
-        </p>
+        <section className={classes.combo_description}>
+          <ComboDescription products={products} />
+        </section>
         <div className={classes.combo_buySection}>
           <ProductPrice price={formattedPrice} hasStock={stock} />
           <div className={classes.combo_selection}>

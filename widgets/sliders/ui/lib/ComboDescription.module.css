@@ -1,0 +1,24 @@
+.prod {
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.prod_name {
+  text-wrap: nowrap;
+}
+
+.prod_name:hover {
+  cursor: pointer
+}
+
+.prod_quantity {
+  font-weight: 600;
+}
+
+@media (width<=420px) {
+  .prod_name {
+    font-size: .9rem;
+  }
+}

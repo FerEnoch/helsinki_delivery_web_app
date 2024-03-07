@@ -1,27 +1,30 @@
 .list_container {
-  display: grid;
-  place-content: center;
   align-items: center;
+  display: grid;
+  margin-block-end: .5rem;
+  margin-inline: auto;
+  place-content: center;
   width: 90%;
-  margin-inline: auto
 }
 
 .link_list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   z-index: 10;
+  grid-column-gap: .5rem;
+  grid-row-gap: .3rem;
 }
 
 .link {
-  font-size: 2rem;
-  margin: 5px;
-  border-radius: 10px;
   background-color: var(--app-type-background);
-  text-align: center;
+  border-radius: 10px;
+  box-shadow: 1px 1px 15px #555;
+  font-size: 2rem;
   padding-block: 2px;
   padding-inline: .5rem;
+  text-align: center;
   z-index: 10;
-  box-shadow: 1px 1px 15px #555;
+  width: 100;
 }
 
 .link:hover {
@@ -33,7 +36,6 @@
   .link {
     font-size: 1.5rem;
     padding-inline: .4rem;
-
   }
 }
 
@@ -43,13 +45,11 @@
   }
 }
 
-
 @media (width>=520px) and (height<=700px) {
   .link_list {
     margin-block-start: 1rem;
   }
 }
-
 
 @media (width>=520px) and (height<=680px) {
   .link_list {

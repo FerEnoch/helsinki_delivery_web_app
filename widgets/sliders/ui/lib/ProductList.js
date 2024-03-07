@@ -27,6 +27,13 @@ export default forwardRef(function ProductList ({
     <section
       ref={listRef}
       className={classes.product_list_container}
+      style={
+        isCombo
+          ? {
+              paddingInlineEnd: '.2rem'
+            }
+          : {}
+    }
     >
       {
         isCombo

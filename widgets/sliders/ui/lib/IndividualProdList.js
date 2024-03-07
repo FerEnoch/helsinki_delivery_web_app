@@ -17,14 +17,16 @@ export function IndividualProdList ({ categoryProductList, isLoading }) {
           fillOpacity: 0.9
         }}
       >
-        {!!categoryProductList?.length && categoryProductList.map(product => {
-          return (
-            <ProductListItem
-              key={product.id}
-              product={product}
-            />
-          )
-        }).sort(prod => prod.stock ? -1 : 1)}
+        {!!categoryProductList?.length && categoryProductList
+          .toSorted(prod => prod.stock ? -1 : 1)
+          .map(product => {
+            return (
+              <ProductListItem
+                key={product.id}
+                product={product}
+              />
+            )
+          })}
       </SuspenseFallbackLogo>
     </ul>
   )
