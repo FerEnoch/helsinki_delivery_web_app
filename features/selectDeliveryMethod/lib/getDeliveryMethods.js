@@ -6,7 +6,7 @@ export async function getDeliveryMethods () {
   * Tener una sola fuente de verdad con businessHoursMap...
   */
   const numbers = {
-    deliveryCostNumber: 600,
+    deliveryCostNumber: 750,
     takeAwayCostNumber: 0
   }
 
