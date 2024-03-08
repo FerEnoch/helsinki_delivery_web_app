@@ -32,13 +32,14 @@ export function useFormSubscription () {
     QRService,
     getCartTotalAmount,
     client,
+    cart,
     selectedDeliveryMethod,
     receiptFile,
     setFormLoadingState,
     setFormSuccessfulSubmitOperation
   } = useAppStore()
 
-  const finalCart = useFinalCart()
+  const finalCart = useFinalCart(cart)
 
   const successHandler = () => {
     setTimeout(() => {
