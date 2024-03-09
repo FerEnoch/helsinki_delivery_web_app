@@ -3,7 +3,33 @@ import { useAppStore } from '@/entities/lib/store'
 export function useFinalCart (cart) {
   const { stockProducts } = useAppStore()
 
+  // cart.forEach(item => {
+  //   if (item.isCombo) {
+  //     const comboRepetition = item.quantity
+  //     const comboProducts = item.products
+  //     comboProducts.forEach(([comboProdId, prodQuantity]) => {
+  //       const comboProdQuantity = Number(prodQuantity) * Number(comboRepetition)
+
+  //       const foundInStock = stockProducts.find(({ id }) => id === comboProdId)
+  //       const foundInCart = cart.find(({ id }) => id === comboProdId)
+  //       if (foundInCart) {
+  //         finalCart.push({
+  //           ...foundInCart,
+  //           quantity: foundInCart.quantity + comboProdQuantity
+  //         })
+  //       } else {
+  //         finalCart.push({
+  //           ...foundInStock,
+  //           quantity: comboProdQuantity
+  //         })
+  //       }
+  //     })
+  //   }
+  // })
+
+  const prodSet = new Set()
   const finalCart = []
+  const buildingCart = []
 
   cart.forEach(item => {
     if (item.isCombo) {
@@ -11,44 +37,55 @@ export function useFinalCart (cart) {
       const comboProducts = item.products
       comboProducts.forEach(([comboProdId, prodQuantity]) => {
         const comboProdQuantity = Number(prodQuantity) * Number(comboRepetition)
-
         const foundInStock = stockProducts.find(({ id }) => id === comboProdId)
-        const foundInCart = cart.find(({ id }) => id === comboProdId)
-        if (foundInCart) {
-          finalCart.push({
-            ...foundInCart,
-            quantity: foundInCart.quantity + comboProdQuantity
-          })
-        } else {
-          finalCart.push({
-            ...foundInStock,
-            quantity: comboProdQuantity
-          })
-        }
+        buildingCart.push({
+          ...foundInStock,
+          quantity: Number(comboProdQuantity)
+        })
+        prodSet.add(comboProdId)
       })
+    } else {
+      buildingCart.push(item)
+      prodSet.add(item.id)
     }
   })
 
-  const individualProdSet = new Set()
-  cart.forEach(prod => {
-    if (prod.isCombo) return
-    individualProdSet.add(prod.id)
-    const alreadyAdded = finalCart.find(({ id }) => id === prod.id)
-    if (!alreadyAdded) {
-      finalCart.push(prod)
-    } else {
-      console.log(`repeated prod -> ${prod.id}`)
-      const repeatedProds = finalCart.filter(({ id }) => id === prod.id)
-      repeatedProds.forEach(prodInCart => {
-        if (individualProdSet.has(prodInCart.id)) return
-        console.log('entering') // ---- nada --------
-        finalCart.push({
-          ...prodInCart,
-          quantity: prodInCart.quantity * repeatedProds.length
-        })
-      })
-    }
+  Array.from(prodSet).forEach((uniqueId) => {
+    const repetition = buildingCart.filter(({ id }) => uniqueId === id)
+    let prodTotalQuantity = 0
+    let mergeProd
+    repetition.forEach((foundProd, index, foundProdArr) => {
+      prodTotalQuantity += Number(foundProd.quantity)
+      if (index === foundProdArr.length - 1) {
+        mergeProd = {
+          ...foundProd,
+          quantity: prodTotalQuantity
+        }
+      }
+    })
+    if (mergeProd) finalCart.push(mergeProd)
   })
+
+  // const individualProdSet = new Set()
+  // cart.forEach(prod => {
+  //   if (prod.isCombo) return
+  //   individualProdSet.add(prod.id)
+  //   const alreadyAdded = finalCart.find(({ id }) => id === prod.id)
+  //   if (!alreadyAdded) {
+  //     finalCart.push(prod)
+  //   } else {
+  //     console.log(`repeated prod -> ${prod.id}`)
+  //     const repeatedProds = finalCart.filter(({ id }) => id === prod.id)
+  //     repeatedProds.forEach(prodInCart => {
+  //       if (individualProdSet.has(prodInCart.id)) return
+  //       console.log('entering') // ---- nada --------
+  //       finalCart.push({
+  //         ...prodInCart,
+  //         quantity: prodInCart.quantity * repeatedProds.length
+  //       })
+  //     })
+  //   }
+  // })
 
   return finalCart
 }
