@@ -2,7 +2,7 @@ import confetti from 'canvas-confetti'
 import { useAppStore } from '@/entities/lib/store'
 import { FORM_FIELDS } from '../config/formFieldsOrder'
 import { timeFormatter } from '@/shared/lib/timeFormat'
-// import { sendOrderData } from '../model/sendOrderData'
+import { sendOrderData } from '../model/sendOrderData'
 import { ORDER_OPERATION_TIME } from '../config/orderOperationTime'
 import { useFinalCart } from './utils/finalCart'
 
@@ -84,8 +84,8 @@ export function useFormSubscription () {
       }
     }
 
-    // const { message } = await sendOrderData(formData)
-    const { message } = await mockSubmitOrder(formData)
+    const { message } = await sendOrderData(formData)
+    // const { message } = await mockSubmitOrder(formData)
 
     if (message === 'success') return successHandler()
     console.log(message)
@@ -97,8 +97,8 @@ export function useFormSubscription () {
   }
 }
 
-async function mockSubmitOrder (formData) {
-  console.log(Array.from(formData.entries()))
-  console.log('order submitted!')
-  return { message: 'success' }
-}
+// async function mockSubmitOrder (formData) {
+//   console.log(Array.from(formData.entries()))
+//   console.log('order submitted!')
+//   return { message: 'success' }
+// }
