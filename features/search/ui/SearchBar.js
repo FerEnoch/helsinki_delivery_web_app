@@ -41,14 +41,16 @@ export default function SearchBar () {
               }}
             >
               <ul className={classes.product_list}>
-                {foundProducts.map(product => {
-                  return (
-                    <ProductListItem
-                      key={product.id}
-                      product={product}
-                    />
-                  )
-                })}
+                {foundProducts
+                  .toSorted(prod => prod.stock ? -1 : 1)
+                  .map(product => {
+                    return (
+                      <ProductListItem
+                        key={product.id}
+                        product={product}
+                      />
+                    )
+                  })}
               </ul>
             </SuspenseFallbackLogo>
           </section>
@@ -63,7 +65,20 @@ export default function SearchBar () {
                 fillOpacity: 0.9
               }}
             >
-              <h4 className={codecProRegular.className}>{NOT_FOUND_PRODUCTS}</h4>
+              {
+                NOT_FOUND_PRODUCTS.split('\n').map(phrase => {
+                  return (
+                    <p
+                      key={phrase}
+                      className={`
+                      ${classes.noFoundText}
+                      ${codecProRegular.className}
+                      `}
+                    >{phrase}
+                    </p>
+                  )
+                })
+              }
             </SuspenseFallbackLogo>
           </section>
           )

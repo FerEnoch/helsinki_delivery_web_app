@@ -17,7 +17,7 @@ export default async function TypePage ({ params }) {
   const initialProducts = await getInitialAppProducts()
 
   const { sortedProducts: specificProductList, sort2ndCriteria } = initialProducts?.length > 0 && extract(
-    [...initialProducts],
+    initialProducts,
     { criteria: 'category', value: category },
     { whereField: 'type', isEqual: type || '*' }
   )
@@ -32,15 +32,14 @@ export default async function TypePage ({ params }) {
 
   const [{ type: subtype }] = Object.values(sort2ndCriteria?.category)
 
+  const combosSet = new Set()
+  initialProducts.filter(({ isCombo }) => isCombo).forEach(({ category }) => combosSet.add(category))
+
   return (
-    //   <ProductListSlideClient
-    //     category={category}
-    //     type={type || ''}
-    //     specificProductList={specificProductList}
-    //   />
     <TypesPage
       category={category}
       subtypes={[subtype] || null}
+      isCombo={combosSet.has(category)}
     />
   )
 }

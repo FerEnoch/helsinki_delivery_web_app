@@ -23,19 +23,19 @@ export async function GET (request) {
   if (reqCategory) {
     if (reqCategory === '*') {
       const { sortedProducts } = extract(
-        [...initialProducts],
+        initialProducts,
         { criteria: 'category', value: reqCategory }
       )
       data = formatReturnProducts(sortedProducts)
     } else if (reqCategory !== '*' && reqType === 'null') {
       const { sortedProducts } = extract(
-        [...initialProducts],
+        initialProducts,
         { criteria: 'category', value: reqCategory }
       )
       data = formatReturnProducts(sortedProducts)
     } else if (reqCategory !== '*' && reqType === '*') {
       const { sortedProducts } = extract(
-        [...initialProducts],
+        initialProducts,
         {
           criteria: 'category',
           value: reqCategory
@@ -47,7 +47,7 @@ export async function GET (request) {
       data = formatReturnProducts(sortedProducts)
     } else if (reqCategory !== '*' && (reqType !== '*' && reqType !== 'null')) {
       const { sortedProducts } = extract(
-        [...initialProducts],
+        initialProducts,
         {
           criteria: 'category',
           value: reqCategory
@@ -62,7 +62,7 @@ export async function GET (request) {
 
   if (reqId !== 'null' && reqCategory === 'null' && reqType === 'null') {
     const { sortedProducts } = extract(
-      [...initialProducts],
+      initialProducts,
       { criteria: 'id', value: reqId }
     )
     data = formatReturnProducts(sortedProducts)

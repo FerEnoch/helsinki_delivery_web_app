@@ -2,11 +2,16 @@
 import Triangle from '@/shared/ui/lib/svg/Triangle'
 import Breadcrumb from './Breadcrumb'
 import classes from './CategoryTitleNav.module.css'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 export default function CategoryTitleNav ({ category, type = '' }) {
   const router = useRouter()
-  const goHome = () => router.push('/')
+  const pathName = usePathname()
+
+  const goHome = () => {
+    if (pathName.includes('detail')) router.back()
+    else router.push('/')
+  }
 
   return (
     <nav className={classes.nav_container}>

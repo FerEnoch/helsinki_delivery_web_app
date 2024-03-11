@@ -4,6 +4,7 @@ import { FORM_FIELDS } from '../config/formFieldsOrder'
 import { timeFormatter } from '@/shared/lib/timeFormat'
 import { sendOrderData } from '../model/sendOrderData'
 import { ORDER_OPERATION_TIME } from '../config/orderOperationTime'
+import { useFinalCart } from './utils/finalCart'
 
 const {
   TIMESTAMP,
@@ -30,13 +31,15 @@ export function useFormSubscription () {
     paymentMethod: { label: method, receipt },
     QRService,
     getCartTotalAmount,
-    cart,
     client,
+    cart,
     selectedDeliveryMethod,
     receiptFile,
     setFormLoadingState,
     setFormSuccessfulSubmitOperation
   } = useAppStore()
+
+  const finalCart = useFinalCart(cart)
 
   const successHandler = () => {
     setTimeout(() => {
@@ -63,7 +66,7 @@ export function useFormSubscription () {
     formData.set(TIMESTAMP, timeFormatter(date))
     formData.set(CLIENT_ADDRESS, addressInfo)
     formData.set(CLIENT_COMMENTS, addressDetailsInfo)
-    formData.set(ORDER, JSON.stringify(cart))
+    formData.set(ORDER, JSON.stringify(finalCart))
     formData.set(CLIENT_PHONE, client?.phone.trim())
     formData.set(CLIENT_NAME, client?.name.trim())
     formData.set(PAYMENT_METHOD, `${method}${QRService?.service ? ` - Servicio: ${QRService.service}` : ''}`)
@@ -94,7 +97,8 @@ export function useFormSubscription () {
   }
 }
 
-// async function mockSubmitOrder () {
+// async function mockSubmitOrder (formData) {
+//   console.log(Array.from(formData.entries()))
 //   console.log('order submitted!')
 //   return { message: 'success' }
 // }

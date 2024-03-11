@@ -10,14 +10,18 @@ export default async function MainPage () {
   const initialProducts = await getInitialAppProducts()
   if (!initialProducts.length) revalidatePath('/')
 
-  const { sortPosibilitiesByCriteria: categories } = initialProducts?.length > 0 && extract(
-    [...initialProducts],
+  const stockProds = initialProducts.filter(({ isCombo }) => !isCombo)
+  const { sortPosibilitiesByCriteria: categories } = extract(
+    stockProds,
     { criteria: 'category', value: '*' }
   )
 
+  const combos = initialProducts.filter(({ isCombo }) => isCombo)
+  const combosLabels = Array.from(new Set(combos.map(combo => combo.category)))
+
   return (
     <>
-      <CategoryList categories={categories} />
+      <CategoryList categories={categories} combosLabels={combosLabels} />
       <Social />
     </>
   )

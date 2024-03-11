@@ -1,6 +1,6 @@
 'use client'
 import classes from './ReturnButton.module.css'
-// import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import TriangleButton from './TriangleButton'
 import { codecProRegular } from '@/shared/config/fonts'
 import { i18n } from '@/shared/model/i18n'
@@ -14,11 +14,11 @@ const {
 } = i18n.LANG.ESP.UI
 
 export default function ReturnButton () {
-  // const router = useRouter()
+  const router = useRouter()
 
   const revalidatePath = () => {
     window.location.reload()
-    // router.back()
+    router.back()
   }
 
   return (

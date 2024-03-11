@@ -1,40 +1,23 @@
 import classes from './TypesPage.module.css'
-import { formatUpperCase } from '@/shared/lib/textFormat/giveFormat'
-import Link from 'next/link'
 import ProductListClient from '@/widgets/sliders/ui/ProductListClient'
 import CategoryTitleNav from '@/widgets/lib/CategoryTitleNav'
+import { Suspense } from 'react'
+import { TypesTitles } from './TypesTitles'
 
-export default function TypesPage ({ category, subtypes }) {
+export default function TypesPage ({ category, subtypes, isCombo }) {
   const isSubtypePage = subtypes && subtypes.length === 1
-
   return (
     <div className={classes.type_product_container}>
+      <div className={classes.golden_line} />
       <CategoryTitleNav category={category} />
-      <section className={classes.list_container}>
-        <ul className={classes.link_list}>
-          {
-            subtypes?.length > 0 && subtypes.map(type => {
-              const formattedType = formatUpperCase(type)
-              return (
-                <section
-                  style={subtypes.length === 1 ? { gridArea: 'center' } : {}}
-                  key={type}
-                >
-                  <Link
-                    href={`/${encodeURIComponent(category)}/${encodeURIComponent(type)}`}
-                    prefetch={false}
-                  >
-                    <li className={classes.link}>
-                      {formattedType || type.toUpperCase()}
-                    </li>
-                  </Link>
-                </section>
-              )
-            })
-        }
-        </ul>
-      </section>
-      <ProductListClient category={category} type={isSubtypePage ? subtypes[0] : null} />
+      {!isCombo && <TypesTitles subtypes={subtypes} category={category} />}
+      <Suspense>
+        <ProductListClient
+          category={category}
+          type={isSubtypePage ? subtypes[0] : null}
+          isCombo={isCombo}
+        />
+      </Suspense>
     </div>
   )
 }

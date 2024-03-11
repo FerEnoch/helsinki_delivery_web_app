@@ -18,7 +18,7 @@ export default memo(function ProductListItem ({ product }) {
   const productName = name.toUpperCase()
 
   const handleAddToCart = () => {
-    addToCart({ ...product }, productQuantity)
+    addToCart(product, productQuantity)
   }
 
   return (

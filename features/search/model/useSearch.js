@@ -26,7 +26,7 @@ export function useSearch () {
     if (!userInput?.length) return setSearchResults(null)
     setIsLoading(true)
     const debounce = setTimeout(() => {
-      const foundResult = userInput && search(userInput, stockProducts).reverse()
+      const foundResult = userInput && search(userInput, stockProducts)
       setSearchResults(foundResult)
     }, [1000])
     return () => debounce && clearTimeout(debounce)

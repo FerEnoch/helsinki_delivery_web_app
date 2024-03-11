@@ -7,7 +7,7 @@ import { Toaster } from 'sonner'
 import { useInitialToast } from '../../lib/useInitialToast'
 import { useEffect } from 'react'
 
-export default function CategoryList ({ categories }) {
+export default function CategoryList ({ categories, combosLabels }) {
   useProducts()
   useInitialToast()
 
@@ -18,9 +18,21 @@ export default function CategoryList ({ categories }) {
   return (
     <>
       <section className={classes.list_container}>
+        {
+          combosLabels.length > 0 && combosLabels.map(label => {
+            const formattedLabel = formatUpperCase(label)
+            return (
+              <Category
+                key={label}
+                path={label}
+                category={formattedLabel || label.toUpperCase()}
+              />
+            )
+          })
+          }
         <ul className={classes.link_list}>
           {
-          categories?.length > 0 && categories?.map(category => {
+          categories?.length > 0 && categories.toSorted && categories.toSorted().map(category => {
             const formattedCategory = formatUpperCase(category)
             return (
               <Category

@@ -1,6 +1,7 @@
 import { CART_OPERATIONS } from '@/features/addToCart/lib/updateQuantityOperations'
 import { getCartAmount } from './getCartAmount'
 import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
+import { getDeliveryMethods } from '@/features/selectDeliveryMethod/lib/getDeliveryMethods'
 
 export const cartSlice = (set, get) => {
   return {
@@ -38,7 +39,17 @@ export const cartSlice = (set, get) => {
       set({ cart })
     },
     getCartTotalAmount: () => {
-      const { cart, paymentMethod, selectedDeliveryMethod } = get()
+      const { cart, paymentMethod, selectedDeliveryMethod, setDeliveryMethod } = get()
+      if (!selectedDeliveryMethod) {
+        getDeliveryMethods().then((methods) => {
+          const { label, price, info } = methods.find(({ isDefault }) => isDefault)
+          setDeliveryMethod({
+            label,
+            price,
+            info
+          })
+        })
+      }
       const { finalPrice } = getCartAmount({ cart, paymentMethod, selectedDeliveryMethod })
       return priceFormater(finalPrice)
     },

@@ -4,6 +4,7 @@ import MemoryUsage from '@/processes/lib/MemoryUsage'
 import 'server-only'
 import { revalidatePath } from 'next/cache'
 import { populateCategoriesCache } from './populateCategoriesCache'
+import { buildInitialProducts } from '../../lib/buildInitialProducts'
 
 /**
  * Documents types! :
@@ -36,16 +37,14 @@ export async function getInitialAppProducts () {
       /* Returning from cache logs */
       console.log(`
       Returning ****/CACHE/**** data from **> ${activeCache} 
-      **> ${activeCacheMap.size} categories  
+      **> ${activeCacheMap.size} categories (includ. combos, if any)
       `)
-      const initialProducts = [...activeCacheMap.values()].flatMap(categoryData => JSON.parse(categoryData))
+      const initialProducts = buildInitialProducts(activeCacheMap)
       return initialProducts
     } else {
       /** retry... */
       activeCacheMap = getFromMainCache(activeCache)
-      // console.log(activeCacheMap)
-      // return [...activeCacheMap.values()].map(prod => JSON.parse(prod)) // old api
-      const initialProducts = [...activeCacheMap?.values()].flatMap(categoryData => JSON.parse(categoryData))
+      const initialProducts = buildInitialProducts(activeCacheMap)
       revalidatePath('/')
       return initialProducts
     }

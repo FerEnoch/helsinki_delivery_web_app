@@ -6,7 +6,6 @@ export function getCartAmount ({ cart, paymentMethod, selectedDeliveryMethod }) 
   }, 0)
 
   const deliveryMethodTotal = cart.length > 0 ? selectedDeliveryMethod?.price : 0
-
   let cashDiscount
   if (paymentMethod?.isCash) {
     cashDiscount = productsTotal * CASH_DISCOUNT_PERCENTAGE / 100
@@ -16,6 +15,6 @@ export function getCartAmount ({ cart, paymentMethod, selectedDeliveryMethod }) 
   return {
     productsTotal,
     cashDiscount,
-    finalPrice: (productsTotal + deliveryMethodTotal).toFixed(2)
+    finalPrice: (productsTotal + (deliveryMethodTotal || 0)).toFixed(2)
   }
 }

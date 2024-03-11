@@ -1,13 +1,20 @@
+import ComboDescription from '@/widgets/sliders/ui/lib/ComboDescription'
 import classes from './ProductDataDetail.module.css'
+import { Suspense } from 'react'
 
 export function ProductDataDetail ({ children, prodDetailInfo }) {
   const {
     prodDescription: { description, genericDescription },
     prodDestillery: { destillery, destilleryUIText },
-    prodAlcohol: { alcoholUIText, formattedAlcohol }
+    prodAlcohol: { alcoholUIText, formattedAlcohol },
+    comboProducts
   } = prodDetailInfo
 
   const isDescriptionLong = description?.length > 145
+
+  const pageDescription = comboProducts.length > 0
+    ? <ComboDescription products={comboProducts} />
+    : (description || genericDescription)
 
   return (
     <div className={classes.product_data}>
@@ -17,7 +24,9 @@ export function ProductDataDetail ({ children, prodDetailInfo }) {
           paddingBlockEnd: `${isDescriptionLong ? '.2rem' : '1rem'}`
         }}
         >
-          {description || genericDescription}
+          <Suspense>
+            {pageDescription}
+          </Suspense>
         </p>
         {destillery && (
           <p

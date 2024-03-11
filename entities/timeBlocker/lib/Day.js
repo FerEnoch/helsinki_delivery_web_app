@@ -1,4 +1,4 @@
-import { businessHoursMap } from './businessHoursMap'
+import { businessHoursMap } from '../model/businessHoursMap'
 import { businessHours } from './config'
 import { currentTime } from './getTimeInfo'
 

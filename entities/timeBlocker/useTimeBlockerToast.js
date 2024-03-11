@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useTimeBlocker } from './useTimeBlocker'
 import { toast } from 'sonner'
-import TimeBlockerToast from './ui/TimeBlockerToast'
 import { i18n } from '@/shared/model/i18n'
-import { useAppStore } from '../store'
+import { useAppStore } from '../lib/store'
+import TimeBlockerToast from './ui/TimeBlockerToast'
 
 const {
   TIME_BLOCKER: {

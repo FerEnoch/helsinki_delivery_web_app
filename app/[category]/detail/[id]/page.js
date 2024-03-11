@@ -16,7 +16,7 @@ export default async function ProductPage ({ params }) {
   const initialProducts = await getInitialAppProducts()
 
   const { sortedProducts: [product] } = extract(
-    [...initialProducts],
+    initialProducts,
     { criteria: 'id', value: id }
   )
 

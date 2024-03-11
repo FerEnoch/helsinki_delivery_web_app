@@ -1,4 +1,6 @@
-import { businessHours, dayPeriods, weekDaysMap } from './config'
+import { businessHours } from '../lib/config'
+import { dayPeriods } from '../lib/config/periods'
+import { weekdays } from '../lib/config/weekdays'
 
 const {
   defaultStartBusinessDay,
@@ -9,7 +11,7 @@ const {
 } = businessHours
 
 const { DAY, NIGHT, EARLY_MORNING, MIDDAY } = dayPeriods
-const { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY } = weekDaysMap
+const { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY } = weekdays
 
 const weekDaysDeliveryOpenCloseHours = {
   [SUNDAY]: {
@@ -93,7 +95,7 @@ const weekDaysDeliveryOpenCloseHours = {
       [NIGHT]: [defaultStartDelivery, 23.59]
     },
     takeAway: {
-      [MIDDAY]: middayTakeAway[1].hours[MIDDAY]
+      [MIDDAY]: middayTakeAway.find(({ day }) => day === SATURDAY).hours[MIDDAY]
     }
   }
 }

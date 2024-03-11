@@ -9,6 +9,7 @@ export default function ProductDetailPage ({ product }) {
   return (
     <>
       <div className={classes.nav_container}>
+        <div className={classes.golden_line} />
         <CategoryTitleNav
           category={category}
           type={hasType ? type : ''}

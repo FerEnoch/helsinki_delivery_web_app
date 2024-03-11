@@ -65,19 +65,27 @@ export async function setProdInFirebaseCache ({ category, products }, activeCach
   const databaseCache = getFromMainCache(activeCache)
   console.log(`...adding category ${category} --> ${products?.length} products`)
 
-  const productsToChache = Promise.all(products.map(async prod => {
-    const { imageID, imageURL, name, type, category, ...restProductFields } = prod
+  const productsToChache = Promise.all(products.map(async (prod) => {
+    const { imageID, imageURL, name, category, type, isCombo, ...restProductFields } = prod
     const firestoreURL = imageID && await getBucketImageURL(imageID)
     const image = firestoreURL || (imageURL || null)
+
+    const description = isCombo && (
+      prod?.products.join(' - ')
+    )
+
     return {
       name: String(name),
       category: String(category),
       type: String(type),
       image,
       quantity: 0,
+      description,
+      isCombo,
       ...restProductFields
     }
   }))
+
   databaseCache.set(
     category,
     JSON.stringify(
@@ -85,13 +93,47 @@ export async function setProdInFirebaseCache ({ category, products }, activeCach
     ))
 }
 
-// export function deleteProdInFirebaseCache (productID, activeCache) {
-//   const databaseCache = getFromMainCache(activeCache)
-//   if (databaseCache.has(productID)) {
-//     console.log(`...removing product: ${productID}`)
-//     return databaseCache.delete(productID)
-//   } else {
-//     console.log(`No product found to delete with id ${productID}`)
-//     return true
-//   }
-// }
+/** old cache api
+
+export async function setProdInFirebaseCache ({ category, products }, activeCache) {
+  const databaseCache = getFromMainCache(activeCache)
+  console.log(`...adding category ${category} --> ${products?.length} products`)
+
+  const buildedProducts = products.map(product => {
+    const { name, type, category, ...restProductFields } = product
+    return {
+      name: String(name),
+      category: String(category),
+      type: String(type),
+      quantity: 0,
+      ...restProductFields
+    }
+  })
+
+  const prodsWithImg = Promise.all(buildedProducts.map(async prod => {
+    const { imageID, imageURL } = prod
+    const image = imageID ? (await getBucketImageURL(imageID) || imageURL) : (imageURL || null)
+    return {
+      ...prod,
+      image
+    }
+  }))
+
+  // add products inmediately in order to SSR to show all categories without delay
+  databaseCache.set(
+    category,
+    JSON.stringify(
+      [...buildedProducts]
+    ))
+
+  // add products with img src promise resolved
+  prodsWithImg.then((prods) => {
+    databaseCache.set(
+      category,
+      JSON.stringify(
+        [...prods]
+      ))
+  })
+}
+
+ */

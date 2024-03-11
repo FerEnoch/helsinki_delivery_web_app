@@ -11,7 +11,7 @@ export async function getAggregates () {
   const initialProducts = await getInitialAppProducts()
 
   const { sortedProducts: allCigarProducts } = initialProducts.length > 0 && extract(
-    [...initialProducts],
+    initialProducts,
     { criteria: 'category', value: catTabaqueria },
     { whereField: 'type', isEqual: cigarrillos }
   )
