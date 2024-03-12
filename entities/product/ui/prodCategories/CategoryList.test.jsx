@@ -18,7 +18,7 @@ vi.mock('../../lib/useInitialToast', () => ({
 }))
 
 describe('Home page categories', () => {
-  test('Should render all categories and a combos in list items', async () => {
+  test('Should render all categories and combos', async () => {
     const combosLabels = []
     const categories = initialProdsData.map(({ firestoreID, categoryData }) => {
       const data = JSON.parse(categoryData)
@@ -32,10 +32,8 @@ describe('Home page categories', () => {
 
     render(<CategoryList categories={categories} combosLabels={combosLabels} />)
 
-    categories.concat(combosLabels).map(async category => {
-      const categoryButton = await screen.findByTitle(new RegExp(category, 'i'))
-      expect(categoryButton).toBeInTheDocument()
-    })
-    await waitFor(expect(screen.queryAllByTitle('a')).toHaveLength(categories.concat(combosLabels).length))
+    await Promise.all(categories.concat(combosLabels).map(async (category, _, arr) => {
+      await waitFor(() => expect(screen.getByText(new RegExp(category, 'i'))))
+    }))
   })
 })

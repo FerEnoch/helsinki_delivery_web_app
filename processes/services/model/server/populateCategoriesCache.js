@@ -10,7 +10,7 @@ export async function populateCategoriesCache () {
     console.log(`
       ****/**** RETRIEVING FROM LOCAL MOCK DB ****/****
     `)
-    const mockDbModule = await import('@/shared/test/mock_db/initialProdsData.js')
+    const mockDbModule = await import('@/shared/__test__/mock_db/initialProdsData.js')
     categoriesToCache = mockDbModule.initialProdsData
   } else {
     console.log(`
