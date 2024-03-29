@@ -1,4 +1,6 @@
 export async function getDeliveryMethods () {
+  // TO DO
+
   /// fetch
 
   // tener en cuenta para hacer la API -> mapear los días: 'lunes' -> 'lun'
@@ -30,8 +32,8 @@ export async function getDeliveryMethods () {
             day: 'Dom',
             ops: [
               {
-                tag: null,
-                businessHours: null
+                tag: 'Noche',
+                businessHours: '20:00 a 0:30'
               }
             ]
           },
@@ -83,10 +85,10 @@ export async function getDeliveryMethods () {
           {
             day: 'Sab',
             ops: [
-              {
-                tag: 'Siesta',
-                businessHours: '15:00 a 17:00'
-              },
+              // {
+              //   tag: 'Siesta',
+              //   businessHours: '15:00 a 17:00'
+              // },
               {
                 tag: 'Noche',
                 businessHours: '20:00 a 2:00'

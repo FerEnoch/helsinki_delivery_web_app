@@ -7,24 +7,24 @@ const { defaultStartBusinessDay } = businessHours
 export class BusinessDay {
   constructor (today) {
     this.today = new Day(today)
+    this.messages = new MessagesUI()
+    this.isBusinessDay = this.today.isBusinessDay()
   }
 
   getOrdersPeriods () {
     // const day = new Day(this.today)
-    const isBusinessDay = this.today.isBusinessDay()
-    if (!isBusinessDay) {
-      const message = new MessagesUI()
-      return message.disabledDay()
+    // const isBusinessDay = this.today.isBusinessDay()
+    if (!this.isBusinessDay) {
+      return this.messages.disabledDay()
     }
     return this.today.getOrdersTime()
   }
 
   getDeliveryPeriods () {
     // const day = new Day(this.today)
-    const isBusinessDay = this.today.isBusinessDay()
-    if (!isBusinessDay) {
-      const message = new MessagesUI()
-      return message.disabledDay()
+    // const isBusinessDay = this.today.isBusinessDay()
+    if (!this.isBusinessDay) {
+      return this.messages.disabledDay()
     }
     return this.today.getDeliveryTime()
   }
@@ -33,8 +33,8 @@ export class BusinessDay {
     let isTakeAwayPossible
 
     // const day = new Day(this.today)
-    const isBusinessDay = this.today.isBusinessDay()
-    if (!isBusinessDay) return { isBusinessDay }
+    // const isBusinessDay = this.today.isBusinessDay()
+    if (!this.isBusinessDay) return { isBusinessDay: this.isBusinessDay }
 
     const isTakeAwayDay = this.today.isTakeAwayDay()
     if (isTakeAwayDay) {
@@ -61,15 +61,14 @@ export class BusinessDay {
       .filter(Boolean)
 
     const canBookOrders = isInbetweenOrdersTime.length > 0
-    return { isTakeAwayPossible, canBookOrders, isBusinessDay }
+    return { isTakeAwayPossible, canBookOrders, isBusinessDay: this.isBusinessDay }
   }
 
   isDeliveyTime (hour) {
     // const day = new Day(this.today)
-    const isBusinessDay = this.today.isBusinessDay()
-    if (!isBusinessDay) {
-      const message = new MessagesUI()
-      return message.disabledDay()
+    // const isBusinessDay = this.today.isBusinessDay()
+    if (!this.isBusinessDay) {
+      return this.messages.disabledDay()
     }
     const deliveryTime = this.today.getDeliveryTime()
     const isInbetweenDeliveryTime = Object.entries(deliveryTime)

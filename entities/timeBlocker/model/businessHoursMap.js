@@ -17,19 +17,19 @@ const weekDaysDeliveryOpenCloseHours = {
   [SUNDAY]: {
     // sunday
     orders: {
-      [EARLY_MORNING]: [0, extendedBusinessDay]
-      // [DAY]: [defaultStartBusinessDay, 23.59] // Agregado de carnaval
+      [EARLY_MORNING]: [0, extendedBusinessDay],
+      [DAY]: [defaultStartBusinessDay, 23.59] // Agregado de carnaval
     },
     delivery: {
-      [EARLY_MORNING]: [0, extendedBusinessDay]
-      // [NIGHT]: [defaultStartDelivery, 23.59] // agregado de carnaval
+      [EARLY_MORNING]: [0, extendedBusinessDay],
+      [NIGHT]: [defaultStartDelivery, 23.59] // agregado de carnaval
     },
     takeAway: {}
   },
   [MONDAY]: {
     // monday
     orders: {
-      // [EARLY_MORNING]: [0, defaultEndBusinessDay], // agregado de carnaval
+      [EARLY_MORNING]: [0, defaultEndBusinessDay] // agregado de carnaval
       // [DAY]: [defaultStartBusinessDay, 23.59] // Agregado de carnaval
     },
     delivery: {
@@ -95,7 +95,7 @@ const weekDaysDeliveryOpenCloseHours = {
       [NIGHT]: [defaultStartDelivery, 23.59]
     },
     takeAway: {
-      [MIDDAY]: middayTakeAway.find(({ day }) => day === SATURDAY).hours[MIDDAY]
+      [MIDDAY]: middayTakeAway.find(({ day }) => day === SATURDAY)?.hours[MIDDAY]
     }
   }
 }

@@ -52,7 +52,7 @@ export default memo(function AddressInput ({ isDetailsOpen, setDetailsOpenState 
           sentences.map(sentence => {
             return (
               <p
-                key={sentences}
+                key={sentence}
                 className={classes.takeAway_text}
               >
                 {sentence}

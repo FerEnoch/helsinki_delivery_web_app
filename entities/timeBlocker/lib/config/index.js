@@ -1,7 +1,7 @@
-import { dayPeriods } from './periods'
+// import { dayPeriods } from './periods'
 import { weekdays } from './weekdays'
 
-const defaultMiddayTakeAway = [15, 17]
+// const defaultMiddayTakeAway = [15, 17]
 
 /*
 *  armar este config con la  api
@@ -14,32 +14,33 @@ export const businessHours = {
   extendedBusinessDay: 1.45,
   notBusinessDays: [
   /**
-   * MODIFICACIONES POR FERIADO DE CARNAVAL
+   * MODIFICACIONES POR FERIADO DE SEMANA SANTA
    */
-    {
-      day: weekdays.SUNDAY, // sunday
-      startingHour: 1.45
-    },
+    // {
+    //   day: weekdays.SUNDAY, // sunday
+    //   startingHour: 1.45
+    // },
     {
       day: weekdays.MONDAY, // monday
-      startingHour: 0
+      startingHour: 0.15
     },
     {
       day: weekdays.TUESDAY, // tuesday
-      startingHour: 0.15
+      startingHour: 0
     }],
   middayTakeAway: [
-    {
-      day: weekdays.FRIDAY, // friday
-      hours: {
-        [dayPeriods.MIDDAY]: defaultMiddayTakeAway
-      }
-    },
-    {
-      day: weekdays.SATURDAY, // saturday
-      hours: {
-        [dayPeriods.MIDDAY]: defaultMiddayTakeAway
-      }
-    }
+    // NO MORE TAKE AWAY TILL NEXT SUMMER
+    // {
+    //   day: weekdays.FRIDAY, // friday
+    //   hours: {
+    //     [dayPeriods.MIDDAY]: defaultMiddayTakeAway
+    //   }
+    // },
+    // {
+    //   day: weekdays.SATURDAY, // saturday
+    //   hours: {
+    //     [dayPeriods.MIDDAY]: defaultMiddayTakeAway
+    //   }
+    // }
   ]
 }
