@@ -6,11 +6,15 @@ export default memo(function MenuTitle ({ title, onClick }) {
   const formattedTitle = title.toUpperCase()
 
   return (
-    <Link href={`/info/${encodeURIComponent(title)}`}>
-      <li className={classes.menu_title} onClick={onClick}>
+    <li
+      className={classes.menu_title}
+      onClick={onClick}
+      role='button'
+    >
+      <Link href={`/info/${encodeURIComponent(title)}`}>
         {formattedTitle}
-      </li>
-    </Link>
+      </Link>
+    </li>
   )
 }
 )

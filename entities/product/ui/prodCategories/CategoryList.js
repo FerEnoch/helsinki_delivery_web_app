@@ -7,6 +7,14 @@ import { Toaster } from 'sonner'
 import { useInitialToast } from '../../lib/useInitialToast'
 import { useEffect } from 'react'
 
+const sorting = (arr) => {
+  if (arr.toSorted) {
+    return arr.toSorted()
+  } else {
+    return arr
+  }
+}
+
 export default function CategoryList ({ categories, combosLabels }) {
   useProducts()
   useInitialToast()
@@ -32,7 +40,7 @@ export default function CategoryList ({ categories, combosLabels }) {
           }
         <ul className={classes.link_list}>
           {
-          categories?.length > 0 && categories.toSorted && categories.toSorted().map(category => {
+          categories?.length > 0 && sorting(categories).map(category => {
             const formattedCategory = formatUpperCase(category)
             return (
               <Category

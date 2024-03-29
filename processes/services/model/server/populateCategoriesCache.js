@@ -6,11 +6,11 @@ export async function populateCategoriesCache () {
   const { FIREBASE_CACHE: { PRODUCTS: activeCache } } = MEM_CACHE
 
   let categoriesToCache
-  if (process.env.MOCK_DB) {
+  if (process.env.MOCK_DB === 'true') {
     console.log(`
       ****/**** RETRIEVING FROM LOCAL MOCK DB ****/****
     `)
-    const mockDbModule = await import('@/shared/test/mock_db/initialProdsData.js')
+    const mockDbModule = await import('@/shared/__test__/mock_db/initialProdsData.js')
     categoriesToCache = mockDbModule.initialProdsData
   } else {
     console.log(`
