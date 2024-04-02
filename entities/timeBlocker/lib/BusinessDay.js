@@ -1,47 +1,44 @@
 import { Day } from './Day'
 import { MessagesUI } from './MessagesUI'
-import { businessHours } from './config'
-
-const { defaultStartBusinessDay } = businessHours
+import { buildBusinessHours } from '../model/buildBusinessHours'
 
 export class BusinessDay {
   constructor (today) {
     this.today = new Day(today)
   }
 
-  getOrdersPeriods () {
-    // const day = new Day(this.today)
-    const isBusinessDay = this.today.isBusinessDay()
+  async getOrdersPeriods () {
+    const isBusinessDay = await this.today.isBusinessDay()
     if (!isBusinessDay) {
       const message = new MessagesUI()
       return message.disabledDay()
     }
-    return this.today.getOrdersTime()
+    return await this.today.getOrdersTime()
   }
 
-  getDeliveryPeriods () {
-    // const day = new Day(this.today)
-    const isBusinessDay = this.today.isBusinessDay()
+  async getDeliveryPeriods () {
+    const isBusinessDay = await this.today.isBusinessDay()
     if (!isBusinessDay) {
       const message = new MessagesUI()
       return message.disabledDay()
     }
-    return this.today.getDeliveryTime()
+    return await this.today.getDeliveryTime()
   }
 
-  isOrdersTime (hour) {
+  async isOrdersTime (hour) {
     let isTakeAwayPossible
-
-    // const day = new Day(this.today)
-    const isBusinessDay = this.today.isBusinessDay()
+    const isBusinessDay = await this.today.isBusinessDay()
     if (!isBusinessDay) return { isBusinessDay }
 
-    const isTakeAwayDay = this.today.isTakeAwayDay()
+    const isTakeAwayDay = await this.today.isTakeAwayDay()
     if (isTakeAwayDay) {
-      const takeAwayHours = this.today.getTakeAwayTime()
-      const isInbetweenTakeAwayHours = Object.entries(takeAwayHours)
-        .map(([_, businessHours]) => {
-          const closeTime = businessHours[1]
+      const takeAwayHours = await this.today.getTakeAwayTime()
+      const { defaultStartBusinessDay } = await buildBusinessHours()
+      const isInbetweenTakeAwayHours = Object.values(takeAwayHours)
+        .map(businessHours => {
+          if (!businessHours) return null
+          const [, closeTime] = businessHours
+          // const closeTime = businessHours[1]
           const isInTime = defaultStartBusinessDay <= hour && hour <= closeTime
           return isInTime
         })
@@ -50,11 +47,13 @@ export class BusinessDay {
       isTakeAwayPossible = isInbetweenTakeAwayHours.length > 0
     }
 
-    const ordersTime = this.today.getOrdersTime()
-    const isInbetweenOrdersTime = Object.entries(ordersTime)
-      .map(([_, businessHours]) => {
-        const initialTime = businessHours[0]
-        const closeTime = businessHours[1]
+    const ordersTime = await this.today.getOrdersTime()
+    const isInbetweenOrdersTime = Object.values(ordersTime)
+      .map(businessHours => {
+        if (!businessHours) return null
+        const [initialTime, closeTime] = businessHours
+        // const initialTime = businessHours[0]
+        // const closeTime = businessHours[1]
         const isInTime = initialTime <= hour && hour <= closeTime
         return isInTime
       })
@@ -64,18 +63,19 @@ export class BusinessDay {
     return { isTakeAwayPossible, canBookOrders, isBusinessDay }
   }
 
-  isDeliveyTime (hour) {
-    // const day = new Day(this.today)
-    const isBusinessDay = this.today.isBusinessDay()
+  async isDeliveyTime (hour) {
+    const isBusinessDay = await this.today.isBusinessDay()
     if (!isBusinessDay) {
       const message = new MessagesUI()
       return message.disabledDay()
     }
-    const deliveryTime = this.today.getDeliveryTime()
-    const isInbetweenDeliveryTime = Object.entries(deliveryTime)
-      .map(([_, businessHours]) => {
-        const initialTime = businessHours[0]
-        const closeTime = businessHours[1]
+    const deliveryTime = await this.today.getDeliveryTime()
+    const isInbetweenDeliveryTime = Object.values(deliveryTime)
+      .map(businessHours => {
+        if (!businessHours) return null
+        const [initialTime, closeTime] = businessHours
+        // const initialTime = businessHours[0]
+        // const closeTime = businessHours[1]
         const isInTime = initialTime <= hour && hour <= closeTime
         return isInTime
       })

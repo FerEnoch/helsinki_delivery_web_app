@@ -1,31 +1,133 @@
-export async function getDeliveryMethods () {
-  /// fetch
+import { dayPeriodsTags } from '@/entities/timeBlocker/lib/config/periods'
+import { APITerms } from '@/entities/timeBlocker/lib/config/terms'
+import { buildBusinessHours } from '@/entities/timeBlocker/model/buildBusinessHours'
 
-  // tener en cuenta para hacer la API -> mapear los días: 'lunes' -> 'lun'
-  /**
-  * Tener una sola fuente de verdad con businessHoursMap...
-  */
-  const numbers = {
-    deliveryCostNumber: 750,
-    takeAwayCostNumber: 0
+export async function getDeliveryMethods () {
+  const {
+    deliveryCost,
+    daysGrid,
+    defaultEndBusinessDay,
+    extendedBusinessDay
+  } = await buildBusinessHours()
+
+  const daysGridObject = Object.fromEntries(daysGrid.entries())
+
+  // declara functión
+  function formatHour (number) {
+    if (Number.isInteger(number)) return `${number}:00`
+    else return `0${number.toString().replace('.', ':')}`
   }
 
-  const fetchedData = [
+  const costs = {
+    delivery: deliveryCost,
+    takeAway: 0
+  }
+
+  return [
     {
       label: 'Delivery',
       info: '',
-      price: numbers.deliveryCostNumber,
+      price: costs.delivery,
       isDefault: true,
       options: null
     },
     {
       label: 'Take away',
       info: 'Urquiza y Cánd. Pujato',
-      price: numbers.takeAwayCostNumber,
+      price: costs.takeAway,
       isDefault: false,
       options: {
+        label: 'Elegí día y horario',
+        select: Object.values(daysGridObject)
+          .filter(
+            ({ tags: { takeAway: takeAwayTag } }) =>
+              takeAwayTag !== APITerms.CLOSED
+          )
+          .map(
+            ({
+              tags: { dayTag, takeAway: takeAwayTag },
+              takeAway: takeAwayHours
+            }) => {
+              const takeAwayComposedNormal = new Map()
+              const takeAwayComposedExtended = new Map()
+
+              return {
+                day: dayTag,
+                generalTag: `Horario ${takeAwayTag.toLowerCase()}`, // -> NOT IN USAGE
+                ops: Object.values(takeAwayHours)
+                  .slice(1)
+                  .filter(hours => hours.length > 0)
+                  .map(hours => {
+                    const [from, to] = hours
+                    switch (takeAwayTag) {
+                      case APITerms.TAKE_AWAY_NORMAL_NIGHT:
+                        return {
+                          tag: dayPeriodsTags.NIGHT,
+                          businessHours: `${formatHour(from)} a ${formatHour(defaultEndBusinessDay)}`
+                        }
+                      case APITerms.TAKE_AWAY_EXTENDED_NIGHT:
+                        return {
+                          tag: dayPeriodsTags.NIGHT,
+                          businessHours: `${formatHour(from)} a ${formatHour(extendedBusinessDay)}`
+                        }
+                      case APITerms.TAKE_AWAY_AFTERNOON:
+                        return {
+                          tag: dayPeriodsTags.EARLY_AFTERNOON,
+                          businessHours: `${formatHour(from)} a ${formatHour(to)}`
+                        }
+                      case APITerms.TAKE_AWAY_AFTERNOON_NORMAL_NIGHT:
+                        if (!takeAwayComposedNormal.has(1)) {
+                          takeAwayComposedNormal.set(1, {
+                            tag: dayPeriodsTags.EARLY_AFTERNOON,
+                            businessHours: `${formatHour(from)} a ${formatHour(to)}`
+                          })
+                          break
+                        }
+                        if (takeAwayComposedNormal.has(1) && !takeAwayComposedNormal.has(2)) {
+                          takeAwayComposedNormal.set(2, {
+                            tag: dayPeriodsTags.NIGHT,
+                            businessHours: `${formatHour(from)} a ${formatHour(defaultEndBusinessDay)}`
+                          })
+                          return Array.from(
+                            takeAwayComposedNormal.values()
+                          ).flat()
+                        }
+                        break
+                      case APITerms.TAKE_AWAY_AFTERNOON_EXTENDED_NIGHT:
+                        if (!takeAwayComposedExtended.has(1)) {
+                          takeAwayComposedExtended.set(1, {
+                            tag: dayPeriodsTags.EARLY_AFTERNOON,
+                            businessHours: `${formatHour(from)} a ${formatHour(to)}`
+                          })
+                          break
+                        }
+                        if (takeAwayComposedExtended.has(1) && !takeAwayComposedExtended.has(2)) {
+                          takeAwayComposedExtended.set(2, {
+                            tag: dayPeriodsTags.NIGHT,
+                            businessHours: `${formatHour(from)} a ${formatHour(extendedBusinessDay)}`
+                          })
+                          return Array.from(
+                            takeAwayComposedExtended.values()
+                          ).flat()
+                        }
+                    }
+                    return null
+                  })
+                  .flat()
+                  .filter(Boolean)
+              }
+            }
+          )
+      }
+    }
+  ]
+}
+
+/* OLD API
+{
         label: 'Elegí Día y horario',
-        select: [
+        // TO DO
+        select: [ // make a loop -- possibly, map UI ops[{ tag }]
           {
             day: 'Dom',
             ops: [
@@ -95,10 +197,4 @@ export async function getDeliveryMethods () {
           }
         ]
       }
-    }
-  ]
-
-  const [delivery, takeAway] = fetchedData
-
-  return [delivery, takeAway]
-}
+       */

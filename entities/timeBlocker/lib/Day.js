@@ -1,16 +1,14 @@
-import { businessHoursMap } from '../model/businessHoursMap'
-import { businessHours } from './config'
+import { buildBusinessHours } from '../model/buildBusinessHours'
 import { currentTime } from './getTimeInfo'
-
-const { middayTakeAway, notBusinessDays } = businessHours
 
 export class Day {
   constructor (day) {
     this.day = day
-    this.businessHoursMap = businessHoursMap
   }
 
-  isBusinessDay () {
+  async isBusinessDay () {
+    const { notBusinessDays } = await buildBusinessHours()
+
     const isBusinessHour = new Set(notBusinessDays
       .map(({ day, startingHour: closeHour }) => {
         if (this.day !== day) return true
@@ -20,27 +18,28 @@ export class Day {
     return !isBusinessHour.has(false)
   }
 
-  getOrdersTime () {
-    const dayBusinessHours = this.businessHoursMap.get(this.day)
-    return dayBusinessHours.orders
+  async getOrdersTime () {
+    const dayBusinessHours = (await buildBusinessHours()).daysGrid.get(this.day)
+    return dayBusinessHours.orders ?? {}
   }
 
-  getDeliveryTime () {
-    const dayBusinessHours = this.businessHoursMap.get(this.day)
-    return dayBusinessHours.delivery
+  async getDeliveryTime () {
+    const dayBusinessHours = (await buildBusinessHours()).daysGrid.get(this.day)
+    return dayBusinessHours.delivery ?? {}
   }
 
-  isTakeAwayDay () {
-    const isDay = middayTakeAway
+  async getTakeAwayTime () {
+    const dayBusinessHours = (await buildBusinessHours()).daysGrid.get(this.day)
+    return dayBusinessHours.takeAway ?? {}
+  }
+
+  async isTakeAwayDay () {
+    const { middayTakeAway } = await buildBusinessHours()
+    const isDay = middayTakeAway && middayTakeAway
       .map(({ day }) => {
         return this.day === day
       })
       .filter(Boolean)
-    return isDay.length > 0
-  }
-
-  getTakeAwayTime () {
-    const dayBusinessHours = this.businessHoursMap.get(this.day)
-    return dayBusinessHours.takeAway
+    return isDay?.length > 0
   }
 }
