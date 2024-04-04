@@ -1,5 +1,4 @@
 import { dayLimits, dayPeriods } from '../lib/config/periods'
-import { getBusinessHours } from '../service/getBusinessHours'
 import { spanishWeekdays, weekdays } from '../lib/config/weekdays'
 import { APITerms } from '../lib/config/terms'
 
@@ -7,30 +6,23 @@ import { APITerms } from '../lib/config/terms'
 TO DO:
 --> white test
 */
-export let maxExendedHour
 
-export async function buildBusinessHours () {
-  const { DAY, NIGHT, EARLY_MORNING, MIDDAY } = dayPeriods
-  const {
-    deliveryCost,
-    openToOrders: defaultStartBusinessDay,
-    businessHours: {
-      delivery: {
-        normalNight: deliveryNormalNight,
-        extendedNight: deliveryExtendedNight
-      },
-      takeAway: {
-        normalNight: takeAwayNormalNight,
-        extendedNight: takeAwayExtendedNight,
-        earlyAfternoon: takeAwayEarlyAfternoon
-      }
+export async function buildBusinessHours ({
+  openToOrders: defaultStartBusinessDay,
+  initialGrid,
+  businessHours: {
+    delivery: {
+      normalNight: deliveryNormalNight,
+      extendedNight: deliveryExtendedNight
     },
-    grid
-  } = await getBusinessHours()
-
-  maxExendedHour = Math.max(deliveryExtendedNight.to, takeAwayExtendedNight.to)
-
-  const notBusinessDays = grid
+    takeAway: {
+      normalNight: takeAwayNormalNight,
+      extendedNight: takeAwayExtendedNight,
+      earlyAfternoon: takeAwayEarlyAfternoon
+    }
+  }
+}) {
+  const notBusinessDays = initialGrid
     .map(({ day, delivery, takeAway }, index, week) => {
       if (!day) return null
       const dayBefore = index - 1 < 0 ? week[week.length - 1] : week[index - 1]
@@ -59,7 +51,7 @@ export async function buildBusinessHours () {
     .filter(Boolean)
 
   // Vemos si hay take-away a la siesta
-  const middayTakeAway = grid
+  const middayTakeAway = initialGrid
     .filter(({ takeAway }) => {
       return (
         APITerms.TAKE_AWAY_AFTERNOON === takeAway ||
@@ -114,12 +106,14 @@ export async function buildBusinessHours () {
 
   // declara función
   function getEarlyMorningHours ({ hours, method }) {
+    if (!hours) return
     if (Object.values(hours[method]).length === 0) return []
     return (hours[method] && [dayLimits.start, hours[method].to]) || []
   }
 
   // declara función
   function getDayHours ({ hours, method, isClosedCompletely = null }) {
+    if (!hours) return
     if (isClosedCompletely || Object.values(hours[method]).length === 0) return []
     return [hours[method].from, dayLimits.end]
   }
@@ -129,10 +123,10 @@ export async function buildBusinessHours () {
   weekdays.forEach((day, index, week) => {
     const dayBefore = index - 1 < 0 ? week[week.length - 1] : week[index - 1]
     const dayBeforeHours = getHours({
-      dayToFind: grid.find(({ day: gridDay }) => gridDay === dayBefore)
+      dayToFind: initialGrid.find(({ day: gridDay }) => gridDay === dayBefore)
     })
     const currentDayHours = getHours({
-      dayToFind: grid.find(({ day: gridDay }) => gridDay === day)
+      dayToFind: initialGrid.find(({ day: gridDay }) => gridDay === day)
     })
 
     const isClosedCompletely = notBusinessDays.find(
@@ -162,19 +156,21 @@ export async function buildBusinessHours () {
       isClosedCompletely
     })
 
+    const { DAY, NIGHT, EARLY_MORNING, MIDDAY } = dayPeriods
+
     const currentDayMiddayTakeAway = (isClosedCompletely || !hasMiddayTakeAway) ? [] : hasMiddayTakeAway.hours[MIDDAY]
 
     const currentDayOrders = isClosedCompletely ? [] : [defaultStartBusinessDay, dayLimits.end]
 
     // Posibilidad de recibir pedidos
     const earlyMorningOrders =
-      earlyMorningDelivery.length > 0
+      earlyMorningDelivery?.length > 0
         ? earlyMorningDelivery
         : earlyMorningTakeAway
 
     // build day business hours
     daysGrid.set(day, {
-      tags: grid
+      tags: initialGrid
         .filter(({ day: gridDay }) => gridDay === day)
         .map(({ day, delivery, takeAway }) => {
           return {
@@ -201,12 +197,10 @@ export async function buildBusinessHours () {
   })
 
   return {
-    deliveryCost,
     daysGrid,
-    defaultStartBusinessDay,
-    defaultStartDelivery: deliveryNormalNight.from,
-    defaultEndBusinessDay: takeAwayNormalNight.to,
-    extendedBusinessDay: takeAwayExtendedNight.to,
+    // defaultStartDelivery: deliveryNormalNight.from,
+    // defaultEndBusinessDay: takeAwayNormalNight.to,
+    // extendedBusinessDay: takeAwayExtendedNight.to,
     notBusinessDays,
     middayTakeAway
   }

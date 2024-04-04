@@ -1,15 +1,25 @@
 import { dayPeriodsTags } from '@/entities/timeBlocker/lib/config/periods'
 import { APITerms } from '@/entities/timeBlocker/lib/config/terms'
 import { buildBusinessHours } from '@/entities/timeBlocker/model/buildBusinessHours'
+import { getBusinessHours } from '@/entities/timeBlocker/service/getBusinessHours'
 
 export async function getDeliveryMethods () {
   const {
-    deliveryCost,
-    daysGrid,
-    defaultEndBusinessDay,
-    extendedBusinessDay
-  } = await buildBusinessHours()
+    grid: initialGrid,
+    openToOrders,
+    businessHours,
+    deliveryCost
+  } = await getBusinessHours()
 
+  const { daysGrid } = await buildBusinessHours({
+    initialGrid,
+    openToOrders,
+    businessHours
+  })
+
+  const { takeAway: takeAwayHours } = businessHours
+  const takeAwayNormalNightEnd = takeAwayHours.normalNight.to
+  const takeAwayExtendedNightEnd = takeAwayHours.extendedNight.to
   const daysGridObject = Object.fromEntries(daysGrid.entries())
 
   // declara functión
@@ -63,12 +73,12 @@ export async function getDeliveryMethods () {
                       case APITerms.TAKE_AWAY_NORMAL_NIGHT:
                         return {
                           tag: dayPeriodsTags.NIGHT,
-                          businessHours: `${formatHour(from)} a ${formatHour(defaultEndBusinessDay)}`
+                          businessHours: `${formatHour(from)} a ${formatHour(takeAwayNormalNightEnd)}`
                         }
                       case APITerms.TAKE_AWAY_EXTENDED_NIGHT:
                         return {
                           tag: dayPeriodsTags.NIGHT,
-                          businessHours: `${formatHour(from)} a ${formatHour(extendedBusinessDay)}`
+                          businessHours: `${formatHour(from)} a ${formatHour(takeAwayExtendedNightEnd)}`
                         }
                       case APITerms.TAKE_AWAY_AFTERNOON:
                         return {
@@ -86,7 +96,7 @@ export async function getDeliveryMethods () {
                         if (takeAwayComposedNormal.has(1) && !takeAwayComposedNormal.has(2)) {
                           takeAwayComposedNormal.set(2, {
                             tag: dayPeriodsTags.NIGHT,
-                            businessHours: `${formatHour(from)} a ${formatHour(defaultEndBusinessDay)}`
+                            businessHours: `${formatHour(from)} a ${formatHour(takeAwayNormalNightEnd)}`
                           })
                           return Array.from(
                             takeAwayComposedNormal.values()
@@ -104,7 +114,7 @@ export async function getDeliveryMethods () {
                         if (takeAwayComposedExtended.has(1) && !takeAwayComposedExtended.has(2)) {
                           takeAwayComposedExtended.set(2, {
                             tag: dayPeriodsTags.NIGHT,
-                            businessHours: `${formatHour(from)} a ${formatHour(extendedBusinessDay)}`
+                            businessHours: `${formatHour(from)} a ${formatHour(takeAwayExtendedNightEnd)}`
                           })
                           return Array.from(
                             takeAwayComposedExtended.values()

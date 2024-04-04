@@ -1,6 +1,6 @@
 import { Day } from './Day'
 import { MessagesUI } from './MessagesUI'
-import { buildBusinessHours } from '../model/buildBusinessHours'
+import { getBusinessHours } from '../service/getBusinessHours'
 
 export class BusinessDay {
   constructor (today) {
@@ -33,7 +33,7 @@ export class BusinessDay {
     const isTakeAwayDay = await this.today.isTakeAwayDay()
     if (isTakeAwayDay) {
       const takeAwayHours = await this.today.getTakeAwayTime()
-      const { defaultStartBusinessDay } = await buildBusinessHours()
+      const { openToOrders: defaultStartBusinessDay } = await getBusinessHours()
       const isInbetweenTakeAwayHours = Object.values(takeAwayHours)
         .map(businessHours => {
           if (!businessHours) return null
