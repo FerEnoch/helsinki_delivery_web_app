@@ -26,8 +26,7 @@ export class Day {
   }
 
   async isBusinessDay () {
-    // const { notBusinessDays } = await buildBusinessHours()
-    await this.retrieveBusinessGrid()
+    // await this.retrieveBusinessGrid()
 
     const isBusinessHour = new Set(this.notBusinessDays
       .map(({ day, startingHour: closeHour }) => {
@@ -39,30 +38,26 @@ export class Day {
   }
 
   async getOrdersTime () {
-    // const dayBusinessHours = (await buildBusinessHours()).daysGrid.get(this.day)
-    await this.retrieveBusinessGrid()
+    // await this.retrieveBusinessGrid()
 
     const dayBusinessHours = this.daysGrid.get(this.day)
     return dayBusinessHours.orders ?? {}
   }
 
   async getDeliveryTime () {
-    // const dayBusinessHours = (await buildBusinessHours()).daysGrid.get(this.day)
-    await this.retrieveBusinessGrid()
+    // await this.retrieveBusinessGrid()
+
     const dayBusinessHours = this.daysGrid.get(this.day)
     return dayBusinessHours.delivery ?? {}
   }
 
   async getTakeAwayTime () {
-    // const dayBusinessHours = (await buildBusinessHours()).daysGrid.get(this.day)
     const dayBusinessHours = this.daysGrid.get(this.day)
     return dayBusinessHours.takeAway ?? {}
   }
 
   async isTakeAwayDay () {
-    // const { middayTakeAway } = await buildBusinessHours()
-    await this.retrieveBusinessGrid()
-    // const isDay = middayTakeAway && middayTakeAway
+    // await this.retrieveBusinessGrid()
     const isDay = this.middayTakeAway
       .map(({ day }) => {
         return this.day === day

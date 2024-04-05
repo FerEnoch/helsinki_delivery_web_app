@@ -2,37 +2,33 @@ import { Day } from './Day'
 import { MessagesUI } from './MessagesUI'
 import { getBusinessHours } from '../service/getBusinessHours'
 
-export class BusinessDay {
-  constructor (today) {
-    this.today = new Day(today)
-  }
-
+export class BusinessDay extends Day {
   async getOrdersPeriods () {
-    const isBusinessDay = await this.today.isBusinessDay()
+    const isBusinessDay = await this.isBusinessDay()
     if (!isBusinessDay) {
       const message = new MessagesUI()
       return message.disabledDay()
     }
-    return await this.today.getOrdersTime()
+    return await this.getOrdersTime()
   }
 
   async getDeliveryPeriods () {
-    const isBusinessDay = await this.today.isBusinessDay()
+    const isBusinessDay = await this.isBusinessDay()
     if (!isBusinessDay) {
       const message = new MessagesUI()
       return message.disabledDay()
     }
-    return await this.today.getDeliveryTime()
+    return await this.getDeliveryTime()
   }
 
   async isOrdersTime (hour) {
     let isTakeAwayPossible
-    const isBusinessDay = await this.today.isBusinessDay()
+    const isBusinessDay = await this.isBusinessDay()
     if (!isBusinessDay) return { isBusinessDay }
 
-    const isTakeAwayDay = await this.today.isTakeAwayDay()
+    const isTakeAwayDay = await this.isTakeAwayDay()
     if (isTakeAwayDay) {
-      const takeAwayHours = await this.today.getTakeAwayTime()
+      const takeAwayHours = await this.getTakeAwayTime()
       const { openToOrders: defaultStartBusinessDay } = await getBusinessHours()
       const isInbetweenTakeAwayHours = Object.values(takeAwayHours)
         .map(businessHours => {
@@ -47,7 +43,7 @@ export class BusinessDay {
       isTakeAwayPossible = isInbetweenTakeAwayHours.length > 0
     }
 
-    const ordersTime = await this.today.getOrdersTime()
+    const ordersTime = await this.getOrdersTime()
     const isInbetweenOrdersTime = Object.values(ordersTime)
       .map(businessHours => {
         if (!businessHours) return null
@@ -64,12 +60,12 @@ export class BusinessDay {
   }
 
   async isDeliveyTime (hour) {
-    const isBusinessDay = await this.today.isBusinessDay()
+    const isBusinessDay = await this.isBusinessDay()
     if (!isBusinessDay) {
       const message = new MessagesUI()
       return message.disabledDay()
     }
-    const deliveryTime = await this.today.getDeliveryTime()
+    const deliveryTime = await this.getDeliveryTime()
     const isInbetweenDeliveryTime = Object.values(deliveryTime)
       .map(businessHours => {
         if (!businessHours) return null

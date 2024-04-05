@@ -5,6 +5,8 @@ import { currentTime, currrentDay } from './getTimeInfo'
 
 export async function getBusinessHoursMessage () {
   const currentWeekDay = new BusinessDay(weekdays[currrentDay])
+  await currentWeekDay.retrieveBusinessGrid()
+
   const returnMessages = new MessagesUI()
 
   const { isTakeAwayPossible, canBookOrders, isBusinessDay } = await currentWeekDay.isOrdersTime(currentTime)
