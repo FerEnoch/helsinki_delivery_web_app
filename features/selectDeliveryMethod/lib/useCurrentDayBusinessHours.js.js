@@ -8,7 +8,6 @@ import { getMaxExtendedHour } from './useGetMaxExtendedHour'
 
 const { NO_TAKE_AWAY: noTakeAwayMessage, MIDDAY_TAKE_AWAY_POSSIBLE } = i18n.LANG.ESP.UI.TOAST.TIME_BLOCKER
 
-// automatize with API tags ('normal', 'extendido', 'cerrado')
 export function useCurrentDayBusinessHours (options) {
   const { isAppBlocked } = useAppStore()
   const [currentTagSelect, setCurrentTagSelect] = useState(null)
@@ -23,8 +22,7 @@ export function useCurrentDayBusinessHours (options) {
     ? (currrentDay === 0 ? spanishWeekdays.length - 1 : currrentDay - 1)
     : currrentDay
 
-  const currentDaySelect = options?.select.find(({ day }) => day === spanishWeekdays[dayToSeekFor])
-  // console.log(currentDaySelect)
+  const currentDaySelect = options?.select?.find(({ day }) => day === spanishWeekdays[dayToSeekFor])
   const label = (!isAppBlocked && currentDaySelect?.ops[0]?.tag) ? options?.label : noTakeAwayMessage
 
   useEffect(() => {

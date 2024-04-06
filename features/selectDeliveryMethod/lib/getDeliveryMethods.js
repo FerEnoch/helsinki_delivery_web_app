@@ -2,6 +2,7 @@ import { dayPeriodsTags } from '@/entities/timeBlocker/lib/config/periods'
 import { APITerms } from '@/entities/timeBlocker/lib/config/terms'
 import { buildBusinessHours } from '@/entities/timeBlocker/model/buildBusinessHours'
 import { getBusinessHours } from '@/entities/timeBlocker/service/getBusinessHours'
+import { formatHour } from './utils/formatHour'
 
 export async function getDeliveryMethods () {
   const {
@@ -21,12 +22,6 @@ export async function getDeliveryMethods () {
   const takeAwayNormalNightEnd = takeAwayHours.normalNight.to
   const takeAwayExtendedNightEnd = takeAwayHours.extendedNight.to
   const daysGridObject = Object.fromEntries(daysGrid.entries())
-
-  // declara functión
-  function formatHour (number) {
-    if (Number.isInteger(number)) return `${number}:00`
-    else return `0${number.toString().replace('.', ':')}`
-  }
 
   const costs = {
     delivery: deliveryCost,

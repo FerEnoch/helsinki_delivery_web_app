@@ -9,7 +9,7 @@ describe('Time blocker', () => {
     expect(currrentDay).toBeTypeOf('number')
   })
 
-  it('Should build up the week business hours map correctly', async () => {
+  it('Should build up the week business hours map correctly in size', async () => {
     const initialData = {
       openToOrders: 10,
       businessHours: {
@@ -76,7 +76,7 @@ describe('Time blocker', () => {
     expect(daysGrid.size).toBe(weekdays.length)
   })
 
-  it('Should build not-business days and hole week map correctly', async () => {
+  it('Should build and return not-business days in a complete week map correctly', async () => {
     const initialData = {
       openToOrders: 10,
       businessHours: {
@@ -119,7 +119,7 @@ describe('Time blocker', () => {
     expect(notBusinessDays).toHaveLength(2)
   })
 
-  it('Should build midday take-away days and hole week map correctly', async () => {
+  it('Should build and return midday take-away days in a complete week map correctly', async () => {
     const initialData = {
       openToOrders: 10,
       businessHours: {
@@ -167,7 +167,7 @@ describe('Time blocker', () => {
     expect(middayTakeAway).toHaveLength(3)
   })
 
-  it('Should build each day data completely', async () => {
+  it('Data should have all properties', async () => {
     const initialData = {
       openToOrders: 10,
       businessHours: {
@@ -257,7 +257,7 @@ describe('Time blocker', () => {
           extendedNight: { from: 20, to: 1.45 }
         },
         takeAway: {
-          earlyAfternoon: { from: 15, to: 17 },
+          earlyAfternoon: { from: 13.3, to: 15.3 },
           normalNight: { from: 20, to: 0.15 },
           extendedNight: { from: 20, to: 1.45 }
         }
@@ -338,14 +338,14 @@ describe('Time blocker', () => {
     const friday = daysGrid.get('friday')
     expect(friday.delivery.earlyMorning).toEqual([0, 0.15])
     expect(friday.delivery.night).toEqual([20, 23.59])
-    expect(friday.takeAway.midday).toEqual([15, 17])
+    expect(friday.takeAway.midday).toEqual([13.3, 15.3])
     expect(friday.takeAway.night).toEqual([20, 23.59])
 
     const saturday = daysGrid.get('saturday')
     expect(saturday.delivery.earlyMorning).toEqual([0, 1.45])
     expect(saturday.delivery.earlyMorning).toEqual([0, 1.45])
     expect(saturday.delivery.night).toEqual([20, 23.59])
-    expect(saturday.takeAway.midday).toEqual([15, 17])
+    expect(saturday.takeAway.midday).toEqual([13.3, 15.3])
     expect(saturday.takeAway.night).toEqual([20, 23.59])
   })
 
