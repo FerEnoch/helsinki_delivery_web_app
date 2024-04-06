@@ -36,5 +36,13 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './')
     }
-  }
+  },
+  watchExclude: [
+    '**/node_modules/**',
+    '**/dist/**',
+    './__test__/**',
+    './cypress/**',
+    './.next',
+    './.vscode'
+  ]
 })

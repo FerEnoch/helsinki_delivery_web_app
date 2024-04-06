@@ -1,9 +1,8 @@
 /// <reference types="Cypress" />
-
-const { describe, it } = require('mocha')
+/* eslint-disable no-undef */
 
 describe('Productos', () => {
-  it('Should show all products from server', () => {
+  it.only('Should show all products from server', () => {
     cy.visit('/')
   })
 })

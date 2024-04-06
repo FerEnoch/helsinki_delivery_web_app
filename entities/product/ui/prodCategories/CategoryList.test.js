@@ -32,7 +32,7 @@ describe('Home page categories', () => {
 
     render(<CategoryList categories={categories} combosLabels={combosLabels} />)
 
-    await Promise.all(categories.concat(combosLabels).map(async (category, _, arr) => {
+    await Promise.all(categories.concat(combosLabels).map(async category => {
       await waitFor(() => expect(screen.getByText(new RegExp(category, 'i'))))
     }))
   })
