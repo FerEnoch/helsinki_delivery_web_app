@@ -10,7 +10,8 @@ export async function populateCategoriesCache () {
     console.log(`
       ****/**** RETRIEVING FROM LOCAL MOCK DB ****/****
     `)
-    const mockDbModule = await import('@/__test__/mock_db/initialProdsData.js')
+    const mockDbModule = await import('@/__mocks/mock_db/initialProdsData.js')
+
     categoriesToCache = mockDbModule.initialProdsData
   } else if (process.env.NODE_ENV === 'production') {
     console.log(`
@@ -26,6 +27,6 @@ export async function populateCategoriesCache () {
   /* Creating cache logs */
   console.log(`
   CACHE POPULATED/**** data from **> ${activeCache} 
-  **> ${categoriesToCache.length} categories  (includ. 1 combos, if any)
+  **> ${categoriesToCache.length} home page categories
   `)
 }
