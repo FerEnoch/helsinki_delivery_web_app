@@ -1,7 +1,7 @@
 import { screen, render, waitFor } from '@testing-library/react'
 import { describe, expect, test, vi } from 'vitest'
 import CategoryList from './CategoryList'
-import { initialProdsData } from '@/shared/__test__/mock_db/initialProdsData'
+import { initialProdsData } from '@/__test__/mock_db/initialProdsData'
 
 vi.mock('@/shared/config/fonts', () => ({
   Unica_One: () => ({ className: 'fontClass' }),
@@ -32,7 +32,7 @@ describe('Home page categories', () => {
 
     render(<CategoryList categories={categories} combosLabels={combosLabels} />)
 
-    await Promise.all(categories.concat(combosLabels).map(async (category, _, arr) => {
+    await Promise.all(categories.concat(combosLabels).map(async category => {
       await waitFor(() => expect(screen.getByText(new RegExp(category, 'i'))))
     }))
   })

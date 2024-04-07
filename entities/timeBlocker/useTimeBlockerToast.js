@@ -18,7 +18,6 @@ export default function useTimeBlockerToast () {
   const { businessHoursMessage } = useTimeBlocker()
 
   useEffect(() => {
-    if (!businessHoursMessage) return
     switch (businessHoursMessage) {
       case 'OK': return setIsAppBlocked(false)
       case BOOK_ORDER_NOT_DELIVERY:

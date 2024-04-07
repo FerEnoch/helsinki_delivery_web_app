@@ -1,11 +1,10 @@
 import { deleteKeyFromMainCache, getFromMainCache, mainCache } from '@/processes/cache'
 import { MEM_CACHE } from '@/processes/cache/config'
 import MemoryUsage from '@/processes/lib/MemoryUsage'
-import 'server-only'
 import { revalidatePath } from 'next/cache'
 import { populateCategoriesCache } from './populateCategoriesCache'
 import { buildInitialProducts } from '../../lib/buildInitialProducts'
-
+import 'server-only'
 /**
  * Documents types! :
  *  id: { stringValue: id },
@@ -23,6 +22,8 @@ import { buildInitialProducts } from '../../lib/buildInitialProducts'
 
 MemoryUsage()
 export async function getInitialAppProducts () {
+  // if (process.env.NODE_ENV !== 'test') await import(() => 'server-only')
+
   const { FIREBASE_CACHE: { PRODUCTS: activeCache } } = MEM_CACHE
   try {
     let activeCacheMap = getFromMainCache(activeCache)

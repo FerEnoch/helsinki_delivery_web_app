@@ -29,11 +29,20 @@ export default defineConfig({
     }
   },
   test: {
+    globalSetup: './vitest.setup.js',
     environment: 'happy-dom'
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './')
     }
-  }
+  },
+  watchExclude: [
+    '**/node_modules/**',
+    '**/dist/**',
+    './__test__/**',
+    './cypress/**',
+    './.next',
+    './.vscode'
+  ]
 })
