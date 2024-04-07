@@ -9,10 +9,10 @@ export async function getBusinessHoursMessage () {
 
   const returnMessages = new MessagesUI()
 
-  const { isTakeAwayPossible, canBookOrders, isBusinessDay } = await currentWeekDay.isOrdersTime(currentTime)
+  const { isMiddayTakeAwayPossible, canBookOrders, isBusinessDay } = await currentWeekDay.isOrdersTime(currentTime)
 
   if (!isBusinessDay) return returnMessages.disabledDay()
-  if (isTakeAwayPossible) return returnMessages.addTakeAway()
+  if (isMiddayTakeAwayPossible) return returnMessages.addTakeAway()
   if (!canBookOrders) return returnMessages.disabledHours()
 
   const isDeliveryTime = await currentWeekDay.isDeliveyTime(currentTime)

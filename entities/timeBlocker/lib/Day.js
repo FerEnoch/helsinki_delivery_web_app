@@ -56,7 +56,7 @@ export class Day {
     return dayBusinessHours.takeAway ?? {}
   }
 
-  async isTakeAwayDay () {
+  async isMiddayTakeAwayDay () {
     // await this.retrieveBusinessGrid()
     const isDay = this.middayTakeAway
       .map(({ day }) => {

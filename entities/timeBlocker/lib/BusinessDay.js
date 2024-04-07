@@ -1,6 +1,7 @@
 import { Day } from './Day'
 import { MessagesUI } from './MessagesUI'
 import { getBusinessHours } from '../service/getBusinessHours'
+import { dayPeriods } from './config/periods'
 
 export class BusinessDay extends Day {
   async getOrdersPeriods () {
@@ -21,26 +22,26 @@ export class BusinessDay extends Day {
     return await this.getDeliveryTime()
   }
 
-  async isOrdersTime (hour) {
-    let isTakeAwayPossible
+  async isOrdersTime (currentTime) {
+    let isMiddayTakeAwayPossible
     const isBusinessDay = await this.isBusinessDay()
     if (!isBusinessDay) return { isBusinessDay }
 
-    const isTakeAwayDay = await this.isTakeAwayDay()
+    const isTakeAwayDay = await this.isMiddayTakeAwayDay()
     if (isTakeAwayDay) {
       const takeAwayHours = await this.getTakeAwayTime()
+
       const { openToOrders: defaultStartBusinessDay } = await getBusinessHours()
-      const isInbetweenTakeAwayHours = Object.values(takeAwayHours)
-        .map(businessHours => {
+      const isInbetweenTakeAwayHours = Object.entries(takeAwayHours)
+        .map(([dayPeriod, businessHours]) => {
+          if (dayPeriod !== dayPeriods.MIDDAY) return null
           if (!businessHours) return null
           const [, closeTime] = businessHours
-          // const closeTime = businessHours[1]
-          const isInTime = defaultStartBusinessDay <= hour && hour <= closeTime
+          const isInTime = defaultStartBusinessDay <= currentTime && currentTime <= closeTime
           return isInTime
         })
         .filter(Boolean)
-
-      isTakeAwayPossible = isInbetweenTakeAwayHours.length > 0
+      isMiddayTakeAwayPossible = isInbetweenTakeAwayHours.length > 0
     }
 
     const ordersTime = await this.getOrdersTime()
@@ -50,16 +51,16 @@ export class BusinessDay extends Day {
         const [initialTime, closeTime] = businessHours
         // const initialTime = businessHours[0]
         // const closeTime = businessHours[1]
-        const isInTime = initialTime <= hour && hour <= closeTime
+        const isInTime = initialTime <= currentTime && currentTime <= closeTime
         return isInTime
       })
       .filter(Boolean)
 
     const canBookOrders = isInbetweenOrdersTime.length > 0
-    return { isTakeAwayPossible, canBookOrders, isBusinessDay }
+    return { isMiddayTakeAwayPossible, canBookOrders, isBusinessDay }
   }
 
-  async isDeliveyTime (hour) {
+  async isDeliveyTime (currentTime) {
     const isBusinessDay = await this.isBusinessDay()
     if (!isBusinessDay) {
       const message = new MessagesUI()
@@ -72,7 +73,7 @@ export class BusinessDay extends Day {
         const [initialTime, closeTime] = businessHours
         // const initialTime = businessHours[0]
         // const closeTime = businessHours[1]
-        const isInTime = initialTime <= hour && hour <= closeTime
+        const isInTime = initialTime <= currentTime && currentTime <= closeTime
         return isInTime
       })
       .filter(Boolean)
