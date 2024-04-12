@@ -1,5 +1,5 @@
-import {Image} from 'next/image'
 import classes from './InfoPageWrapper.module.css'
+/* eslint-disable @next/next/no-img-element */
 
 export default function InfoPageWrapper ({ children }) {
   return (
