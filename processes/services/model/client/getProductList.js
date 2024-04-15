@@ -7,7 +7,7 @@ export async function getProductList () {
     const response = await fetch(`${baseURL}/products${query}`, withAuthAPIOptionsObj)
     const { message, data: products } = await response.json()
     if (message === 'Success') {
-      return [...products]
+      return products
     } else {
       throw new Error('Could not get products.. :\\')
     }
@@ -16,7 +16,7 @@ export async function getProductList () {
     const response = await fetch(`${baseURL}/products/${query}`, withAuthAPIOptionsObj)
     const { message, data: products } = await response.json()
     if (message === 'Success') {
-      return [...products]
+      return products
     } else {
       throw new Error('Could not get products definitely... :\\')
     }

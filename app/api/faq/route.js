@@ -16,6 +16,7 @@ export async function PATCH (request) {
     }
 
     const { code, message } = await updateCacheOnSnapshot({ cache: FAQ, action: 'UPDATE', content })
+
     if (code === 200 && message === 'Success') {
       console.log('**/ Successfull operation UPDATE **/')
       return NextResponse.json({ message }, { status: code })
