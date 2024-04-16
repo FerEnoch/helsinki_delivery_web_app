@@ -135,16 +135,12 @@ async function revalidatePaymentMethodsCache (content) {
 
 async function revalidateBusinessHoursCache (content) {
   // const { FIREBASE_CACHE: { BUSINESS_HOURS: activeCache } } = MEM_CACHE
+
   console.log(`UPDATING ${content}`)
   const activeCacheMap = getFromMainCache(businessHoursCacheTag)
   // const { BUSINESS_HOURS } = FIREBASE_DATABASES
   const [businessHours] = await getFirebaseCollection(businessHoursFirebaseFolder)
-  console.log(businessHours)
-  /**
-   * TO DO
-   * VER QUÉ ESTÁ DEVOLVIENDO FIREBASE en businessHours
-   */
-  activeCacheMap.set(businessHoursCacheTag, businessHours)
+  activeCacheMap.set(businessHoursCacheTag, businessHours[businessHoursFirebaseFolder])
   /* Creating cache loggin */
   console.log(`
   CACHE POPULATED/**** data from **> ${businessHoursCacheTag}

@@ -18,7 +18,7 @@ export async function GET () {
   const { takeAway, delivery } = businessHours
   const maxExtendedBusinessHours = Math.max(delivery.extendedNight.to, takeAway.extendedNight.to)
 
-  return NextResponse.json({
+  const response = {
     message: 'Success',
     data: JSON.stringify({
       deliveryMethods,
@@ -28,7 +28,9 @@ export async function GET () {
       businessHours,
       maxExtendedBusinessHours
     })
-  }, { status: 200 })
+  }
+
+  return NextResponse.json(response, { status: 200 })
 }
 
 export async function PATCH (request) {
