@@ -7,13 +7,13 @@ import { Toaster } from 'sonner'
 import { useInitialToast } from '../../lib/useInitialToast'
 import { useEffect } from 'react'
 
-const sorting = (arr) => {
-  if (arr.toSorted) {
-    return arr.toSorted()
-  } else {
-    return arr
-  }
-}
+// const sorting = (arr) => {
+//   if (arr.toSorted) {
+//     return arr.toSorted()
+//   } else {
+//     return arr
+//   }
+// }
 
 export default function CategoryList ({ categories, combosLabels }) {
   useProducts()

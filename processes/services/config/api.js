@@ -8,6 +8,7 @@ export const withAuthAPIOptionsObj = {
   cache: 'no-store',
   headers: {
     'content-type': 'application/json',
-    'x-api-key': process.env.NEXT_PUBLIC_API_KEY
+    'x-api-key': process.env.NEXT_PUBLIC_API_KEY,
+    referer: currentEnviromentURL
   }
 }

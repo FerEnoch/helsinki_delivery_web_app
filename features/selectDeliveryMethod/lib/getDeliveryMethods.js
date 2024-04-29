@@ -1,18 +1,15 @@
 import { dayPeriodsTags } from '@/entities/timeBlocker/lib/config/periods'
 import { APITerms } from '@/entities/timeBlocker/lib/config/terms'
 import { buildBusinessHours } from '@/entities/timeBlocker/model/buildBusinessHours'
-import { getBusinessHours } from '@/entities/timeBlocker/service/getBusinessHours'
 import { formatHour } from './utils/formatHour'
 
-export async function getDeliveryMethods () {
-  const {
-    grid: initialGrid,
-    openToOrders,
-    businessHours,
-    deliveryCost
-  } = await getBusinessHours()
-
-  const { daysGrid } = await buildBusinessHours({
+export async function getDeliveryMethods ({
+  grid: initialGrid,
+  openToOrders,
+  businessHours,
+  deliveryCost
+}) {
+  const buildResponse = await buildBusinessHours({
     initialGrid,
     openToOrders,
     businessHours
@@ -21,6 +18,8 @@ export async function getDeliveryMethods () {
   const { takeAway: takeAwayHours } = businessHours
   const takeAwayNormalNightEnd = takeAwayHours.normalNight.to
   const takeAwayExtendedNightEnd = takeAwayHours.extendedNight.to
+
+  const { daysGrid } = buildResponse
   const daysGridObject = Object.fromEntries(daysGrid.entries())
 
   const costs = {
@@ -55,7 +54,6 @@ export async function getDeliveryMethods () {
             }) => {
               const takeAwayComposedNormal = new Map()
               const takeAwayComposedExtended = new Map()
-
               return {
                 day: dayTag,
                 generalTag: `Horario ${takeAwayTag.toLowerCase()}`, // -> NOT IN USAGE
@@ -131,7 +129,6 @@ export async function getDeliveryMethods () {
 /* OLD API
 {
         label: 'Elegí Día y horario',
-        // TO DO
         select: [ // make a loop -- possibly, map UI ops[{ tag }]
           {
             day: 'Dom',

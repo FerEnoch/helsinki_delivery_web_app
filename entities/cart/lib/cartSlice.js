@@ -1,7 +1,7 @@
 import { CART_OPERATIONS } from '@/features/addToCart/lib/updateQuantityOperations'
 import { getCartAmount } from './getCartAmount'
 import { priceFormater } from '@/shared/lib/priceFormat/priceFormat'
-import { getDeliveryMethods } from '@/features/selectDeliveryMethod/lib/getDeliveryMethods'
+import { fetchBusinessHoursData } from '../services/fetchBusinessHoursData'
 
 export const cartSlice = (set, get) => {
   return {
@@ -41,8 +41,9 @@ export const cartSlice = (set, get) => {
     getCartTotalAmount: () => {
       const { cart, paymentMethod, selectedDeliveryMethod, setDeliveryMethod } = get()
       if (!selectedDeliveryMethod) {
-        getDeliveryMethods().then((methods) => {
-          const { label, price, info } = methods.find(({ isDefault }) => isDefault)
+        fetchBusinessHoursData().then((response) => {
+          const { deliveryMethods } = response
+          const { label, price, info } = deliveryMethods.find(({ isDefault }) => isDefault)
           setDeliveryMethod({
             label,
             price,

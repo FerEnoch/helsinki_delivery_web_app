@@ -1,7 +1,7 @@
 import { screen, render, waitFor } from '@testing-library/react'
 import { describe, expect, test, vi } from 'vitest'
 import CategoryList from './CategoryList'
-import { initialProdsData } from '@/__test__/mock_db/initialProdsData'
+import { initialProdsData } from '@/__mocks/mock_db/initialProdsData'
 
 vi.mock('@/shared/config/fonts', () => ({
   Unica_One: () => ({ className: 'fontClass' }),

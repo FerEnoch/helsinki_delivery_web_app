@@ -1,11 +1,20 @@
 export const FIREBASE_DATABASES = {
-  /* - 'categories-test' para pruebas y debuggin - */
+  /*
+  - PRODUCT_CATEGORIES: prod -> 'products-categories'
+  -                     test & debuggin -> 'categories-test'
+  */
   PRODUCT_CATEGORIES: 'products-categories',
-  // PRODUCT_CATEGORIES: 'categories-test',
-  /* - 'combos-test' para pruebas y debuggin - */
+  /*
+  - PRODUCT_COMBOS: prod -> 'products-combos'
+  -                 test & debuggin -> 'combos-test'
+  */
   PRODUCT_COMBOS: 'products-combos',
-  // PRODUCT_COMBOS: 'combos-test',
-  INFO: 'info',
-  FAQ: 'faq',
-  PAYMENT_METHODS: 'paymentMethods'
+  INFO: 'info', // no test folder
+  FAQ: 'faq', // no test folder
+  PAYMENT_METHODS: 'paymentMethods', // no test folder
+  /*
+  - BUSINESS_HOURS: prod -> 'businessHours'
+  -                 test & debuggin -> 'hoursTest'
+    */
+  BUSINESS_HOURS: 'hoursTest'
 }

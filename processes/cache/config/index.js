@@ -3,7 +3,8 @@ export const MEM_CACHE = {
     PRODUCTS: 'PRODUCTS_CACHE', // includes products-categories & products-combos
     INFO: 'INFO_CACHE',
     FAQ: 'FAQ_CACHE',
-    PAYMENT_METHODS: 'PAYMENT_METHODS_CACHE'
+    PAYMENT_METHODS: 'PAYMENT_METHODS_CACHE',
+    BUSINESS_HOURS: 'BUSINESS_HOURS'
   }
 }
 

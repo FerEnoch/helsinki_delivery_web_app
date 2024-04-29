@@ -1,8 +1,6 @@
-import { getBusinessHours } from '@/entities/timeBlocker/service/getBusinessHours'
+import { fetchBusinessHoursData } from '@/entities/cart/services/fetchBusinessHoursData'
 
 export async function getMaxExtendedHour () {
-  const {
-    businessHours: { takeAway: takeAwayHours, delivery: deliveryHours }
-  } = await getBusinessHours()
-  return Math.max(deliveryHours.extendedNight.to, takeAwayHours.extendedNight.to)
+  const { maxExtendedBusinessHours } = await fetchBusinessHoursData()
+  return maxExtendedBusinessHours
 }

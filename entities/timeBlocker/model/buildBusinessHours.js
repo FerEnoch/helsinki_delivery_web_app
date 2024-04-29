@@ -2,26 +2,19 @@ import { dayLimits, dayPeriods } from '../lib/config/periods'
 import { spanishWeekdays, weekdays } from '../lib/config/weekdays'
 import { APITerms } from '../lib/config/terms'
 
-/*
-TO DO:
---> white test
-*/
-
 export async function buildBusinessHours ({
   openToOrders: defaultStartBusinessDay,
   initialGrid,
-  businessHours: {
-    delivery: {
-      normalNight: deliveryNormalNight,
-      extendedNight: deliveryExtendedNight
-    },
-    takeAway: {
-      normalNight: takeAwayNormalNight,
-      extendedNight: takeAwayExtendedNight,
-      earlyAfternoon: takeAwayEarlyAfternoon
-    }
-  }
+  businessHours
 }) {
+  const {
+    delivery: apiDeliveryHours,
+    takeAway: apiTakeAwayHours
+  } = businessHours
+
+  const { normalNight: deliveryNormalNight, extendedNight: deliveryExtendedNight } = apiDeliveryHours
+  const { normalNight: takeAwayNormalNight, extendedNight: takeAwayExtendedNight, earlyAfternoon: takeAwayEarlyAfternoon } = apiTakeAwayHours
+
   const notBusinessDays = initialGrid
     .map(({ day, delivery, takeAway }, index, week) => {
       if (!day) return null
@@ -198,9 +191,6 @@ export async function buildBusinessHours ({
 
   return {
     daysGrid,
-    // defaultStartDelivery: deliveryNormalNight.from,
-    // defaultEndBusinessDay: takeAwayNormalNight.to,
-    // extendedBusinessDay: takeAwayExtendedNight.to,
     notBusinessDays,
     middayTakeAway
   }

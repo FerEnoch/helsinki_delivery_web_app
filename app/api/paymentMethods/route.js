@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server'
 
 export async function PATCH (request) {
   const { FIREBASE_CACHE: { PAYMENT_METHODS } } = MEM_CACHE
+
   try {
     console.log('*///* Incomming PATCH request *///*')
     const content = await request.json()
@@ -27,6 +28,7 @@ export async function PATCH (request) {
       { status: code })
     }
   } catch (e) {
+    console.error('Bad response is returned...')
     if (e.message === 'BAD REQUEST') {
       return NextResponse.json({
         message: 'BAD REQUEST --> :(  ///***/* Could NOT UPDATE CORRECTLY the web app'
