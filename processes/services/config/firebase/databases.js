@@ -16,5 +16,5 @@ export const FIREBASE_DATABASES = {
   - BUSINESS_HOURS: prod -> 'businessHours'
   -                 test & debuggin -> 'hoursTest'
     */
-  BUSINESS_HOURS: 'hoursTest'
+  BUSINESS_HOURS: 'businessHours'
 }
