@@ -1,6 +1,5 @@
 import { Day } from './Day'
 import { MessagesUI } from './MessagesUI'
-import { getBusinessHours } from '../service/getBusinessHours'
 import { dayPeriods } from './config/periods'
 
 export class BusinessDay extends Day {
@@ -31,13 +30,13 @@ export class BusinessDay extends Day {
     if (isTakeAwayDay) {
       const takeAwayHours = await this.getTakeAwayTime()
 
-      const { openToOrders: defaultStartBusinessDay } = await getBusinessHours()
+      // const { openToOrders: defaultStartBusinessDay } = await fetchBusinessHoursData()
       const isInbetweenTakeAwayHours = Object.entries(takeAwayHours)
         .map(([dayPeriod, businessHours]) => {
           if (dayPeriod !== dayPeriods.MIDDAY) return null
           if (!businessHours) return null
           const [, closeTime] = businessHours
-          const isInTime = defaultStartBusinessDay <= currentTime && currentTime <= closeTime
+          const isInTime = this.openToOrders <= currentTime && currentTime <= closeTime
           return isInTime
         })
         .filter(Boolean)

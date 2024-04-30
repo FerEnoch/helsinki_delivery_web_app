@@ -7,9 +7,11 @@ export async function getPaymentMethodsCollection () {
 
   console.log('Getting INITIAL PAYMENT_METHODS')
   const databasePaymentMethodsRef = await firestoreDatabaseAdmin.collection(PAYMENT_METHODS).get()
-  const [{ paymentMethods }] = databasePaymentMethodsRef.docs.map(doc => doc.data())
-
-  return Promise.all(JSON.parse(paymentMethods).map(async method => {
+  const [{ paymentMethods }] = databasePaymentMethodsRef.docs.flatMap(doc => doc.data())
+  const filteredMethods = JSON.parse(paymentMethods).flatMap(method => {
+    return method.filter(m => Boolean(m.cbu_or_link))
+  })
+  return await Promise.all(filteredMethods.map(async method => {
     if (!method?.imageID) return method
     const { imageID, cbu_or_link: imageURL } = method
     const image = imageID ? (await getBucketImageURL(imageID) || imageURL) : (imageURL || null)

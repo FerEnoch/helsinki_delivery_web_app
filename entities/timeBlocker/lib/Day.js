@@ -1,5 +1,5 @@
+import { fetchBusinessHoursData } from '@/entities/cart/services/fetchBusinessHoursData'
 import { buildBusinessHours } from '../model/buildBusinessHours'
-import { getBusinessHours } from '../service/getBusinessHours'
 import { currentTime } from './getTimeInfo'
 
 export class Day {
@@ -9,17 +9,18 @@ export class Day {
 
   async retrieveBusinessGrid () {
     const {
-      grid: initialGrid,
+      grid,
       openToOrders,
       businessHours
-    } = await getBusinessHours()
+    } = await fetchBusinessHoursData()
 
     const { daysGrid, notBusinessDays, middayTakeAway } = await buildBusinessHours({
       openToOrders,
-      initialGrid,
+      initialGrid: grid,
       businessHours
     })
 
+    this.openToOrders = openToOrders
     this.daysGrid = daysGrid
     this.notBusinessDays = notBusinessDays
     this.middayTakeAway = middayTakeAway

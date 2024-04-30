@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest'
 import { useFinalCart } from '.'
-import { initialStock } from '@/__test__/clientStock/initialStock'
+import { initialStock } from '@/__mocks/clientStock/initialStock'
 
 vi.mock('@/entities/lib/store', () => ({
   useAppStore: () => ({ stockProducts: initialStock })
